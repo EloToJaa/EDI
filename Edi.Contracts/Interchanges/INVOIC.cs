@@ -24,4 +24,13 @@ public class INVOIC
 
     [EdiCondition("ON", Path = "RFF/0/0")]
     public Order? PurchaseOrder { get; set; }
+
+    [EdiCondition("SE", Path = "NAD/0/0")]
+    public Address? Seller { get; set; }
+
+    [EdiCondition("IV", Path = "NAD/0/0")]
+    public Address? Invoicee { get; set; }
+
+    [EdiCondition("DP", Path = "NAD/0/0")]
+    public Address? DeliveryParty { get; set; }
 }

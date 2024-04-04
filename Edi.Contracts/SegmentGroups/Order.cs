@@ -3,7 +3,7 @@ using indice.Edi.Serialization;
 
 namespace Edi.Contracts.SegmentGroups;
 
-[EdiSegmentGroup("RFF", "DTM")]
+[EdiSegmentGroup("RFF", SequenceEnd = "DTM")]
 public class Order
 {
     public RFF? OrderNumber { get; set; }

@@ -17,11 +17,12 @@ namespace Edi
             using var stream = new StreamReader(filePath);
             interchange = new EdiSerializer().Deserialize<INVOIC>(stream, grammar);
 
-            Console.WriteLine(JsonSerializer.Serialize(interchange, new JsonSerializerOptions
+            string json = JsonSerializer.Serialize(interchange, new JsonSerializerOptions
             {
                 WriteIndented = true,
-            }));
-            Console.ReadKey();
+            });
+
+            File.WriteAllText(Path.Combine(dirPath, "out.json"), json);
         }
     }
 }

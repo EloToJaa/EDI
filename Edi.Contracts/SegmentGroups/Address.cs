@@ -3,7 +3,7 @@ using indice.Edi.Serialization;
 
 namespace Edi.Contracts.SegmentGroups;
 
-[EdiSegmentGroup("NAD", "NAD", "RFF")]
+[EdiSegmentGroup("NAD", SequenceEnd = "RFF")]
 public class Address
 {
     public NAD? NameAndAddress { get; set; }

@@ -9,7 +9,7 @@ public class DTM
     [EdiValue("9(3)", Path = "DTM/0/0")]
     public int DateTimePeriodQualifier { get; set; }
 
-    [EdiValue("X(35)", Path = "DTM/0/1", Format = "yyyyMMdd")]
+    [EdiValue("X(35)", Path = "DTM/0/1")]
     public string? DateTimeText { get; set; }
 
     [EdiValue("9(3)", Path = "DTM/0/2")]

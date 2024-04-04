@@ -25,8 +25,6 @@ public class Invoice
     [EdiCondition("ON", Path = "RFF/0/0")]
     public Order? PurchaseOrder { get; set; }
 
-    //public List<Order> Orders { get; set; } = new List<Order>();
-
     [EdiCondition("SE", Path = "NAD/0/0")]
     public Address? Seller { get; set; }
 
@@ -35,4 +33,8 @@ public class Invoice
 
     [EdiCondition("DP", Path = "NAD/0/0")]
     public Address? DeliveryParty { get; set; }
+
+    public CUX? Currency { get; set; }
+
+    public List<Line> Lines { get; set; } = new List<Line>();
 }

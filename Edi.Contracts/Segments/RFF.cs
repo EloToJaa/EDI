@@ -11,12 +11,3 @@ public class RFF
     [EdiValue("X(35)", Path = "RFF/0/1")]
     public string? ReferenceNumber { get; set; }
 }
-
-public class NonRFF
-{
-    [EdiValue("X(3)", Path = "RFF/0/0")]
-    public string? ReferenceQualifier { get; set; }
-
-    [EdiValue("X(35)", Path = "RFF/0/1")]
-    public string? ReferenceNumber { get; set; }
-}

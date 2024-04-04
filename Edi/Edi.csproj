@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Edi.Contracts\Edi.Contracts.csproj" />
+    <ProjectReference Include="..\Edi.Generator\Edi.Generator.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +21,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="edi\ORDERS_2024_281.c2e %281%29.sent">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="schemas\D97A\RSSBus_D97A.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

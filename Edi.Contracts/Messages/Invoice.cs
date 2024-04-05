@@ -37,4 +37,6 @@ public class Invoice
     public CUX? Currency { get; set; }
 
     public List<Line> Lines { get; set; } = new List<Line>();
+
+    public UNT? MessageTrailer { get; set; }
 }

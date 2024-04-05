@@ -33,7 +33,19 @@ namespace Edi
             if (schema is null) return;
 
             var generator = new GeneratorService();
-            Console.WriteLine(generator.GenerateClassForSegment(schema, "UNH", "Edi.Contracts"));
+
+            string dirPath = @"C:\Users\l.budziak\Documents\Programs\Edi\";
+            foreach (var (segmentName, segment) in schema.Segments)
+            {
+                string code = generator.GenerateClassForSegment(segmentName, segment, "Edi");
+                File.WriteAllText(Path.Combine(dirPath, "Segments", $"{segmentName}.cs"), code);
+            }
+
+            foreach (var (qualifierName, qualifier) in schema.Qualifiers)
+            {
+                string code = generator.GenerateClassForQualifier(qualifierName, qualifier, "Edi");
+                File.WriteAllText(Path.Combine(dirPath, "Qualifiers", $"{generator.ConvertToPascalCase(qualifierName)}.cs"), code);
+            }
         }
     }
 }

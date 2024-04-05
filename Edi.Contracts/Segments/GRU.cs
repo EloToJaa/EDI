@@ -1,0 +1,43 @@
+using System.Collections.Generic;
+using Edi.Contracts.Qualifiers;
+using indice.Edi.Serialization;
+
+namespace Edi.Contracts.Segments;
+
+/// <summary>
+/// To specify the usage of a segment group within a message type structure and its maintenance operation.
+/// </summary>
+[EdiSegment, EdiPath("GRU")]
+public class GRU
+{
+	/// <summary>
+	/// To identify a group within a message type structure.
+	/// </summary>
+	[EdiValue("X(4)", Path = "GRU/0")]
+	public string? GroupIdentification { get; set; }
+
+	/// <summary>
+	/// To specify the designated requirement.
+	/// </summary>
+	[EdiValue("X(3)", Path = "GRU/1")]
+	public RequirementDesignatorCoded? RequirementDesignatorCoded { get; set; }
+
+	/// <summary>
+	/// To specify the maximum number of occurrences.
+	/// </summary>
+	[EdiValue("9(7)", Path = "GRU/2")]
+	public int? MaximumNumberOfOccurrences { get; set; }
+
+	/// <summary>
+	/// To indicate the type of data maintenance operation for an object, such as add, delete, replace.
+	/// </summary>
+	[EdiValue("X(3)", Path = "GRU/3")]
+	public MaintenanceOperationCoded? MaintenanceOperationCoded { get; set; }
+
+	/// <summary>
+	/// Number indicating the position in a sequence.
+	/// </summary>
+	[EdiValue("X(10)", Path = "GRU/4")]
+	public string? SequenceNumber { get; set; }
+
+}

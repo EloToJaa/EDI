@@ -9,22 +9,31 @@ namespace Edi
     {
         static void Main(string[] args)
         {
-            //string dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "edi");
-            //string filePath = Path.Combine(dirPath, "INVOIC_a2i24021713091266429e1.edi.c2e");
+            CheckParse();
 
-            //var grammar = EdiGrammar.NewEdiFact();
-            //var interchange = default(INVOIC);
+            //GenerateCode();
+        }
 
-            //using var stream = new StreamReader(filePath);
-            //interchange = new EdiSerializer().Deserialize<INVOIC>(stream, grammar);
+        private static void CheckParse()
+        {
+            string dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "edi");
+            string filePath = Path.Combine(dirPath, "INVOIC_a2i24021713091266429e1.edi.c2e");
 
-            //string json = JsonSerializer.Serialize(interchange, new JsonSerializerOptions
-            //{
-            //    WriteIndented = true,
-            //});
+            var grammar = EdiGrammar.NewEdiFact();
+            var interchange = default(INVOIC);
+            using var stream = new StreamReader(filePath);
+            interchange = new EdiSerializer().Deserialize<INVOIC>(stream, grammar);
 
-            //File.WriteAllText(Path.Combine(dirPath, "out.json"), json);
+            string json = JsonSerializer.Serialize(interchange, new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            });
 
+            File.WriteAllText(Path.Combine(dirPath, "out.json"), json);
+        }
+
+        private static void GenerateCode()
+        {
             string schemaDirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "schemas");
             string schemaFilePath = Path.Combine(schemaDirPath, "D97A", "RSSBus_D97A.json");
             string schemaContents = File.ReadAllText(schemaFilePath);
@@ -34,17 +43,27 @@ namespace Edi
 
             var generator = new GeneratorService();
 
-            string dirPath = @"C:\Users\l.budziak\Documents\Programs\Edi\";
+            string dirPath = @"C:\Users\l.budziak\Documents\Projects\Edi\Edi.Contracts";
+            string namespaceName = "Edi.Contracts";
+
+            string segmentsDir = Path.Combine(dirPath, "Segments");
+            if (!Directory.Exists(segmentsDir))
+                Directory.CreateDirectory(segmentsDir);
+
             foreach (var (segmentName, segment) in schema.Segments)
             {
-                string code = generator.GenerateClassForSegment(segmentName, segment, "Edi");
-                File.WriteAllText(Path.Combine(dirPath, "Segments", $"{segmentName}.cs"), code);
+                string code = generator.GenerateClassForSegment(segmentName, segment, namespaceName);
+                File.WriteAllText(Path.Combine(segmentsDir, $"{segmentName}.cs"), code);
             }
+
+            string qualifiersDir = Path.Combine(dirPath, "Qualifiers");
+            if (!Directory.Exists(qualifiersDir))
+                Directory.CreateDirectory(qualifiersDir);
 
             foreach (var (qualifierName, qualifier) in schema.Qualifiers)
             {
-                string code = generator.GenerateClassForQualifier(qualifierName, qualifier, "Edi");
-                File.WriteAllText(Path.Combine(dirPath, "Qualifiers", $"{generator.ConvertToPascalCase(qualifierName)}.cs"), code);
+                string code = generator.GenerateClassForQualifier(qualifierName, qualifier, namespaceName);
+                File.WriteAllText(Path.Combine(qualifiersDir, $"{generator.ConvertToPascalCase(qualifierName)}.cs"), code);
             }
         }
     }

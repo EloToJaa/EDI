@@ -1,0 +1,55 @@
+using System.Collections.Generic;
+using Edi.Contracts.Qualifiers;
+using indice.Edi.Serialization;
+
+namespace Edi.Contracts.Segments;
+
+/// <summary>
+/// To specify dimensions.
+/// </summary>
+[EdiSegment, EdiPath("DIM")]
+public class DIM
+{
+	/// <summary>
+	/// To specify the dimensions applicable to each of the transportable units.
+	/// </summary>
+	[EdiValue("X(3)", Path = "DIM/0")]
+	public DimensionQualifier? DimensionQualifier { get; set; }
+
+	/// <summary>
+	/// Specification of the dimensions of a transportable unit.
+	/// </summary>
+	[EdiPath("DIM/1")]
+	public DIM_Dimensions? Dimensions { get; set; }
+}
+
+/// <summary>
+/// Specification of the dimensions of a transportable unit.
+/// </summary>
+[EdiElement]
+public class DIM_Dimensions
+{
+	/// <summary>
+	/// Indication of the unit of measurement in which weight (mass), capacity, length, area, volume or other quantity is expressed.
+	/// </summary>
+	[EdiValue("X(3)", Path = "DIM/*/0")]
+	public string? MeasureUnitQualifier { get; set; }
+
+	/// <summary>
+	/// Length of pieces or packages stated for transport purposes.
+	/// </summary>
+	[EdiValue("9(15)", Path = "DIM/*/1")]
+	public int? LengthDimension { get; set; }
+
+	/// <summary>
+	/// Width of pieces or packages stated for transport purposes.
+	/// </summary>
+	[EdiValue("9(15)", Path = "DIM/*/2")]
+	public int? WidthDimension { get; set; }
+
+	/// <summary>
+	/// Height of pieces or packages stated for transport purposes.
+	/// </summary>
+	[EdiValue("9(15)", Path = "DIM/*/3")]
+	public int? HeightDimension { get; set; }
+}

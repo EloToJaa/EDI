@@ -12,8 +12,11 @@ public class GeneratorService
         var sb = new StringBuilder();
 
         sb.Append("using System.Collections.Generic;\n");
+        sb.Append($"using {namespaceName}.Qualifiers;\n");
         sb.Append("using indice.Edi.Serialization;\n\n");
+
         sb.Append($"namespace {namespaceName}.Segments;\n\n");
+
         sb.Append("/// <summary>\n");
         sb.Append($"/// {segment.Purpose}\n");
         sb.Append("/// </summary>\n");
@@ -121,7 +124,7 @@ public class GeneratorService
     private string ConvertVariableType(string? inputDataType, string? qualifierRef)
     {
         if (inputDataType is null) return "string?";
-        if (qualifierRef is not null) return "string?";
+        if (qualifierRef is not null) return $"{ConvertToPascalCase(qualifierRef)}?";
         return inputDataType switch
         {
             "AN" => "string?",

@@ -13,13 +13,13 @@ public class UNT
 	/// <summary>
 	/// Control count of number of segments in a message.
 	/// </summary>
-	[EdiValue("9(6)", Path = "UNT/0")]
-	public int? NumberOfSegmentsInAMessage { get; set; }
+	[EdiValue("9(6)", Path = "UNT/0", Mandatory = true)]
+	public decimal? NumberOfSegmentsInAMessage { get; set; }
 
 	/// <summary>
 	/// Unique message reference assigned by the sender.
 	/// </summary>
-	[EdiValue("X(14)", Path = "UNT/1")]
+	[EdiValue("X(14)", Path = "UNT/1", Mandatory = true)]
 	public string? MessageReferenceNumber { get; set; }
 
 }

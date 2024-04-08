@@ -1,6 +1,7 @@
 ﻿using Edi.Contracts.Interchanges;
 using Edi.Generator;
 using indice.Edi;
+using System.Text;
 using System.Text.Json;
 
 namespace Edi
@@ -10,7 +11,6 @@ namespace Edi
         static void Main(string[] args)
         {
             CheckParse();
-
             //GenerateCode();
         }
 

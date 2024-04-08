@@ -13,19 +13,19 @@ public class CCD
 	/// <summary>
 	/// Request for a credit cover.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CCD/0")]
+	[EdiValue("X(3)", Path = "CCD/0", Mandatory = false)]
 	public CreditCoverRequestCoded? CreditCoverRequestCoded { get; set; }
 
 	/// <summary>
 	/// Reply to a request for credit cover.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CCD/1")]
+	[EdiValue("X(3)", Path = "CCD/1", Mandatory = false)]
 	public CreditCoverResponseCoded? CreditCoverResponseCoded { get; set; }
 
 	/// <summary>
 	/// Reason of reply to a request for credit cover.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CCD/2")]
+	[EdiValue("X(3)", Path = "CCD/2", Mandatory = false)]
 	public CreditCoverReasonCoded? CreditCoverReasonCoded { get; set; }
 
 }

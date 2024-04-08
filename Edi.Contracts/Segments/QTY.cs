@@ -26,18 +26,18 @@ public class QTY_QuantityDetails
 	/// <summary>
 	/// Code giving specific meaning to a quantity.
 	/// </summary>
-	[EdiValue("X(3)", Path = "QTY/*/0")]
+	[EdiValue("X(3)", Path = "QTY/*/0", Mandatory = true)]
 	public QuantityQualifier? QuantityQualifier { get; set; }
 
 	/// <summary>
 	/// Numeric value of a quantity.
 	/// </summary>
-	[EdiValue("9(15)", Path = "QTY/*/1")]
-	public int? Quantity { get; set; }
+	[EdiValue("9(15)", Path = "QTY/*/1", Mandatory = true)]
+	public decimal? Quantity { get; set; }
 
 	/// <summary>
 	/// Indication of the unit of measurement in which weight (mass), capacity, length, area, volume or other quantity is expressed.
 	/// </summary>
-	[EdiValue("X(3)", Path = "QTY/*/2")]
+	[EdiValue("X(3)", Path = "QTY/*/2", Mandatory = false)]
 	public string? MeasureUnitQualifier { get; set; }
 }

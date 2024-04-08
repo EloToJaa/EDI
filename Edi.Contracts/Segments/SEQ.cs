@@ -13,7 +13,7 @@ public class SEQ
 	/// <summary>
 	/// Specification of a status or disposition.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SEQ/0")]
+	[EdiValue("X(3)", Path = "SEQ/0", Mandatory = false)]
 	public StatusIndicatorCoded? StatusIndicatorCoded { get; set; }
 
 	/// <summary>
@@ -32,24 +32,24 @@ public class SEQ_SequenceInformation
 	/// <summary>
 	/// Number indicating the position in a sequence.
 	/// </summary>
-	[EdiValue("X(10)", Path = "SEQ/*/0")]
+	[EdiValue("X(10)", Path = "SEQ/*/0", Mandatory = true)]
 	public string? SequenceNumber { get; set; }
 
 	/// <summary>
 	/// Specification of the source for a specified sequence number in a coded form.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SEQ/*/1")]
+	[EdiValue("X(3)", Path = "SEQ/*/1", Mandatory = false)]
 	public SequenceNumberSourceCoded? SequenceNumberSourceCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SEQ/*/2")]
+	[EdiValue("X(3)", Path = "SEQ/*/2", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SEQ/*/3")]
+	[EdiValue("X(3)", Path = "SEQ/*/3", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 }

@@ -13,7 +13,7 @@ public class GOR
 	/// <summary>
 	/// Code indicating the movement of goods (e.g. import, export, transit).
 	/// </summary>
-	[EdiValue("X(3)", Path = "GOR/0")]
+	[EdiValue("X(3)", Path = "GOR/0", Mandatory = false)]
 	public TransportMovementCoded? TransportMovementCoded { get; set; }
 
 	/// <summary>
@@ -50,24 +50,24 @@ public class GOR_GovernmentAction
 	/// <summary>
 	/// To indicate government agencies that are involved.
 	/// </summary>
-	[EdiValue("X(3)", Path = "GOR/*/0")]
+	[EdiValue("X(3)", Path = "GOR/*/0", Mandatory = false)]
 	public GovernmentAgencyCoded? GovernmentAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Indication of requirement and status of government involvement.
 	/// </summary>
-	[EdiValue("X(3)", Path = "GOR/*/1")]
+	[EdiValue("X(3)", Path = "GOR/*/1", Mandatory = false)]
 	public GovernmentInvolvementCoded? GovernmentInvolvementCoded { get; set; }
 
 	/// <summary>
 	/// To indicate type of government action such as inspection, detention, fumigation, security.
 	/// </summary>
-	[EdiValue("X(3)", Path = "GOR/*/2")]
+	[EdiValue("X(3)", Path = "GOR/*/2", Mandatory = false)]
 	public GovernmentActionCoded? GovernmentActionCoded { get; set; }
 
 	/// <summary>
 	/// Code identifying the treatment applied by the government to goods which are subject to a control.
 	/// </summary>
-	[EdiValue("X(3)", Path = "GOR/*/3")]
+	[EdiValue("X(3)", Path = "GOR/*/3", Mandatory = false)]
 	public GovernmentProcedureCoded? GovernmentProcedureCoded { get; set; }
 }

@@ -36,7 +36,18 @@ public class Invoice
 
     public CUX? Currency { get; set; }
 
-    public List<Line> Lines { get; set; } = new List<Line>();
+    public List<PriceLine> PriceLines { get; set; } = new List<PriceLine>();
+
+    public UNS? Separator { get; set; }
+
+    [EdiCondition("79", Path = "MOA/0/0")]
+    public MonetaryAmount? TotalLineItemsAmount { get; set; }
+
+    [EdiCondition("86", Path = "MOA/0/0")]
+    public MonetaryAmount? MessageTotalMonetaryAmount { get; set; }
+
+    [EdiCondition("176", Path = "MOA/0/0")]
+    public MonetaryAmount? MessageTotalDutyTaxFeeAmount { get; set; }
 
     public UNT? MessageTrailer { get; set; }
 }

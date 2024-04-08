@@ -13,13 +13,13 @@ public class SCC
 	/// <summary>
 	/// Code indicating the level of commitment of schedule information.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SCC/0")]
+	[EdiValue("X(3)", Path = "SCC/0", Mandatory = true)]
 	public DeliveryPlanStatusIndicatorCoded? DeliveryPlanStatusIndicatorCoded { get; set; }
 
 	/// <summary>
 	/// Indication of general instruction for delivery.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SCC/1")]
+	[EdiValue("X(3)", Path = "SCC/1", Mandatory = false)]
 	public DeliveryRequirementsCoded? DeliveryRequirementsCoded { get; set; }
 
 	/// <summary>
@@ -38,18 +38,18 @@ public class SCC_PatternDescription
 	/// <summary>
 	/// Code specifying interval grouping of the delivery, production, etc. of the schedule.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SCC/*/0")]
+	[EdiValue("X(3)", Path = "SCC/*/0", Mandatory = false)]
 	public FrequencyCoded? FrequencyCoded { get; set; }
 
 	/// <summary>
 	/// Code specifying the days/periods for routine shipments or deliveries.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SCC/*/1")]
+	[EdiValue("X(3)", Path = "SCC/*/1", Mandatory = false)]
 	public DespatchPatternCoded? DespatchPatternCoded { get; set; }
 
 	/// <summary>
 	/// Code specifying the detailed times for routine shipments or deliveries within data element 2015 Despatch pattern, coded.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SCC/*/2")]
+	[EdiValue("X(3)", Path = "SCC/*/2", Mandatory = false)]
 	public DespatchPatternTimingCoded? DespatchPatternTimingCoded { get; set; }
 }

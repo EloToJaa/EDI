@@ -25,7 +25,7 @@ public class CPI
 	/// <summary>
 	/// Code indicating whether freight item amount is prepaid or to be collected.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CPI/2")]
+	[EdiValue("X(3)", Path = "CPI/2", Mandatory = false)]
 	public PrepaidCollectIndicatorCoded? PrepaidCollectIndicatorCoded { get; set; }
 
 }
@@ -39,19 +39,19 @@ public class CPI_ChargeCategory
 	/// <summary>
 	/// To indicate the category or zone of charges.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CPI/*/0")]
+	[EdiValue("X(3)", Path = "CPI/*/0", Mandatory = true)]
 	public ChargeCategoryCoded? ChargeCategoryCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CPI/*/1")]
+	[EdiValue("X(3)", Path = "CPI/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CPI/*/2")]
+	[EdiValue("X(3)", Path = "CPI/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 }
 
@@ -64,18 +64,18 @@ public class CPI_MethodOfPayment
 	/// <summary>
 	/// Identification of method of payment for transport charges.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CPI/*/0")]
+	[EdiValue("X(3)", Path = "CPI/*/0", Mandatory = true)]
 	public TransportChargesMethodOfPaymentCoded? TransportChargesMethodOfPaymentCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CPI/*/1")]
+	[EdiValue("X(3)", Path = "CPI/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CPI/*/2")]
+	[EdiValue("X(3)", Path = "CPI/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 }

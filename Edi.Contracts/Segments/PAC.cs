@@ -13,8 +13,8 @@ public class PAC
 	/// <summary>
 	/// Number of individual parts of a shipment either unpacked, or packed in such a way that they cannot be divided without first undoing the packing.
 	/// </summary>
-	[EdiValue("9(8)", Path = "PAC/0")]
-	public int? NumberOfPackages { get; set; }
+	[EdiValue("9(8)", Path = "PAC/0", Mandatory = false)]
+	public decimal? NumberOfPackages { get; set; }
 
 	/// <summary>
 	/// Packaging level and details, terms and conditions.
@@ -50,19 +50,19 @@ public class PAC_PackagingDetails
 	/// <summary>
 	/// Indication of level of packaging specified.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PAC/*/0")]
+	[EdiValue("X(3)", Path = "PAC/*/0", Mandatory = false)]
 	public PackagingLevelCoded? PackagingLevelCoded { get; set; }
 
 	/// <summary>
 	/// Code giving packaging, handling and marking related information.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PAC/*/1")]
+	[EdiValue("X(3)", Path = "PAC/*/1", Mandatory = false)]
 	public PackagingRelatedInformationCoded? PackagingRelatedInformationCoded { get; set; }
 
 	/// <summary>
 	/// Code identifying packaging terms and conditions.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PAC/*/2")]
+	[EdiValue("X(3)", Path = "PAC/*/2", Mandatory = false)]
 	public PackagingTermsAndConditionsCoded? PackagingTermsAndConditionsCoded { get; set; }
 }
 
@@ -75,25 +75,25 @@ public class PAC_PackageType
 	/// <summary>
 	/// Coded description of the form in which goods are presented.
 	/// </summary>
-	[EdiValue("X(17)", Path = "PAC/*/0")]
+	[EdiValue("X(17)", Path = "PAC/*/0", Mandatory = false)]
 	public string? TypeOfPackagesIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PAC/*/1")]
+	[EdiValue("X(3)", Path = "PAC/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PAC/*/2")]
+	[EdiValue("X(3)", Path = "PAC/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Description of the form in which goods are presented.
 	/// </summary>
-	[EdiValue("X(35)", Path = "PAC/*/3")]
+	[EdiValue("X(35)", Path = "PAC/*/3", Mandatory = false)]
 	public string? TypeOfPackages { get; set; }
 }
 
@@ -106,31 +106,31 @@ public class PAC_PackageTypeIdentification
 	/// <summary>
 	/// Code indicating the format of a description.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PAC/*/0")]
+	[EdiValue("X(3)", Path = "PAC/*/0", Mandatory = true)]
 	public ItemDescriptionTypeCoded? ItemDescriptionTypeCoded { get; set; }
 
 	/// <summary>
 	/// Description of the form in which goods are presented.
 	/// </summary>
-	[EdiValue("X(35)", Path = "PAC/*/1")]
+	[EdiValue("X(35)", Path = "PAC/*/1", Mandatory = true)]
 	public string? TypeOfPackages1 { get; set; }
 
 	/// <summary>
 	/// Identification of the type of item number.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PAC/*/2")]
+	[EdiValue("X(3)", Path = "PAC/*/2", Mandatory = false)]
 	public ItemNumberTypeCoded? ItemNumberTypeCoded1 { get; set; }
 
 	/// <summary>
 	/// Description of the form in which goods are presented.
 	/// </summary>
-	[EdiValue("X(35)", Path = "PAC/*/3")]
+	[EdiValue("X(35)", Path = "PAC/*/3", Mandatory = false)]
 	public string? TypeOfPackages2 { get; set; }
 
 	/// <summary>
 	/// Identification of the type of item number.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PAC/*/4")]
+	[EdiValue("X(3)", Path = "PAC/*/4", Mandatory = false)]
 	public ItemNumberTypeCoded? ItemNumberTypeCoded2 { get; set; }
 }
 
@@ -143,12 +143,12 @@ public class PAC_ReturnablePackageDetails
 	/// <summary>
 	/// To indicate responsibility for payment of return freight charges for packaging that is returnable.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PAC/*/0")]
+	[EdiValue("X(3)", Path = "PAC/*/0", Mandatory = false)]
 	public ReturnablePackageFreightPaymentResponsibilityCoded? ReturnablePackageFreightPaymentResponsibilityCoded { get; set; }
 
 	/// <summary>
 	/// To indicate the composition of goods loaded into a returnable package.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PAC/*/1")]
+	[EdiValue("X(3)", Path = "PAC/*/1", Mandatory = false)]
 	public ReturnablePackageLoadContentsCoded? ReturnablePackageLoadContentsCoded { get; set; }
 }

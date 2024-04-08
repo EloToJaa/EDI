@@ -32,25 +32,25 @@ public class HAN_HandlingInstructions
 	/// <summary>
 	/// Identification of the instructions on how specified goods, packages or containers should be handled.
 	/// </summary>
-	[EdiValue("X(3)", Path = "HAN/*/0")]
+	[EdiValue("X(3)", Path = "HAN/*/0", Mandatory = false)]
 	public string? HandlingInstructionsCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "HAN/*/1")]
+	[EdiValue("X(3)", Path = "HAN/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "HAN/*/2")]
+	[EdiValue("X(3)", Path = "HAN/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Instructions on how specified goods, packages or containers should be handled.
 	/// </summary>
-	[EdiValue("X(70)", Path = "HAN/*/3")]
+	[EdiValue("X(70)", Path = "HAN/*/3", Mandatory = false)]
 	public string? HandlingInstructions { get; set; }
 }
 
@@ -63,24 +63,24 @@ public class HAN_HazardousMaterial
 	/// <summary>
 	/// Code specifying the kind of hazard for a material.
 	/// </summary>
-	[EdiValue("X(4)", Path = "HAN/*/0")]
+	[EdiValue("X(4)", Path = "HAN/*/0", Mandatory = false)]
 	public string? HazardousMaterialClassCodeIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "HAN/*/1")]
+	[EdiValue("X(3)", Path = "HAN/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "HAN/*/2")]
+	[EdiValue("X(3)", Path = "HAN/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// To specify the kind of hazard for a material.
 	/// </summary>
-	[EdiValue("X(35)", Path = "HAN/*/3")]
+	[EdiValue("X(35)", Path = "HAN/*/3", Mandatory = false)]
 	public string? HazardousMaterialClass { get; set; }
 }

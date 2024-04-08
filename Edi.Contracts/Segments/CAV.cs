@@ -26,30 +26,30 @@ public class CAV_CharacteristicValue
 	/// <summary>
 	/// To identify the value of a particular characteristic in coded form.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CAV/*/0")]
+	[EdiValue("X(3)", Path = "CAV/*/0", Mandatory = false)]
 	public string? CharacteristicValueCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CAV/*/1")]
+	[EdiValue("X(3)", Path = "CAV/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CAV/*/2")]
+	[EdiValue("X(3)", Path = "CAV/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// To identify the value of a characteristic.
 	/// </summary>
-	[EdiValue("X(35)", Path = "CAV/*/3")]
+	[EdiValue("X(35)", Path = "CAV/*/3", Mandatory = false)]
 	public string? CharacteristicValue1 { get; set; }
 
 	/// <summary>
 	/// To identify the value of a characteristic.
 	/// </summary>
-	[EdiValue("X(35)", Path = "CAV/*/4")]
+	[EdiValue("X(35)", Path = "CAV/*/4", Mandatory = false)]
 	public string? CharacteristicValue2 { get; set; }
 }

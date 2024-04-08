@@ -13,7 +13,7 @@ public class DSG
 	/// <summary>
 	/// To provide a part of dosage specification.
 	/// </summary>
-	[EdiValue("X(3)", Path = "DSG/0")]
+	[EdiValue("X(3)", Path = "DSG/0", Mandatory = true)]
 	public DosageAdministrationQualifier? DosageAdministrationQualifier { get; set; }
 
 	/// <summary>
@@ -32,24 +32,24 @@ public class DSG_DosageDetails
 	/// <summary>
 	/// To specify a dosage using code.
 	/// </summary>
-	[EdiValue("X(8)", Path = "DSG/*/0")]
+	[EdiValue("X(8)", Path = "DSG/*/0", Mandatory = false)]
 	public string? DosageIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "DSG/*/1")]
+	[EdiValue("X(3)", Path = "DSG/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "DSG/*/2")]
+	[EdiValue("X(3)", Path = "DSG/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// To specify a dosage as free text.
 	/// </summary>
-	[EdiValue("X(70)", Path = "DSG/*/3")]
+	[EdiValue("X(70)", Path = "DSG/*/3", Mandatory = false)]
 	public string? Dosage { get; set; }
 }

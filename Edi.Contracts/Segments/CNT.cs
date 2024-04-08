@@ -26,18 +26,18 @@ public class CNT_Control
 	/// <summary>
 	/// Determines the source data elements in the message which forms the basis for 6066 Control value.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CNT/*/0")]
+	[EdiValue("X(3)", Path = "CNT/*/0", Mandatory = true)]
 	public ControlQualifier? ControlQualifier { get; set; }
 
 	/// <summary>
 	/// Value obtained from summing the values specified by the Control Qualifier throughout the message (Hash total).
 	/// </summary>
-	[EdiValue("9(18)", Path = "CNT/*/1")]
-	public int? ControlValue { get; set; }
+	[EdiValue("9(18)", Path = "CNT/*/1", Mandatory = true)]
+	public decimal? ControlValue { get; set; }
 
 	/// <summary>
 	/// Indication of the unit of measurement in which weight (mass), capacity, length, area, volume or other quantity is expressed.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CNT/*/2")]
+	[EdiValue("X(3)", Path = "CNT/*/2", Mandatory = false)]
 	public string? MeasureUnitQualifier { get; set; }
 }

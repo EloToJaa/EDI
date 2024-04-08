@@ -13,7 +13,7 @@ public class MKS
 	/// <summary>
 	/// Identification of the subject areas to which the specified conditions apply.
 	/// </summary>
-	[EdiValue("X(3)", Path = "MKS/0")]
+	[EdiValue("X(3)", Path = "MKS/0", Mandatory = true)]
 	public SectorSubjectIdentificationQualifier? SectorSubjectIdentificationQualifier { get; set; }
 
 	/// <summary>
@@ -25,7 +25,7 @@ public class MKS
 	/// <summary>
 	/// Code specifying the action to be taken or already taken.
 	/// </summary>
-	[EdiValue("X(3)", Path = "MKS/2")]
+	[EdiValue("X(3)", Path = "MKS/2", Mandatory = false)]
 	public ActionRequestNotificationCoded? ActionRequestNotificationCoded { get; set; }
 
 }
@@ -39,18 +39,18 @@ public class MKS_SalesChannelIdentification
 	/// <summary>
 	/// Code identifying a sales channel for marketing information.
 	/// </summary>
-	[EdiValue("X(17)", Path = "MKS/*/0")]
+	[EdiValue("X(17)", Path = "MKS/*/0", Mandatory = true)]
 	public string? SalesChannelIdentifier { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "MKS/*/1")]
+	[EdiValue("X(3)", Path = "MKS/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "MKS/*/2")]
+	[EdiValue("X(3)", Path = "MKS/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 }

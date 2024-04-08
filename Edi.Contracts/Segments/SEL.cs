@@ -13,7 +13,7 @@ public class SEL
 	/// <summary>
 	/// The number of a custom seal or another seal affixed to the containers or other transport unit.
 	/// </summary>
-	[EdiValue("X(10)", Path = "SEL/0")]
+	[EdiValue("X(10)", Path = "SEL/0", Mandatory = true)]
 	public string? SealNumber { get; set; }
 
 	/// <summary>
@@ -25,7 +25,7 @@ public class SEL
 	/// <summary>
 	/// To indicate the condition of a seal.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SEL/2")]
+	[EdiValue("X(3)", Path = "SEL/2", Mandatory = false)]
 	public SealConditionCoded? SealConditionCoded { get; set; }
 
 }
@@ -39,24 +39,24 @@ public class SEL_SealIssuer
 	/// <summary>
 	/// Identification of the issuer of the seal number.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SEL/*/0")]
+	[EdiValue("X(3)", Path = "SEL/*/0", Mandatory = false)]
 	public SealingPartyCoded? SealingPartyCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SEL/*/1")]
+	[EdiValue("X(3)", Path = "SEL/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SEL/*/2")]
+	[EdiValue("X(3)", Path = "SEL/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Clear text, representing the name of the issuer of the seal number.
 	/// </summary>
-	[EdiValue("X(35)", Path = "SEL/*/3")]
+	[EdiValue("X(35)", Path = "SEL/*/3", Mandatory = false)]
 	public string? SealingParty { get; set; }
 }

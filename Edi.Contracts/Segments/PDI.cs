@@ -13,7 +13,7 @@ public class PDI
 	/// <summary>
 	/// Code giving the gender of a person, animal or plant.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PDI/0")]
+	[EdiValue("X(3)", Path = "PDI/0", Mandatory = false)]
 	public string? SexCoded { get; set; }
 
 	/// <summary>
@@ -38,25 +38,25 @@ public class PDI_MaritalStatusDetails
 	/// <summary>
 	/// Code giving the marital status of a person.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PDI/*/0")]
+	[EdiValue("X(3)", Path = "PDI/*/0", Mandatory = false)]
 	public MaritalStatusCoded? MaritalStatusCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PDI/*/1")]
+	[EdiValue("X(3)", Path = "PDI/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PDI/*/2")]
+	[EdiValue("X(3)", Path = "PDI/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Marital status of a person.
 	/// </summary>
-	[EdiValue("X(35)", Path = "PDI/*/3")]
+	[EdiValue("X(35)", Path = "PDI/*/3", Mandatory = false)]
 	public string? MaritalStatus { get; set; }
 }
 
@@ -69,24 +69,24 @@ public class PDI_ReligionDetails
 	/// <summary>
 	/// To specify the religion of a person in a coded form.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PDI/*/0")]
+	[EdiValue("X(3)", Path = "PDI/*/0", Mandatory = false)]
 	public string? ReligionCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PDI/*/1")]
+	[EdiValue("X(3)", Path = "PDI/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PDI/*/2")]
+	[EdiValue("X(3)", Path = "PDI/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// To specify the religion of a person.
 	/// </summary>
-	[EdiValue("X(35)", Path = "PDI/*/3")]
+	[EdiValue("X(35)", Path = "PDI/*/3", Mandatory = false)]
 	public string? Religion { get; set; }
 }

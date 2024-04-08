@@ -26,18 +26,18 @@ public class ERC_ApplicationErrorDetail
 	/// <summary>
 	/// The code assigned by the receiver of a message to the identification of a data validation error condition.
 	/// </summary>
-	[EdiValue("X(8)", Path = "ERC/*/0")]
+	[EdiValue("X(8)", Path = "ERC/*/0", Mandatory = true)]
 	public string? ApplicationErrorIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "ERC/*/1")]
+	[EdiValue("X(3)", Path = "ERC/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "ERC/*/2")]
+	[EdiValue("X(3)", Path = "ERC/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 }

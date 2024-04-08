@@ -13,7 +13,7 @@ public class TMP
 	/// <summary>
 	/// A code giving specific meaning to the temperature.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TMP/0")]
+	[EdiValue("X(3)", Path = "TMP/0", Mandatory = true)]
 	public TemperatureQualifier? TemperatureQualifier { get; set; }
 
 	/// <summary>
@@ -32,12 +32,12 @@ public class TMP_TemperatureSetting
 	/// <summary>
 	/// The actual temperature value in degrees Celsius (e.g. 008, 020).
 	/// </summary>
-	[EdiValue("9(3)", Path = "TMP/*/0")]
-	public int? TemperatureSetting { get; set; }
+	[EdiValue("9(3)", Path = "TMP/*/0", Mandatory = false)]
+	public decimal? TemperatureSetting { get; set; }
 
 	/// <summary>
 	/// Indication of the unit of measurement in which weight (mass), capacity, length, area, volume or other quantity is expressed.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TMP/*/1")]
+	[EdiValue("X(3)", Path = "TMP/*/1", Mandatory = false)]
 	public string? MeasureUnitQualifier { get; set; }
 }

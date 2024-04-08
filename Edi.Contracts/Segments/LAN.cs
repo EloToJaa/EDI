@@ -13,7 +13,7 @@ public class LAN
 	/// <summary>
 	/// Type of language.
 	/// </summary>
-	[EdiValue("X(3)", Path = "LAN/0")]
+	[EdiValue("X(3)", Path = "LAN/0", Mandatory = true)]
 	public LanguageQualifier? LanguageQualifier { get; set; }
 
 	/// <summary>
@@ -32,12 +32,12 @@ public class LAN_LanguageDetails
 	/// <summary>
 	/// Code of language (ISO 639-1988).
 	/// </summary>
-	[EdiValue("X(3)", Path = "LAN/*/0")]
+	[EdiValue("X(3)", Path = "LAN/*/0", Mandatory = false)]
 	public string? LanguageCoded { get; set; }
 
 	/// <summary>
 	/// Language as text (ISO 639-1988).
 	/// </summary>
-	[EdiValue("X(35)", Path = "LAN/*/1")]
+	[EdiValue("X(35)", Path = "LAN/*/1", Mandatory = false)]
 	public string? Language { get; set; }
 }

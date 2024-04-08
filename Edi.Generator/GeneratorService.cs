@@ -1,4 +1,5 @@
 ﻿using Diacritics.Extensions;
+using System.ComponentModel;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -50,7 +51,7 @@ public class GeneratorService
                 sb.Append("\t/// <summary>\n");
                 sb.Append($"\t/// {description}\n");
                 sb.Append("\t/// </summary>\n");
-                sb.Append($"\t[EdiValue(\"{ConvertDataType(element.DataType, element.QualifierRef, element.MaxLength)}\", Path = \"{segmentName}/{i}\")]\n");
+                sb.Append($"\t[EdiValue(\"{ConvertDataType(element.DataType, element.QualifierRef, element.MaxLength)}\", Path = \"{segmentName}/{i}\", Mandatory = {element.Required.ToString().ToLower()})]\n");
                 sb.Append($"\tpublic {ConvertVariableType(element.DataType, element.QualifierRef)} {variableName} {{ get; set; }}\n\n");
                 continue;
             }
@@ -117,7 +118,7 @@ public class GeneratorService
             sb.Append("\t/// <summary>\n");
             sb.Append($"\t/// {description}\n");
             sb.Append("\t/// </summary>\n");
-            sb.Append($"\t[EdiValue(\"{ConvertDataType(component.DataType, component.QualifierRef, component.MaxLength)}\", Path = \"{segmentName}/*/{i}\")]\n");
+            sb.Append($"\t[EdiValue(\"{ConvertDataType(component.DataType, component.QualifierRef, component.MaxLength)}\", Path = \"{segmentName}/*/{i}\", Mandatory = {component.Required.ToString().ToLower()})]\n");
             sb.Append($"\tpublic {ConvertVariableType(component.DataType, component.QualifierRef)} {variableName} {{ get; set; }}\n");
             if(i < element.Components.Count - 1) sb.Append("\n");
         }
@@ -213,7 +214,7 @@ public class GeneratorService
         return inputDataType switch
         {
             "AN" => "string?",
-            "N" => "int?",
+            "N" => "decimal?",
             _ => "string?"
         };
     }

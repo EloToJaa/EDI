@@ -13,7 +13,7 @@ public class CTA
 	/// <summary>
 	/// Code specifying the function of a contact (e.g. department or person).
 	/// </summary>
-	[EdiValue("X(3)", Path = "CTA/0")]
+	[EdiValue("X(3)", Path = "CTA/0", Mandatory = false)]
 	public ContactFunctionCoded? ContactFunctionCoded { get; set; }
 
 	/// <summary>
@@ -32,12 +32,12 @@ public class CTA_DepartmentOrEmployeeDetails
 	/// <summary>
 	/// Internal identification code.
 	/// </summary>
-	[EdiValue("X(17)", Path = "CTA/*/0")]
+	[EdiValue("X(17)", Path = "CTA/*/0", Mandatory = false)]
 	public string? DepartmentOrEmployeeIdentification { get; set; }
 
 	/// <summary>
 	/// The department or person within an organizational entity.
 	/// </summary>
-	[EdiValue("X(35)", Path = "CTA/*/1")]
+	[EdiValue("X(35)", Path = "CTA/*/1", Mandatory = false)]
 	public string? DepartmentOrEmployee { get; set; }
 }

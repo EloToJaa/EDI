@@ -32,13 +32,13 @@ public class ARR_PositionIdentification
 	/// <summary>
 	/// A unique number assigned by the sender to identify a level within a hierarchical structure.
 	/// </summary>
-	[EdiValue("X(12)", Path = "ARR/*/0")]
+	[EdiValue("X(12)", Path = "ARR/*/0", Mandatory = false)]
 	public string? HierarchicalIdNumber { get; set; }
 
 	/// <summary>
 	/// Number indicating the position in a sequence.
 	/// </summary>
-	[EdiValue("X(10)", Path = "ARR/*/1")]
+	[EdiValue("X(10)", Path = "ARR/*/1", Mandatory = false)]
 	public string? SequenceNumber { get; set; }
 }
 
@@ -51,6 +51,6 @@ public class ARR_ArrayCellDetails
 	/// <summary>
 	/// Contains the data for a cell in an array.
 	/// </summary>
-	[EdiValue("X(35)", Path = "ARR/*/0")]
+	[EdiValue("X(35)", Path = "ARR/*/0", Mandatory = false)]
 	public string? ArrayCellInformation { get; set; }
 }

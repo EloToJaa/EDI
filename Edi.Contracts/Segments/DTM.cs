@@ -26,18 +26,18 @@ public class DTM_DateTimePeriod
 	/// <summary>
 	/// Code giving specific meaning to a date, time or period.
 	/// </summary>
-	[EdiValue("X(3)", Path = "DTM/*/0")]
+	[EdiValue("X(3)", Path = "DTM/*/0", Mandatory = true)]
 	public DateTimePeriodQualifier? DateTimePeriodQualifier { get; set; }
 
 	/// <summary>
 	/// The value of a date, a date and time, a time or of a period in a specified representation.
 	/// </summary>
-	[EdiValue("X(35)", Path = "DTM/*/1")]
+	[EdiValue("X(35)", Path = "DTM/*/1", Mandatory = false)]
 	public string? DateTimePeriod { get; set; }
 
 	/// <summary>
 	/// Specification of the representation of a date, a date and time or of a period.
 	/// </summary>
-	[EdiValue("X(3)", Path = "DTM/*/2")]
+	[EdiValue("X(3)", Path = "DTM/*/2", Mandatory = false)]
 	public DateTimePeriodFormatQualifier? DateTimePeriodFormatQualifier { get; set; }
 }

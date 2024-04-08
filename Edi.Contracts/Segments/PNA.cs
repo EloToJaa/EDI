@@ -13,7 +13,7 @@ public class PNA
 	/// <summary>
 	/// Code giving specific meaning to a party.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PNA/0")]
+	[EdiValue("X(3)", Path = "PNA/0", Mandatory = true)]
 	public PartyQualifier? PartyQualifier { get; set; }
 
 	/// <summary>
@@ -31,13 +31,13 @@ public class PNA
 	/// <summary>
 	/// Code for type of name such as official name, alias.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PNA/3")]
+	[EdiValue("X(3)", Path = "PNA/3", Mandatory = false)]
 	public NameTypeCoded? NameTypeCoded { get; set; }
 
 	/// <summary>
 	/// To specify the status of a name (such as current name).
 	/// </summary>
-	[EdiValue("X(3)", Path = "PNA/4")]
+	[EdiValue("X(3)", Path = "PNA/4", Mandatory = false)]
 	public NameStatusCoded? NameStatusCoded { get; set; }
 
 	/// <summary>
@@ -80,19 +80,19 @@ public class PNA_IdentificationNumber
 	/// <summary>
 	/// The number given to an object for its unique identification.
 	/// </summary>
-	[EdiValue("X(35)", Path = "PNA/*/0")]
+	[EdiValue("X(35)", Path = "PNA/*/0", Mandatory = true)]
 	public string? IdentityNumber { get; set; }
 
 	/// <summary>
 	/// Code specifying the type/source of identity number.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PNA/*/1")]
+	[EdiValue("X(3)", Path = "PNA/*/1", Mandatory = false)]
 	public IdentityNumberQualifier? IdentityNumberQualifier { get; set; }
 
 	/// <summary>
 	/// Provides information regarding a status.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PNA/*/2")]
+	[EdiValue("X(3)", Path = "PNA/*/2", Mandatory = false)]
 	public StatusCoded? StatusCoded { get; set; }
 }
 
@@ -105,19 +105,19 @@ public class PNA_PartyIdentificationDetails
 	/// <summary>
 	/// Code identifying a party involved in a transaction.
 	/// </summary>
-	[EdiValue("X(35)", Path = "PNA/*/0")]
+	[EdiValue("X(35)", Path = "PNA/*/0", Mandatory = true)]
 	public string? PartyIdIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PNA/*/1")]
+	[EdiValue("X(3)", Path = "PNA/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PNA/*/2")]
+	[EdiValue("X(3)", Path = "PNA/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 }
 
@@ -130,24 +130,24 @@ public class PNA_NameComponentDetails
 	/// <summary>
 	/// To indicate a part of the name such as family name or given name.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PNA/*/0")]
+	[EdiValue("X(3)", Path = "PNA/*/0", Mandatory = true)]
 	public NameComponentQualifier? NameComponentQualifier { get; set; }
 
 	/// <summary>
 	/// Part of party name such as family name or given name.
 	/// </summary>
-	[EdiValue("X(70)", Path = "PNA/*/1")]
+	[EdiValue("X(70)", Path = "PNA/*/1", Mandatory = false)]
 	public string? NameComponent { get; set; }
 
 	/// <summary>
 	/// To specify the status of a name component.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PNA/*/2")]
+	[EdiValue("X(3)", Path = "PNA/*/2", Mandatory = false)]
 	public NameComponentStatusCoded? NameComponentStatusCoded { get; set; }
 
 	/// <summary>
 	/// To specify the alphabet originally used to represent the name.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PNA/*/3")]
+	[EdiValue("X(3)", Path = "PNA/*/3", Mandatory = false)]
 	public NameComponentOriginalRepresentationCoded? NameComponentOriginalRepresentationCoded { get; set; }
 }

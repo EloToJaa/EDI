@@ -13,13 +13,13 @@ public class PSD
 	/// <summary>
 	/// Code specifying the stage in the product development cycle at which the specimen was selected for testing.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PSD/0")]
+	[EdiValue("X(3)", Path = "PSD/0", Mandatory = false)]
 	public SampleProcessStatusCoded? SampleProcessStatusCoded { get; set; }
 
 	/// <summary>
 	/// Code denoting the method of selecting the test specimen.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PSD/1")]
+	[EdiValue("X(3)", Path = "PSD/1", Mandatory = false)]
 	public SampleSelectionMethodCoded? SampleSelectionMethodCoded { get; set; }
 
 	/// <summary>
@@ -31,13 +31,13 @@ public class PSD
 	/// <summary>
 	/// Code describing the state of the specimen.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PSD/3")]
+	[EdiValue("X(3)", Path = "PSD/3", Mandatory = false)]
 	public SampleDescriptionCoded? SampleDescriptionCoded { get; set; }
 
 	/// <summary>
 	/// Code specifying the direction in which the sample was taken.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PSD/4")]
+	[EdiValue("X(3)", Path = "PSD/4", Mandatory = false)]
 	public SampleDirectionCoded? SampleDirectionCoded { get; set; }
 
 	/// <summary>
@@ -68,19 +68,19 @@ public class PSD_FrequencyDetails
 	/// <summary>
 	/// Indication of the application of a frequency.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PSD/*/0")]
+	[EdiValue("X(3)", Path = "PSD/*/0", Mandatory = true)]
 	public FrequencyQualifier? FrequencyQualifier { get; set; }
 
 	/// <summary>
 	/// A value indicating a repetitive occurrence.
 	/// </summary>
-	[EdiValue("9(9)", Path = "PSD/*/1")]
-	public int? FrequencyValue { get; set; }
+	[EdiValue("9(9)", Path = "PSD/*/1", Mandatory = false)]
+	public decimal? FrequencyValue { get; set; }
 
 	/// <summary>
 	/// Indication of the unit of measurement in which weight (mass), capacity, length, area, volume or other quantity is expressed.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PSD/*/2")]
+	[EdiValue("X(3)", Path = "PSD/*/2", Mandatory = false)]
 	public string? MeasureUnitQualifier { get; set; }
 }
 
@@ -93,12 +93,12 @@ public class PSD_SampleLocationDetails
 	/// <summary>
 	/// Code specifying the location, within the specimen, from which the sample was taken.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PSD/*/0")]
+	[EdiValue("X(3)", Path = "PSD/*/0", Mandatory = false)]
 	public SampleLocationCoded? SampleLocationCoded { get; set; }
 
 	/// <summary>
 	/// Free form description of the location within the specimen, from which the sample was taken.
 	/// </summary>
-	[EdiValue("X(35)", Path = "PSD/*/1")]
+	[EdiValue("X(35)", Path = "PSD/*/1", Mandatory = false)]
 	public string? SampleLocation { get; set; }
 }

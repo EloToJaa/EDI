@@ -13,7 +13,7 @@ public class ATT
 	/// <summary>
 	/// Specification of the meaning of an attribute function.
 	/// </summary>
-	[EdiValue("X(3)", Path = "ATT/0")]
+	[EdiValue("X(3)", Path = "ATT/0", Mandatory = true)]
 	public AttributeFunctionQualifier? AttributeFunctionQualifier { get; set; }
 
 	/// <summary>
@@ -38,19 +38,19 @@ public class ATT_AttributeType
 	/// <summary>
 	/// Coded specification of the type attribute.
 	/// </summary>
-	[EdiValue("X(3)", Path = "ATT/*/0")]
+	[EdiValue("X(3)", Path = "ATT/*/0", Mandatory = true)]
 	public string? AttributeTypeCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "ATT/*/1")]
+	[EdiValue("X(3)", Path = "ATT/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "ATT/*/2")]
+	[EdiValue("X(3)", Path = "ATT/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 }
 
@@ -63,24 +63,24 @@ public class ATT_AttributeDetails
 	/// <summary>
 	/// Identification of an attribute.
 	/// </summary>
-	[EdiValue("X(3)", Path = "ATT/*/0")]
+	[EdiValue("X(3)", Path = "ATT/*/0", Mandatory = false)]
 	public string? AttributeCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "ATT/*/1")]
+	[EdiValue("X(3)", Path = "ATT/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "ATT/*/2")]
+	[EdiValue("X(3)", Path = "ATT/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Description of an attribute of an entity.
 	/// </summary>
-	[EdiValue("X(35)", Path = "ATT/*/3")]
+	[EdiValue("X(35)", Path = "ATT/*/3", Mandatory = false)]
 	public string? Attribute { get; set; }
 }

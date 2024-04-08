@@ -13,13 +13,13 @@ public class AUT
 	/// <summary>
 	/// The result of the application of an algorithm to the content of data element in a message.
 	/// </summary>
-	[EdiValue("X(35)", Path = "AUT/0")]
+	[EdiValue("X(35)", Path = "AUT/0", Mandatory = true)]
 	public string? ValidationResult { get; set; }
 
 	/// <summary>
 	/// Identifies the cryptographic key used to calculate the validation result.
 	/// </summary>
-	[EdiValue("X(35)", Path = "AUT/1")]
+	[EdiValue("X(35)", Path = "AUT/1", Mandatory = false)]
 	public string? ValidationKeyIdentification { get; set; }
 
 }

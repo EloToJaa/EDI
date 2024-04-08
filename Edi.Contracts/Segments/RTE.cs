@@ -26,24 +26,24 @@ public class RTE_RateDetails
 	/// <summary>
 	/// Identification of the type of rate.
 	/// </summary>
-	[EdiValue("X(3)", Path = "RTE/*/0")]
+	[EdiValue("X(3)", Path = "RTE/*/0", Mandatory = true)]
 	public RateTypeQualifier? RateTypeQualifier { get; set; }
 
 	/// <summary>
 	/// Rate per unit specified in the unit price basis.
 	/// </summary>
-	[EdiValue("9(15)", Path = "RTE/*/1")]
-	public int? RatePerUnit { get; set; }
+	[EdiValue("9(15)", Path = "RTE/*/1", Mandatory = true)]
+	public decimal? RatePerUnit { get; set; }
 
 	/// <summary>
 	/// Basis on which the unit price/rate applies.
 	/// </summary>
-	[EdiValue("9(9)", Path = "RTE/*/2")]
-	public int? UnitPriceBasis { get; set; }
+	[EdiValue("9(9)", Path = "RTE/*/2", Mandatory = false)]
+	public decimal? UnitPriceBasis { get; set; }
 
 	/// <summary>
 	/// Indication of the unit of measurement in which weight (mass), capacity, length, area, volume or other quantity is expressed.
 	/// </summary>
-	[EdiValue("X(3)", Path = "RTE/*/3")]
+	[EdiValue("X(3)", Path = "RTE/*/3", Mandatory = false)]
 	public string? MeasureUnitQualifier { get; set; }
 }

@@ -13,7 +13,7 @@ public class GIN
 	/// <summary>
 	/// Code specifying the type/source of identity number.
 	/// </summary>
-	[EdiValue("X(3)", Path = "GIN/0")]
+	[EdiValue("X(3)", Path = "GIN/0", Mandatory = true)]
 	public IdentityNumberQualifier? IdentityNumberQualifier { get; set; }
 
 	/// <summary>
@@ -56,12 +56,12 @@ public class GIN_IdentityNumberRange
 	/// <summary>
 	/// The number given to an object for its unique identification.
 	/// </summary>
-	[EdiValue("X(35)", Path = "GIN/*/0")]
+	[EdiValue("X(35)", Path = "GIN/*/0", Mandatory = true)]
 	public string? IdentityNumber1 { get; set; }
 
 	/// <summary>
 	/// The number given to an object for its unique identification.
 	/// </summary>
-	[EdiValue("X(35)", Path = "GIN/*/1")]
+	[EdiValue("X(35)", Path = "GIN/*/1", Mandatory = false)]
 	public string? IdentityNumber2 { get; set; }
 }

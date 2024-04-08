@@ -13,7 +13,7 @@ public class QUA
 	/// <summary>
 	/// To specify type of qualification.
 	/// </summary>
-	[EdiValue("X(3)", Path = "QUA/0")]
+	[EdiValue("X(3)", Path = "QUA/0", Mandatory = true)]
 	public QualificationQualifier? QualificationQualifier { get; set; }
 
 	/// <summary>
@@ -32,30 +32,30 @@ public class QUA_QualificationClassification
 	/// <summary>
 	/// Identification of a qualification classification.
 	/// </summary>
-	[EdiValue("X(3)", Path = "QUA/*/0")]
+	[EdiValue("X(3)", Path = "QUA/*/0", Mandatory = false)]
 	public string? QualificationClassificationCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "QUA/*/1")]
+	[EdiValue("X(3)", Path = "QUA/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "QUA/*/2")]
+	[EdiValue("X(3)", Path = "QUA/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Description of a qualification classification.
 	/// </summary>
-	[EdiValue("X(35)", Path = "QUA/*/3")]
+	[EdiValue("X(35)", Path = "QUA/*/3", Mandatory = false)]
 	public string? QualificationClassification1 { get; set; }
 
 	/// <summary>
 	/// Description of a qualification classification.
 	/// </summary>
-	[EdiValue("X(35)", Path = "QUA/*/4")]
+	[EdiValue("X(35)", Path = "QUA/*/4", Mandatory = false)]
 	public string? QualificationClassification2 { get; set; }
 }

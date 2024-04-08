@@ -26,24 +26,24 @@ public class GIS_ProcessingIndicator
 	/// <summary>
 	/// Identifies the value to be attributed to indicators required by the processing system.
 	/// </summary>
-	[EdiValue("X(3)", Path = "GIS/*/0")]
+	[EdiValue("X(3)", Path = "GIS/*/0", Mandatory = true)]
 	public ProcessingIndicatorCoded? ProcessingIndicatorCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "GIS/*/1")]
+	[EdiValue("X(3)", Path = "GIS/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "GIS/*/2")]
+	[EdiValue("X(3)", Path = "GIS/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Specification of a process or subprocess.
 	/// </summary>
-	[EdiValue("X(17)", Path = "GIS/*/3")]
+	[EdiValue("X(17)", Path = "GIS/*/3", Mandatory = false)]
 	public ProcessTypeIdentification? ProcessTypeIdentification { get; set; }
 }

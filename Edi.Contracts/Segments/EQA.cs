@@ -13,7 +13,7 @@ public class EQA
 	/// <summary>
 	/// Code identifying type of equipment.
 	/// </summary>
-	[EdiValue("X(3)", Path = "EQA/0")]
+	[EdiValue("X(3)", Path = "EQA/0", Mandatory = true)]
 	public EquipmentQualifier? EquipmentQualifier { get; set; }
 
 	/// <summary>
@@ -32,24 +32,24 @@ public class EQA_EquipmentIdentification
 	/// <summary>
 	/// Marks (letters and/or numbers) which identify equipment e.g. unit load device.
 	/// </summary>
-	[EdiValue("X(17)", Path = "EQA/*/0")]
+	[EdiValue("X(17)", Path = "EQA/*/0", Mandatory = false)]
 	public string? EquipmentIdentificationNumber { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "EQA/*/1")]
+	[EdiValue("X(3)", Path = "EQA/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "EQA/*/2")]
+	[EdiValue("X(3)", Path = "EQA/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Identification of the name of a country or other geographical entity as specified in ISO 3166.
 	/// </summary>
-	[EdiValue("X(3)", Path = "EQA/*/3")]
+	[EdiValue("X(3)", Path = "EQA/*/3", Mandatory = false)]
 	public string? CountryCoded { get; set; }
 }

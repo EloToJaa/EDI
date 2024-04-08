@@ -62,19 +62,19 @@ public class STS_StatusType
 	/// <summary>
 	/// Code identifying the type of status event.
 	/// </summary>
-	[EdiValue("X(3)", Path = "STS/*/0")]
+	[EdiValue("X(3)", Path = "STS/*/0", Mandatory = true)]
 	public StatusTypeCoded? StatusTypeCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "STS/*/1")]
+	[EdiValue("X(3)", Path = "STS/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "STS/*/2")]
+	[EdiValue("X(3)", Path = "STS/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 }
 
@@ -87,25 +87,25 @@ public class STS_StatusEvent
 	/// <summary>
 	/// Code identifying a status event.
 	/// </summary>
-	[EdiValue("X(3)", Path = "STS/*/0")]
+	[EdiValue("X(3)", Path = "STS/*/0", Mandatory = true)]
 	public StatusEventCoded? StatusEventCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "STS/*/1")]
+	[EdiValue("X(3)", Path = "STS/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "STS/*/2")]
+	[EdiValue("X(3)", Path = "STS/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Description of a status event.
 	/// </summary>
-	[EdiValue("X(35)", Path = "STS/*/3")]
+	[EdiValue("X(35)", Path = "STS/*/3", Mandatory = false)]
 	public string? StatusEvent { get; set; }
 }
 
@@ -118,24 +118,24 @@ public class STS_StatusReason
 	/// <summary>
 	/// Code identifying the reason behind a status event.
 	/// </summary>
-	[EdiValue("X(3)", Path = "STS/*/0")]
+	[EdiValue("X(3)", Path = "STS/*/0", Mandatory = true)]
 	public StatusReasonCoded? StatusReasonCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "STS/*/1")]
+	[EdiValue("X(3)", Path = "STS/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "STS/*/2")]
+	[EdiValue("X(3)", Path = "STS/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Provides the reason behind a status event.
 	/// </summary>
-	[EdiValue("X(35)", Path = "STS/*/3")]
+	[EdiValue("X(35)", Path = "STS/*/3", Mandatory = false)]
 	public string? StatusReason { get; set; }
 }

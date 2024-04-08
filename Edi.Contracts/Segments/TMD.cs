@@ -19,13 +19,13 @@ public class TMD
 	/// <summary>
 	/// Description indicating equipment plan, e.g. FCL or LCL.
 	/// </summary>
-	[EdiValue("X(26)", Path = "TMD/1")]
+	[EdiValue("X(26)", Path = "TMD/1", Mandatory = false)]
 	public string? EquipmentPlan { get; set; }
 
 	/// <summary>
 	/// Specification of the type of equipment haulage arrangements.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TMD/2")]
+	[EdiValue("X(3)", Path = "TMD/2", Mandatory = false)]
 	public HaulageArrangementsCoded? HaulageArrangementsCoded { get; set; }
 
 }
@@ -39,12 +39,12 @@ public class TMD_MovementType
 	/// <summary>
 	/// Code indicating the type of movement.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TMD/*/0")]
+	[EdiValue("X(3)", Path = "TMD/*/0", Mandatory = false)]
 	public MovementTypeCoded? MovementTypeCoded { get; set; }
 
 	/// <summary>
 	/// Description of the type of movement.
 	/// </summary>
-	[EdiValue("X(35)", Path = "TMD/*/1")]
+	[EdiValue("X(35)", Path = "TMD/*/1", Mandatory = false)]
 	public string? MovementType { get; set; }
 }

@@ -13,7 +13,7 @@ public class PTY
 	/// <summary>
 	/// To indicate the type of a priority.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PTY/0")]
+	[EdiValue("X(3)", Path = "PTY/0", Mandatory = true)]
 	public PriorityQualifier? PriorityQualifier { get; set; }
 
 	/// <summary>
@@ -32,24 +32,24 @@ public class PTY_PriorityDetails
 	/// <summary>
 	/// To indicate a priority in coded form.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PTY/*/0")]
+	[EdiValue("X(3)", Path = "PTY/*/0", Mandatory = false)]
 	public string? PriorityCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PTY/*/1")]
+	[EdiValue("X(3)", Path = "PTY/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PTY/*/2")]
+	[EdiValue("X(3)", Path = "PTY/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// To indicate a priority.
 	/// </summary>
-	[EdiValue("X(35)", Path = "PTY/*/3")]
+	[EdiValue("X(35)", Path = "PTY/*/3", Mandatory = false)]
 	public string? Priority { get; set; }
 }

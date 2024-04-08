@@ -32,31 +32,31 @@ public class PRC_ProcessTypeAndDescription
 	/// <summary>
 	/// Specification of a process or subprocess.
 	/// </summary>
-	[EdiValue("X(17)", Path = "PRC/*/0")]
+	[EdiValue("X(17)", Path = "PRC/*/0", Mandatory = true)]
 	public ProcessTypeIdentification? ProcessTypeIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PRC/*/1")]
+	[EdiValue("X(3)", Path = "PRC/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PRC/*/2")]
+	[EdiValue("X(3)", Path = "PRC/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Free form description of a process.
 	/// </summary>
-	[EdiValue("X(35)", Path = "PRC/*/3")]
+	[EdiValue("X(35)", Path = "PRC/*/3", Mandatory = false)]
 	public string? ProcessType1 { get; set; }
 
 	/// <summary>
 	/// Free form description of a process.
 	/// </summary>
-	[EdiValue("X(35)", Path = "PRC/*/4")]
+	[EdiValue("X(35)", Path = "PRC/*/4", Mandatory = false)]
 	public string? ProcessType2 { get; set; }
 }
 
@@ -69,24 +69,24 @@ public class PRC_ProcessIdentificationDetails
 	/// <summary>
 	/// Code to identify a specific process.
 	/// </summary>
-	[EdiValue("X(17)", Path = "PRC/*/0")]
+	[EdiValue("X(17)", Path = "PRC/*/0", Mandatory = false)]
 	public string? ProcessIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PRC/*/1")]
+	[EdiValue("X(3)", Path = "PRC/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "PRC/*/2")]
+	[EdiValue("X(3)", Path = "PRC/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// To specify a specific process as free text.
 	/// </summary>
-	[EdiValue("X(70)", Path = "PRC/*/3")]
+	[EdiValue("X(70)", Path = "PRC/*/3", Mandatory = false)]
 	public string? Process { get; set; }
 }

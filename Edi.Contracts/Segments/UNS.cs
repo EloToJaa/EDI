@@ -13,7 +13,7 @@ public class UNS
 	/// <summary>
 	/// Separates sections in a message.
 	/// </summary>
-	[EdiValue("X(1)", Path = "UNS/0")]
+	[EdiValue("X(1)", Path = "UNS/0", Mandatory = true)]
 	public SectionIdentification? SectionIdentification { get; set; }
 
 }

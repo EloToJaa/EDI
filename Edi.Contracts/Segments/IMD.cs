@@ -13,13 +13,13 @@ public class IMD
 	/// <summary>
 	/// Code indicating the format of a description.
 	/// </summary>
-	[EdiValue("X(3)", Path = "IMD/0")]
+	[EdiValue("X(3)", Path = "IMD/0", Mandatory = false)]
 	public ItemDescriptionTypeCoded? ItemDescriptionTypeCoded { get; set; }
 
 	/// <summary>
 	/// Code specifying the item characteristic being described.
 	/// </summary>
-	[EdiValue("X(3)", Path = "IMD/1")]
+	[EdiValue("X(3)", Path = "IMD/1", Mandatory = false)]
 	public ItemCharacteristicCoded? ItemCharacteristicCoded { get; set; }
 
 	/// <summary>
@@ -31,7 +31,7 @@ public class IMD
 	/// <summary>
 	/// Code indicating the surface or layer of a product that is being described.
 	/// </summary>
-	[EdiValue("X(3)", Path = "IMD/3")]
+	[EdiValue("X(3)", Path = "IMD/3", Mandatory = false)]
 	public SurfaceLayerIndicatorCoded? SurfaceLayerIndicatorCoded { get; set; }
 
 }
@@ -45,36 +45,36 @@ public class IMD_ItemDescription
 	/// <summary>
 	/// Code from an industry code list which provides specific data about a product characteristic.
 	/// </summary>
-	[EdiValue("X(17)", Path = "IMD/*/0")]
+	[EdiValue("X(17)", Path = "IMD/*/0", Mandatory = false)]
 	public string? ItemDescriptionIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "IMD/*/1")]
+	[EdiValue("X(3)", Path = "IMD/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "IMD/*/2")]
+	[EdiValue("X(3)", Path = "IMD/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Plain language description of articles or products.
 	/// </summary>
-	[EdiValue("X(35)", Path = "IMD/*/3")]
+	[EdiValue("X(35)", Path = "IMD/*/3", Mandatory = false)]
 	public string? ItemDescription1 { get; set; }
 
 	/// <summary>
 	/// Plain language description of articles or products.
 	/// </summary>
-	[EdiValue("X(35)", Path = "IMD/*/4")]
+	[EdiValue("X(35)", Path = "IMD/*/4", Mandatory = false)]
 	public string? ItemDescription2 { get; set; }
 
 	/// <summary>
 	/// Code of language (ISO 639-1988).
 	/// </summary>
-	[EdiValue("X(3)", Path = "IMD/*/5")]
+	[EdiValue("X(3)", Path = "IMD/*/5", Mandatory = false)]
 	public string? LanguageCoded { get; set; }
 }

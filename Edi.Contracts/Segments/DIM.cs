@@ -13,7 +13,7 @@ public class DIM
 	/// <summary>
 	/// To specify the dimensions applicable to each of the transportable units.
 	/// </summary>
-	[EdiValue("X(3)", Path = "DIM/0")]
+	[EdiValue("X(3)", Path = "DIM/0", Mandatory = true)]
 	public DimensionQualifier? DimensionQualifier { get; set; }
 
 	/// <summary>
@@ -32,24 +32,24 @@ public class DIM_Dimensions
 	/// <summary>
 	/// Indication of the unit of measurement in which weight (mass), capacity, length, area, volume or other quantity is expressed.
 	/// </summary>
-	[EdiValue("X(3)", Path = "DIM/*/0")]
+	[EdiValue("X(3)", Path = "DIM/*/0", Mandatory = true)]
 	public string? MeasureUnitQualifier { get; set; }
 
 	/// <summary>
 	/// Length of pieces or packages stated for transport purposes.
 	/// </summary>
-	[EdiValue("9(15)", Path = "DIM/*/1")]
-	public int? LengthDimension { get; set; }
+	[EdiValue("9(15)", Path = "DIM/*/1", Mandatory = false)]
+	public decimal? LengthDimension { get; set; }
 
 	/// <summary>
 	/// Width of pieces or packages stated for transport purposes.
 	/// </summary>
-	[EdiValue("9(15)", Path = "DIM/*/2")]
-	public int? WidthDimension { get; set; }
+	[EdiValue("9(15)", Path = "DIM/*/2", Mandatory = false)]
+	public decimal? WidthDimension { get; set; }
 
 	/// <summary>
 	/// Height of pieces or packages stated for transport purposes.
 	/// </summary>
-	[EdiValue("9(15)", Path = "DIM/*/3")]
-	public int? HeightDimension { get; set; }
+	[EdiValue("9(15)", Path = "DIM/*/3", Mandatory = false)]
+	public decimal? HeightDimension { get; set; }
 }

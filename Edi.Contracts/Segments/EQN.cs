@@ -26,12 +26,12 @@ public class EQN_NumberOfUnitDetails
 	/// <summary>
 	/// Number of units of a certain type.
 	/// </summary>
-	[EdiValue("9(15)", Path = "EQN/*/0")]
-	public int? NumberOfUnits { get; set; }
+	[EdiValue("9(15)", Path = "EQN/*/0", Mandatory = false)]
+	public decimal? NumberOfUnits { get; set; }
 
 	/// <summary>
 	/// Indication of the objective of number of units information.
 	/// </summary>
-	[EdiValue("X(3)", Path = "EQN/*/1")]
+	[EdiValue("X(3)", Path = "EQN/*/1", Mandatory = false)]
 	public NumberOfUnitsQualifier? NumberOfUnitsQualifier { get; set; }
 }

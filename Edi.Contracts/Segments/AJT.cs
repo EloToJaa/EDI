@@ -13,13 +13,13 @@ public class AJT
 	/// <summary>
 	/// Indication of reason for adjustment.
 	/// </summary>
-	[EdiValue("X(3)", Path = "AJT/0")]
+	[EdiValue("X(3)", Path = "AJT/0", Mandatory = true)]
 	public AdjustmentReasonCoded? AdjustmentReasonCoded { get; set; }
 
 	/// <summary>
 	/// Serial number designating each separate item within a series of articles.
 	/// </summary>
-	[EdiValue("X(6)", Path = "AJT/1")]
+	[EdiValue("X(6)", Path = "AJT/1", Mandatory = false)]
 	public string? LineItemNumber { get; set; }
 
 }

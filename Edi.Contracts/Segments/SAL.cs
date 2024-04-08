@@ -26,30 +26,30 @@ public class SAL_RemunerationTypeIdentification
 	/// <summary>
 	/// Remuneration type in coded form.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SAL/*/0")]
+	[EdiValue("X(3)", Path = "SAL/*/0", Mandatory = false)]
 	public RemunerationTypeCoded? RemunerationTypeCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SAL/*/1")]
+	[EdiValue("X(3)", Path = "SAL/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SAL/*/2")]
+	[EdiValue("X(3)", Path = "SAL/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Name of remuneration type as free text.
 	/// </summary>
-	[EdiValue("X(35)", Path = "SAL/*/3")]
+	[EdiValue("X(35)", Path = "SAL/*/3", Mandatory = false)]
 	public string? RemunerationType1 { get; set; }
 
 	/// <summary>
 	/// Name of remuneration type as free text.
 	/// </summary>
-	[EdiValue("X(35)", Path = "SAL/*/4")]
+	[EdiValue("X(35)", Path = "SAL/*/4", Mandatory = false)]
 	public string? RemunerationType2 { get; set; }
 }

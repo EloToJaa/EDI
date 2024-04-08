@@ -13,13 +13,13 @@ public class TDT
 	/// <summary>
 	/// Qualifier giving a specific meaning to the transport details.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TDT/0")]
+	[EdiValue("X(3)", Path = "TDT/0", Mandatory = true)]
 	public TransportStageQualifier? TransportStageQualifier { get; set; }
 
 	/// <summary>
 	/// Unique reference given by the carrier to a certain journey or departure of a means of transport (generic term).
 	/// </summary>
-	[EdiValue("X(17)", Path = "TDT/1")]
+	[EdiValue("X(17)", Path = "TDT/1", Mandatory = false)]
 	public string? ConveyanceReferenceNumber { get; set; }
 
 	/// <summary>
@@ -43,7 +43,7 @@ public class TDT
 	/// <summary>
 	/// Identification of the point of origin and point of direction.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TDT/5")]
+	[EdiValue("X(3)", Path = "TDT/5", Mandatory = false)]
 	public TransitDirectionCoded? TransitDirectionCoded { get; set; }
 
 	/// <summary>
@@ -61,7 +61,7 @@ public class TDT
 	/// <summary>
 	/// Code indicating the ownership of the means of transport.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TDT/8")]
+	[EdiValue("X(3)", Path = "TDT/8", Mandatory = false)]
 	public TransportOwnershipCoded? TransportOwnershipCoded { get; set; }
 
 }
@@ -75,13 +75,13 @@ public class TDT_ModeOfTransport
 	/// <summary>
 	/// Coded method of transport used for the carriage of the goods.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TDT/*/0")]
+	[EdiValue("X(3)", Path = "TDT/*/0", Mandatory = false)]
 	public string? ModeOfTransportCoded { get; set; }
 
 	/// <summary>
 	/// Method of transport used for the carriage of the goods.
 	/// </summary>
-	[EdiValue("X(17)", Path = "TDT/*/1")]
+	[EdiValue("X(17)", Path = "TDT/*/1", Mandatory = false)]
 	public string? ModeOfTransport { get; set; }
 }
 
@@ -94,13 +94,13 @@ public class TDT_TransportMeans
 	/// <summary>
 	/// Code defining the type of the means of transport being utilized.
 	/// </summary>
-	[EdiValue("X(8)", Path = "TDT/*/0")]
+	[EdiValue("X(8)", Path = "TDT/*/0", Mandatory = false)]
 	public TypeOfMeansOfTransportIdentification? TypeOfMeansOfTransportIdentification { get; set; }
 
 	/// <summary>
 	/// Description of the type of the means of transport being utilized.
 	/// </summary>
-	[EdiValue("X(17)", Path = "TDT/*/1")]
+	[EdiValue("X(17)", Path = "TDT/*/1", Mandatory = false)]
 	public string? TypeOfMeansOfTransport { get; set; }
 }
 
@@ -113,25 +113,25 @@ public class TDT_Carrier
 	/// <summary>
 	/// Identification of party undertaking or arranging transport of goods between named points.
 	/// </summary>
-	[EdiValue("X(17)", Path = "TDT/*/0")]
+	[EdiValue("X(17)", Path = "TDT/*/0", Mandatory = false)]
 	public string? CarrierIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TDT/*/1")]
+	[EdiValue("X(3)", Path = "TDT/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TDT/*/2")]
+	[EdiValue("X(3)", Path = "TDT/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Name of party undertaking or arranging transport of goods between named points.
 	/// </summary>
-	[EdiValue("X(35)", Path = "TDT/*/3")]
+	[EdiValue("X(35)", Path = "TDT/*/3", Mandatory = false)]
 	public string? CarrierName { get; set; }
 }
 
@@ -144,19 +144,19 @@ public class TDT_ExcessTransportationInformation
 	/// <summary>
 	/// Indication of reason for excess transportation.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TDT/*/0")]
+	[EdiValue("X(3)", Path = "TDT/*/0", Mandatory = true)]
 	public ExcessTransportationReasonCoded? ExcessTransportationReasonCoded { get; set; }
 
 	/// <summary>
 	/// Indication of responsibility for excess transportation.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TDT/*/1")]
+	[EdiValue("X(3)", Path = "TDT/*/1", Mandatory = true)]
 	public ExcessTransportationResponsibilityCoded? ExcessTransportationResponsibilityCoded { get; set; }
 
 	/// <summary>
 	/// Customer provided authorization number to allow supplier to ship goods under specific freight conditions.  This number will be transmitted back to customer in the dispatch advice message.
 	/// </summary>
-	[EdiValue("X(17)", Path = "TDT/*/2")]
+	[EdiValue("X(17)", Path = "TDT/*/2", Mandatory = false)]
 	public string? CustomerAuthorizationNumber { get; set; }
 }
 
@@ -169,30 +169,30 @@ public class TDT_TransportIdentification
 	/// <summary>
 	/// Identification of the means of transport by name or number.
 	/// </summary>
-	[EdiValue("X(9)", Path = "TDT/*/0")]
+	[EdiValue("X(9)", Path = "TDT/*/0", Mandatory = false)]
 	public string? IdOfMeansOfTransportIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TDT/*/1")]
+	[EdiValue("X(3)", Path = "TDT/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TDT/*/2")]
+	[EdiValue("X(3)", Path = "TDT/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Identification of the means of transport by name or number.
 	/// </summary>
-	[EdiValue("X(35)", Path = "TDT/*/3")]
+	[EdiValue("X(35)", Path = "TDT/*/3", Mandatory = false)]
 	public string? IdOfTheMeansOfTransport { get; set; }
 
 	/// <summary>
 	/// Coded name of the country in which a means of transport is registered.
 	/// </summary>
-	[EdiValue("X(3)", Path = "TDT/*/4")]
+	[EdiValue("X(3)", Path = "TDT/*/4", Mandatory = false)]
 	public string? NationalityOfMeansOfTransportCoded { get; set; }
 }

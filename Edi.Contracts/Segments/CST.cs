@@ -13,8 +13,8 @@ public class CST
 	/// <summary>
 	/// Serial number differentiating each separate goods item entry of a consignment as contained in one document/declaration.
 	/// </summary>
-	[EdiValue("9(5)", Path = "CST/0")]
-	public int? GoodsItemNumber { get; set; }
+	[EdiValue("9(5)", Path = "CST/0", Mandatory = false)]
+	public decimal? GoodsItemNumber { get; set; }
 
 	/// <summary>
 	/// Specification of goods in terms of customs identity.
@@ -56,18 +56,18 @@ public class CST_CustomsIdentityCodes
 	/// <summary>
 	/// To specify goods in terms of customs identity.
 	/// </summary>
-	[EdiValue("X(18)", Path = "CST/*/0")]
+	[EdiValue("X(18)", Path = "CST/*/0", Mandatory = true)]
 	public string? CustomsCodeIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CST/*/1")]
+	[EdiValue("X(3)", Path = "CST/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CST/*/2")]
+	[EdiValue("X(3)", Path = "CST/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 }

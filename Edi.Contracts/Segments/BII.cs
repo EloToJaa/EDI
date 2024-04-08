@@ -13,7 +13,7 @@ public class BII
 	/// <summary>
 	/// To qualify the indexing structure established for a project.
 	/// </summary>
-	[EdiValue("X(3)", Path = "BII/0")]
+	[EdiValue("X(3)", Path = "BII/0", Mandatory = true)]
 	public IndexingStructureQualifier? IndexingStructureQualifier { get; set; }
 
 	/// <summary>
@@ -25,7 +25,7 @@ public class BII
 	/// <summary>
 	/// A number allocated to a group or item.
 	/// </summary>
-	[EdiValue("X(35)", Path = "BII/2")]
+	[EdiValue("X(35)", Path = "BII/2", Mandatory = false)]
 	public string? ItemNumber { get; set; }
 
 }
@@ -39,36 +39,36 @@ public class BII_BillLevelIdentification
 	/// <summary>
 	/// The first facet of a sequencing mechanism used to position an item within an indexing structure.
 	/// </summary>
-	[EdiValue("X(17)", Path = "BII/*/0")]
+	[EdiValue("X(17)", Path = "BII/*/0", Mandatory = false)]
 	public string? LevelOneId { get; set; }
 
 	/// <summary>
 	/// The second facet of a sequencing mechanism used to position an item within an indexing structure.
 	/// </summary>
-	[EdiValue("X(17)", Path = "BII/*/1")]
+	[EdiValue("X(17)", Path = "BII/*/1", Mandatory = false)]
 	public string? LevelTwoId { get; set; }
 
 	/// <summary>
 	/// The third facet of a sequencing mechanism used to position an item within an indexing structure.
 	/// </summary>
-	[EdiValue("X(17)", Path = "BII/*/2")]
+	[EdiValue("X(17)", Path = "BII/*/2", Mandatory = false)]
 	public string? LevelThreeId { get; set; }
 
 	/// <summary>
 	/// The fourth facet of a sequencing mechanism used to position an item within an indexing structure.
 	/// </summary>
-	[EdiValue("X(17)", Path = "BII/*/3")]
+	[EdiValue("X(17)", Path = "BII/*/3", Mandatory = false)]
 	public string? LevelFourId { get; set; }
 
 	/// <summary>
 	/// The fifth facet of a sequencing mechanism used to position an item within an indexing structure.
 	/// </summary>
-	[EdiValue("X(17)", Path = "BII/*/4")]
+	[EdiValue("X(17)", Path = "BII/*/4", Mandatory = false)]
 	public string? LevelFiveId { get; set; }
 
 	/// <summary>
 	/// The sixth facet of a sequencing mechanism used to position an item within an indexing structure.
 	/// </summary>
-	[EdiValue("X(17)", Path = "BII/*/5")]
+	[EdiValue("X(17)", Path = "BII/*/5", Mandatory = false)]
 	public string? LevelSixId { get; set; }
 }

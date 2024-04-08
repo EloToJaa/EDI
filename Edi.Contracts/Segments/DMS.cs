@@ -13,19 +13,19 @@ public class DMS
 	/// <summary>
 	/// Reference number assigned to the document/message by the issuer.
 	/// </summary>
-	[EdiValue("X(35)", Path = "DMS/0")]
+	[EdiValue("X(35)", Path = "DMS/0", Mandatory = false)]
 	public string? DocumentMessageNumber { get; set; }
 
 	/// <summary>
 	/// Document/message identifier expressed in code.
 	/// </summary>
-	[EdiValue("X(3)", Path = "DMS/1")]
+	[EdiValue("X(3)", Path = "DMS/1", Mandatory = false)]
 	public DocumentMessageNameCoded? DocumentMessageNameCoded { get; set; }
 
 	/// <summary>
 	/// Total number of items, having separate goods descriptions.
 	/// </summary>
-	[EdiValue("9(15)", Path = "DMS/2")]
-	public int? TotalNumberOfItems { get; set; }
+	[EdiValue("9(15)", Path = "DMS/2", Mandatory = false)]
+	public decimal? TotalNumberOfItems { get; set; }
 
 }

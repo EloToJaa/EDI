@@ -13,19 +13,19 @@ public class CPS
 	/// <summary>
 	/// A unique number assigned by the sender to identify a level within a hierarchical structure.
 	/// </summary>
-	[EdiValue("X(12)", Path = "CPS/0")]
+	[EdiValue("X(12)", Path = "CPS/0", Mandatory = true)]
 	public string? HierarchicalIdNumber { get; set; }
 
 	/// <summary>
 	/// Identification number of the next higher hierarchical data segment in a hierarchical structure.
 	/// </summary>
-	[EdiValue("X(12)", Path = "CPS/1")]
+	[EdiValue("X(12)", Path = "CPS/1", Mandatory = false)]
 	public string? HierarchicalParentId { get; set; }
 
 	/// <summary>
 	/// Indication of level of packaging specified.
 	/// </summary>
-	[EdiValue("X(3)", Path = "CPS/2")]
+	[EdiValue("X(3)", Path = "CPS/2", Mandatory = false)]
 	public PackagingLevelCoded? PackagingLevelCoded { get; set; }
 
 }

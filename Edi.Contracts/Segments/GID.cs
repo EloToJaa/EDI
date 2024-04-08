@@ -13,8 +13,8 @@ public class GID
 	/// <summary>
 	/// Serial number differentiating each separate goods item entry of a consignment as contained in one document/declaration.
 	/// </summary>
-	[EdiValue("9(5)", Path = "GID/0")]
-	public int? GoodsItemNumber { get; set; }
+	[EdiValue("9(5)", Path = "GID/0", Mandatory = false)]
+	public decimal? GoodsItemNumber { get; set; }
 
 	/// <summary>
 	/// Number and type of individual parts of a shipment.
@@ -56,36 +56,36 @@ public class GID_NumberAndTypeOfPackages
 	/// <summary>
 	/// Number of packages
 	/// </summary>
-	[EdiValue("9(8)", Path = "GID/*/0")]
-	public int? NumberOfPackages { get; set; }
+	[EdiValue("9(8)", Path = "GID/*/0", Mandatory = false)]
+	public decimal? NumberOfPackages { get; set; }
 
 	/// <summary>
 	/// Type of packages identification
 	/// </summary>
-	[EdiValue("X(17)", Path = "GID/*/1")]
+	[EdiValue("X(17)", Path = "GID/*/1", Mandatory = false)]
 	public string? TypeOfPackagesIdentification { get; set; }
 
 	/// <summary>
 	/// Code list qualifier
 	/// </summary>
-	[EdiValue("X(3)", Path = "GID/*/2")]
+	[EdiValue("X(3)", Path = "GID/*/2", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code list responsible agency, coded
 	/// </summary>
-	[EdiValue("X(3)", Path = "GID/*/3")]
+	[EdiValue("X(3)", Path = "GID/*/3", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Type of packages
 	/// </summary>
-	[EdiValue("X(35)", Path = "GID/*/4")]
+	[EdiValue("X(35)", Path = "GID/*/4", Mandatory = false)]
 	public string? TypeOfPackages { get; set; }
 
 	/// <summary>
 	/// Packaging related information, coded
 	/// </summary>
-	[EdiValue("X(3)", Path = "GID/*/5")]
+	[EdiValue("X(3)", Path = "GID/*/5", Mandatory = false)]
 	public PackagingRelatedInformationCoded? PackagingRelatedInformationCoded { get; set; }
 }

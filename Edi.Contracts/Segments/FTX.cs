@@ -13,13 +13,13 @@ public class FTX
 	/// <summary>
 	/// Code specifying subject of a free text.
 	/// </summary>
-	[EdiValue("X(3)", Path = "FTX/0")]
+	[EdiValue("X(3)", Path = "FTX/0", Mandatory = true)]
 	public TextSubjectQualifier? TextSubjectQualifier { get; set; }
 
 	/// <summary>
 	/// Code specifying how to handle the text.
 	/// </summary>
-	[EdiValue("X(3)", Path = "FTX/1")]
+	[EdiValue("X(3)", Path = "FTX/1", Mandatory = false)]
 	public TextFunctionCoded? TextFunctionCoded { get; set; }
 
 	/// <summary>
@@ -37,7 +37,7 @@ public class FTX
 	/// <summary>
 	/// Code of language (ISO 639-1988).
 	/// </summary>
-	[EdiValue("X(3)", Path = "FTX/4")]
+	[EdiValue("X(3)", Path = "FTX/4", Mandatory = false)]
 	public string? LanguageCoded { get; set; }
 
 }
@@ -51,19 +51,19 @@ public class FTX_TextReference
 	/// <summary>
 	/// Free text in coded form.
 	/// </summary>
-	[EdiValue("X(17)", Path = "FTX/*/0")]
+	[EdiValue("X(17)", Path = "FTX/*/0", Mandatory = true)]
 	public string? FreeTextIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "FTX/*/1")]
+	[EdiValue("X(3)", Path = "FTX/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "FTX/*/2")]
+	[EdiValue("X(3)", Path = "FTX/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 }
 
@@ -76,30 +76,30 @@ public class FTX_TextLiteral
 	/// <summary>
 	/// Free text field available to the message sender for information.
 	/// </summary>
-	[EdiValue("X(70)", Path = "FTX/*/0")]
+	[EdiValue("X(70)", Path = "FTX/*/0", Mandatory = true)]
 	public string? FreeText1 { get; set; }
 
 	/// <summary>
 	/// Free text field available to the message sender for information.
 	/// </summary>
-	[EdiValue("X(70)", Path = "FTX/*/1")]
+	[EdiValue("X(70)", Path = "FTX/*/1", Mandatory = false)]
 	public string? FreeText2 { get; set; }
 
 	/// <summary>
 	/// Free text field available to the message sender for information.
 	/// </summary>
-	[EdiValue("X(70)", Path = "FTX/*/2")]
+	[EdiValue("X(70)", Path = "FTX/*/2", Mandatory = false)]
 	public string? FreeText3 { get; set; }
 
 	/// <summary>
 	/// Free text field available to the message sender for information.
 	/// </summary>
-	[EdiValue("X(70)", Path = "FTX/*/3")]
+	[EdiValue("X(70)", Path = "FTX/*/3", Mandatory = false)]
 	public string? FreeText4 { get; set; }
 
 	/// <summary>
 	/// Free text field available to the message sender for information.
 	/// </summary>
-	[EdiValue("X(70)", Path = "FTX/*/4")]
+	[EdiValue("X(70)", Path = "FTX/*/4", Mandatory = false)]
 	public string? FreeText5 { get; set; }
 }

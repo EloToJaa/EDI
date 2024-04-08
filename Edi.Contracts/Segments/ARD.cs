@@ -26,18 +26,18 @@ public class ARD_MonetaryFunction
 	/// <summary>
 	/// To specify the function of a related monetary amount.
 	/// </summary>
-	[EdiValue("X(3)", Path = "ARD/*/0")]
+	[EdiValue("X(3)", Path = "ARD/*/0", Mandatory = true)]
 	public MonetaryFunctionCoded? MonetaryFunctionCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "ARD/*/1")]
+	[EdiValue("X(3)", Path = "ARD/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "ARD/*/2")]
+	[EdiValue("X(3)", Path = "ARD/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 }

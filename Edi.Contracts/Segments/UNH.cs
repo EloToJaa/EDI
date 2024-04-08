@@ -13,7 +13,7 @@ public class UNH
 	/// <summary>
 	/// Unique message reference assigned by the sender.
 	/// </summary>
-	[EdiValue("X(14)", Path = "UNH/0")]
+	[EdiValue("X(14)", Path = "UNH/0", Mandatory = true)]
 	public string? MessageReferenceNumber { get; set; }
 
 	/// <summary>
@@ -25,7 +25,7 @@ public class UNH
 	/// <summary>
 	/// Reference serving as a key to relate all subsequent transfers of data to the same business case or file.
 	/// </summary>
-	[EdiValue("X(35)", Path = "UNH/2")]
+	[EdiValue("X(35)", Path = "UNH/2", Mandatory = false)]
 	public string? CommonAccessReference { get; set; }
 
 	/// <summary>
@@ -44,31 +44,31 @@ public class UNH_MessageIdentifier
 	/// <summary>
 	/// Code identifying a type of message and assigned by its controlling agency.
 	/// </summary>
-	[EdiValue("X(6)", Path = "UNH/*/0")]
+	[EdiValue("X(6)", Path = "UNH/*/0", Mandatory = true)]
 	public MessageTypeIdentifier? MessageTypeIdentifier { get; set; }
 
 	/// <summary>
 	/// Version number of a message type.
 	/// </summary>
-	[EdiValue("X(3)", Path = "UNH/*/1")]
+	[EdiValue("X(3)", Path = "UNH/*/1", Mandatory = true)]
 	public MessageVersionNumber? MessageTypeVersionNumber { get; set; }
 
 	/// <summary>
 	/// Release number within the current message type version number (0052).
 	/// </summary>
-	[EdiValue("X(3)", Path = "UNH/*/2")]
+	[EdiValue("X(3)", Path = "UNH/*/2", Mandatory = true)]
 	public MessageReleaseNumber? MessageTypeReleaseNumber { get; set; }
 
 	/// <summary>
 	/// Code to identify the agency controlling the specification, maintenance and publication of the message type.
 	/// </summary>
-	[EdiValue("X(2)", Path = "UNH/*/3")]
+	[EdiValue("X(2)", Path = "UNH/*/3", Mandatory = true)]
 	public ControllingAgency? ControllingAgency { get; set; }
 
 	/// <summary>
 	/// A code assigned by the association responsible for the design and maintenance of the message type concerned, which further identifies the message.
 	/// </summary>
-	[EdiValue("X(6)", Path = "UNH/*/4")]
+	[EdiValue("X(6)", Path = "UNH/*/4", Mandatory = false)]
 	public string? AssociationAssignedCode { get; set; }
 }
 
@@ -81,12 +81,12 @@ public class UNH_StatusOfTheTransfer
 	/// <summary>
 	/// Number assigned by the sender indicating the numerical sequence of one or more transfers.
 	/// </summary>
-	[EdiValue("9(2)", Path = "UNH/*/0")]
-	public int? SequenceMessageTransferNumber { get; set; }
+	[EdiValue("9(2)", Path = "UNH/*/0", Mandatory = true)]
+	public decimal? SequenceMessageTransferNumber { get; set; }
 
 	/// <summary>
 	/// Indication used for the first and last message in a sequence of the same type of message relating to the same topic.
 	/// </summary>
-	[EdiValue("X(1)", Path = "UNH/*/1")]
+	[EdiValue("X(1)", Path = "UNH/*/1", Mandatory = false)]
 	public FirstLastSequenceMessageTransferIndication? FirstLastSequenceMessageTransferIndication { get; set; }
 }

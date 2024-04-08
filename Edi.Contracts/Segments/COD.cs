@@ -32,25 +32,25 @@ public class COD_TypeOfUnitComponent
 	/// <summary>
 	/// Code identifying the type of unit/component of an object (e.g. lock, door, tyre).
 	/// </summary>
-	[EdiValue("X(3)", Path = "COD/*/0")]
+	[EdiValue("X(3)", Path = "COD/*/0", Mandatory = false)]
 	public string? TypeOfUnitComponentCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "COD/*/1")]
+	[EdiValue("X(3)", Path = "COD/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "COD/*/2")]
+	[EdiValue("X(3)", Path = "COD/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Description identifying the type of unit/component of an object (e.g. lock, door, tyre).
 	/// </summary>
-	[EdiValue("X(35)", Path = "COD/*/3")]
+	[EdiValue("X(35)", Path = "COD/*/3", Mandatory = false)]
 	public string? TypeOfUnitComponent { get; set; }
 }
 
@@ -63,24 +63,24 @@ public class COD_ComponentMaterial
 	/// <summary>
 	/// Code identifying the material of which a component is composed (e.g. steel, plastics).
 	/// </summary>
-	[EdiValue("X(3)", Path = "COD/*/0")]
+	[EdiValue("X(3)", Path = "COD/*/0", Mandatory = false)]
 	public string? ComponentMaterialCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "COD/*/1")]
+	[EdiValue("X(3)", Path = "COD/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "COD/*/2")]
+	[EdiValue("X(3)", Path = "COD/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Description identifying the material of which a component is composed (e.g. steel, plastics).
 	/// </summary>
-	[EdiValue("X(35)", Path = "COD/*/3")]
+	[EdiValue("X(35)", Path = "COD/*/3", Mandatory = false)]
 	public string? ComponentMaterial { get; set; }
 }

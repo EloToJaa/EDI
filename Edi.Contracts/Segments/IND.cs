@@ -32,25 +32,25 @@ public class IND_IndexIdentification
 	/// <summary>
 	/// To identify the type of index being referred to.
 	/// </summary>
-	[EdiValue("X(3)", Path = "IND/*/0")]
+	[EdiValue("X(3)", Path = "IND/*/0", Mandatory = true)]
 	public IndexQualifier? IndexQualifier { get; set; }
 
 	/// <summary>
 	/// To identify the type of index.
 	/// </summary>
-	[EdiValue("X(3)", Path = "IND/*/1")]
+	[EdiValue("X(3)", Path = "IND/*/1", Mandatory = false)]
 	public IndexTypeCoded? IndexTypeCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "IND/*/2")]
+	[EdiValue("X(3)", Path = "IND/*/2", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "IND/*/3")]
+	[EdiValue("X(3)", Path = "IND/*/3", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 }
 
@@ -63,12 +63,12 @@ public class IND_IndexValue
 	/// <summary>
 	/// To specify the value of an index.
 	/// </summary>
-	[EdiValue("9(6)", Path = "IND/*/0")]
-	public int? IndexValue { get; set; }
+	[EdiValue("9(6)", Path = "IND/*/0", Mandatory = true)]
+	public decimal? IndexValue { get; set; }
 
 	/// <summary>
 	/// To identify the representation of an index value.
 	/// </summary>
-	[EdiValue("X(3)", Path = "IND/*/1")]
+	[EdiValue("X(3)", Path = "IND/*/1", Mandatory = false)]
 	public IndexValueRepresentationCoded? IndexValueRepresentationCoded { get; set; }
 }

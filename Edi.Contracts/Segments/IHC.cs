@@ -13,7 +13,7 @@ public class IHC
 	/// <summary>
 	/// To specify the type of specific person characteristic.
 	/// </summary>
-	[EdiValue("X(3)", Path = "IHC/0")]
+	[EdiValue("X(3)", Path = "IHC/0", Mandatory = true)]
 	public PersonCharacteristicQualifier? PersonCharacteristicQualifier { get; set; }
 
 	/// <summary>
@@ -32,24 +32,24 @@ public class IHC_PersonInheritedCharacteristicDetails
 	/// <summary>
 	/// To specify a person inherited characteristic using a code value.
 	/// </summary>
-	[EdiValue("X(8)", Path = "IHC/*/0")]
+	[EdiValue("X(8)", Path = "IHC/*/0", Mandatory = false)]
 	public string? PersonInheritedCharacteristicIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "IHC/*/1")]
+	[EdiValue("X(3)", Path = "IHC/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "IHC/*/2")]
+	[EdiValue("X(3)", Path = "IHC/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// To specify a person inherited characteristic as free text.
 	/// </summary>
-	[EdiValue("X(70)", Path = "IHC/*/3")]
+	[EdiValue("X(70)", Path = "IHC/*/3", Mandatory = false)]
 	public string? PersonInheritedCharacteristic { get; set; }
 }

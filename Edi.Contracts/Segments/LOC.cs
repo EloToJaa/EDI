@@ -13,7 +13,7 @@ public class LOC
 	/// <summary>
 	/// Code identifying the function of a location.
 	/// </summary>
-	[EdiValue("X(3)", Path = "LOC/0")]
+	[EdiValue("X(3)", Path = "LOC/0", Mandatory = true)]
 	public PlaceLocationQualifier? PlaceLocationQualifier { get; set; }
 
 	/// <summary>
@@ -37,7 +37,7 @@ public class LOC
 	/// <summary>
 	/// To specify the relationship between two or more items.
 	/// </summary>
-	[EdiValue("X(3)", Path = "LOC/4")]
+	[EdiValue("X(3)", Path = "LOC/4", Mandatory = false)]
 	public string? RelationCoded { get; set; }
 
 }
@@ -51,25 +51,25 @@ public class LOC_LocationIdentification
 	/// <summary>
 	/// Identification of the name of place/location, other than 3164 City name.
 	/// </summary>
-	[EdiValue("X(25)", Path = "LOC/*/0")]
+	[EdiValue("X(25)", Path = "LOC/*/0", Mandatory = false)]
 	public string? PlaceLocationIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "LOC/*/1")]
+	[EdiValue("X(3)", Path = "LOC/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "LOC/*/2")]
+	[EdiValue("X(3)", Path = "LOC/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Name of place/location, other than 3164 City name.
 	/// </summary>
-	[EdiValue("X(70)", Path = "LOC/*/3")]
+	[EdiValue("X(70)", Path = "LOC/*/3", Mandatory = false)]
 	public string? PlaceLocation { get; set; }
 }
 
@@ -82,25 +82,25 @@ public class LOC_RelatedLocationOneIdentification
 	/// <summary>
 	/// Specification of the first related place/location by code.
 	/// </summary>
-	[EdiValue("X(25)", Path = "LOC/*/0")]
+	[EdiValue("X(25)", Path = "LOC/*/0", Mandatory = false)]
 	public string? RelatedPlaceLocationOneIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "LOC/*/1")]
+	[EdiValue("X(3)", Path = "LOC/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "LOC/*/2")]
+	[EdiValue("X(3)", Path = "LOC/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Specification of the first related place/location by name.
 	/// </summary>
-	[EdiValue("X(70)", Path = "LOC/*/3")]
+	[EdiValue("X(70)", Path = "LOC/*/3", Mandatory = false)]
 	public string? RelatedPlaceLocationOne { get; set; }
 }
 
@@ -113,24 +113,24 @@ public class LOC_RelatedLocationTwoIdentification
 	/// <summary>
 	/// Specification of a second related place/location by code.
 	/// </summary>
-	[EdiValue("X(25)", Path = "LOC/*/0")]
+	[EdiValue("X(25)", Path = "LOC/*/0", Mandatory = false)]
 	public string? RelatedPlaceLocationTwoIdentification { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "LOC/*/1")]
+	[EdiValue("X(3)", Path = "LOC/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "LOC/*/2")]
+	[EdiValue("X(3)", Path = "LOC/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Specification of a second related place/location by name.
 	/// </summary>
-	[EdiValue("X(70)", Path = "LOC/*/3")]
+	[EdiValue("X(70)", Path = "LOC/*/3", Mandatory = false)]
 	public string? RelatedPlaceLocationTwo { get; set; }
 }

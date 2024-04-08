@@ -13,7 +13,7 @@ public class RNG
 	/// <summary>
 	/// Identification of the type of range.
 	/// </summary>
-	[EdiValue("X(3)", Path = "RNG/0")]
+	[EdiValue("X(3)", Path = "RNG/0", Mandatory = true)]
 	public RangeTypeQualifier? RangeTypeQualifier { get; set; }
 
 	/// <summary>
@@ -32,18 +32,18 @@ public class RNG_Range
 	/// <summary>
 	/// Indication of the unit of measurement in which weight (mass), capacity, length, area, volume or other quantity is expressed.
 	/// </summary>
-	[EdiValue("X(3)", Path = "RNG/*/0")]
+	[EdiValue("X(3)", Path = "RNG/*/0", Mandatory = true)]
 	public string? MeasureUnitQualifier { get; set; }
 
 	/// <summary>
 	/// Minimum of a range.
 	/// </summary>
-	[EdiValue("9(18)", Path = "RNG/*/1")]
-	public int? RangeMinimum { get; set; }
+	[EdiValue("9(18)", Path = "RNG/*/1", Mandatory = false)]
+	public decimal? RangeMinimum { get; set; }
 
 	/// <summary>
 	/// Maximum of a range.
 	/// </summary>
-	[EdiValue("9(18)", Path = "RNG/*/2")]
-	public int? RangeMaximum { get; set; }
+	[EdiValue("9(18)", Path = "RNG/*/2", Mandatory = false)]
+	public decimal? RangeMaximum { get; set; }
 }

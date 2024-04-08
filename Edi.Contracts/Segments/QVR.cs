@@ -19,7 +19,7 @@ public class QVR
 	/// <summary>
 	/// Code defining the disposition of any difference between the quantity ordered and invoiced, or shipped and invoiced for a line item or transaction.
 	/// </summary>
-	[EdiValue("X(3)", Path = "QVR/1")]
+	[EdiValue("X(3)", Path = "QVR/1", Mandatory = false)]
 	public DiscrepancyCoded? DiscrepancyCoded { get; set; }
 
 	/// <summary>
@@ -38,13 +38,13 @@ public class QVR_QuantityDifferenceInformation
 	/// <summary>
 	/// Numeric value of variance between ordered/shipped/invoiced quantities.
 	/// </summary>
-	[EdiValue("9(15)", Path = "QVR/*/0")]
-	public int? QuantityDifference { get; set; }
+	[EdiValue("9(15)", Path = "QVR/*/0", Mandatory = true)]
+	public decimal? QuantityDifference { get; set; }
 
 	/// <summary>
 	/// Code giving specific meaning to a quantity.
 	/// </summary>
-	[EdiValue("X(3)", Path = "QVR/*/1")]
+	[EdiValue("X(3)", Path = "QVR/*/1", Mandatory = false)]
 	public QuantityQualifier? QuantityQualifier { get; set; }
 }
 
@@ -57,24 +57,24 @@ public class QVR_ReasonForChange
 	/// <summary>
 	/// Identification of the reason for a change.
 	/// </summary>
-	[EdiValue("X(3)", Path = "QVR/*/0")]
+	[EdiValue("X(3)", Path = "QVR/*/0", Mandatory = false)]
 	public ChangeReasonCoded? ChangeReasonCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "QVR/*/1")]
+	[EdiValue("X(3)", Path = "QVR/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "QVR/*/2")]
+	[EdiValue("X(3)", Path = "QVR/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Description of the reason for a change.
 	/// </summary>
-	[EdiValue("X(35)", Path = "QVR/*/3")]
+	[EdiValue("X(35)", Path = "QVR/*/3", Mandatory = false)]
 	public string? ChangeReason { get; set; }
 }

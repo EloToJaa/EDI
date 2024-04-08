@@ -19,8 +19,8 @@ public class SPS
 	/// <summary>
 	/// A percent value expressing the confidence that a true value falls within a certain confidence interval.
 	/// </summary>
-	[EdiValue("9(6)", Path = "SPS/1")]
-	public int? ConfidenceLimit { get; set; }
+	[EdiValue("9(6)", Path = "SPS/1", Mandatory = false)]
+	public decimal? ConfidenceLimit { get; set; }
 
 	/// <summary>
 	/// Information about the number of observations.
@@ -62,19 +62,19 @@ public class SPS_FrequencyDetails
 	/// <summary>
 	/// Indication of the application of a frequency.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SPS/*/0")]
+	[EdiValue("X(3)", Path = "SPS/*/0", Mandatory = true)]
 	public FrequencyQualifier? FrequencyQualifier { get; set; }
 
 	/// <summary>
 	/// A value indicating a repetitive occurrence.
 	/// </summary>
-	[EdiValue("9(9)", Path = "SPS/*/1")]
-	public int? FrequencyValue { get; set; }
+	[EdiValue("9(9)", Path = "SPS/*/1", Mandatory = false)]
+	public decimal? FrequencyValue { get; set; }
 
 	/// <summary>
 	/// Indication of the unit of measurement in which weight (mass), capacity, length, area, volume or other quantity is expressed.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SPS/*/2")]
+	[EdiValue("X(3)", Path = "SPS/*/2", Mandatory = false)]
 	public string? MeasureUnitQualifier { get; set; }
 }
 
@@ -87,12 +87,12 @@ public class SPS_SizeDetails
 	/// <summary>
 	/// Indication of the type or application of a size.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SPS/*/0")]
+	[EdiValue("X(3)", Path = "SPS/*/0", Mandatory = false)]
 	public SizeQualifier? SizeQualifier { get; set; }
 
 	/// <summary>
 	/// A specified magnitude.
 	/// </summary>
-	[EdiValue("9(15)", Path = "SPS/*/1")]
-	public int? Size { get; set; }
+	[EdiValue("9(15)", Path = "SPS/*/1", Mandatory = false)]
+	public decimal? Size { get; set; }
 }

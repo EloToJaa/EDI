@@ -26,12 +26,12 @@ public class COM_CommunicationContact
 	/// <summary>
 	/// The communication number.
 	/// </summary>
-	[EdiValue("X(512)", Path = "COM/*/0")]
+	[EdiValue("X(512)", Path = "COM/*/0", Mandatory = true)]
 	public string? CommunicationNumber { get; set; }
 
 	/// <summary>
 	/// Code identifying the type of communication channel being used.
 	/// </summary>
-	[EdiValue("X(3)", Path = "COM/*/1")]
+	[EdiValue("X(3)", Path = "COM/*/1", Mandatory = true)]
 	public CommunicationChannelQualifier? CommunicationChannelQualifier { get; set; }
 }

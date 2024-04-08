@@ -13,7 +13,7 @@ public class SFI
 	/// <summary>
 	/// A unique number assigned by the sender to identify a level within a hierarchical structure.
 	/// </summary>
-	[EdiValue("X(12)", Path = "SFI/0")]
+	[EdiValue("X(12)", Path = "SFI/0", Mandatory = true)]
 	public string? HierarchicalIdNumber { get; set; }
 
 	/// <summary>
@@ -31,7 +31,7 @@ public class SFI
 	/// <summary>
 	/// To indicate the type of data maintenance operation for an object, such as add, delete, replace.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SFI/3")]
+	[EdiValue("X(3)", Path = "SFI/3", Mandatory = false)]
 	public MaintenanceOperationCoded? MaintenanceOperationCoded { get; set; }
 
 }
@@ -45,13 +45,13 @@ public class SFI_SafetySection
 	/// <summary>
 	/// To identify the safety section number.
 	/// </summary>
-	[EdiValue("9(2)", Path = "SFI/*/0")]
-	public int? SafetySectionNumber { get; set; }
+	[EdiValue("9(2)", Path = "SFI/*/0", Mandatory = true)]
+	public decimal? SafetySectionNumber { get; set; }
 
 	/// <summary>
 	/// To identify the safety section name.
 	/// </summary>
-	[EdiValue("X(70)", Path = "SFI/*/1")]
+	[EdiValue("X(70)", Path = "SFI/*/1", Mandatory = false)]
 	public string? SafetySectionName { get; set; }
 }
 
@@ -64,24 +64,24 @@ public class SFI_AdditionalSafetyInformation
 	/// <summary>
 	/// Element to identify the additional safety information in coded form.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SFI/*/0")]
+	[EdiValue("X(3)", Path = "SFI/*/0", Mandatory = true)]
 	public string? AdditionalSafetyInformationCoded { get; set; }
 
 	/// <summary>
 	/// Identification of a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SFI/*/1")]
+	[EdiValue("X(3)", Path = "SFI/*/1", Mandatory = false)]
 	public CodeListQualifier? CodeListQualifier { get; set; }
 
 	/// <summary>
 	/// Code identifying the agency responsible for a code list.
 	/// </summary>
-	[EdiValue("X(3)", Path = "SFI/*/2")]
+	[EdiValue("X(3)", Path = "SFI/*/2", Mandatory = false)]
 	public CodeListResponsibleAgencyCoded? CodeListResponsibleAgencyCoded { get; set; }
 
 	/// <summary>
 	/// Element to enable additional safety information to be specified as free text.
 	/// </summary>
-	[EdiValue("X(35)", Path = "SFI/*/3")]
+	[EdiValue("X(35)", Path = "SFI/*/3", Mandatory = false)]
 	public string? AdditionalSafetyInformation { get; set; }
 }

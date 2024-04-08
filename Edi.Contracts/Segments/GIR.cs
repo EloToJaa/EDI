@@ -13,7 +13,7 @@ public class GIR
 	/// <summary>
 	/// Identification of the type of set.
 	/// </summary>
-	[EdiValue("X(3)", Path = "GIR/0")]
+	[EdiValue("X(3)", Path = "GIR/0", Mandatory = true)]
 	public SetIdentificationQualifier? SetIdentificationQualifier { get; set; }
 
 	/// <summary>
@@ -56,18 +56,18 @@ public class GIR_IdentificationNumber
 	/// <summary>
 	/// The number given to an object for its unique identification.
 	/// </summary>
-	[EdiValue("X(35)", Path = "GIR/*/0")]
+	[EdiValue("X(35)", Path = "GIR/*/0", Mandatory = true)]
 	public string? IdentityNumber { get; set; }
 
 	/// <summary>
 	/// Code specifying the type/source of identity number.
 	/// </summary>
-	[EdiValue("X(3)", Path = "GIR/*/1")]
+	[EdiValue("X(3)", Path = "GIR/*/1", Mandatory = false)]
 	public IdentityNumberQualifier? IdentityNumberQualifier { get; set; }
 
 	/// <summary>
 	/// Provides information regarding a status.
 	/// </summary>
-	[EdiValue("X(3)", Path = "GIR/*/2")]
+	[EdiValue("X(3)", Path = "GIR/*/2", Mandatory = false)]
 	public StatusCoded? StatusCoded { get; set; }
 }

@@ -1,4 +1,5 @@
 ﻿using Edi.Contracts.Interchanges;
+using Edi.Download;
 using Edi.Generator;
 using indice.Edi;
 using System.Text.Json;
@@ -9,8 +10,15 @@ namespace Edi
     {
         static void Main(string[] args)
         {
-            CheckParse();
+            //CheckParse();
             //GenerateCode();
+            DownloadMessages();
+        }
+
+        private static void DownloadMessages()
+        {
+            var downloader = new Downloader();
+            downloader.DownloadMessageSpecification();
         }
 
         private static void CheckParse()

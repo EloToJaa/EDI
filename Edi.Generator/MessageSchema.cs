@@ -1,4 +1,4 @@
-﻿namespace Edi.Download;
+﻿namespace Edi.Generator;
 
 public class MessageSchema
 {
@@ -11,4 +11,9 @@ public class MessageSegment
     public string SegmentName { get; set; } = string.Empty;
     public bool Mandatory { get; set; } = false;
     public int MaxCount { get; set; } = 1;
+
+    public override string ToString()
+    {
+        return $"{Depth}:{SegmentName}";
+    }
 }

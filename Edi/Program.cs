@@ -11,8 +11,8 @@ namespace Edi
         static void Main(string[] args)
         {
             //CheckParse();
-            //GenerateCode();
-            DownloadMessages();
+            GenerateCode();
+            //DownloadMessages();
         }
 
         private static void DownloadMessages()
@@ -42,37 +42,9 @@ namespace Edi
 
         private static void GenerateCode()
         {
-            string schemaDirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "schemas");
-            string schemaFilePath = Path.Combine(schemaDirPath, "D97A", "RSSBus_D97A.json");
-            string schemaContents = File.ReadAllText(schemaFilePath);
-            var schema = JsonSerializer.Deserialize<Schema>(schemaContents);
-
-            if (schema is null) return;
-
             var generator = new GeneratorService();
 
-            string dirPath = @"C:\Users\l.budziak\Documents\Projects\Edi\Edi.Contracts";
-            string namespaceName = "Edi.Contracts";
-
-            string segmentsDir = Path.Combine(dirPath, "Segments");
-            if (!Directory.Exists(segmentsDir))
-                Directory.CreateDirectory(segmentsDir);
-
-            foreach (var (segmentName, segment) in schema.Segments)
-            {
-                string code = generator.GenerateClassForSegment(segmentName, segment, namespaceName);
-                File.WriteAllText(Path.Combine(segmentsDir, $"{segmentName}.cs"), code);
-            }
-
-            string qualifiersDir = Path.Combine(dirPath, "Qualifiers");
-            if (!Directory.Exists(qualifiersDir))
-                Directory.CreateDirectory(qualifiersDir);
-
-            foreach (var (qualifierName, qualifier) in schema.Qualifiers)
-            {
-                string code = generator.GenerateClassForQualifier(qualifierName, qualifier, namespaceName);
-                File.WriteAllText(Path.Combine(qualifiersDir, $"{generator.ConvertToPascalCase(qualifierName)}.cs"), code);
-            }
+            generator.Generate();
         }
     }
 }

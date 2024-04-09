@@ -1,8 +1,7 @@
 ﻿using Diacritics.Extensions;
-using System.ComponentModel;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 
 namespace Edi.Generator;
 
@@ -191,6 +190,201 @@ public class GeneratorService
         sb.Append("}");
 
         return sb.ToString();
+    }
+
+    public void Generate(string version = "D97A")
+    {
+        string schemaDirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "schemas");
+        string schemaFilePath = Path.Combine(schemaDirPath, version, $"RSSBus_{version}.json");
+        string schemaContents = File.ReadAllText(schemaFilePath);
+        var schema = JsonSerializer.Deserialize<Schema>(schemaContents);
+
+        if (schema is null) return;
+
+        string messageSchemaFilePath = Path.Combine(schemaDirPath, version, $"schema.json");
+        string messageSchemaContents = File.ReadAllText(messageSchemaFilePath);
+        var messageSchema = JsonSerializer.Deserialize<MessageSchema>(messageSchemaContents);
+
+        if (messageSchema is null) return;
+
+        string dirPath = Path.Combine(GetSolutionDir(), "Edi.Contracts");
+        string namespaceName = "Edi.Contracts";
+
+        //string segmentsDir = Path.Combine(dirPath, "Segments");
+        //if (!Directory.Exists(segmentsDir))
+        //    Directory.CreateDirectory(segmentsDir);
+
+        //foreach (var (segmentName, segment) in schema.Segments)
+        //{
+        //    string code = GenerateClassForSegment(segmentName, segment, namespaceName);
+        //    File.WriteAllText(Path.Combine(segmentsDir, $"{segmentName}.cs"), code);
+        //}
+
+        //string qualifiersDir = Path.Combine(dirPath, "Qualifiers");
+        //if (!Directory.Exists(qualifiersDir))
+        //    Directory.CreateDirectory(qualifiersDir);
+
+        //foreach (var (qualifierName, qualifier) in schema.Qualifiers)
+        //{
+        //    string code = GenerateClassForQualifier(qualifierName, qualifier, namespaceName);
+        //    File.WriteAllText(Path.Combine(qualifiersDir, $"{ConvertToPascalCase(qualifierName)}.cs"), code);
+        //}
+
+        string messagesDir = Path.Combine(dirPath, "Messages");
+        if (!Directory.Exists(messagesDir))
+            Directory.CreateDirectory(messagesDir);
+
+        //string code = GenerateClassForMessage("INVOIC", messageSchema.Messages["INVOIC"], namespaceName);
+
+        foreach (var (messageName, messageSegments) in messageSchema.Messages)
+        {
+            string code = GenerateClassForMessage(messageName, messageSegments, namespaceName);
+            File.WriteAllText(Path.Combine(messagesDir, $"{messageName}.cs"), code);
+        }
+    }
+
+    public string GenerateClassForMessage(string messageName, List<MessageSegment> messageSegments, string namespaceName)
+    {
+        //var segmentGroupNames = new List<string>();
+
+        var sb = new StringBuilder();
+
+        sb.Append("using System.Collections.Generic;\n");
+        sb.Append($"using {namespaceName}.Segments;\n");
+        sb.Append("using indice.Edi.Serialization;\n\n");
+
+        sb.Append($"namespace {namespaceName}.Messages;\n\n");
+
+        sb.Append("/// <summary>\n");
+        sb.Append($"/// {messageName}\n");
+        sb.Append("/// </summary>\n");
+        //sb.Append($"[EdiMessage, EdiCondition(\"{messageName}\")]\n");
+        sb.Append($"[EdiMessage]\n");
+        sb.Append($"public class {messageName}\n");
+        sb.Append("{\n");
+
+        foreach(var segment in messageSegments)
+        {
+            string segmentName = segment.SegmentName;
+
+            if(segmentName.StartsWith("SG"))
+            {
+                sb.Append("\t/// <summary>\n");
+                sb.Append($"\t/// {segmentName}\n");
+                sb.Append("\t/// </summary>\n");
+                sb.Append($"\tpublic {messageName}_{segmentName}? {messageName}_{segmentName} {{ get; set; }}\n\n");
+
+                continue;
+            }
+
+            sb.Append("\t/// <summary>\n");
+            sb.Append($"\t/// {segmentName}\n");
+            sb.Append("\t/// </summary>\n");
+            sb.Append($"\tpublic {segmentName}? {segmentName} {{ get; set; }}\n\n");
+        }
+
+        sb.Append("}");
+
+        var segmentGroups = new Dictionary<string, List<MessageSegment>>();
+        for(int i = 0; i < messageSegments.Count; i++)
+        {
+            var segment = messageSegments[i];
+            string segmentName = segment.SegmentName;
+
+            var previousSegment = i == 0 ? new MessageSegment
+            {
+                Depth = 0,
+                SegmentName = string.Empty,
+                Mandatory = false,
+                MaxCount = 1
+            } : messageSegments[i - 1];
+
+            if (segmentName.StartsWith("SG"))
+            {
+                string segmentGroupName = segmentName;
+                segmentGroups[segmentGroupName] = new List<MessageSegment> { };
+
+                continue;
+            }
+
+            if (segmentGroups.Count > 0 && (segment.Depth == previousSegment.Depth || previousSegment.SegmentName.StartsWith("SG")))
+            {
+                string segmentGroupName = segmentGroups.Keys.Last();
+                segmentGroups[segmentGroupName].Add(segment);
+            }
+        }
+
+        var groupSegments = messageSegments
+            .Where(s => s.SegmentName.StartsWith("SG"))
+            .ToList();
+
+        for(int i = 0; i < groupSegments.Count - 1; i++)
+        {
+            var segment = groupSegments[i];
+
+            for(int j = i + 1; j < groupSegments.Count; j++)
+            {
+                var currentSegment = groupSegments[j];
+
+                if (currentSegment.Depth <= segment.Depth) break;
+
+                if (currentSegment.Depth == segment.Depth + 1)
+                    segmentGroups[segment.SegmentName].Add(currentSegment);
+            }
+        }
+
+        foreach (var (segmentGroup, messages) in segmentGroups)
+        {
+            sb.Append("\n\n");
+            sb.Append(GenerateClassForSegmentGroup(messageName, segmentGroup, messages));
+        }
+
+        return sb.ToString();
+    }
+
+    private string GenerateClassForSegmentGroup(string messageName, string segmentGroup, List<MessageSegment> messageSegments)
+    {
+        var sb = new StringBuilder();
+
+        sb.Append($"public class {messageName}_{segmentGroup}");
+        sb.Append("{\n");
+
+        foreach(var segment in messageSegments)
+        {
+            string segmentName = segment.SegmentName;
+
+            if(segmentName.StartsWith("SG"))
+            {
+                sb.Append("\t/// <summary>\n");
+                sb.Append($"\t/// {segmentName}\n");
+                sb.Append("\t/// </summary>\n");
+                sb.Append($"\tpublic {messageSegments}_{segmentName}? {messageSegments}_{segmentName} {{ get; set; }}\n\n");
+
+                continue;
+            }
+
+            sb.Append("\t/// <summary>\n");
+            sb.Append($"\t/// {segmentName}\n");
+            sb.Append("\t/// </summary>\n");
+            sb.Append($"\tpublic {segmentName}? {segmentName} {{ get; set; }}\n\n");
+        }
+
+        sb.Append("}");
+
+        return sb.ToString();
+    }
+
+    private string GetSolutionDir()
+    {
+        string currentDir = AppDomain.CurrentDomain.BaseDirectory;
+        while (!File.Exists(Path.Combine(currentDir, "Edi.sln")))
+        {
+            currentDir = Directory.GetParent(currentDir)!.FullName;
+
+            if (currentDir == null)
+                throw new InvalidOperationException("Solution file not found");
+        }
+        return currentDir;
     }
 
     private string ConvertDataType(string? inputDataType, string? qualifierRef, int? maxLength)

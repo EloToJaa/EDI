@@ -1,0 +1,205 @@
+using System.Collections.Generic;
+using Edi.Contracts.Segments;
+using indice.Edi.Serialization;
+
+namespace Edi.Contracts.Messages;
+
+/// <summary>
+/// SUPCOT
+/// </summary>
+[EdiMessage]
+public class SUPCOT
+{
+	/// <summary>
+	/// Message header
+	/// </summary>
+	public UNH? MessageHeaderM { get; set; }
+
+	/// <summary>
+	/// Beginning of message
+	/// </summary>
+	public BGM? BeginningOfMessageM { get; set; }
+
+	/// <summary>
+	/// Reference
+	/// </summary>
+	public List<RFF>? Reference1M { get; set; }
+
+	/// <summary>
+	/// Payment instructions
+	/// </summary>
+	public PAI? PaymentInstructionsC { get; set; }
+
+	/// <summary>
+	/// Currencies
+	/// </summary>
+	public CUX? Currencies1C { get; set; }
+
+	/// <summary>
+	/// Financial institution information
+	/// </summary>
+	public List<FII>? FinancialInstitutionInformationC { get; set; }
+
+	/// <summary>
+	/// Date/time/period
+	/// </summary>
+	public List<DTM>? DateTimePeriod1C { get; set; }
+
+	/// <summary>
+	/// Payment terms basis
+	/// </summary>
+	public PAT? PaymentTermsBasis1C { get; set; }
+
+	/// <summary>
+	/// Free text
+	/// </summary>
+	public List<FTX>? FreeText1C { get; set; }
+
+	/// <summary>
+	/// SG1
+	/// </summary>
+	public List<SUPCOT_SG1>? SG1C { get; set; }
+
+	/// <summary>
+	/// Section control
+	/// </summary>
+	public UNS? SectionControl1M { get; set; }
+
+	/// <summary>
+	/// SG3
+	/// </summary>
+	public List<SUPCOT_SG3>? SG3M { get; set; }
+
+	/// <summary>
+	/// Section control
+	/// </summary>
+	public UNS? SectionControl2M { get; set; }
+
+	/// <summary>
+	/// Monetary amount
+	/// </summary>
+	public MOA? MonetaryAmount1M { get; set; }
+
+	/// <summary>
+	/// Control total
+	/// </summary>
+	public List<CNT>? ControlTotalC { get; set; }
+
+	/// <summary>
+	/// Authentication result
+	/// </summary>
+	public AUT? AuthenticationResultC { get; set; }
+
+	/// <summary>
+	/// Message trailer
+	/// </summary>
+	public UNT? MessageTrailerM { get; set; }
+}
+
+[EdiSegmentGroup("NAD", "CTA")]
+public class SUPCOT_SG1 : NAD
+{
+	/// <summary>
+	/// SG2
+	/// </summary>
+	public List<SUPCOT_SG2>? SG2C { get; set; }
+
+}
+
+[EdiSegmentGroup("CTA", "COM")]
+public class SUPCOT_SG2 : CTA
+{
+	/// <summary>
+	/// Communication contact
+	/// </summary>
+	public COM? CommunicationContactC { get; set; }
+}
+
+[EdiSegmentGroup("NAD", "ATT", "RFF", "DTM", "EMP", "LOC", "FTX", "PAT")]
+public class SUPCOT_SG3 : NAD
+{
+	/// <summary>
+	/// Attribute
+	/// </summary>
+	public ATT? AttributeC { get; set; }
+
+	/// <summary>
+	/// Reference
+	/// </summary>
+	public RFF? ReferenceC { get; set; }
+
+	/// <summary>
+	/// Date/time/period
+	/// </summary>
+	public DTM? DateTimePeriodC { get; set; }
+
+	/// <summary>
+	/// Employment details
+	/// </summary>
+	public EMP? EmploymentDetailsC { get; set; }
+
+	/// <summary>
+	/// Place/location identification
+	/// </summary>
+	public LOC? PlaceLocationIdentificationC { get; set; }
+
+	/// <summary>
+	/// Free text
+	/// </summary>
+	public List<FTX>? FreeTextC { get; set; }
+
+	/// <summary>
+	/// SG4
+	/// </summary>
+	public List<SUPCOT_SG4>? SG4M { get; set; }
+
+}
+
+[EdiSegmentGroup("PAT", "MOA", "CUX", "DTM", "FTX", "COT")]
+public class SUPCOT_SG4 : PAT
+{
+	/// <summary>
+	/// Monetary amount
+	/// </summary>
+	public MOA? MonetaryAmountC { get; set; }
+
+	/// <summary>
+	/// Currencies
+	/// </summary>
+	public CUX? CurrenciesC { get; set; }
+
+	/// <summary>
+	/// Date/time/period
+	/// </summary>
+	public List<DTM>? DateTimePeriodC { get; set; }
+
+	/// <summary>
+	/// Free text
+	/// </summary>
+	public List<FTX>? FreeTextC { get; set; }
+
+	/// <summary>
+	/// SG5
+	/// </summary>
+	public List<SUPCOT_SG5>? SG5M { get; set; }
+
+}
+
+[EdiSegmentGroup("COT", "MOA", "DTM", "FTX")]
+public class SUPCOT_SG5 : COT
+{
+	/// <summary>
+	/// Monetary amount
+	/// </summary>
+	public MOA? MonetaryAmountM { get; set; }
+
+	/// <summary>
+	/// Date/time/period
+	/// </summary>
+	public List<DTM>? DateTimePeriodC { get; set; }
+
+	/// <summary>
+	/// Free text
+	/// </summary>
+	public List<FTX>? FreeTextC { get; set; }
+}

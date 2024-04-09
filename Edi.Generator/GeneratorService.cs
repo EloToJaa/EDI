@@ -233,8 +233,8 @@ public class GeneratorService
         if (!Directory.Exists(messagesDir))
             Directory.CreateDirectory(messagesDir);
 
-        //string segmentName = "RESETT";
-        //string code = GenerateClassForMessage(segmentName, messageSchema.Messages[segmentName], namespaceName);
+        //string segmentName = "INVOIC";
+        //string code2 = GenerateClassForMessage(segmentName, messageSchema.Messages[segmentName], namespaceName);
 
         foreach (var (messageName, messageSegments) in messageSchema.Messages)
         {
@@ -340,38 +340,60 @@ public class GeneratorService
             {
                 var currentSegment = messageSegments[j];
 
-                if (currentSegment.Depth <= segment.Depth)
-                {
-                    //int k = j;
-                    //while (IsSegmentGroup(messageSegments[k].SegmentName) && k < messageSegments.Count) k++;
-                    //sequenceEnd[segmentName] = messageSegments[k].SegmentName;
-                    break;
-                }
+                if (currentSegment.Depth <= segment.Depth) break;
 
                 if (currentSegment.Depth == depth)
                     segmentGroups[segmentName].Add(currentSegment);
             }
         }
 
+        var segmentInclude = GenerateSegmentInclude(segmentGroups);
+
         foreach (var (segmentGroup, messages) in segmentGroups)
         {
             sb.Append("\n\n");
-            sb.Append(GenerateClassForSegmentGroup(messageName, segmentGroup, messages));
+            sb.Append(GenerateClassForSegmentGroup(messageName, segmentGroup, messages, segmentInclude[segmentGroup]));
         }
 
         return sb.ToString();
     }
 
-    private string GenerateClassForSegmentGroup(string messageName, string segmentGroup, List<MessageSegment> messageSegments)
+    private Dictionary<string, List<string>> GenerateSegmentInclude(Dictionary<string, List<MessageSegment>> segmentGroups)
+    {
+        var segmentInclude = new Dictionary<string, List<string>>();
+
+        var sortedGroups = segmentGroups
+            .OrderByDescending(e => e.Value[0].Depth)
+            .ToList();
+
+        foreach (var (segmentGroup, messages) in sortedGroups)
+        {
+            segmentInclude[segmentGroup] = new List<string>();
+
+            foreach (var message in messages)
+            {
+                if(IsSegmentGroup(message.SegmentName))
+                {
+                    segmentInclude[segmentGroup].Add(segmentInclude[message.SegmentName][0]);
+                }
+                else
+                {
+                    segmentInclude[segmentGroup].Add(message.SegmentName);
+                }
+            }
+        }
+
+        return segmentInclude;
+    }
+
+    private string GenerateClassForSegmentGroup(string messageName, string segmentGroup, List<MessageSegment> messageSegments, List<string> segmentInclude)
     {
         var occurences = CountOccurences(messageSegments.Select(e => IsSegmentGroup(e.SegmentName) ? e.SegmentName : ConvertToPascalCase(e.Description)).ToList());
         var numbers = new Dictionary<string, int>();
 
         var sb = new StringBuilder();
 
-        string includedSegments = "\"" + string.Join("\", \"", messageSegments.Where(s => !IsSegmentGroup(s.SegmentName)).Select(s => s.SegmentName)) + "\"";
-        //sb.Append($"[EdiSegmentGroup(\"{messageSegments[0].SegmentName}\", SequenceEnd = \"{sequenceEnd}\")]\n");
-        //sb.Append($"[EdiSegmentGroup({includedSegments}, SequenceEnd = \"{sequenceEnd}\")]\n");
+        string includedSegments = "\"" + string.Join("\", \"", segmentInclude) + "\"";
         sb.Append($"[EdiSegmentGroup({includedSegments})]\n");
         sb.Append($"public class {messageName}_{segmentGroup} : {messageSegments[0].SegmentName}\n");
         sb.Append("{\n");

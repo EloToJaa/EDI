@@ -11,7 +11,7 @@ namespace Edi
         static void Main(string[] args)
         {
             CheckParse();
-            GenerateCode();
+            //GenerateCode();
             //DownloadMessages();
         }
 
@@ -24,20 +24,20 @@ namespace Edi
 
         private static void CheckParse()
         {
-            //string dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "edi");
-            //string filePath = Path.Combine(dirPath, "INVOIC_a2i24021713091266429e1.edi.c2e");
+            string dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "edi");
+            string filePath = Path.Combine(dirPath, "INVOIC_a2i24021713091266429e1.edi.c2e");
 
-            //var grammar = EdiGrammar.NewEdiFact();
-            //var interchange = default(Interchange<Edi.Contracts.Messages.INVOIC>);
-            //using var stream = new StreamReader(filePath);
-            //interchange = new EdiSerializer().Deserialize<Interchange<Edi.Contracts.Messages.INVOIC>>(stream, grammar);
+            var grammar = EdiGrammar.NewEdiFact();
+            var interchange = default(Interchange<Edi.Contracts.Messages.INVOIC>);
+            using var stream = new StreamReader(filePath);
+            interchange = new EdiSerializer().Deserialize<Interchange<Edi.Contracts.Messages.INVOIC>>(stream, grammar);
 
-            //string json = JsonSerializer.Serialize(interchange, new JsonSerializerOptions
-            //{
-            //    WriteIndented = true,
-            //});
+            string json = JsonSerializer.Serialize(interchange, new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            });
 
-            //File.WriteAllText(Path.Combine(dirPath, "out.json"), json);
+            File.WriteAllText(Path.Combine(dirPath, "out.json"), json);
         }
 
         private static void GenerateCode()

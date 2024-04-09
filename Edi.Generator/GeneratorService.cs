@@ -323,7 +323,7 @@ public class GeneratorService
         sb.Append("}");
 
         var segmentGroups = new Dictionary<string, List<MessageSegment>>();
-        var sequenceEnd = new Dictionary<string, string>();
+        //var sequenceEnd = new Dictionary<string, string>();
         for(int i = 0; i < messageSegments.Count - 1; i++)
         {
             var segment = messageSegments[i];
@@ -342,9 +342,9 @@ public class GeneratorService
 
                 if (currentSegment.Depth <= segment.Depth)
                 {
-                    int k = j;
-                    while (IsSegmentGroup(messageSegments[k].SegmentName) && k < messageSegments.Count) k++;
-                    sequenceEnd[segmentName] = messageSegments[k].SegmentName;
+                    //int k = j;
+                    //while (IsSegmentGroup(messageSegments[k].SegmentName) && k < messageSegments.Count) k++;
+                    //sequenceEnd[segmentName] = messageSegments[k].SegmentName;
                     break;
                 }
 
@@ -357,14 +357,14 @@ public class GeneratorService
         foreach (var (segmentGroup, messages) in segmentGroups)
         {
             sb.Append("\n\n");
-            sb.Append(GenerateClassForSegmentGroup(messageName, segmentGroup, messages, sequenceEnd[segmentGroup]));
+            sb.Append(GenerateClassForSegmentGroup(messageName, segmentGroup, messages));
             number++;
         }
 
         return sb.ToString();
     }
 
-    private string GenerateClassForSegmentGroup(string messageName, string segmentGroup, List<MessageSegment> messageSegments, string sequenceEnd)
+    private string GenerateClassForSegmentGroup(string messageName, string segmentGroup, List<MessageSegment> messageSegments)
     {
         var occurences = CountOccurences(messageSegments.Select(e => IsSegmentGroup(e.SegmentName) ? e.SegmentName : ConvertToPascalCase(e.Description)).ToList());
         var numbers = new Dictionary<string, int>();

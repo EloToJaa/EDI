@@ -18,7 +18,8 @@ namespace Edi
         private static void DownloadMessages()
         {
             var downloader = new Downloader();
-            downloader.DownloadMessageSpecification();
+            downloader.Download();
+            //downloader.DownloadMessageSpecification("D97A", "INVOIC");
         }
 
         private static void CheckParse()

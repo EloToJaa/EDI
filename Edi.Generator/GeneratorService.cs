@@ -239,6 +239,8 @@ public class GeneratorService
 
         foreach (var (messageName, messageSegments) in messageSchema.Messages)
         {
+            var disallowed = new[] { "RESREQ", "RESRSP" };
+            if (disallowed.Contains(messageName)) continue;
             string code = GenerateClassForMessage(messageName, messageSegments, namespaceName);
             File.WriteAllText(Path.Combine(messagesDir, $"{messageName}.cs"), code);
         }
@@ -261,11 +263,11 @@ public class GeneratorService
         sb.Append($"public class {messageName}\n");
         sb.Append("{\n");
 
-        //foreach(var segment in messageSegments)
         for(int i = 0; i < messageSegments.Count; i++)
         {
             var segment = messageSegments[i];
             if(segment.Depth > 1) continue;
+            string mandatory = segment.Mandatory ? "M" : "C";
 
             string segmentName = segment.SegmentName;
 
@@ -274,15 +276,23 @@ public class GeneratorService
                 sb.Append("\t/// <summary>\n");
                 sb.Append($"\t/// {segmentName}\n");
                 sb.Append("\t/// </summary>\n");
-                sb.Append($"\tpublic {messageName}_{segmentName}? {messageName}_{segmentName} {{ get; set; }}\n\n");
+
+                if(segment.MaxCount > 1)
+                    sb.Append($"\tpublic List<{messageName}_{segmentName}> {segmentName}{mandatory} {{ get; set; }} = new List<{messageName}_{segmentName}>();\n\n");
+                else
+                    sb.Append($"\tpublic {messageName}_{segmentName}? {segmentName}{mandatory} {{ get; set; }}\n\n");
 
                 continue;
             }
 
             sb.Append("\t/// <summary>\n");
-            sb.Append($"\t/// {segmentName}\n");
+            sb.Append($"\t/// {segment.Description}\n");
             sb.Append("\t/// </summary>\n");
-            sb.Append($"\tpublic {segmentName}? {segmentName} {{ get; set; }}\n");
+
+            if(segment.MaxCount > 1)
+                sb.Append($"\tpublic List<{segmentName}> {ConvertToPascalCase(segment.Description)}{mandatory} {{ get; set; }} = new List<{segmentName}>();\n");
+            else
+                sb.Append($"\tpublic {segmentName}? {ConvertToPascalCase(segment.Description)}{mandatory} {{ get; set; }}\n");
 
             if(i < messageSegments.Count - 1) sb.Append("\n");
         }
@@ -290,52 +300,26 @@ public class GeneratorService
         sb.Append("}");
 
         var segmentGroups = new Dictionary<string, List<MessageSegment>>();
-        for(int i = 0; i < messageSegments.Count; i++)
+        for(int i = 0; i < messageSegments.Count - 1; i++)
         {
             var segment = messageSegments[i];
             string segmentName = segment.SegmentName;
 
-            var previousSegment = i == 0 ? new MessageSegment
-            {
-                Depth = 0,
-                SegmentName = string.Empty,
-                Mandatory = false,
-                MaxCount = 1
-            } : messageSegments[i - 1];
+            if (!segmentName.StartsWith("SG")) continue;
 
-            if (segmentName.StartsWith("SG"))
-            {
-                segmentGroups[segmentName] = new List<MessageSegment>();
+            segmentGroups[segmentName] = new List<MessageSegment>();
 
-                continue;
-            }
-
-            if (segmentGroups.Count > 0 && (segment.Depth == previousSegment.Depth || previousSegment.SegmentName.StartsWith("SG")))
-            {
-                string segmentGroupName = segmentGroups.Keys.Last();
-                segmentGroups[segmentGroupName].Add(segment);
-            }
-        }
-
-        var groupSegments = messageSegments
-            .Where(s => s.SegmentName.StartsWith("SG"))
-            .ToList();
-
-        for(int i = 0; i < groupSegments.Count - 1; i++)
-        {
-            var segment = groupSegments[i];
-
-            int depth = groupSegments[i + 1].Depth;
+            int depth = messageSegments[i + 1].Depth;
             if (segment.Depth >= depth) continue;
 
-            for(int j = i + 1; j < groupSegments.Count; j++)
+            for(int j = i + 1; j < messageSegments.Count; j++)
             {
-                var currentSegment = groupSegments[j];
+                var currentSegment = messageSegments[j];
 
                 if (currentSegment.Depth <= segment.Depth) break;
 
                 if (currentSegment.Depth == depth)
-                    segmentGroups[segment.SegmentName].Add(currentSegment);
+                    segmentGroups[segmentName].Add(currentSegment);
             }
         }
 
@@ -355,26 +339,34 @@ public class GeneratorService
         sb.Append($"public class {messageName}_{segmentGroup}\n");
         sb.Append("{\n");
 
-        //foreach(var segment in messageSegments)
         for(int i = 0; i < messageSegments.Count; i++)
         {
             var segment = messageSegments[i];
             string segmentName = segment.SegmentName;
+            string mandatory = segment.Mandatory ? "M" : "C";
 
             if(segmentName.StartsWith("SG"))
             {
                 sb.Append("\t/// <summary>\n");
                 sb.Append($"\t/// {segmentName}\n");
                 sb.Append("\t/// </summary>\n");
-                sb.Append($"\tpublic {messageName}_{segmentName}? {messageName}_{segmentName} {{ get; set; }}\n\n");
+
+                if(segment.MaxCount > 1)
+                    sb.Append($"\tpublic List<{messageName}_{segmentName}> {segmentName}{mandatory} {{ get; set; }} = new List<{messageName}_{segmentName}>();\n\n");
+                else
+                    sb.Append($"\tpublic {messageName}_{segmentName}? {segmentName}{mandatory} {{ get; set; }}\n\n");
 
                 continue;
             }
 
             sb.Append("\t/// <summary>\n");
-            sb.Append($"\t/// {segmentName}\n");
+            sb.Append($"\t/// {segment.Description}\n");
             sb.Append("\t/// </summary>\n");
-            sb.Append($"\tpublic {segmentName}? {segmentName} {{ get; set; }}\n");
+
+            if(segment.MaxCount > 1)
+                sb.Append($"\tpublic List<{segmentName}> {ConvertToPascalCase(segment.Description)}{mandatory} {{ get; set; }} = new List<{segmentName}>();\n");
+            else
+                sb.Append($"\tpublic {segmentName}? {ConvertToPascalCase(segment.Description)}{mandatory} {{ get; set; }}\n");
 
             if (i < messageSegments.Count - 1) sb.Append("\n");
         }

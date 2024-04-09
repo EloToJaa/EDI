@@ -51,12 +51,17 @@ public class Downloader
                 mandatory = mandatoryText == "(M)";
             }
 
+            var descriptionNode = trDoc.DocumentNode.SelectSingleNode("//td[1]/text()");
+            var textNode = trDoc.DocumentNode.SelectSingleNode("//td[1]");
+            string description = descriptionNode is null ? (textNode is null ? string.Empty : textNode.InnerText.Trim()) : descriptionNode.InnerText.Trim();
+
             messages.Add(new MessageSegment
             {
                 Depth = depth,
                 SegmentName = text,
                 MaxCount = count,
                 Mandatory = mandatory,
+                Description = description
             });
         }
 

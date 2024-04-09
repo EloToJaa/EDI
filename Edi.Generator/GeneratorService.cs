@@ -234,7 +234,8 @@ public class GeneratorService
         if (!Directory.Exists(messagesDir))
             Directory.CreateDirectory(messagesDir);
 
-        //string code = GenerateClassForMessage("INVOIC", messageSchema.Messages["INVOIC"], namespaceName);
+        //string segmentName = "RESETT";
+        //string code = GenerateClassForMessage(segmentName, messageSchema.Messages[segmentName], namespaceName);
 
         foreach (var (messageName, messageSegments) in messageSchema.Messages)
         {
@@ -245,8 +246,6 @@ public class GeneratorService
 
     public string GenerateClassForMessage(string messageName, List<MessageSegment> messageSegments, string namespaceName)
     {
-        //var segmentGroupNames = new List<string>();
-
         var sb = new StringBuilder();
 
         sb.Append("using System.Collections.Generic;\n");
@@ -258,13 +257,16 @@ public class GeneratorService
         sb.Append("/// <summary>\n");
         sb.Append($"/// {messageName}\n");
         sb.Append("/// </summary>\n");
-        //sb.Append($"[EdiMessage, EdiCondition(\"{messageName}\")]\n");
         sb.Append($"[EdiMessage]\n");
         sb.Append($"public class {messageName}\n");
         sb.Append("{\n");
 
-        foreach(var segment in messageSegments)
+        //foreach(var segment in messageSegments)
+        for(int i = 0; i < messageSegments.Count; i++)
         {
+            var segment = messageSegments[i];
+            if(segment.Depth > 1) continue;
+
             string segmentName = segment.SegmentName;
 
             if(segmentName.StartsWith("SG"))
@@ -280,7 +282,9 @@ public class GeneratorService
             sb.Append("\t/// <summary>\n");
             sb.Append($"\t/// {segmentName}\n");
             sb.Append("\t/// </summary>\n");
-            sb.Append($"\tpublic {segmentName}? {segmentName} {{ get; set; }}\n\n");
+            sb.Append($"\tpublic {segmentName}? {segmentName} {{ get; set; }}\n");
+
+            if(i < messageSegments.Count - 1) sb.Append("\n");
         }
 
         sb.Append("}");
@@ -301,8 +305,7 @@ public class GeneratorService
 
             if (segmentName.StartsWith("SG"))
             {
-                string segmentGroupName = segmentName;
-                segmentGroups[segmentGroupName] = new List<MessageSegment> { };
+                segmentGroups[segmentName] = new List<MessageSegment>();
 
                 continue;
             }
@@ -322,13 +325,16 @@ public class GeneratorService
         {
             var segment = groupSegments[i];
 
+            int depth = groupSegments[i + 1].Depth;
+            if (segment.Depth >= depth) continue;
+
             for(int j = i + 1; j < groupSegments.Count; j++)
             {
                 var currentSegment = groupSegments[j];
 
                 if (currentSegment.Depth <= segment.Depth) break;
 
-                if (currentSegment.Depth == segment.Depth + 1)
+                if (currentSegment.Depth == depth)
                     segmentGroups[segment.SegmentName].Add(currentSegment);
             }
         }
@@ -346,11 +352,13 @@ public class GeneratorService
     {
         var sb = new StringBuilder();
 
-        sb.Append($"public class {messageName}_{segmentGroup}");
+        sb.Append($"public class {messageName}_{segmentGroup}\n");
         sb.Append("{\n");
 
-        foreach(var segment in messageSegments)
+        //foreach(var segment in messageSegments)
+        for(int i = 0; i < messageSegments.Count; i++)
         {
+            var segment = messageSegments[i];
             string segmentName = segment.SegmentName;
 
             if(segmentName.StartsWith("SG"))
@@ -358,7 +366,7 @@ public class GeneratorService
                 sb.Append("\t/// <summary>\n");
                 sb.Append($"\t/// {segmentName}\n");
                 sb.Append("\t/// </summary>\n");
-                sb.Append($"\tpublic {messageSegments}_{segmentName}? {messageSegments}_{segmentName} {{ get; set; }}\n\n");
+                sb.Append($"\tpublic {messageName}_{segmentName}? {messageName}_{segmentName} {{ get; set; }}\n\n");
 
                 continue;
             }
@@ -366,7 +374,9 @@ public class GeneratorService
             sb.Append("\t/// <summary>\n");
             sb.Append($"\t/// {segmentName}\n");
             sb.Append("\t/// </summary>\n");
-            sb.Append($"\tpublic {segmentName}? {segmentName} {{ get; set; }}\n\n");
+            sb.Append($"\tpublic {segmentName}? {segmentName} {{ get; set; }}\n");
+
+            if (i < messageSegments.Count - 1) sb.Append("\n");
         }
 
         sb.Append("}");

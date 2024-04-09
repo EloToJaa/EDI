@@ -353,12 +353,10 @@ public class GeneratorService
             }
         }
 
-        int number = 0;
         foreach (var (segmentGroup, messages) in segmentGroups)
         {
             sb.Append("\n\n");
             sb.Append(GenerateClassForSegmentGroup(messageName, segmentGroup, messages));
-            number++;
         }
 
         return sb.ToString();

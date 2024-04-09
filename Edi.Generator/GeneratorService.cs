@@ -25,7 +25,7 @@ public class GeneratorService
         sb.Append($"public class {segmentName}\n");
         sb.Append("{\n");
 
-        var occurences = CountOccurences(segment.Elements);
+        var occurences = CountOccurences(segment.Elements.Select(e => ConvertToPascalCase(e.Desc!)).ToList());
         var numbers = new Dictionary<string, int>();
 
         for (int i = 0; i < segment.Elements.Count; i++)
@@ -86,7 +86,7 @@ public class GeneratorService
         if (element is null || element.Desc is null || element.Components is null) return null;
         string className = $"{segmentName}_{ConvertToPascalCase(element.Desc)}";
 
-        var occurences = CountOccurences(element.Components);
+        var occurences = CountOccurences(element.Components.Select(e => ConvertToPascalCase(e.Desc!)).ToList());
         var numbers = new Dictionary<string, int>();
         var sb = new StringBuilder();
 
@@ -127,14 +127,13 @@ public class GeneratorService
         return sb.ToString();
     }
 
-    private Dictionary<string, int> CountOccurences(List<Element> elements)
+    private Dictionary<string, int> CountOccurences(List<string> elements)
     {
         var occurences = new Dictionary<string, int>();
 
-        foreach (var element in elements)
+        foreach (var key in elements)
         {
-            if (element.Desc is null) continue;
-            string key = ConvertToPascalCase(element.Desc);
+            if (key is null) continue;
             if (occurences.ContainsKey(key)) occurences[key]++;
             else occurences.Add(key, 1);
         }
@@ -248,6 +247,9 @@ public class GeneratorService
 
     public string GenerateClassForMessage(string messageName, List<MessageSegment> messageSegments, string namespaceName)
     {
+        var occurences = CountOccurences(messageSegments.Select(e => e.SegmentName.StartsWith("SG") ? e.SegmentName : ConvertToPascalCase(e.Description)).ToList());
+        var numbers = new Dictionary<string, int>();
+
         var sb = new StringBuilder();
 
         sb.Append("using System.Collections.Generic;\n");
@@ -270,6 +272,7 @@ public class GeneratorService
             string mandatory = segment.Mandatory ? "M" : "C";
 
             string segmentName = segment.SegmentName;
+            string variableName;
 
             if(segmentName.StartsWith("SG"))
             {
@@ -277,10 +280,19 @@ public class GeneratorService
                 sb.Append($"\t/// {segmentName}\n");
                 sb.Append("\t/// </summary>\n");
 
-                if(segment.MaxCount > 1)
-                    sb.Append($"\tpublic List<{messageName}_{segmentName}> {segmentName}{mandatory} {{ get; set; }} = new List<{messageName}_{segmentName}>();\n\n");
+                variableName = segmentName;
+                if (occurences[variableName] > 1)
+                {
+                    if (numbers.ContainsKey(variableName)) numbers[variableName]++;
+                    else numbers.Add(variableName, 1);
+
+                    variableName += numbers[variableName];
+                }
+
+                if (segment.MaxCount > 1)
+                    sb.Append($"\tpublic List<{messageName}_{segmentName}> {variableName}{mandatory} {{ get; set; }} = new List<{messageName}_{segmentName}>();\n\n");
                 else
-                    sb.Append($"\tpublic {messageName}_{segmentName}? {segmentName}{mandatory} {{ get; set; }}\n\n");
+                    sb.Append($"\tpublic {messageName}_{segmentName}? {variableName}{mandatory} {{ get; set; }}\n\n");
 
                 continue;
             }
@@ -289,10 +301,19 @@ public class GeneratorService
             sb.Append($"\t/// {segment.Description}\n");
             sb.Append("\t/// </summary>\n");
 
-            if(segment.MaxCount > 1)
-                sb.Append($"\tpublic List<{segmentName}> {ConvertToPascalCase(segment.Description)}{mandatory} {{ get; set; }} = new List<{segmentName}>();\n");
+            variableName = ConvertToPascalCase(segment.Description);
+            if (occurences[variableName] > 1)
+            {
+                if (numbers.ContainsKey(variableName)) numbers[variableName]++;
+                else numbers.Add(variableName, 1);
+
+                variableName += numbers[variableName];
+            }
+
+            if (segment.MaxCount > 1)
+                sb.Append($"\tpublic List<{segmentName}> {variableName}{mandatory} {{ get; set; }} = new List<{segmentName}>();\n");
             else
-                sb.Append($"\tpublic {segmentName}? {ConvertToPascalCase(segment.Description)}{mandatory} {{ get; set; }}\n");
+                sb.Append($"\tpublic {segmentName}? {variableName}{mandatory} {{ get; set; }}\n");
 
             if(i < messageSegments.Count - 1) sb.Append("\n");
         }
@@ -334,6 +355,9 @@ public class GeneratorService
 
     private string GenerateClassForSegmentGroup(string messageName, string segmentGroup, List<MessageSegment> messageSegments)
     {
+        var occurences = CountOccurences(messageSegments.Select(e => e.SegmentName.StartsWith("SG") ? e.SegmentName : ConvertToPascalCase(e.Description)).ToList());
+        var numbers = new Dictionary<string, int>();
+
         var sb = new StringBuilder();
 
         sb.Append($"public class {messageName}_{segmentGroup}\n");
@@ -344,6 +368,7 @@ public class GeneratorService
             var segment = messageSegments[i];
             string segmentName = segment.SegmentName;
             string mandatory = segment.Mandatory ? "M" : "C";
+            string variableName;
 
             if(segmentName.StartsWith("SG"))
             {
@@ -351,10 +376,19 @@ public class GeneratorService
                 sb.Append($"\t/// {segmentName}\n");
                 sb.Append("\t/// </summary>\n");
 
-                if(segment.MaxCount > 1)
-                    sb.Append($"\tpublic List<{messageName}_{segmentName}> {segmentName}{mandatory} {{ get; set; }} = new List<{messageName}_{segmentName}>();\n\n");
+                variableName = segmentName;
+                if (occurences[variableName] > 1)
+                {
+                    if (numbers.ContainsKey(variableName)) numbers[variableName]++;
+                    else numbers.Add(variableName, 1);
+
+                    variableName += numbers[variableName];
+                }
+
+                if (segment.MaxCount > 1)
+                    sb.Append($"\tpublic List<{messageName}_{segmentName}> {variableName}{mandatory} {{ get; set; }} = new List<{messageName}_{segmentName}>();\n\n");
                 else
-                    sb.Append($"\tpublic {messageName}_{segmentName}? {segmentName}{mandatory} {{ get; set; }}\n\n");
+                    sb.Append($"\tpublic {messageName}_{segmentName}? {variableName}{mandatory} {{ get; set; }}\n\n");
 
                 continue;
             }
@@ -363,10 +397,19 @@ public class GeneratorService
             sb.Append($"\t/// {segment.Description}\n");
             sb.Append("\t/// </summary>\n");
 
-            if(segment.MaxCount > 1)
-                sb.Append($"\tpublic List<{segmentName}> {ConvertToPascalCase(segment.Description)}{mandatory} {{ get; set; }} = new List<{segmentName}>();\n");
+            variableName = ConvertToPascalCase(segment.Description);
+            if (occurences[variableName] > 1)
+            {
+                if (numbers.ContainsKey(variableName)) numbers[variableName]++;
+                else numbers.Add(variableName, 1);
+
+                variableName += numbers[variableName];
+            }
+
+            if (segment.MaxCount > 1)
+                sb.Append($"\tpublic List<{segmentName}> {variableName}{mandatory} {{ get; set; }} = new List<{segmentName}>();\n");
             else
-                sb.Append($"\tpublic {segmentName}? {ConvertToPascalCase(segment.Description)}{mandatory} {{ get; set; }}\n");
+                sb.Append($"\tpublic {segmentName}? {variableName}{mandatory} {{ get; set; }}\n");
 
             if (i < messageSegments.Count - 1) sb.Append("\n");
         }

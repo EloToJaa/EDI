@@ -247,7 +247,7 @@ public class GeneratorService
 
     public string GenerateClassForMessage(string messageName, List<MessageSegment> messageSegments, string namespaceName)
     {
-        var occurences = CountOccurences(messageSegments.Select(e => e.SegmentName.StartsWith("SG") ? e.SegmentName : ConvertToPascalCase(e.Description)).ToList());
+        var occurences = CountOccurences(messageSegments.Select(e => IsSegmentGroup(e.SegmentName) ? e.SegmentName : ConvertToPascalCase(e.Description)).ToList());
         var numbers = new Dictionary<string, int>();
 
         var sb = new StringBuilder();
@@ -274,7 +274,7 @@ public class GeneratorService
             string segmentName = segment.SegmentName;
             string variableName;
 
-            if(segmentName.StartsWith("SG"))
+            if(IsSegmentGroup(segmentName))
             {
                 sb.Append("\t/// <summary>\n");
                 sb.Append($"\t/// {segmentName}\n");
@@ -290,7 +290,8 @@ public class GeneratorService
                 }
 
                 if (segment.MaxCount > 1)
-                    sb.Append($"\tpublic List<{messageName}_{segmentName}> {variableName}{mandatory} {{ get; set; }} = new List<{messageName}_{segmentName}>();\n\n");
+                    sb.Append($"\tpublic List<{messageName}_{segmentName}>? {variableName}{mandatory} {{ get; set; }}\n\n");
+                    //sb.Append($"\tpublic List<{messageName}_{segmentName}> {variableName}{mandatory} {{ get; set; }} = new List<{messageName}_{segmentName}>();\n\n");
                 else
                     sb.Append($"\tpublic {messageName}_{segmentName}? {variableName}{mandatory} {{ get; set; }}\n\n");
 
@@ -311,7 +312,8 @@ public class GeneratorService
             }
 
             if (segment.MaxCount > 1)
-                sb.Append($"\tpublic List<{segmentName}> {variableName}{mandatory} {{ get; set; }} = new List<{segmentName}>();\n");
+                sb.Append($"\tpublic List<{segmentName}>? {variableName}{mandatory} {{ get; set; }}\n");
+                //sb.Append($"\tpublic List<{segmentName}> {variableName}{mandatory} {{ get; set; }} = new List<{segmentName}>();\n");
             else
                 sb.Append($"\tpublic {segmentName}? {variableName}{mandatory} {{ get; set; }}\n");
 
@@ -321,12 +323,13 @@ public class GeneratorService
         sb.Append("}");
 
         var segmentGroups = new Dictionary<string, List<MessageSegment>>();
+        var sequenceEnd = new Dictionary<string, string>();
         for(int i = 0; i < messageSegments.Count - 1; i++)
         {
             var segment = messageSegments[i];
             string segmentName = segment.SegmentName;
 
-            if (!segmentName.StartsWith("SG")) continue;
+            if (!IsSegmentGroup(segmentName)) continue;
 
             segmentGroups[segmentName] = new List<MessageSegment>();
 
@@ -337,40 +340,52 @@ public class GeneratorService
             {
                 var currentSegment = messageSegments[j];
 
-                if (currentSegment.Depth <= segment.Depth) break;
+                if (currentSegment.Depth <= segment.Depth)
+                {
+                    int k = j;
+                    while (IsSegmentGroup(messageSegments[k].SegmentName) && k < messageSegments.Count) k++;
+                    sequenceEnd[segmentName] = messageSegments[k].SegmentName;
+                    break;
+                }
 
                 if (currentSegment.Depth == depth)
                     segmentGroups[segmentName].Add(currentSegment);
             }
         }
 
+        int number = 0;
         foreach (var (segmentGroup, messages) in segmentGroups)
         {
             sb.Append("\n\n");
-            sb.Append(GenerateClassForSegmentGroup(messageName, segmentGroup, messages));
+            sb.Append(GenerateClassForSegmentGroup(messageName, segmentGroup, messages, sequenceEnd[segmentGroup]));
+            number++;
         }
 
         return sb.ToString();
     }
 
-    private string GenerateClassForSegmentGroup(string messageName, string segmentGroup, List<MessageSegment> messageSegments)
+    private string GenerateClassForSegmentGroup(string messageName, string segmentGroup, List<MessageSegment> messageSegments, string sequenceEnd)
     {
-        var occurences = CountOccurences(messageSegments.Select(e => e.SegmentName.StartsWith("SG") ? e.SegmentName : ConvertToPascalCase(e.Description)).ToList());
+        var occurences = CountOccurences(messageSegments.Select(e => IsSegmentGroup(e.SegmentName) ? e.SegmentName : ConvertToPascalCase(e.Description)).ToList());
         var numbers = new Dictionary<string, int>();
 
         var sb = new StringBuilder();
 
-        sb.Append($"public class {messageName}_{segmentGroup}\n");
+        string includedSegments = "\"" + string.Join("\", \"", messageSegments.Where(s => !IsSegmentGroup(s.SegmentName)).Select(s => s.SegmentName)) + "\"";
+        //sb.Append($"[EdiSegmentGroup(\"{messageSegments[0].SegmentName}\", SequenceEnd = \"{sequenceEnd}\")]\n");
+        //sb.Append($"[EdiSegmentGroup({includedSegments}, SequenceEnd = \"{sequenceEnd}\")]\n");
+        sb.Append($"[EdiSegmentGroup({includedSegments})]\n");
+        sb.Append($"public class {messageName}_{segmentGroup} : {messageSegments[0].SegmentName}\n");
         sb.Append("{\n");
 
-        for(int i = 0; i < messageSegments.Count; i++)
+        for(int i = 1; i < messageSegments.Count; i++)
         {
             var segment = messageSegments[i];
             string segmentName = segment.SegmentName;
             string mandatory = segment.Mandatory ? "M" : "C";
             string variableName;
 
-            if(segmentName.StartsWith("SG"))
+            if(IsSegmentGroup(segmentName))
             {
                 sb.Append("\t/// <summary>\n");
                 sb.Append($"\t/// {segmentName}\n");
@@ -386,7 +401,8 @@ public class GeneratorService
                 }
 
                 if (segment.MaxCount > 1)
-                    sb.Append($"\tpublic List<{messageName}_{segmentName}> {variableName}{mandatory} {{ get; set; }} = new List<{messageName}_{segmentName}>();\n\n");
+                    sb.Append($"\tpublic List<{messageName}_{segmentName}>? {variableName}{mandatory} {{ get; set; }}\n\n");
+                    //sb.Append($"\tpublic List<{messageName}_{segmentName}> {variableName}{mandatory} {{ get; set; }} = new List<{messageName}_{segmentName}>();\n\n");
                 else
                     sb.Append($"\tpublic {messageName}_{segmentName}? {variableName}{mandatory} {{ get; set; }}\n\n");
 
@@ -407,7 +423,8 @@ public class GeneratorService
             }
 
             if (segment.MaxCount > 1)
-                sb.Append($"\tpublic List<{segmentName}> {variableName}{mandatory} {{ get; set; }} = new List<{segmentName}>();\n");
+                sb.Append($"\tpublic List<{segmentName}>? {variableName}{mandatory} {{ get; set; }}\n");
+            //sb.Append($"\tpublic List<{segmentName}> {variableName}{mandatory} {{ get; set; }} = new List<{segmentName}>();\n");
             else
                 sb.Append($"\tpublic {segmentName}? {variableName}{mandatory} {{ get; set; }}\n");
 
@@ -417,6 +434,12 @@ public class GeneratorService
         sb.Append("}");
 
         return sb.ToString();
+    }
+
+    private bool IsSegmentGroup(string input)
+    {
+        var regex = new Regex(@"^SG\d+$");
+        return regex.IsMatch(input);
     }
 
     private string GetSolutionDir()

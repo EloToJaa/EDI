@@ -2,8 +2,9 @@
 
 namespace Edi.Contracts.Interchanges;
 
-public class Interchange
+public class Interchange<T>
 {
-    public UNB? InterchangeHeader { get; set; }
-    public UNZ? InterchangeTrailer { get; set; }
+    public required UNB InterchangeHeader { get; set; }
+    public required T Invoice { get; set; }
+    public required UNZ InterchangeTrailer { get; set; }
 }

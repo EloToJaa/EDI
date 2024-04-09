@@ -209,25 +209,25 @@ public class GeneratorService
         string dirPath = Path.Combine(GetSolutionDir(), "Edi.Contracts");
         string namespaceName = "Edi.Contracts";
 
-        //string segmentsDir = Path.Combine(dirPath, "Segments");
-        //if (!Directory.Exists(segmentsDir))
-        //    Directory.CreateDirectory(segmentsDir);
+        string segmentsDir = Path.Combine(dirPath, "Segments");
+        if (!Directory.Exists(segmentsDir))
+            Directory.CreateDirectory(segmentsDir);
 
-        //foreach (var (segmentName, segment) in schema.Segments)
-        //{
-        //    string code = GenerateClassForSegment(segmentName, segment, namespaceName);
-        //    File.WriteAllText(Path.Combine(segmentsDir, $"{segmentName}.cs"), code);
-        //}
+        foreach (var (segmentName, segment) in schema.Segments)
+        {
+            string code = GenerateClassForSegment(segmentName, segment, namespaceName);
+            File.WriteAllText(Path.Combine(segmentsDir, $"{segmentName}.cs"), code);
+        }
 
-        //string qualifiersDir = Path.Combine(dirPath, "Qualifiers");
-        //if (!Directory.Exists(qualifiersDir))
-        //    Directory.CreateDirectory(qualifiersDir);
+        string qualifiersDir = Path.Combine(dirPath, "Qualifiers");
+        if (!Directory.Exists(qualifiersDir))
+            Directory.CreateDirectory(qualifiersDir);
 
-        //foreach (var (qualifierName, qualifier) in schema.Qualifiers)
-        //{
-        //    string code = GenerateClassForQualifier(qualifierName, qualifier, namespaceName);
-        //    File.WriteAllText(Path.Combine(qualifiersDir, $"{ConvertToPascalCase(qualifierName)}.cs"), code);
-        //}
+        foreach (var (qualifierName, qualifier) in schema.Qualifiers)
+        {
+            string code = GenerateClassForQualifier(qualifierName, qualifier, namespaceName);
+            File.WriteAllText(Path.Combine(qualifiersDir, $"{ConvertToPascalCase(qualifierName)}.cs"), code);
+        }
 
         string messagesDir = Path.Combine(dirPath, "Messages");
         if (!Directory.Exists(messagesDir))

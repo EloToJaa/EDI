@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the details of the usage of a segment within a message type structure.
 /// </summary>
 [EdiSegment, EdiPath("SGU")]
-public class SGU
+public class SGU : ISegment
 {
 	/// <summary>
 	/// Tag of a segment.

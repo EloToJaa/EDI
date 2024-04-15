@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// PRODAT
 /// </summary>
 [EdiMessage]
-public class PRODAT
+public class PRODAT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,27 +24,27 @@ public class PRODAT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Additional information
 	/// </summary>
-	public List<ALI>? AdditionalInformation1C { get; set; }
+	public List<ALI>? AdditionalInformationC { get; set; }
 
 	/// <summary>
 	/// Item description
 	/// </summary>
-	public List<IMD>? ItemDescription1C { get; set; }
+	public List<IMD>? ItemDescriptionC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Product group information
 	/// </summary>
-	public List<PGI>? ProductGroupInformation1C { get; set; }
+	public List<PGI>? ProductGroupInformationC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -82,7 +83,7 @@ public class PRODAT
 }
 
 [EdiSegmentGroup("TRU", "DTM")]
-public class PRODAT_SG1 : TRU
+public class PRODAT_SG1 : TRU, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -91,7 +92,7 @@ public class PRODAT_SG1 : TRU
 }
 
 [EdiSegmentGroup("RCS", "PIA")]
-public class PRODAT_SG2 : RCS
+public class PRODAT_SG2 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -100,7 +101,7 @@ public class PRODAT_SG2 : RCS
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PRODAT_SG3 : RFF
+public class PRODAT_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -109,7 +110,7 @@ public class PRODAT_SG3 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA", "RFF")]
-public class PRODAT_SG4 : NAD
+public class PRODAT_SG4 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG5
@@ -124,7 +125,7 @@ public class PRODAT_SG4 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class PRODAT_SG5 : CTA
+public class PRODAT_SG5 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -133,7 +134,7 @@ public class PRODAT_SG5 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PRODAT_SG6 : RFF
+public class PRODAT_SG6 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -142,7 +143,7 @@ public class PRODAT_SG6 : RFF
 }
 
 [EdiSegmentGroup("CCI", "CAV", "MEA")]
-public class PRODAT_SG7 : CCI
+public class PRODAT_SG7 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Characteristic value
@@ -156,7 +157,7 @@ public class PRODAT_SG7 : CCI
 }
 
 [EdiSegmentGroup("LIN", "PIA", "DTM", "MEA", "HAN", "DOC", "FTX", "PGI", "IMD", "TRU", "RCS", "QTY", "PRI", "CCI", "ALI", "RFF", "NAD", "DGS", "PAC", "HYN")]
-public class PRODAT_SG8 : LIN
+public class PRODAT_SG8 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -256,7 +257,7 @@ public class PRODAT_SG8 : LIN
 }
 
 [EdiSegmentGroup("IMD", "FTX")]
-public class PRODAT_SG9 : IMD
+public class PRODAT_SG9 : IMD, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -265,7 +266,7 @@ public class PRODAT_SG9 : IMD
 }
 
 [EdiSegmentGroup("TRU", "DTM")]
-public class PRODAT_SG10 : TRU
+public class PRODAT_SG10 : TRU, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -274,7 +275,7 @@ public class PRODAT_SG10 : TRU
 }
 
 [EdiSegmentGroup("RCS", "PIA")]
-public class PRODAT_SG11 : RCS
+public class PRODAT_SG11 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -283,7 +284,7 @@ public class PRODAT_SG11 : RCS
 }
 
 [EdiSegmentGroup("QTY", "DTM")]
-public class PRODAT_SG12 : QTY
+public class PRODAT_SG12 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -292,7 +293,7 @@ public class PRODAT_SG12 : QTY
 }
 
 [EdiSegmentGroup("PRI", "CUX", "RNG")]
-public class PRODAT_SG13 : PRI
+public class PRODAT_SG13 : PRI, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -306,7 +307,7 @@ public class PRODAT_SG13 : PRI
 }
 
 [EdiSegmentGroup("CCI", "CAV", "MEA")]
-public class PRODAT_SG14 : CCI
+public class PRODAT_SG14 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Characteristic value
@@ -320,7 +321,7 @@ public class PRODAT_SG14 : CCI
 }
 
 [EdiSegmentGroup("ALI", "PCD")]
-public class PRODAT_SG15 : ALI
+public class PRODAT_SG15 : ALI, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -329,7 +330,7 @@ public class PRODAT_SG15 : ALI
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PRODAT_SG16 : RFF
+public class PRODAT_SG16 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -338,7 +339,7 @@ public class PRODAT_SG16 : RFF
 }
 
 [EdiSegmentGroup("NAD", "RFF", "QTY", "CTA")]
-public class PRODAT_SG17 : NAD
+public class PRODAT_SG17 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -358,7 +359,7 @@ public class PRODAT_SG17 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class PRODAT_SG18 : CTA
+public class PRODAT_SG18 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -367,7 +368,7 @@ public class PRODAT_SG18 : CTA
 }
 
 [EdiSegmentGroup("DGS", "QTY", "FTX")]
-public class PRODAT_SG19 : DGS
+public class PRODAT_SG19 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -381,7 +382,7 @@ public class PRODAT_SG19 : DGS
 }
 
 [EdiSegmentGroup("PAC", "MEA", "QTY", "HAN", "PCI")]
-public class PRODAT_SG20 : PAC
+public class PRODAT_SG20 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -405,7 +406,7 @@ public class PRODAT_SG20 : PAC
 }
 
 [EdiSegmentGroup("HYN", "PIA", "QTY", "FTX", "RFF", "CCI", "NAD")]
-public class PRODAT_SG21 : HYN
+public class PRODAT_SG21 : HYN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -440,7 +441,7 @@ public class PRODAT_SG21 : HYN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PRODAT_SG22 : RFF
+public class PRODAT_SG22 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -449,7 +450,7 @@ public class PRODAT_SG22 : RFF
 }
 
 [EdiSegmentGroup("CCI", "CAV", "MEA")]
-public class PRODAT_SG23 : CCI
+public class PRODAT_SG23 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Characteristic value
@@ -463,7 +464,7 @@ public class PRODAT_SG23 : CCI
 }
 
 [EdiSegmentGroup("NAD", "PIA", "QTY", "CCI")]
-public class PRODAT_SG24 : NAD
+public class PRODAT_SG24 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -483,7 +484,7 @@ public class PRODAT_SG24 : NAD
 }
 
 [EdiSegmentGroup("CCI", "CAV", "MEA")]
-public class PRODAT_SG25 : CCI
+public class PRODAT_SG25 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Characteristic value

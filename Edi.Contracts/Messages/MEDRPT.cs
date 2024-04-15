@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// MEDRPT
 /// </summary>
 [EdiMessage]
-public class MEDRPT
+public class MEDRPT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class MEDRPT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class MEDRPT
 }
 
 [EdiSegmentGroup("PNA", "ADR", "COM", "FTX", "RFF", "SEQ", "LAN", "SPR", "QUA", "EMP")]
-public class MEDRPT_SG1 : PNA
+public class MEDRPT_SG1 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -101,7 +102,7 @@ public class MEDRPT_SG1 : PNA
 }
 
 [EdiSegmentGroup("IRQ", "GIS", "RFF", "DTM", "STS", "PTY", "LAN", "FTX", "TEM", "RFF", "FCA", "ATT")]
-public class MEDRPT_SG2 : IRQ
+public class MEDRPT_SG2 : IRQ, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -161,7 +162,7 @@ public class MEDRPT_SG2 : IRQ
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class MEDRPT_SG3 : RFF
+public class MEDRPT_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -170,7 +171,7 @@ public class MEDRPT_SG3 : RFF
 }
 
 [EdiSegmentGroup("FCA", "RFF", "GIS", "DTM", "PTY", "CIN", "FTX", "TEM", "DOC")]
-public class MEDRPT_SG4 : FCA
+public class MEDRPT_SG4 : FCA, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -215,7 +216,7 @@ public class MEDRPT_SG4 : FCA
 }
 
 [EdiSegmentGroup("DOC", "RFF", "DTM")]
-public class MEDRPT_SG5 : DOC
+public class MEDRPT_SG5 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -229,7 +230,7 @@ public class MEDRPT_SG5 : DOC
 }
 
 [EdiSegmentGroup("ATT", "RFF", "ADR", "COM", "REL", "IMD", "FTX", "PNA", "DTM", "PDI", "NAT", "LAN", "HAN", "CCI", "PAS", "CAV", "SEQ", "LIN")]
-public class MEDRPT_SG6 : ATT
+public class MEDRPT_SG6 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -319,7 +320,7 @@ public class MEDRPT_SG6 : ATT
 }
 
 [EdiSegmentGroup("PAS", "LOC", "DTM", "RFF")]
-public class MEDRPT_SG7 : PAS
+public class MEDRPT_SG7 : PAS, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -338,7 +339,7 @@ public class MEDRPT_SG7 : PAS
 }
 
 [EdiSegmentGroup("CAV", "CIN", "LAN", "DTM", "FTX", "RFF", "STS", "CLI")]
-public class MEDRPT_SG8 : CAV
+public class MEDRPT_SG8 : CAV, ISegmentGroup
 {
 	/// <summary>
 	/// Clinical information
@@ -378,7 +379,7 @@ public class MEDRPT_SG8 : CAV
 }
 
 [EdiSegmentGroup("STS", "SEQ", "GIS", "RSL", "CCI", "CIN", "DTM", "FTX", "RFF", "RSL", "REL")]
-public class MEDRPT_SG9 : STS
+public class MEDRPT_SG9 : STS, ISegmentGroup
 {
 	/// <summary>
 	/// Sequence details
@@ -433,7 +434,7 @@ public class MEDRPT_SG9 : STS
 }
 
 [EdiSegmentGroup("RSL", "FTX", "CCI")]
-public class MEDRPT_SG10 : RSL
+public class MEDRPT_SG10 : RSL, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -447,7 +448,7 @@ public class MEDRPT_SG10 : RSL
 }
 
 [EdiSegmentGroup("REL", "RFF")]
-public class MEDRPT_SG11 : REL
+public class MEDRPT_SG11 : REL, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -456,7 +457,7 @@ public class MEDRPT_SG11 : REL
 }
 
 [EdiSegmentGroup("CLI", "IMD")]
-public class MEDRPT_SG12 : CLI
+public class MEDRPT_SG12 : CLI, ISegmentGroup
 {
 	/// <summary>
 	/// SG13
@@ -466,7 +467,7 @@ public class MEDRPT_SG12 : CLI
 }
 
 [EdiSegmentGroup("IMD", "DSG", "FTX", "INP")]
-public class MEDRPT_SG13 : IMD
+public class MEDRPT_SG13 : IMD, ISegmentGroup
 {
 	/// <summary>
 	/// Dosage administration
@@ -485,7 +486,7 @@ public class MEDRPT_SG13 : IMD
 }
 
 [EdiSegmentGroup("SEQ", "IMD", "PRC", "RFF", "QTY", "DTM", "PAC", "FTX", "TDT", "HAN", "LOC", "ADR", "CLI")]
-public class MEDRPT_SG14 : SEQ
+public class MEDRPT_SG14 : SEQ, ISegmentGroup
 {
 	/// <summary>
 	/// Item description
@@ -550,7 +551,7 @@ public class MEDRPT_SG14 : SEQ
 }
 
 [EdiSegmentGroup("CLI", "IMD", "DSG", "DTM", "FTX", "QTY", "INP")]
-public class MEDRPT_SG15 : CLI
+public class MEDRPT_SG15 : CLI, ISegmentGroup
 {
 	/// <summary>
 	/// Item description
@@ -584,7 +585,7 @@ public class MEDRPT_SG15 : CLI
 }
 
 [EdiSegmentGroup("LIN", "GIS", "RSL", "CCI", "CIN", "SEQ", "STS", "DTM", "FTX", "MOA", "RFF", "EQD", "REL", "RSL")]
-public class MEDRPT_SG16 : LIN
+public class MEDRPT_SG16 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -654,7 +655,7 @@ public class MEDRPT_SG16 : LIN
 }
 
 [EdiSegmentGroup("REL", "RFF")]
-public class MEDRPT_SG17 : REL
+public class MEDRPT_SG17 : REL, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -663,7 +664,7 @@ public class MEDRPT_SG17 : REL
 }
 
 [EdiSegmentGroup("RSL", "FTX", "CCI")]
-public class MEDRPT_SG18 : RSL
+public class MEDRPT_SG18 : RSL, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -677,7 +678,7 @@ public class MEDRPT_SG18 : RSL
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class MEDRPT_SG19 : AUT
+public class MEDRPT_SG19 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

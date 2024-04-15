@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify a monetary amount.
 /// </summary>
 [EdiSegment, EdiPath("MOA")]
-public class MOA
+public class MOA : ISegment
 {
 	/// <summary>
 	/// Amount of goods or services stated as a monetary amount in a specified currency.
@@ -21,7 +22,7 @@ public class MOA
 /// Amount of goods or services stated as a monetary amount in a specified currency.
 /// </summary>
 [EdiElement]
-public class MOA_MonetaryAmount
+public class MOA_MonetaryAmount : IElement
 {
 	/// <summary>
 	/// Indication of type of amount.

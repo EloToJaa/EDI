@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To provide the different information related to the inventory management functions and needed to process properly the inventory movements and the inventory balances.
 /// </summary>
 [EdiSegment, EdiPath("INV")]
-public class INV
+public class INV : ISegment
 {
 	/// <summary>
 	/// To specify the direction of inventory movement.
@@ -45,7 +46,7 @@ public class INV
 /// To specify an instruction.
 /// </summary>
 [EdiElement]
-public class INV_Instruction
+public class INV_Instruction : IElement
 {
 	/// <summary>
 	/// Code giving specific meaning to the type of instructions.

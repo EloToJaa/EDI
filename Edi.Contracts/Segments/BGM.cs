@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To indicate the type and function of a message and to transmit the identifying number.
 /// </summary>
 [EdiSegment, EdiPath("BGM")]
-public class BGM
+public class BGM : ISegment
 {
 	/// <summary>
 	/// Identification of a type of document/message by code or name. Code preferred.
@@ -40,7 +41,7 @@ public class BGM
 /// Identification of a type of document/message by code or name. Code preferred.
 /// </summary>
 [EdiElement]
-public class BGM_DocumentMessageName
+public class BGM_DocumentMessageName : IElement
 {
 	/// <summary>
 	/// Document/message identifier expressed in code.
@@ -71,7 +72,7 @@ public class BGM_DocumentMessageName
 /// Identification of a document/message by its number and eventually its version or revision.
 /// </summary>
 [EdiElement]
-public class BGM_DocumentMessageIdentification
+public class BGM_DocumentMessageIdentification : IElement
 {
 	/// <summary>
 	/// Reference number assigned to the document/message by the issuer.

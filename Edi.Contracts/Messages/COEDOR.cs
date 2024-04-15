@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// COEDOR
 /// </summary>
 [EdiMessage]
-public class COEDOR
+public class COEDOR : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class COEDOR
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1M { get; set; }
+	public DTM? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Free text
@@ -57,7 +58,7 @@ public class COEDOR
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class COEDOR_SG1 : RFF
+public class COEDOR_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -66,7 +67,7 @@ public class COEDOR_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class COEDOR_SG2 : NAD
+public class COEDOR_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -76,7 +77,7 @@ public class COEDOR_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class COEDOR_SG3 : CTA
+public class COEDOR_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -85,7 +86,7 @@ public class COEDOR_SG3 : CTA
 }
 
 [EdiSegmentGroup("EQD", "RFF", "DTM", "LOC", "HAN", "DAM", "TDT")]
-public class COEDOR_SG4 : EQD
+public class COEDOR_SG4 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -120,7 +121,7 @@ public class COEDOR_SG4 : EQD
 }
 
 [EdiSegmentGroup("DAM", "COD")]
-public class COEDOR_SG5 : DAM
+public class COEDOR_SG5 : DAM, ISegmentGroup
 {
 	/// <summary>
 	/// Component details
@@ -129,7 +130,7 @@ public class COEDOR_SG5 : DAM
 }
 
 [EdiSegmentGroup("TDT", "LOC")]
-public class COEDOR_SG6 : TDT
+public class COEDOR_SG6 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification

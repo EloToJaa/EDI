@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify allowance or charge details.
 /// </summary>
 [EdiSegment, EdiPath("ALC")]
-public class ALC
+public class ALC : ISegment
 {
 	/// <summary>
 	/// Specification of an allowance or charge for the service specified.
@@ -45,7 +46,7 @@ public class ALC
 /// Identification of allowance/charge information by number and/or code.
 /// </summary>
 [EdiElement]
-public class ALC_AllowanceChargeInformation
+public class ALC_AllowanceChargeInformation : IElement
 {
 	/// <summary>
 	/// Number assigned by a party referencing an allowance, promotion, deal or charge.
@@ -64,7 +65,7 @@ public class ALC_AllowanceChargeInformation
 /// Identification of a special service by a code from a specified source or by description.
 /// </summary>
 [EdiElement]
-public class ALC_SpecialServicesIdentification
+public class ALC_SpecialServicesIdentification : IElement
 {
 	/// <summary>
 	/// Code identifying a special service.

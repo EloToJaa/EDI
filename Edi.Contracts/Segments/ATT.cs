@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a specific attribute.
 /// </summary>
 [EdiSegment, EdiPath("ATT")]
-public class ATT
+public class ATT : ISegment
 {
 	/// <summary>
 	/// Specification of the meaning of an attribute function.
@@ -33,7 +34,7 @@ public class ATT
 /// Identification of the type of attribute.
 /// </summary>
 [EdiElement]
-public class ATT_AttributeType
+public class ATT_AttributeType : IElement
 {
 	/// <summary>
 	/// Coded specification of the type attribute.
@@ -58,7 +59,7 @@ public class ATT_AttributeType
 /// Identification of the attribute related to an entity.
 /// </summary>
 [EdiElement]
-public class ATT_AttributeDetails
+public class ATT_AttributeDetails : IElement
 {
 	/// <summary>
 	/// Identification of an attribute.

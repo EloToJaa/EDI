@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To describe the insurance cover.
 /// </summary>
 [EdiSegment, EdiPath("ICD")]
-public class ICD
+public class ICD : ISegment
 {
 	/// <summary>
 	/// To provide the insurance cover type.
@@ -27,7 +28,7 @@ public class ICD
 /// To provide the insurance cover type.
 /// </summary>
 [EdiElement]
-public class ICD_InsuranceCoverType
+public class ICD_InsuranceCoverType : IElement
 {
 	/// <summary>
 	/// Specification of the meaning of the insurance cover.
@@ -52,7 +53,7 @@ public class ICD_InsuranceCoverType
 /// To provide the insurance cover details.
 /// </summary>
 [EdiElement]
-public class ICD_InsuranceCoverDetails
+public class ICD_InsuranceCoverDetails : IElement
 {
 	/// <summary>
 	/// Coded identification of the insurance cover.

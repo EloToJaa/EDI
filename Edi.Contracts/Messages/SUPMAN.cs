@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// SUPMAN
 /// </summary>
 [EdiMessage]
-public class SUPMAN
+public class SUPMAN : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,22 +24,22 @@ public class SUPMAN
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1M { get; set; }
+	public List<RFF>? ReferenceM { get; set; }
 
 	/// <summary>
 	/// Currencies
 	/// </summary>
-	public CUX? Currencies1C { get; set; }
+	public CUX? CurrenciesC { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -72,7 +73,7 @@ public class SUPMAN
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class SUPMAN_SG1 : NAD
+public class SUPMAN_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -82,7 +83,7 @@ public class SUPMAN_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class SUPMAN_SG2 : CTA
+public class SUPMAN_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -91,7 +92,7 @@ public class SUPMAN_SG2 : CTA
 }
 
 [EdiSegmentGroup("NAD", "DTM", "ATT", "RFF", "REL", "EMP", "GIS", "MEM")]
-public class SUPMAN_SG3 : NAD
+public class SUPMAN_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -131,7 +132,7 @@ public class SUPMAN_SG3 : NAD
 }
 
 [EdiSegmentGroup("REL", "NAD", "PCD")]
-public class SUPMAN_SG4 : REL
+public class SUPMAN_SG4 : REL, ISegmentGroup
 {
 	/// <summary>
 	/// Name and address
@@ -145,7 +146,7 @@ public class SUPMAN_SG4 : REL
 }
 
 [EdiSegmentGroup("EMP", "PCD", "CUX", "NAD", "MOA")]
-public class SUPMAN_SG5 : EMP
+public class SUPMAN_SG5 : EMP, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -170,7 +171,7 @@ public class SUPMAN_SG5 : EMP
 }
 
 [EdiSegmentGroup("MOA", "PAT", "DTM")]
-public class SUPMAN_SG6 : MOA
+public class SUPMAN_SG6 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Payment terms basis
@@ -184,7 +185,7 @@ public class SUPMAN_SG6 : MOA
 }
 
 [EdiSegmentGroup("GIS", "DTM")]
-public class SUPMAN_SG7 : GIS
+public class SUPMAN_SG7 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -193,7 +194,7 @@ public class SUPMAN_SG7 : GIS
 }
 
 [EdiSegmentGroup("MEM", "ATT", "COT")]
-public class SUPMAN_SG8 : MEM
+public class SUPMAN_SG8 : MEM, ISegmentGroup
 {
 	/// <summary>
 	/// SG9
@@ -208,7 +209,7 @@ public class SUPMAN_SG8 : MEM
 }
 
 [EdiSegmentGroup("ATT", "PCD")]
-public class SUPMAN_SG9 : ATT
+public class SUPMAN_SG9 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -217,7 +218,7 @@ public class SUPMAN_SG9 : ATT
 }
 
 [EdiSegmentGroup("COT", "MOA", "PCD", "DTM", "PAT", "FTX")]
-public class SUPMAN_SG10 : COT
+public class SUPMAN_SG10 : COT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount

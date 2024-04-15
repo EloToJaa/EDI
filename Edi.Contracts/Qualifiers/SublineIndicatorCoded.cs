@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace Edi.Contracts.Qualifiers;
@@ -6,7 +7,7 @@ namespace Edi.Contracts.Qualifiers;
 /// <summary>
 /// Sub-line indicator, coded
 /// </summary>
-public class SublineIndicatorCoded
+public class SublineIndicatorCoded : IQualifier
 {
 	/// <summary>
 	/// String assign converter

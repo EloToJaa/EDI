@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To provide control total.
 /// </summary>
 [EdiSegment, EdiPath("CNT")]
-public class CNT
+public class CNT : ISegment
 {
 	/// <summary>
 	/// Control total for checking integrity of a message or part of a message.
@@ -21,7 +22,7 @@ public class CNT
 /// Control total for checking integrity of a message or part of a message.
 /// </summary>
 [EdiElement]
-public class CNT_Control
+public class CNT_Control : IElement
 {
 	/// <summary>
 	/// Determines the source data elements in the message which forms the basis for 6066 Control value.

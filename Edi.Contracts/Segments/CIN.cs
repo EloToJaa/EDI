@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To describe an item of clinical information.
 /// </summary>
 [EdiSegment, EdiPath("CIN")]
-public class CIN
+public class CIN : ISegment
 {
 	/// <summary>
 	/// To specify type of clinical information.
@@ -33,7 +34,7 @@ public class CIN
 /// To specify an item of clinical information.
 /// </summary>
 [EdiElement]
-public class CIN_ClinicalInformationDetails
+public class CIN_ClinicalInformationDetails : IElement
 {
 	/// <summary>
 	/// To specify an item of clinical information using code.
@@ -64,7 +65,7 @@ public class CIN_ClinicalInformationDetails
 /// To specify the certainty.
 /// </summary>
 [EdiElement]
-public class CIN_CertaintyDetails
+public class CIN_CertaintyDetails : IElement
 {
 	/// <summary>
 	/// To specify the certainty using code.

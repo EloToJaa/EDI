@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// COPINO
 /// </summary>
 [EdiMessage]
-public class COPINO
+public class COPINO : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class COPINO
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
@@ -67,7 +68,7 @@ public class COPINO
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class COPINO_SG1 : RFF
+public class COPINO_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class COPINO_SG1 : RFF
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM")]
-public class COPINO_SG2 : TDT
+public class COPINO_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -90,7 +91,7 @@ public class COPINO_SG2 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class COPINO_SG3 : NAD
+public class COPINO_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -100,7 +101,7 @@ public class COPINO_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class COPINO_SG4 : CTA
+public class COPINO_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -109,7 +110,7 @@ public class COPINO_SG4 : CTA
 }
 
 [EdiSegmentGroup("GID", "HAN", "TMP", "RNG", "SGP", "DGS")]
-public class COPINO_SG5 : GID
+public class COPINO_SG5 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -138,7 +139,7 @@ public class COPINO_SG5 : GID
 }
 
 [EdiSegmentGroup("EQD", "RFF", "EQN", "MEA", "DIM", "SEL", "EQA", "HAN", "TDT", "NAD")]
-public class COPINO_SG6 : EQD
+public class COPINO_SG6 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -187,7 +188,7 @@ public class COPINO_SG6 : EQD
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM")]
-public class COPINO_SG7 : TDT
+public class COPINO_SG7 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification

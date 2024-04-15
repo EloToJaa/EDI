@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// GENRAL
 /// </summary>
 [EdiMessage]
-public class GENRAL
+public class GENRAL : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class GENRAL
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1C { get; set; }
+	public DTM? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -47,7 +48,7 @@ public class GENRAL
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class GENRAL_SG1 : RFF
+public class GENRAL_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -56,7 +57,7 @@ public class GENRAL_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "CTA")]
-public class GENRAL_SG2 : NAD
+public class GENRAL_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -76,7 +77,7 @@ public class GENRAL_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class GENRAL_SG3 : RFF
+public class GENRAL_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -85,7 +86,7 @@ public class GENRAL_SG3 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class GENRAL_SG4 : CTA
+public class GENRAL_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -94,7 +95,7 @@ public class GENRAL_SG4 : CTA
 }
 
 [EdiSegmentGroup("FTX", "NAD")]
-public class GENRAL_SG5 : FTX
+public class GENRAL_SG5 : FTX, ISegmentGroup
 {
 	/// <summary>
 	/// SG6
@@ -104,7 +105,7 @@ public class GENRAL_SG5 : FTX
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "CTA")]
-public class GENRAL_SG6 : NAD
+public class GENRAL_SG6 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -124,7 +125,7 @@ public class GENRAL_SG6 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class GENRAL_SG7 : RFF
+public class GENRAL_SG7 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -133,7 +134,7 @@ public class GENRAL_SG7 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class GENRAL_SG8 : CTA
+public class GENRAL_SG8 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact

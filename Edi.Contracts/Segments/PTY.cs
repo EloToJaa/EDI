@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// The segment is used to communicate priority information.
 /// </summary>
 [EdiSegment, EdiPath("PTY")]
-public class PTY
+public class PTY : ISegment
 {
 	/// <summary>
 	/// To indicate the type of a priority.
@@ -27,7 +28,7 @@ public class PTY
 /// To indicate a priority.
 /// </summary>
 [EdiElement]
-public class PTY_PriorityDetails
+public class PTY_PriorityDetails : IElement
 {
 	/// <summary>
 	/// To indicate a priority in coded form.

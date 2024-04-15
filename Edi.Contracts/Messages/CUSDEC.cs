@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CUSDEC
 /// </summary>
 [EdiMessage]
-public class CUSDEC
+public class CUSDEC : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,22 +24,22 @@ public class CUSDEC
 	/// <summary>
 	/// Customs status of goods
 	/// </summary>
-	public CST? CustomsStatusOfGoods1C { get; set; }
+	public CST? CustomsStatusOfGoodsC { get; set; }
 
 	/// <summary>
 	/// Place/location identification
 	/// </summary>
-	public List<LOC>? PlaceLocationIdentification1C { get; set; }
+	public List<LOC>? PlaceLocationIdentificationC { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// General indicator
 	/// </summary>
-	public List<GIS>? GeneralIndicator1C { get; set; }
+	public List<GIS>? GeneralIndicatorC { get; set; }
 
 	/// <summary>
 	/// Financial institution information
@@ -48,7 +49,7 @@ public class CUSDEC
 	/// <summary>
 	/// Measurements
 	/// </summary>
-	public List<MEA>? Measurements1C { get; set; }
+	public List<MEA>? MeasurementsC { get; set; }
 
 	/// <summary>
 	/// Equipment details
@@ -63,7 +64,7 @@ public class CUSDEC
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -137,7 +138,7 @@ public class CUSDEC
 }
 
 [EdiSegmentGroup("RFF", "DTM", "PAC")]
-public class CUSDEC_SG1 : RFF
+public class CUSDEC_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -152,7 +153,7 @@ public class CUSDEC_SG1 : RFF
 }
 
 [EdiSegmentGroup("PAC", "PCI")]
-public class CUSDEC_SG2 : PAC
+public class CUSDEC_SG2 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -162,7 +163,7 @@ public class CUSDEC_SG2 : PAC
 }
 
 [EdiSegmentGroup("PCI", "FTX")]
-public class CUSDEC_SG3 : PCI
+public class CUSDEC_SG3 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -171,7 +172,7 @@ public class CUSDEC_SG3 : PCI
 }
 
 [EdiSegmentGroup("TDT", "TPL")]
-public class CUSDEC_SG4 : TDT
+public class CUSDEC_SG4 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Transport placement
@@ -180,7 +181,7 @@ public class CUSDEC_SG4 : TDT
 }
 
 [EdiSegmentGroup("DOC", "DTM", "LOC")]
-public class CUSDEC_SG5 : DOC
+public class CUSDEC_SG5 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -194,7 +195,7 @@ public class CUSDEC_SG5 : DOC
 }
 
 [EdiSegmentGroup("NAD", "RFF", "CTA", "COM")]
-public class CUSDEC_SG6 : NAD
+public class CUSDEC_SG6 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -213,7 +214,7 @@ public class CUSDEC_SG6 : NAD
 }
 
 [EdiSegmentGroup("TOD", "LOC", "FTX")]
-public class CUSDEC_SG7 : TOD
+public class CUSDEC_SG7 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -227,7 +228,7 @@ public class CUSDEC_SG7 : TOD
 }
 
 [EdiSegmentGroup("MOA", "CUX")]
-public class CUSDEC_SG8 : MOA
+public class CUSDEC_SG8 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// SG9
@@ -237,7 +238,7 @@ public class CUSDEC_SG8 : MOA
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class CUSDEC_SG9 : CUX
+public class CUSDEC_SG9 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -246,7 +247,7 @@ public class CUSDEC_SG9 : CUX
 }
 
 [EdiSegmentGroup("DMS", "DTM", "MEA", "MOA", "TOD", "NAD", "PAC", "PAT", "ALC", "LIN")]
-public class CUSDEC_SG10 : DMS
+public class CUSDEC_SG10 : DMS, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -296,7 +297,7 @@ public class CUSDEC_SG10 : DMS
 }
 
 [EdiSegmentGroup("MOA", "CUX")]
-public class CUSDEC_SG11 : MOA
+public class CUSDEC_SG11 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// SG12
@@ -306,7 +307,7 @@ public class CUSDEC_SG11 : MOA
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class CUSDEC_SG12 : CUX
+public class CUSDEC_SG12 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -315,7 +316,7 @@ public class CUSDEC_SG12 : CUX
 }
 
 [EdiSegmentGroup("TOD", "LOC", "FTX")]
-public class CUSDEC_SG13 : TOD
+public class CUSDEC_SG13 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -329,7 +330,7 @@ public class CUSDEC_SG13 : TOD
 }
 
 [EdiSegmentGroup("NAD", "DOC")]
-public class CUSDEC_SG14 : NAD
+public class CUSDEC_SG14 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG15
@@ -339,7 +340,7 @@ public class CUSDEC_SG14 : NAD
 }
 
 [EdiSegmentGroup("DOC", "DTM", "LOC")]
-public class CUSDEC_SG15 : DOC
+public class CUSDEC_SG15 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -353,7 +354,7 @@ public class CUSDEC_SG15 : DOC
 }
 
 [EdiSegmentGroup("PAC", "PCI")]
-public class CUSDEC_SG16 : PAC
+public class CUSDEC_SG16 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// SG17
@@ -363,7 +364,7 @@ public class CUSDEC_SG16 : PAC
 }
 
 [EdiSegmentGroup("PCI", "FTX", "RFF")]
-public class CUSDEC_SG17 : PCI
+public class CUSDEC_SG17 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -377,7 +378,7 @@ public class CUSDEC_SG17 : PCI
 }
 
 [EdiSegmentGroup("PAT", "MOA", "PCD", "FTX")]
-public class CUSDEC_SG18 : PAT
+public class CUSDEC_SG18 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -396,7 +397,7 @@ public class CUSDEC_SG18 : PAT
 }
 
 [EdiSegmentGroup("ALC", "RTE", "MOA", "PCD", "QTY", "CUX")]
-public class CUSDEC_SG19 : ALC
+public class CUSDEC_SG19 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Rate details
@@ -426,7 +427,7 @@ public class CUSDEC_SG19 : ALC
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class CUSDEC_SG20 : CUX
+public class CUSDEC_SG20 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -435,7 +436,7 @@ public class CUSDEC_SG20 : CUX
 }
 
 [EdiSegmentGroup("LIN", "PIA", "QTY", "PRI", "PCD", "MEA", "QVR", "MOA", "NAD", "GIR", "DOC", "ALC", "TOD", "PAT", "IMD", "PAC")]
-public class CUSDEC_SG21 : LIN
+public class CUSDEC_SG21 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -515,7 +516,7 @@ public class CUSDEC_SG21 : LIN
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class CUSDEC_SG22 : DOC
+public class CUSDEC_SG22 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -524,7 +525,7 @@ public class CUSDEC_SG22 : DOC
 }
 
 [EdiSegmentGroup("ALC", "RTE", "MOA", "PCD", "QTY", "CUX")]
-public class CUSDEC_SG23 : ALC
+public class CUSDEC_SG23 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Rate details
@@ -554,7 +555,7 @@ public class CUSDEC_SG23 : ALC
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class CUSDEC_SG24 : CUX
+public class CUSDEC_SG24 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -563,7 +564,7 @@ public class CUSDEC_SG24 : CUX
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class CUSDEC_SG25 : TOD
+public class CUSDEC_SG25 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -572,7 +573,7 @@ public class CUSDEC_SG25 : TOD
 }
 
 [EdiSegmentGroup("PAT", "MOA", "PCD", "FTX")]
-public class CUSDEC_SG26 : PAT
+public class CUSDEC_SG26 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -591,7 +592,7 @@ public class CUSDEC_SG26 : PAT
 }
 
 [EdiSegmentGroup("IMD", "FTX")]
-public class CUSDEC_SG27 : IMD
+public class CUSDEC_SG27 : IMD, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -600,7 +601,7 @@ public class CUSDEC_SG27 : IMD
 }
 
 [EdiSegmentGroup("PAC", "PCI")]
-public class CUSDEC_SG28 : PAC
+public class CUSDEC_SG28 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// SG29
@@ -610,7 +611,7 @@ public class CUSDEC_SG28 : PAC
 }
 
 [EdiSegmentGroup("PCI", "FTX", "RFF")]
-public class CUSDEC_SG29 : PCI
+public class CUSDEC_SG29 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -624,7 +625,7 @@ public class CUSDEC_SG29 : PCI
 }
 
 [EdiSegmentGroup("CST", "FTX", "LOC", "DTM", "MEA", "NAD", "TDT", "PAC", "MOA", "RFF", "DOC", "TOD", "GDS", "GIS", "TAX", "QVR", "GIR")]
-public class CUSDEC_SG30 : CST
+public class CUSDEC_SG30 : CST, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -709,7 +710,7 @@ public class CUSDEC_SG30 : CST
 }
 
 [EdiSegmentGroup("PAC", "PCI")]
-public class CUSDEC_SG31 : PAC
+public class CUSDEC_SG31 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// SG32
@@ -719,7 +720,7 @@ public class CUSDEC_SG31 : PAC
 }
 
 [EdiSegmentGroup("PCI", "FTX")]
-public class CUSDEC_SG32 : PCI
+public class CUSDEC_SG32 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -728,7 +729,7 @@ public class CUSDEC_SG32 : PCI
 }
 
 [EdiSegmentGroup("MOA", "CUX")]
-public class CUSDEC_SG33 : MOA
+public class CUSDEC_SG33 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// SG34
@@ -738,7 +739,7 @@ public class CUSDEC_SG33 : MOA
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class CUSDEC_SG34 : CUX
+public class CUSDEC_SG34 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -747,7 +748,7 @@ public class CUSDEC_SG34 : CUX
 }
 
 [EdiSegmentGroup("RFF", "DTM", "GIN", "MOA", "IMD")]
-public class CUSDEC_SG35 : RFF
+public class CUSDEC_SG35 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -772,7 +773,7 @@ public class CUSDEC_SG35 : RFF
 }
 
 [EdiSegmentGroup("IMD", "FTX")]
-public class CUSDEC_SG36 : IMD
+public class CUSDEC_SG36 : IMD, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -781,7 +782,7 @@ public class CUSDEC_SG36 : IMD
 }
 
 [EdiSegmentGroup("DOC", "DTM", "LOC", "NAD")]
-public class CUSDEC_SG37 : DOC
+public class CUSDEC_SG37 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -800,7 +801,7 @@ public class CUSDEC_SG37 : DOC
 }
 
 [EdiSegmentGroup("TOD", "LOC", "FTX")]
-public class CUSDEC_SG38 : TOD
+public class CUSDEC_SG38 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -814,7 +815,7 @@ public class CUSDEC_SG38 : TOD
 }
 
 [EdiSegmentGroup("GDS", "FTX")]
-public class CUSDEC_SG39 : GDS
+public class CUSDEC_SG39 : GDS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -823,7 +824,7 @@ public class CUSDEC_SG39 : GDS
 }
 
 [EdiSegmentGroup("GIS", "PCD", "DTM", "RFF")]
-public class CUSDEC_SG40 : GIS
+public class CUSDEC_SG40 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -842,7 +843,7 @@ public class CUSDEC_SG40 : GIS
 }
 
 [EdiSegmentGroup("TAX", "MOA", "GIS")]
-public class CUSDEC_SG41 : TAX
+public class CUSDEC_SG41 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -856,7 +857,7 @@ public class CUSDEC_SG41 : TAX
 }
 
 [EdiSegmentGroup("QVR", "QTY", "RFF")]
-public class CUSDEC_SG42 : QVR
+public class CUSDEC_SG42 : QVR, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -871,7 +872,7 @@ public class CUSDEC_SG42 : QVR
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CUSDEC_SG43 : RFF
+public class CUSDEC_SG43 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -880,7 +881,7 @@ public class CUSDEC_SG43 : RFF
 }
 
 [EdiSegmentGroup("GIR", "GIS", "NAD", "MEA", "MOA", "TAX", "DOC")]
-public class CUSDEC_SG44 : GIR
+public class CUSDEC_SG44 : GIR, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -915,7 +916,7 @@ public class CUSDEC_SG44 : GIR
 }
 
 [EdiSegmentGroup("MOA", "CUX")]
-public class CUSDEC_SG45 : MOA
+public class CUSDEC_SG45 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// SG46
@@ -925,7 +926,7 @@ public class CUSDEC_SG45 : MOA
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class CUSDEC_SG46 : CUX
+public class CUSDEC_SG46 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -934,7 +935,7 @@ public class CUSDEC_SG46 : CUX
 }
 
 [EdiSegmentGroup("TAX", "MOA", "GIS")]
-public class CUSDEC_SG47 : TAX
+public class CUSDEC_SG47 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -948,7 +949,7 @@ public class CUSDEC_SG47 : TAX
 }
 
 [EdiSegmentGroup("DOC", "DTM", "LOC")]
-public class CUSDEC_SG48 : DOC
+public class CUSDEC_SG48 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -962,7 +963,7 @@ public class CUSDEC_SG48 : DOC
 }
 
 [EdiSegmentGroup("TAX", "MOA", "GIS")]
-public class CUSDEC_SG49 : TAX
+public class CUSDEC_SG49 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -976,7 +977,7 @@ public class CUSDEC_SG49 : TAX
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class CUSDEC_SG50 : AUT
+public class CUSDEC_SG50 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

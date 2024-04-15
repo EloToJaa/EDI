@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// HANMOV
 /// </summary>
 [EdiMessage]
-public class HANMOV
+public class HANMOV : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,17 +24,17 @@ public class HANMOV
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Handling instructions
 	/// </summary>
-	public List<HAN>? HandlingInstructions1C { get; set; }
+	public List<HAN>? HandlingInstructionsC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Control total
@@ -82,7 +83,7 @@ public class HANMOV
 }
 
 [EdiSegmentGroup("TCC", "LOC", "FTX", "CUX")]
-public class HANMOV_SG1 : TCC
+public class HANMOV_SG1 : TCC, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -101,7 +102,7 @@ public class HANMOV_SG1 : TCC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class HANMOV_SG2 : RFF
+public class HANMOV_SG2 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -110,7 +111,7 @@ public class HANMOV_SG2 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "DOC", "RFF", "CTA")]
-public class HANMOV_SG3 : NAD
+public class HANMOV_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -135,7 +136,7 @@ public class HANMOV_SG3 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class HANMOV_SG4 : RFF
+public class HANMOV_SG4 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -144,7 +145,7 @@ public class HANMOV_SG4 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class HANMOV_SG5 : CTA
+public class HANMOV_SG5 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -153,7 +154,7 @@ public class HANMOV_SG5 : CTA
 }
 
 [EdiSegmentGroup("TDT", "DTM", "LOC", "RFF")]
-public class HANMOV_SG6 : TDT
+public class HANMOV_SG6 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -172,7 +173,7 @@ public class HANMOV_SG6 : TDT
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "HAN", "TCC", "NAD", "MEA", "QTY", "GIN", "GIR", "DTM", "FTX", "RFF", "LOC", "PAC")]
-public class HANMOV_SG7 : LIN
+public class HANMOV_SG7 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -247,7 +248,7 @@ public class HANMOV_SG7 : LIN
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class HANMOV_SG8 : NAD
+public class HANMOV_SG8 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG9
@@ -257,7 +258,7 @@ public class HANMOV_SG8 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class HANMOV_SG9 : CTA
+public class HANMOV_SG9 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -266,7 +267,7 @@ public class HANMOV_SG9 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class HANMOV_SG10 : RFF
+public class HANMOV_SG10 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -275,7 +276,7 @@ public class HANMOV_SG10 : RFF
 }
 
 [EdiSegmentGroup("PAC", "MEA", "QTY", "PCI")]
-public class HANMOV_SG11 : PAC
+public class HANMOV_SG11 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -295,7 +296,7 @@ public class HANMOV_SG11 : PAC
 }
 
 [EdiSegmentGroup("PCI", "GIN")]
-public class HANMOV_SG12 : PCI
+public class HANMOV_SG12 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Goods identity number
@@ -304,7 +305,7 @@ public class HANMOV_SG12 : PCI
 }
 
 [EdiSegmentGroup("GID", "HAN", "CST", "TMP", "RNG", "LOC", "MOA", "PIA", "FTX", "NAD", "MEA", "DIM", "RFF", "PCI", "DOC", "SGP", "TCC", "DGS")]
-public class HANMOV_SG13 : GID
+public class HANMOV_SG13 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -394,7 +395,7 @@ public class HANMOV_SG13 : GID
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class HANMOV_SG14 : DOC
+public class HANMOV_SG14 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -403,7 +404,7 @@ public class HANMOV_SG14 : DOC
 }
 
 [EdiSegmentGroup("DGS", "FTX", "MEA")]
-public class HANMOV_SG15 : DGS
+public class HANMOV_SG15 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -417,7 +418,7 @@ public class HANMOV_SG15 : DGS
 }
 
 [EdiSegmentGroup("EQD", "EQN", "SEL", "EQA")]
-public class HANMOV_SG16 : EQD
+public class HANMOV_SG16 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace Edi.Contracts.Qualifiers;
@@ -6,7 +7,7 @@ namespace Edi.Contracts.Qualifiers;
 /// <summary>
 /// Status event, coded
 /// </summary>
-public class StatusEventCoded
+public class StatusEventCoded : IQualifier
 {
 	/// <summary>
 	/// String assign converter

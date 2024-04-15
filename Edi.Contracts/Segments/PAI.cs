@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the instructions for payment.
 /// </summary>
 [EdiSegment, EdiPath("PAI")]
-public class PAI
+public class PAI : ISegment
 {
 	/// <summary>
 	/// Indication of method of payment employed or to be employed.
@@ -21,7 +22,7 @@ public class PAI
 /// Indication of method of payment employed or to be employed.
 /// </summary>
 [EdiElement]
-public class PAI_PaymentInstructionDetails
+public class PAI_PaymentInstructionDetails : IElement
 {
 	/// <summary>
 	/// Identification of the method employed or to be employed in order that a payment may be made or regarded as made. The method may or may not be tied to a guarantee.

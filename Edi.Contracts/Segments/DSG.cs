@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To communicate how dose(s) are administered.
 /// </summary>
 [EdiSegment, EdiPath("DSG")]
-public class DSG
+public class DSG : ISegment
 {
 	/// <summary>
 	/// To provide a part of dosage specification.
@@ -27,7 +28,7 @@ public class DSG
 /// To specify a dosage.
 /// </summary>
 [EdiElement]
-public class DSG_DosageDetails
+public class DSG_DosageDetails : IElement
 {
 	/// <summary>
 	/// To specify a dosage using code.

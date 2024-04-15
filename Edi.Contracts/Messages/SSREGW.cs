@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// SSREGW
 /// </summary>
 [EdiMessage]
-public class SSREGW
+public class SSREGW : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class SSREGW
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1C { get; set; }
+	public DTM? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// General indicator
@@ -57,7 +58,7 @@ public class SSREGW
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class SSREGW_SG1 : RFF
+public class SSREGW_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -66,7 +67,7 @@ public class SSREGW_SG1 : RFF
 }
 
 [EdiSegmentGroup("PNA", "GIR", "NAT", "DOC", "ADR", "ATT", "DTM", "PDI")]
-public class SSREGW_SG2 : PNA
+public class SSREGW_SG2 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Related identification numbers
@@ -106,7 +107,7 @@ public class SSREGW_SG2 : PNA
 }
 
 [EdiSegmentGroup("DTM", "ADR")]
-public class SSREGW_SG3 : DTM
+public class SSREGW_SG3 : DTM, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -115,7 +116,7 @@ public class SSREGW_SG3 : DTM
 }
 
 [EdiSegmentGroup("PDI", "DTM")]
-public class SSREGW_SG4 : PDI
+public class SSREGW_SG4 : PDI, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -124,7 +125,7 @@ public class SSREGW_SG4 : PDI
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class SSREGW_SG5 : AUT
+public class SSREGW_SG5 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

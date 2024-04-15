@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To provide free form or coded text information.
 /// </summary>
 [EdiSegment, EdiPath("FTX")]
-public class FTX
+public class FTX : ISegment
 {
 	/// <summary>
 	/// Code specifying subject of a free text.
@@ -46,7 +47,7 @@ public class FTX
 /// Coded reference to a standard text and its source.
 /// </summary>
 [EdiElement]
-public class FTX_TextReference
+public class FTX_TextReference : IElement
 {
 	/// <summary>
 	/// Free text in coded form.
@@ -71,7 +72,7 @@ public class FTX_TextReference
 /// Free text; one to five lines.
 /// </summary>
 [EdiElement]
-public class FTX_TextLiteral
+public class FTX_TextLiteral : IElement
 {
 	/// <summary>
 	/// Free text field available to the message sender for information.

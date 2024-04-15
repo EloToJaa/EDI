@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To end and check the completeness of a message.
 /// </summary>
 [EdiSegment, EdiPath("UNT")]
-public class UNT
+public class UNT : ISegment
 {
 	/// <summary>
 	/// Control count of number of segments in a message.

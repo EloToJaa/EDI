@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify a discrete or non-discrete result as a value or value range.
 /// </summary>
 [EdiSegment, EdiPath("RSL")]
-public class RSL
+public class RSL : ISegment
 {
 	/// <summary>
 	/// To specify the type of value or value range.
@@ -52,7 +53,7 @@ public class RSL
 /// To specify a value.
 /// </summary>
 [EdiElement]
-public class RSL_ResultDetails
+public class RSL_ResultDetails : IElement
 {
 	/// <summary>
 	/// Value of the measured unit.
@@ -95,7 +96,7 @@ public class RSL_ResultDetails
 /// To specify a measurement unit.
 /// </summary>
 [EdiElement]
-public class RSL_MeasurementUnitDetails
+public class RSL_MeasurementUnitDetails : IElement
 {
 	/// <summary>
 	/// Coded identification of a measurement unit.

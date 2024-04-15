@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify price information.
 /// </summary>
 [EdiSegment, EdiPath("PRI")]
-public class PRI
+public class PRI : ISegment
 {
 	/// <summary>
 	/// Identification of price type, price and related details.
@@ -28,7 +29,7 @@ public class PRI
 /// Identification of price type, price and related details.
 /// </summary>
 [EdiElement]
-public class PRI_PriceInformation
+public class PRI_PriceInformation : IElement
 {
 	/// <summary>
 	/// Identification of a type of price.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// ITRRPT
 /// </summary>
 [EdiMessage]
-public class ITRRPT
+public class ITRRPT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class ITRRPT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Measurements
 	/// </summary>
-	public List<MEA>? Measurements1C { get; set; }
+	public List<MEA>? MeasurementsC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class ITRRPT
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ITRRPT_SG1 : RFF
+public class ITRRPT_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class ITRRPT_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "CTA")]
-public class ITRRPT_SG2 : NAD
+public class ITRRPT_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -96,7 +97,7 @@ public class ITRRPT_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ITRRPT_SG3 : RFF
+public class ITRRPT_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -105,7 +106,7 @@ public class ITRRPT_SG3 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class ITRRPT_SG4 : CTA
+public class ITRRPT_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -114,7 +115,7 @@ public class ITRRPT_SG4 : CTA
 }
 
 [EdiSegmentGroup("TDT", "PCD", "LOC")]
-public class ITRRPT_SG5 : TDT
+public class ITRRPT_SG5 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -129,7 +130,7 @@ public class ITRRPT_SG5 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class ITRRPT_SG6 : LOC
+public class ITRRPT_SG6 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -138,7 +139,7 @@ public class ITRRPT_SG6 : LOC
 }
 
 [EdiSegmentGroup("EQD", "MEA", "SEL", "EQA", "PCD", "HAN")]
-public class ITRRPT_SG7 : EQD
+public class ITRRPT_SG7 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -168,7 +169,7 @@ public class ITRRPT_SG7 : EQD
 }
 
 [EdiSegmentGroup("HAN", "FTX")]
-public class ITRRPT_SG8 : HAN
+public class ITRRPT_SG8 : HAN, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -177,7 +178,7 @@ public class ITRRPT_SG8 : HAN
 }
 
 [EdiSegmentGroup("GIS", "CDI", "DTM", "ALI", "MEA", "MOA", "RFF", "NAD", "TOD", "CPS")]
-public class ITRRPT_SG9 : GIS
+public class ITRRPT_SG9 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Physical or logical state
@@ -227,7 +228,7 @@ public class ITRRPT_SG9 : GIS
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ITRRPT_SG10 : RFF
+public class ITRRPT_SG10 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -236,7 +237,7 @@ public class ITRRPT_SG10 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "CTA")]
-public class ITRRPT_SG11 : NAD
+public class ITRRPT_SG11 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -256,7 +257,7 @@ public class ITRRPT_SG11 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ITRRPT_SG12 : RFF
+public class ITRRPT_SG12 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -265,7 +266,7 @@ public class ITRRPT_SG12 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class ITRRPT_SG13 : CTA
+public class ITRRPT_SG13 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -274,7 +275,7 @@ public class ITRRPT_SG13 : CTA
 }
 
 [EdiSegmentGroup("TOD", "LOC", "FTX")]
-public class ITRRPT_SG14 : TOD
+public class ITRRPT_SG14 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -288,7 +289,7 @@ public class ITRRPT_SG14 : TOD
 }
 
 [EdiSegmentGroup("CPS", "FTX", "PAC", "LIN")]
-public class ITRRPT_SG15 : CPS
+public class ITRRPT_SG15 : CPS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -308,7 +309,7 @@ public class ITRRPT_SG15 : CPS
 }
 
 [EdiSegmentGroup("PAC", "MEA", "QTY", "HAN", "PCI")]
-public class ITRRPT_SG16 : PAC
+public class ITRRPT_SG16 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -333,7 +334,7 @@ public class ITRRPT_SG16 : PAC
 }
 
 [EdiSegmentGroup("HAN", "FTX")]
-public class ITRRPT_SG17 : HAN
+public class ITRRPT_SG17 : HAN, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -342,7 +343,7 @@ public class ITRRPT_SG17 : HAN
 }
 
 [EdiSegmentGroup("PCI", "RFF", "CDI", "DTM", "GIN")]
-public class ITRRPT_SG18 : PCI
+public class ITRRPT_SG18 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -367,7 +368,7 @@ public class ITRRPT_SG18 : PCI
 }
 
 [EdiSegmentGroup("GIN", "CDI", "DLM")]
-public class ITRRPT_SG19 : GIN
+public class ITRRPT_SG19 : GIN, ISegmentGroup
 {
 	/// <summary>
 	/// Physical or logical state
@@ -381,7 +382,7 @@ public class ITRRPT_SG19 : GIN
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "MEA", "CDI", "QTY", "ALI", "GIN", "GIR", "DTM", "MOA", "FTX", "RFF", "DGS", "PCI")]
-public class ITRRPT_SG20 : LIN
+public class ITRRPT_SG20 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -456,7 +457,7 @@ public class ITRRPT_SG20 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ITRRPT_SG21 : RFF
+public class ITRRPT_SG21 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -465,7 +466,7 @@ public class ITRRPT_SG21 : RFF
 }
 
 [EdiSegmentGroup("DGS", "QTY", "FTX")]
-public class ITRRPT_SG22 : DGS
+public class ITRRPT_SG22 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -479,7 +480,7 @@ public class ITRRPT_SG22 : DGS
 }
 
 [EdiSegmentGroup("PCI", "CDI", "DTM", "QTY", "MEA", "GIN", "HAN")]
-public class ITRRPT_SG23 : PCI
+public class ITRRPT_SG23 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Physical or logical state
@@ -514,7 +515,7 @@ public class ITRRPT_SG23 : PCI
 }
 
 [EdiSegmentGroup("GIN", "CDI", "DLM")]
-public class ITRRPT_SG24 : GIN
+public class ITRRPT_SG24 : GIN, ISegmentGroup
 {
 	/// <summary>
 	/// Physical or logical state
@@ -528,7 +529,7 @@ public class ITRRPT_SG24 : GIN
 }
 
 [EdiSegmentGroup("HAN", "FTX", "GIN")]
-public class ITRRPT_SG25 : HAN
+public class ITRRPT_SG25 : HAN, ISegmentGroup
 {
 	/// <summary>
 	/// Free text

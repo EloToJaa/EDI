@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace Edi.Contracts.Qualifiers;
@@ -6,7 +7,7 @@ namespace Edi.Contracts.Qualifiers;
 /// <summary>
 /// Payment means, coded
 /// </summary>
-public class PaymentMeansCoded
+public class PaymentMeansCoded : IQualifier
 {
 	/// <summary>
 	/// String assign converter

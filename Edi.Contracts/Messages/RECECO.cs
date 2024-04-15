@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// RECECO
 /// </summary>
 [EdiMessage]
-public class RECECO
+public class RECECO : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class RECECO
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1C { get; set; }
+	public List<RFF>? ReferenceC { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -47,7 +48,7 @@ public class RECECO
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM", "FII")]
-public class RECECO_SG1 : NAD
+public class RECECO_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -66,7 +67,7 @@ public class RECECO_SG1 : NAD
 }
 
 [EdiSegmentGroup("DOC", "MOA", "CUX", "DTM", "CCD", "PCD", "PAT", "FTX", "RFF")]
-public class RECECO_SG2 : DOC
+public class RECECO_SG2 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount

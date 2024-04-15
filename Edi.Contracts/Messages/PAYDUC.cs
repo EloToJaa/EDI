@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// PAYDUC
 /// </summary>
 [EdiMessage]
-public class PAYDUC
+public class PAYDUC : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -33,22 +34,22 @@ public class PAYDUC
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Currencies
 	/// </summary>
-	public CUX? Currencies1C { get; set; }
+	public CUX? CurrenciesC { get; set; }
 
 	/// <summary>
 	/// Payment terms basis
 	/// </summary>
-	public PAT? PaymentTermsBasis1C { get; set; }
+	public PAT? PaymentTermsBasisC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -73,7 +74,7 @@ public class PAYDUC
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public MOA? MonetaryAmount1M { get; set; }
+	public MOA? MonetaryAmountM { get; set; }
 
 	/// <summary>
 	/// Control total
@@ -92,7 +93,7 @@ public class PAYDUC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PAYDUC_SG1 : RFF
+public class PAYDUC_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -101,7 +102,7 @@ public class PAYDUC_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class PAYDUC_SG2 : NAD
+public class PAYDUC_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -111,7 +112,7 @@ public class PAYDUC_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class PAYDUC_SG3 : CTA
+public class PAYDUC_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -120,7 +121,7 @@ public class PAYDUC_SG3 : CTA
 }
 
 [EdiSegmentGroup("GIS", "RFF", "MOA", "BUS", "CUX", "DTM")]
-public class PAYDUC_SG4 : GIS
+public class PAYDUC_SG4 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -150,7 +151,7 @@ public class PAYDUC_SG4 : GIS
 }
 
 [EdiSegmentGroup("DTM", "NAD")]
-public class PAYDUC_SG5 : DTM
+public class PAYDUC_SG5 : DTM, ISegmentGroup
 {
 	/// <summary>
 	/// SG6
@@ -160,7 +161,7 @@ public class PAYDUC_SG5 : DTM
 }
 
 [EdiSegmentGroup("NAD", "RFF", "MOA", "AJT", "PAT", "FTX")]
-public class PAYDUC_SG6 : NAD
+public class PAYDUC_SG6 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// AUTHOR
 /// </summary>
 [EdiMessage]
-public class AUTHOR
+public class AUTHOR : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class AUTHOR
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1C { get; set; }
+	public DTM? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Business function
@@ -67,7 +68,7 @@ public class AUTHOR
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class AUTHOR_SG1 : RFF
+public class AUTHOR_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class AUTHOR_SG1 : RFF
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class AUTHOR_SG2 : FII
+public class AUTHOR_SG2 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -90,7 +91,7 @@ public class AUTHOR_SG2 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class AUTHOR_SG3 : NAD
+public class AUTHOR_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -104,7 +105,7 @@ public class AUTHOR_SG3 : NAD
 }
 
 [EdiSegmentGroup("LIN", "RFF", "SEQ", "FII", "NAD")]
-public class AUTHOR_SG4 : LIN
+public class AUTHOR_SG4 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// SG5
@@ -129,7 +130,7 @@ public class AUTHOR_SG4 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class AUTHOR_SG5 : RFF
+public class AUTHOR_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -138,7 +139,7 @@ public class AUTHOR_SG5 : RFF
 }
 
 [EdiSegmentGroup("SEQ", "GIS", "DTM", "MOA", "DOC")]
-public class AUTHOR_SG6 : SEQ
+public class AUTHOR_SG6 : SEQ, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -162,7 +163,7 @@ public class AUTHOR_SG6 : SEQ
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class AUTHOR_SG7 : FII
+public class AUTHOR_SG7 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -176,7 +177,7 @@ public class AUTHOR_SG7 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class AUTHOR_SG8 : NAD
+public class AUTHOR_SG8 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -190,7 +191,7 @@ public class AUTHOR_SG8 : NAD
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class AUTHOR_SG9 : AUT
+public class AUTHOR_SG9 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

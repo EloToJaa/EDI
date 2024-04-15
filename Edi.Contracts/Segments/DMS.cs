@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify summary information relating to the document/message.
 /// </summary>
 [EdiSegment, EdiPath("DMS")]
-public class DMS
+public class DMS : ISegment
 {
 	/// <summary>
 	/// Reference number assigned to the document/message by the issuer.

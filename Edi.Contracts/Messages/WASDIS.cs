@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// WASDIS
 /// </summary>
 [EdiMessage]
-public class WASDIS
+public class WASDIS : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class WASDIS
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -57,7 +58,7 @@ public class WASDIS
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class WASDIS_SG1 : RFF
+public class WASDIS_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -66,7 +67,7 @@ public class WASDIS_SG1 : RFF
 }
 
 [EdiSegmentGroup("LOC", "DTM", "GOR")]
-public class WASDIS_SG2 : LOC
+public class WASDIS_SG2 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -80,7 +81,7 @@ public class WASDIS_SG2 : LOC
 }
 
 [EdiSegmentGroup("TDT", "DTM", "LOC", "RFF", "MEA")]
-public class WASDIS_SG3 : TDT
+public class WASDIS_SG3 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -104,7 +105,7 @@ public class WASDIS_SG3 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class WASDIS_SG4 : NAD
+public class WASDIS_SG4 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG5
@@ -114,7 +115,7 @@ public class WASDIS_SG4 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class WASDIS_SG5 : CTA
+public class WASDIS_SG5 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -123,7 +124,7 @@ public class WASDIS_SG5 : CTA
 }
 
 [EdiSegmentGroup("DGS", "MEA", "SGP")]
-public class WASDIS_SG6 : DGS
+public class WASDIS_SG6 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements

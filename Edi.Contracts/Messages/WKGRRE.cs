@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// WKGRRE
 /// </summary>
 [EdiMessage]
-public class WKGRRE
+public class WKGRRE : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class WKGRRE
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Quantity
@@ -62,7 +63,7 @@ public class WKGRRE
 }
 
 [EdiSegmentGroup("PNA", "ADR", "LOC", "DTM", "CTA")]
-public class WKGRRE_SG1 : PNA
+public class WKGRRE_SG1 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -87,7 +88,7 @@ public class WKGRRE_SG1 : PNA
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class WKGRRE_SG2 : CTA
+public class WKGRRE_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -96,7 +97,7 @@ public class WKGRRE_SG2 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class WKGRRE_SG3 : RFF
+public class WKGRRE_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -105,7 +106,7 @@ public class WKGRRE_SG3 : RFF
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class WKGRRE_SG4 : GIS
+public class WKGRRE_SG4 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -114,7 +115,7 @@ public class WKGRRE_SG4 : GIS
 }
 
 [EdiSegmentGroup("RFF", "DTM", "PNA", "FTX", "GIS", "RFF", "EMP", "SAL", "PNA")]
-public class WKGRRE_SG5 : RFF
+public class WKGRRE_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -159,7 +160,7 @@ public class WKGRRE_SG5 : RFF
 }
 
 [EdiSegmentGroup("PNA", "ADR", "DTM", "LOC", "NAT", "PDI", "DOC")]
-public class WKGRRE_SG6 : PNA
+public class WKGRRE_SG6 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -193,7 +194,7 @@ public class WKGRRE_SG6 : PNA
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class WKGRRE_SG7 : GIS
+public class WKGRRE_SG7 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -202,7 +203,7 @@ public class WKGRRE_SG7 : GIS
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class WKGRRE_SG8 : RFF
+public class WKGRRE_SG8 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -211,7 +212,7 @@ public class WKGRRE_SG8 : RFF
 }
 
 [EdiSegmentGroup("EMP", "LOC", "ATT")]
-public class WKGRRE_SG9 : EMP
+public class WKGRRE_SG9 : EMP, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -226,7 +227,7 @@ public class WKGRRE_SG9 : EMP
 }
 
 [EdiSegmentGroup("ATT", "FTX")]
-public class WKGRRE_SG10 : ATT
+public class WKGRRE_SG10 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -235,7 +236,7 @@ public class WKGRRE_SG10 : ATT
 }
 
 [EdiSegmentGroup("SAL", "FTX", "DTM", "ATT", "GIS", "MOA")]
-public class WKGRRE_SG11 : SAL
+public class WKGRRE_SG11 : SAL, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -265,7 +266,7 @@ public class WKGRRE_SG11 : SAL
 }
 
 [EdiSegmentGroup("ATT", "FTX")]
-public class WKGRRE_SG12 : ATT
+public class WKGRRE_SG12 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -274,7 +275,7 @@ public class WKGRRE_SG12 : ATT
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class WKGRRE_SG13 : GIS
+public class WKGRRE_SG13 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -283,7 +284,7 @@ public class WKGRRE_SG13 : GIS
 }
 
 [EdiSegmentGroup("MOA", "RNG", "FTX")]
-public class WKGRRE_SG14 : MOA
+public class WKGRRE_SG14 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -297,7 +298,7 @@ public class WKGRRE_SG14 : MOA
 }
 
 [EdiSegmentGroup("PNA", "ADR", "LOC", "DTM", "FTX", "CTA")]
-public class WKGRRE_SG15 : PNA
+public class WKGRRE_SG15 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -327,7 +328,7 @@ public class WKGRRE_SG15 : PNA
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class WKGRRE_SG16 : CTA
+public class WKGRRE_SG16 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact

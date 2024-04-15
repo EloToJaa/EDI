@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace Edi.Contracts.Qualifiers;
@@ -6,7 +7,7 @@ namespace Edi.Contracts.Qualifiers;
 /// <summary>
 /// Change reason, coded
 /// </summary>
-public class ChangeReasonCoded
+public class ChangeReasonCoded : IQualifier
 {
 	/// <summary>
 	/// String assign converter

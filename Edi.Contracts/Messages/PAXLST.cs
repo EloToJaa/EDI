@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// PAXLST
 /// </summary>
 [EdiMessage]
-public class PAXLST
+public class PAXLST : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class PAXLST
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public RFF? Reference1C { get; set; }
+	public RFF? ReferenceC { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -62,7 +63,7 @@ public class PAXLST
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class PAXLST_SG1 : NAD
+public class PAXLST_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -76,7 +77,7 @@ public class PAXLST_SG1 : NAD
 }
 
 [EdiSegmentGroup("TDT", "DTM", "LOC")]
-public class PAXLST_SG2 : TDT
+public class PAXLST_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -91,7 +92,7 @@ public class PAXLST_SG2 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class PAXLST_SG3 : LOC
+public class PAXLST_SG3 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -100,7 +101,7 @@ public class PAXLST_SG3 : LOC
 }
 
 [EdiSegmentGroup("NAD", "ATT", "DTM", "MEA", "GIS", "FTX", "LOC", "COM", "DOC", "TDT")]
-public class PAXLST_SG4 : NAD
+public class PAXLST_SG4 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Attribute
@@ -150,7 +151,7 @@ public class PAXLST_SG4 : NAD
 }
 
 [EdiSegmentGroup("DOC", "DTM", "GIS", "RFF", "LOC", "CPI", "QTY")]
-public class PAXLST_SG5 : DOC
+public class PAXLST_SG5 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -184,7 +185,7 @@ public class PAXLST_SG5 : DOC
 }
 
 [EdiSegmentGroup("TDT", "FTX")]
-public class PAXLST_SG6 : TDT
+public class PAXLST_SG6 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text

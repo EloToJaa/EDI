@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify a component of a data structure (e.g. an array or table).
 /// </summary>
 [EdiSegment, EdiPath("SCD")]
-public class SCD
+public class SCD : ISegment
 {
 	/// <summary>
 	/// To identify the function of a structure component.
@@ -57,7 +58,7 @@ public class SCD
 /// The identification of a structure component.
 /// </summary>
 [EdiElement]
-public class SCD_StructureComponentIdentification
+public class SCD_StructureComponentIdentification : IElement
 {
 	/// <summary>
 	/// The identifier of a structure component.
@@ -76,7 +77,7 @@ public class SCD_StructureComponentIdentification
 /// Identification of a transaction party by code.
 /// </summary>
 [EdiElement]
-public class SCD_PartyIdentificationDetails
+public class SCD_PartyIdentificationDetails : IElement
 {
 	/// <summary>
 	/// Code identifying a party involved in a transaction.
@@ -101,7 +102,7 @@ public class SCD_PartyIdentificationDetails
 /// To identify the position of an object in a structure containing the object.
 /// </summary>
 [EdiElement]
-public class SCD_PositionIdentification
+public class SCD_PositionIdentification : IElement
 {
 	/// <summary>
 	/// A unique number assigned by the sender to identify a level within a hierarchical structure.
@@ -120,7 +121,7 @@ public class SCD_PositionIdentification
 /// Specific product characteristic data.
 /// </summary>
 [EdiElement]
-public class SCD_ProductCharacteristic
+public class SCD_ProductCharacteristic : IElement
 {
 	/// <summary>
 	/// A code from an industry code list which provides specific data about a product characteristic.

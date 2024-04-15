@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify employment details.
 /// </summary>
 [EdiSegment, EdiPath("EMP")]
-public class EMP
+public class EMP : ISegment
 {
 	/// <summary>
 	/// Specification of the meaning of employment details.
@@ -52,7 +53,7 @@ public class EMP
 /// Code and/or description of an employment category.
 /// </summary>
 [EdiElement]
-public class EMP_EmploymentCategory
+public class EMP_EmploymentCategory : IElement
 {
 	/// <summary>
 	/// Identification of the employment category.
@@ -83,7 +84,7 @@ public class EMP_EmploymentCategory
 /// Description of an occupation.
 /// </summary>
 [EdiElement]
-public class EMP_Occupation
+public class EMP_Occupation : IElement
 {
 	/// <summary>
 	/// Code identifying an occupation.
@@ -120,7 +121,7 @@ public class EMP_Occupation
 /// Qualification classification description and/or code. This specifies the trade, skill, professional or similar qualification category.
 /// </summary>
 [EdiElement]
-public class EMP_QualificationClassification
+public class EMP_QualificationClassification : IElement
 {
 	/// <summary>
 	/// Identification of a qualification classification.

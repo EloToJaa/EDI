@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CODECO
 /// </summary>
 [EdiMessage]
-public class CODECO
+public class CODECO : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class CODECO
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class CODECO
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CODECO_SG1 : RFF
+public class CODECO_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class CODECO_SG1 : RFF
 }
 
 [EdiSegmentGroup("TDT", "RFF", "LOC", "DTM")]
-public class CODECO_SG2 : TDT
+public class CODECO_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -95,7 +96,7 @@ public class CODECO_SG2 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class CODECO_SG3 : NAD
+public class CODECO_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -105,7 +106,7 @@ public class CODECO_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CODECO_SG4 : CTA
+public class CODECO_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -114,7 +115,7 @@ public class CODECO_SG4 : CTA
 }
 
 [EdiSegmentGroup("GID", "HAN", "FTX", "PIA", "MEA", "TMP", "RNG", "SGP", "DGS")]
-public class CODECO_SG5 : GID
+public class CODECO_SG5 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -159,7 +160,7 @@ public class CODECO_SG5 : GID
 }
 
 [EdiSegmentGroup("DGS", "FTX")]
-public class CODECO_SG6 : DGS
+public class CODECO_SG6 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -168,7 +169,7 @@ public class CODECO_SG6 : DGS
 }
 
 [EdiSegmentGroup("EQD", "RFF", "TMD", "DTM", "LOC", "MEA", "DIM", "SEL", "FTX", "EQA", "HAN", "DAM", "TDT", "NAD")]
-public class CODECO_SG7 : EQD
+public class CODECO_SG7 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -237,7 +238,7 @@ public class CODECO_SG7 : EQD
 }
 
 [EdiSegmentGroup("DAM", "COD")]
-public class CODECO_SG8 : DAM
+public class CODECO_SG8 : DAM, ISegmentGroup
 {
 	/// <summary>
 	/// Component details
@@ -246,7 +247,7 @@ public class CODECO_SG8 : DAM
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM")]
-public class CODECO_SG9 : TDT
+public class CODECO_SG9 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification

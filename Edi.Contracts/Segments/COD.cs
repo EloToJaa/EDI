@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To provide component details of an object (e.g. product, container) such as its type and the material of which it is composed.
 /// </summary>
 [EdiSegment, EdiPath("COD")]
-public class COD
+public class COD : ISegment
 {
 	/// <summary>
 	/// To identify the type of unit/component of an object (e.g. lock, door, tyre).
@@ -27,7 +28,7 @@ public class COD
 /// To identify the type of unit/component of an object (e.g. lock, door, tyre).
 /// </summary>
 [EdiElement]
-public class COD_TypeOfUnitComponent
+public class COD_TypeOfUnitComponent : IElement
 {
 	/// <summary>
 	/// Code identifying the type of unit/component of an object (e.g. lock, door, tyre).
@@ -58,7 +59,7 @@ public class COD_TypeOfUnitComponent
 /// To identify the material of which a component is composed (e.g. steel, plastics).
 /// </summary>
 [EdiElement]
-public class COD_ComponentMaterial
+public class COD_ComponentMaterial : IElement
 {
 	/// <summary>
 	/// Code identifying the material of which a component is composed (e.g. steel, plastics).

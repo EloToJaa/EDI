@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// MOVINS
 /// </summary>
 [EdiMessage]
-public class MOVINS
+public class MOVINS : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class MOVINS
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1M { get; set; }
+	public DTM? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class MOVINS
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class MOVINS_SG1 : RFF
+public class MOVINS_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -61,7 +62,7 @@ public class MOVINS_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class MOVINS_SG2 : NAD
+public class MOVINS_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -71,7 +72,7 @@ public class MOVINS_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class MOVINS_SG3 : CTA
+public class MOVINS_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -80,7 +81,7 @@ public class MOVINS_SG3 : CTA
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM", "RFF", "FTX")]
-public class MOVINS_SG4 : TDT
+public class MOVINS_SG4 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -104,7 +105,7 @@ public class MOVINS_SG4 : TDT
 }
 
 [EdiSegmentGroup("HAN", "LOC")]
-public class MOVINS_SG5 : HAN
+public class MOVINS_SG5 : HAN, ISegmentGroup
 {
 	/// <summary>
 	/// SG6
@@ -114,7 +115,7 @@ public class MOVINS_SG5 : HAN
 }
 
 [EdiSegmentGroup("LOC", "RFF", "FTX", "MEA", "DIM", "LOC", "NAD", "TMP", "EQD", "EQA", "GID", "RFF")]
-public class MOVINS_SG6 : LOC
+public class MOVINS_SG6 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -174,7 +175,7 @@ public class MOVINS_SG6 : LOC
 }
 
 [EdiSegmentGroup("TMP", "RNG")]
-public class MOVINS_SG7 : TMP
+public class MOVINS_SG7 : TMP, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -183,7 +184,7 @@ public class MOVINS_SG7 : TMP
 }
 
 [EdiSegmentGroup("EQD", "EQN")]
-public class MOVINS_SG8 : EQD
+public class MOVINS_SG8 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -192,7 +193,7 @@ public class MOVINS_SG8 : EQD
 }
 
 [EdiSegmentGroup("EQA", "EQN")]
-public class MOVINS_SG9 : EQA
+public class MOVINS_SG9 : EQA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -201,7 +202,7 @@ public class MOVINS_SG9 : EQA
 }
 
 [EdiSegmentGroup("GID", "GDS")]
-public class MOVINS_SG10 : GID
+public class MOVINS_SG10 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Nature of cargo
@@ -210,7 +211,7 @@ public class MOVINS_SG10 : GID
 }
 
 [EdiSegmentGroup("RFF", "DGS")]
-public class MOVINS_SG11 : RFF
+public class MOVINS_SG11 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// SG12
@@ -220,7 +221,7 @@ public class MOVINS_SG11 : RFF
 }
 
 [EdiSegmentGroup("DGS", "FTX")]
-public class MOVINS_SG12 : DGS
+public class MOVINS_SG12 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text

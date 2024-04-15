@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify details relating to pricing of a product.
 /// </summary>
 [EdiSegment, EdiPath("PIT")]
-public class PIT
+public class PIT : ISegment
 {
 	/// <summary>
 	/// Serial number designating each separate item within a series of articles.
@@ -58,7 +59,7 @@ public class PIT
 /// A value assigned by the seller to indicate movement of prices from a previous price catalogue.
 /// </summary>
 [EdiElement]
-public class PIT_PriceChangeInformation
+public class PIT_PriceChangeInformation : IElement
 {
 	/// <summary>
 	/// Indication of the type of price change for a line item (eg increased).

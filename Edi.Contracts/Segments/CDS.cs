@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a code set and to give its class and maintenance operation.
 /// </summary>
 [EdiSegment, EdiPath("CDS")]
-public class CDS
+public class CDS : ISegment
 {
 	/// <summary>
 	/// To identify a code set.
@@ -34,7 +35,7 @@ public class CDS
 /// To identify a code set.
 /// </summary>
 [EdiElement]
-public class CDS_CodeSetIdentification
+public class CDS_CodeSetIdentification : IElement
 {
 	/// <summary>
 	/// Tag of a simple data element.

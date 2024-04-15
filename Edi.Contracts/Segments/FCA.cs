@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// Description of allocation of charges.
 /// </summary>
 [EdiSegment, EdiPath("FCA")]
-public class FCA
+public class FCA : ISegment
 {
 	/// <summary>
 	/// Indication of how allowances or charges are to be settled.
@@ -27,7 +28,7 @@ public class FCA
 /// Identification of the account for charge or allowance.
 /// </summary>
 [EdiElement]
-public class FCA_ChargeAllowanceAccount
+public class FCA_ChargeAllowanceAccount : IElement
 {
 	/// <summary>
 	/// Number identifying a branch of an institution.

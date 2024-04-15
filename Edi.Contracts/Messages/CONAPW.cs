@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CONAPW
 /// </summary>
 [EdiMessage]
-public class CONAPW
+public class CONAPW : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -67,7 +68,7 @@ public class CONAPW
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class CONAPW_SG1 : NAD
+public class CONAPW_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -77,7 +78,7 @@ public class CONAPW_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CONAPW_SG2 : CTA
+public class CONAPW_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact

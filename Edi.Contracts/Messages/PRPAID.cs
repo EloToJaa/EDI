@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// PRPAID
 /// </summary>
 [EdiMessage]
-public class PRPAID
+public class PRPAID : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,17 +24,17 @@ public class PRPAID
 	/// <summary>
 	/// General indicator
 	/// </summary>
-	public GIS? GeneralIndicator1M { get; set; }
+	public GIS? GeneralIndicatorM { get; set; }
 
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1M { get; set; }
+	public List<RFF>? ReferenceM { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -57,7 +58,7 @@ public class PRPAID
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM", "RFF")]
-public class PRPAID_SG1 : NAD
+public class PRPAID_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -76,7 +77,7 @@ public class PRPAID_SG1 : NAD
 }
 
 [EdiSegmentGroup("DOC", "GIS", "DTM", "NAD", "MOA", "RFF", "ICD", "ATT", "CUX")]
-public class PRPAID_SG2 : DOC
+public class PRPAID_SG2 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -120,7 +121,7 @@ public class PRPAID_SG2 : DOC
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class PRPAID_SG3 : GIS
+public class PRPAID_SG3 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -129,7 +130,7 @@ public class PRPAID_SG3 : GIS
 }
 
 [EdiSegmentGroup("MOA", "DTM", "PCD")]
-public class PRPAID_SG4 : MOA
+public class PRPAID_SG4 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -143,7 +144,7 @@ public class PRPAID_SG4 : MOA
 }
 
 [EdiSegmentGroup("ATT", "PCD")]
-public class PRPAID_SG5 : ATT
+public class PRPAID_SG5 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -152,7 +153,7 @@ public class PRPAID_SG5 : ATT
 }
 
 [EdiSegmentGroup("MOA", "GIS", "DTM", "RFF", "ATT", "ICD", "CUX")]
-public class PRPAID_SG6 : MOA
+public class PRPAID_SG6 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator

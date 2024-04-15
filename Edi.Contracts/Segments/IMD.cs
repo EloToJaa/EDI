@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To describe an item in either an industry or free format.
 /// </summary>
 [EdiSegment, EdiPath("IMD")]
-public class IMD
+public class IMD : ISegment
 {
 	/// <summary>
 	/// Code indicating the format of a description.
@@ -40,7 +41,7 @@ public class IMD
 /// Description of an item.
 /// </summary>
 [EdiElement]
-public class IMD_ItemDescription
+public class IMD_ItemDescription : IElement
 {
 	/// <summary>
 	/// Code from an industry code list which provides specific data about a product characteristic.

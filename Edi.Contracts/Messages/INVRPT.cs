@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// INVRPT
 /// </summary>
 [EdiMessage]
-public class INVRPT
+public class INVRPT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class INVRPT
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -62,7 +63,7 @@ public class INVRPT
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class INVRPT_SG1 : RFF
+public class INVRPT_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -71,7 +72,7 @@ public class INVRPT_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "CTA")]
-public class INVRPT_SG2 : NAD
+public class INVRPT_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -91,7 +92,7 @@ public class INVRPT_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class INVRPT_SG3 : RFF
+public class INVRPT_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -100,7 +101,7 @@ public class INVRPT_SG3 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class INVRPT_SG4 : CTA
+public class INVRPT_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -109,7 +110,7 @@ public class INVRPT_SG4 : CTA
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class INVRPT_SG5 : CUX
+public class INVRPT_SG5 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -118,7 +119,7 @@ public class INVRPT_SG5 : CUX
 }
 
 [EdiSegmentGroup("CPS", "PAC")]
-public class INVRPT_SG6 : CPS
+public class INVRPT_SG6 : CPS, ISegmentGroup
 {
 	/// <summary>
 	/// SG7
@@ -128,7 +129,7 @@ public class INVRPT_SG6 : CPS
 }
 
 [EdiSegmentGroup("PAC", "PCI", "QTY")]
-public class INVRPT_SG7 : PAC
+public class INVRPT_SG7 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Package identification
@@ -143,7 +144,7 @@ public class INVRPT_SG7 : PAC
 }
 
 [EdiSegmentGroup("QTY", "GIN", "DTM")]
-public class INVRPT_SG8 : QTY
+public class INVRPT_SG8 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Goods identity number
@@ -157,7 +158,7 @@ public class INVRPT_SG8 : QTY
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "NAD", "MEA", "ALI", "LOC", "DTM", "FTX", "RFF", "INV")]
-public class INVRPT_SG9 : LIN
+public class INVRPT_SG9 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -212,7 +213,7 @@ public class INVRPT_SG9 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class INVRPT_SG10 : RFF
+public class INVRPT_SG10 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -221,7 +222,7 @@ public class INVRPT_SG10 : RFF
 }
 
 [EdiSegmentGroup("INV", "QTY", "GIN", "LOC", "DTM", "STS", "NAD", "PRI", "RFF", "CPS")]
-public class INVRPT_SG11 : INV
+public class INVRPT_SG11 : INV, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -271,7 +272,7 @@ public class INVRPT_SG11 : INV
 }
 
 [EdiSegmentGroup("NAD", "LOC")]
-public class INVRPT_SG12 : NAD
+public class INVRPT_SG12 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -280,7 +281,7 @@ public class INVRPT_SG12 : NAD
 }
 
 [EdiSegmentGroup("PRI", "CUX", "DTM")]
-public class INVRPT_SG13 : PRI
+public class INVRPT_SG13 : PRI, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -294,7 +295,7 @@ public class INVRPT_SG13 : PRI
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class INVRPT_SG14 : RFF
+public class INVRPT_SG14 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -303,7 +304,7 @@ public class INVRPT_SG14 : RFF
 }
 
 [EdiSegmentGroup("CPS", "PAC")]
-public class INVRPT_SG15 : CPS
+public class INVRPT_SG15 : CPS, ISegmentGroup
 {
 	/// <summary>
 	/// SG16
@@ -313,7 +314,7 @@ public class INVRPT_SG15 : CPS
 }
 
 [EdiSegmentGroup("PAC", "MEA", "QTY", "PCI")]
-public class INVRPT_SG16 : PAC
+public class INVRPT_SG16 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -333,7 +334,7 @@ public class INVRPT_SG16 : PAC
 }
 
 [EdiSegmentGroup("PCI", "RFF", "DTM", "GIN")]
-public class INVRPT_SG17 : PCI
+public class INVRPT_SG17 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To provide classification details relating to the activities of an organisation.
 /// </summary>
 [EdiSegment, EdiPath("SPR")]
-public class SPR
+public class SPR : ISegment
 {
 	/// <summary>
 	/// Identification of the subject areas to which the specified conditions apply.
@@ -33,7 +34,7 @@ public class SPR
 /// To specify details regarding the class of an organisation.
 /// </summary>
 [EdiElement]
-public class SPR_OrganisationClassificationDetail
+public class SPR_OrganisationClassificationDetail : IElement
 {
 	/// <summary>
 	/// A code to specify the class of an organisation.

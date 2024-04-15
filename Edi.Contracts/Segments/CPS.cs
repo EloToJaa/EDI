@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify the sequence in which physical packing is presented in the consignment, and optionally to identify the hierarchical relationship between packing layers.
 /// </summary>
 [EdiSegment, EdiPath("CPS")]
-public class CPS
+public class CPS : ISegment
 {
 	/// <summary>
 	/// A unique number assigned by the sender to identify a level within a hierarchical structure.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a charge.
 /// </summary>
 [EdiSegment, EdiPath("CPI")]
-public class CPI
+public class CPI : ISegment
 {
 	/// <summary>
 	/// Identification of a category or a zone of charges.
@@ -34,7 +35,7 @@ public class CPI
 /// Identification of a category or a zone of charges.
 /// </summary>
 [EdiElement]
-public class CPI_ChargeCategory
+public class CPI_ChargeCategory : IElement
 {
 	/// <summary>
 	/// To indicate the category or zone of charges.
@@ -59,7 +60,7 @@ public class CPI_ChargeCategory
 /// Code identifying the method of payment.
 /// </summary>
 [EdiElement]
-public class CPI_MethodOfPayment
+public class CPI_MethodOfPayment : IElement
 {
 	/// <summary>
 	/// Identification of method of payment for transport charges.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify the direct relationship between the data/information contained in one segment and the data/information contained in one or more other segments.
 /// </summary>
 [EdiSegment, EdiPath("REL")]
-public class REL
+public class REL : ISegment
 {
 	/// <summary>
 	/// Specification of the meaning of a relationship.
@@ -27,7 +28,7 @@ public class REL
 /// Identification and/or description of a relationship.
 /// </summary>
 [EdiElement]
-public class REL_Relationship
+public class REL_Relationship : IElement
 {
 	/// <summary>
 	/// Identification of a relationship.

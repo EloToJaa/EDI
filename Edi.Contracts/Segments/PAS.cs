@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify attendance information relating to an individual.
 /// </summary>
 [EdiSegment, EdiPath("PAS")]
-public class PAS
+public class PAS : ISegment
 {
 	/// <summary>
 	/// To specify type of attendance.
@@ -39,7 +40,7 @@ public class PAS
 /// To specify the category of the attendee.
 /// </summary>
 [EdiElement]
-public class PAS_AttendeeCategory
+public class PAS_AttendeeCategory : IElement
 {
 	/// <summary>
 	/// Code to specify the category of the attendee.
@@ -70,7 +71,7 @@ public class PAS_AttendeeCategory
 /// To specify type of admission.
 /// </summary>
 [EdiElement]
-public class PAS_AttendanceAdmissionDetails
+public class PAS_AttendanceAdmissionDetails : IElement
 {
 	/// <summary>
 	/// To specify type of admission using code.
@@ -101,7 +102,7 @@ public class PAS_AttendanceAdmissionDetails
 /// To specify type of discharge.
 /// </summary>
 [EdiElement]
-public class PAS_AttendanceDischargeDetails
+public class PAS_AttendanceDischargeDetails : IElement
 {
 	/// <summary>
 	/// To specify type of discharge using code.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify the type of application error within a message.
 /// </summary>
 [EdiSegment, EdiPath("ERC")]
-public class ERC
+public class ERC : ISegment
 {
 	/// <summary>
 	/// Code assigned by the recipient of a message to indicate a data validation error condition.
@@ -21,7 +22,7 @@ public class ERC
 /// Code assigned by the recipient of a message to indicate a data validation error condition.
 /// </summary>
 [EdiElement]
-public class ERC_ApplicationErrorDetail
+public class ERC_ApplicationErrorDetail : IElement
 {
 	/// <summary>
 	/// The code assigned by the receiver of a message to the identification of a data validation error condition.

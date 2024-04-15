@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// JINFDE
 /// </summary>
 [EdiMessage]
-public class JINFDE
+public class JINFDE : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class JINFDE
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -57,7 +58,7 @@ public class JINFDE
 }
 
 [EdiSegmentGroup("PNA", "ADR", "LOC", "DTM", "CTA")]
-public class JINFDE_SG1 : PNA
+public class JINFDE_SG1 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -82,7 +83,7 @@ public class JINFDE_SG1 : PNA
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class JINFDE_SG2 : CTA
+public class JINFDE_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -91,7 +92,7 @@ public class JINFDE_SG2 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class JINFDE_SG3 : RFF
+public class JINFDE_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -100,7 +101,7 @@ public class JINFDE_SG3 : RFF
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class JINFDE_SG4 : GIS
+public class JINFDE_SG4 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -109,7 +110,7 @@ public class JINFDE_SG4 : GIS
 }
 
 [EdiSegmentGroup("RFF", "PNA", "RFF", "FTX", "GIS")]
-public class JINFDE_SG5 : RFF
+public class JINFDE_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// SG6
@@ -134,7 +135,7 @@ public class JINFDE_SG5 : RFF
 }
 
 [EdiSegmentGroup("PNA", "ADR", "LOC", "DTM", "NAT", "PDI", "DOC", "CTA")]
-public class JINFDE_SG6 : PNA
+public class JINFDE_SG6 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -174,7 +175,7 @@ public class JINFDE_SG6 : PNA
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class JINFDE_SG7 : CTA
+public class JINFDE_SG7 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -183,7 +184,7 @@ public class JINFDE_SG7 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class JINFDE_SG8 : RFF
+public class JINFDE_SG8 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -192,7 +193,7 @@ public class JINFDE_SG8 : RFF
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class JINFDE_SG9 : GIS
+public class JINFDE_SG9 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text

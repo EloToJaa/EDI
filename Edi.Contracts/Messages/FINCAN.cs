@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// FINCAN
 /// </summary>
 [EdiMessage]
-public class FINCAN
+public class FINCAN : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class FINCAN
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1M { get; set; }
+	public DTM? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Business function
@@ -67,7 +68,7 @@ public class FINCAN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class FINCAN_SG1 : RFF
+public class FINCAN_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class FINCAN_SG1 : RFF
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class FINCAN_SG2 : FII
+public class FINCAN_SG2 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -90,7 +91,7 @@ public class FINCAN_SG2 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class FINCAN_SG3 : NAD
+public class FINCAN_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -104,7 +105,7 @@ public class FINCAN_SG3 : NAD
 }
 
 [EdiSegmentGroup("LIN", "RFF")]
-public class FINCAN_SG4 : LIN
+public class FINCAN_SG4 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// SG5
@@ -114,7 +115,7 @@ public class FINCAN_SG4 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class FINCAN_SG5 : RFF
+public class FINCAN_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -123,7 +124,7 @@ public class FINCAN_SG5 : RFF
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class FINCAN_SG6 : AUT
+public class FINCAN_SG6 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

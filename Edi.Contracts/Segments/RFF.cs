@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify a reference.
 /// </summary>
 [EdiSegment, EdiPath("RFF")]
-public class RFF
+public class RFF : ISegment
 {
 	/// <summary>
 	/// Identification of a reference.
@@ -21,7 +22,7 @@ public class RFF
 /// Identification of a reference.
 /// </summary>
 [EdiElement]
-public class RFF_Reference
+public class RFF_Reference : IElement
 {
 	/// <summary>
 	/// Code giving specific meaning to a reference segment or a reference number.

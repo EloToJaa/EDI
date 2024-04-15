@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a country/place/location/related location one/related location two.
 /// </summary>
 [EdiSegment, EdiPath("LOC")]
-public class LOC
+public class LOC : ISegment
 {
 	/// <summary>
 	/// Code identifying the function of a location.
@@ -46,7 +47,7 @@ public class LOC
 /// Identification of a location by code or name.
 /// </summary>
 [EdiElement]
-public class LOC_LocationIdentification
+public class LOC_LocationIdentification : IElement
 {
 	/// <summary>
 	/// Identification of the name of place/location, other than 3164 City name.
@@ -77,7 +78,7 @@ public class LOC_LocationIdentification
 /// Identification the first related location by code or name.
 /// </summary>
 [EdiElement]
-public class LOC_RelatedLocationOneIdentification
+public class LOC_RelatedLocationOneIdentification : IElement
 {
 	/// <summary>
 	/// Specification of the first related place/location by code.
@@ -108,7 +109,7 @@ public class LOC_RelatedLocationOneIdentification
 /// Identification of second related location by code or name.
 /// </summary>
 [EdiElement]
-public class LOC_RelatedLocationTwoIdentification
+public class LOC_RelatedLocationTwoIdentification : IElement
 {
 	/// <summary>
 	/// Specification of a second related place/location by code.

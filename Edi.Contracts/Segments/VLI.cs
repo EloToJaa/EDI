@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a coded or non coded value list.
 /// </summary>
 [EdiSegment, EdiPath("VLI")]
-public class VLI
+public class VLI : ISegment
 {
 	/// <summary>
 	/// The identification of a coded or non coded value list.
@@ -64,7 +65,7 @@ public class VLI
 /// The identification of a coded or non coded value list.
 /// </summary>
 [EdiElement]
-public class VLI_ValueListIdentification
+public class VLI_ValueListIdentification : IElement
 {
 	/// <summary>
 	/// The identifier of a coded or non coded value list.
@@ -83,7 +84,7 @@ public class VLI_ValueListIdentification
 /// Identification of a transaction party by code.
 /// </summary>
 [EdiElement]
-public class VLI_PartyIdentificationDetails
+public class VLI_PartyIdentificationDetails : IElement
 {
 	/// <summary>
 	/// Code identifying a party involved in a transaction.
@@ -108,7 +109,7 @@ public class VLI_PartyIdentificationDetails
 /// Specific product characteristic data.
 /// </summary>
 [EdiElement]
-public class VLI_ProductCharacteristic
+public class VLI_ProductCharacteristic : IElement
 {
 	/// <summary>
 	/// A code from an industry code list which provides specific data about a product characteristic.

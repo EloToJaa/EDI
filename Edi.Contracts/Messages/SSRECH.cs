@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// SSRECH
 /// </summary>
 [EdiMessage]
-public class SSRECH
+public class SSRECH : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class SSRECH
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1C { get; set; }
+	public DTM? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// General indicator
@@ -77,7 +78,7 @@ public class SSRECH
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class SSRECH_SG1 : RFF
+public class SSRECH_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -86,7 +87,7 @@ public class SSRECH_SG1 : RFF
 }
 
 [EdiSegmentGroup("PNA", "ADR", "GIR")]
-public class SSRECH_SG2 : PNA
+public class SSRECH_SG2 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -100,7 +101,7 @@ public class SSRECH_SG2 : PNA
 }
 
 [EdiSegmentGroup("IND", "DTM", "COT", "EMP")]
-public class SSRECH_SG3 : IND
+public class SSRECH_SG3 : IND, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -120,7 +121,7 @@ public class SSRECH_SG3 : IND
 }
 
 [EdiSegmentGroup("EMP", "PNA", "ADR")]
-public class SSRECH_SG4 : EMP
+public class SSRECH_SG4 : EMP, ISegmentGroup
 {
 	/// <summary>
 	/// Party name
@@ -134,7 +135,7 @@ public class SSRECH_SG4 : EMP
 }
 
 [EdiSegmentGroup("PNA", "NAT", "DOC", "ADR", "ATT", "DTM", "PDI")]
-public class SSRECH_SG5 : PNA
+public class SSRECH_SG5 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Nationality
@@ -169,7 +170,7 @@ public class SSRECH_SG5 : PNA
 }
 
 [EdiSegmentGroup("DTM", "ADR")]
-public class SSRECH_SG6 : DTM
+public class SSRECH_SG6 : DTM, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -178,7 +179,7 @@ public class SSRECH_SG6 : DTM
 }
 
 [EdiSegmentGroup("PDI", "DTM")]
-public class SSRECH_SG7 : PDI
+public class SSRECH_SG7 : PDI, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -187,7 +188,7 @@ public class SSRECH_SG7 : PDI
 }
 
 [EdiSegmentGroup("COT", "CNT")]
-public class SSRECH_SG8 : COT
+public class SSRECH_SG8 : COT, ISegmentGroup
 {
 	/// <summary>
 	/// Control total
@@ -196,7 +197,7 @@ public class SSRECH_SG8 : COT
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class SSRECH_SG9 : AUT
+public class SSRECH_SG9 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CALINF
 /// </summary>
 [EdiMessage]
-public class CALINF
+public class CALINF : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class CALINF
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -57,7 +58,7 @@ public class CALINF
 }
 
 [EdiSegmentGroup("FTX", "MEA", "EQN")]
-public class CALINF_SG1 : FTX
+public class CALINF_SG1 : FTX, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -71,7 +72,7 @@ public class CALINF_SG1 : FTX
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CALINF_SG2 : RFF
+public class CALINF_SG2 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -80,7 +81,7 @@ public class CALINF_SG2 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class CALINF_SG3 : NAD
+public class CALINF_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -90,7 +91,7 @@ public class CALINF_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CALINF_SG4 : CTA
+public class CALINF_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -99,7 +100,7 @@ public class CALINF_SG4 : CTA
 }
 
 [EdiSegmentGroup("TDT", "RFF", "LOC", "DTM", "DIM", "FTX")]
-public class CALINF_SG5 : TDT
+public class CALINF_SG5 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -128,7 +129,7 @@ public class CALINF_SG5 : TDT
 }
 
 [EdiSegmentGroup("QTY", "FTX")]
-public class CALINF_SG6 : QTY
+public class CALINF_SG6 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Free text

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// SUPRES
 /// </summary>
 [EdiMessage]
-public class SUPRES
+public class SUPRES : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,37 +24,37 @@ public class SUPRES
 	/// <summary>
 	/// Language
 	/// </summary>
-	public LAN? Language1C { get; set; }
+	public LAN? LanguageC { get; set; }
 
 	/// <summary>
 	/// Percentage details
 	/// </summary>
-	public PCD? PercentageDetails1C { get; set; }
+	public PCD? PercentageDetailsC { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Place/location identification
 	/// </summary>
-	public List<LOC>? PlaceLocationIdentification1C { get; set; }
+	public List<LOC>? PlaceLocationIdentificationC { get; set; }
 
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public List<MOA>? MonetaryAmount1C { get; set; }
+	public List<MOA>? MonetaryAmountC { get; set; }
 
 	/// <summary>
 	/// Financial institution information
 	/// </summary>
-	public List<FII>? FinancialInstitutionInformation1C { get; set; }
+	public List<FII>? FinancialInstitutionInformationC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -87,7 +88,7 @@ public class SUPRES
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class SUPRES_SG1 : RFF
+public class SUPRES_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -96,7 +97,7 @@ public class SUPRES_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "RFF", "COM", "LAN", "CTA")]
-public class SUPRES_SG2 : NAD
+public class SUPRES_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -121,7 +122,7 @@ public class SUPRES_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class SUPRES_SG3 : CTA
+public class SUPRES_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -130,7 +131,7 @@ public class SUPRES_SG3 : CTA
 }
 
 [EdiSegmentGroup("PAI", "RFF")]
-public class SUPRES_SG4 : PAI
+public class SUPRES_SG4 : PAI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -139,7 +140,7 @@ public class SUPRES_SG4 : PAI
 }
 
 [EdiSegmentGroup("PAT", "DTM")]
-public class SUPRES_SG5 : PAT
+public class SUPRES_SG5 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -148,7 +149,7 @@ public class SUPRES_SG5 : PAT
 }
 
 [EdiSegmentGroup("SEQ", "IMD", "MEM")]
-public class SUPRES_SG6 : SEQ
+public class SUPRES_SG6 : SEQ, ISegmentGroup
 {
 	/// <summary>
 	/// SG7
@@ -163,7 +164,7 @@ public class SUPRES_SG6 : SEQ
 }
 
 [EdiSegmentGroup("IMD", "QTY", "LAN", "DTM", "RFF", "PCD", "DIM", "FTX", "NAD", "LOC", "MOA", "PAI", "PAT", "RCS")]
-public class SUPRES_SG7 : IMD
+public class SUPRES_SG7 : IMD, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -233,7 +234,7 @@ public class SUPRES_SG7 : IMD
 }
 
 [EdiSegmentGroup("NAD", "COM", "LAN", "CTA")]
-public class SUPRES_SG8 : NAD
+public class SUPRES_SG8 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -253,7 +254,7 @@ public class SUPRES_SG8 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class SUPRES_SG9 : CTA
+public class SUPRES_SG9 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -262,7 +263,7 @@ public class SUPRES_SG9 : CTA
 }
 
 [EdiSegmentGroup("LOC", "DTM", "NAD")]
-public class SUPRES_SG10 : LOC
+public class SUPRES_SG10 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -277,7 +278,7 @@ public class SUPRES_SG10 : LOC
 }
 
 [EdiSegmentGroup("NAD", "DTM", "CTA")]
-public class SUPRES_SG11 : NAD
+public class SUPRES_SG11 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -292,7 +293,7 @@ public class SUPRES_SG11 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class SUPRES_SG12 : CTA
+public class SUPRES_SG12 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -301,7 +302,7 @@ public class SUPRES_SG12 : CTA
 }
 
 [EdiSegmentGroup("MOA", "QTY")]
-public class SUPRES_SG13 : MOA
+public class SUPRES_SG13 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -310,7 +311,7 @@ public class SUPRES_SG13 : MOA
 }
 
 [EdiSegmentGroup("PAI", "RFF")]
-public class SUPRES_SG14 : PAI
+public class SUPRES_SG14 : PAI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -319,7 +320,7 @@ public class SUPRES_SG14 : PAI
 }
 
 [EdiSegmentGroup("PAT", "DTM")]
-public class SUPRES_SG15 : PAT
+public class SUPRES_SG15 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -328,7 +329,7 @@ public class SUPRES_SG15 : PAT
 }
 
 [EdiSegmentGroup("RCS", "FII", "MOA", "RFF", "FTX", "DOC")]
-public class SUPRES_SG16 : RCS
+public class SUPRES_SG16 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Financial institution information
@@ -357,7 +358,7 @@ public class SUPRES_SG16 : RCS
 }
 
 [EdiSegmentGroup("MEM", "NAD")]
-public class SUPRES_SG17 : MEM
+public class SUPRES_SG17 : MEM, ISegmentGroup
 {
 	/// <summary>
 	/// SG18
@@ -367,7 +368,7 @@ public class SUPRES_SG17 : MEM
 }
 
 [EdiSegmentGroup("NAD", "ATT", "RFF", "LAN", "FTX", "COM", "CTA", "DOC", "PAI", "RCS")]
-public class SUPRES_SG18 : NAD
+public class SUPRES_SG18 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Attribute
@@ -417,7 +418,7 @@ public class SUPRES_SG18 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class SUPRES_SG19 : CTA
+public class SUPRES_SG19 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -426,7 +427,7 @@ public class SUPRES_SG19 : CTA
 }
 
 [EdiSegmentGroup("DOC", "LOC", "DTM")]
-public class SUPRES_SG20 : DOC
+public class SUPRES_SG20 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -440,7 +441,7 @@ public class SUPRES_SG20 : DOC
 }
 
 [EdiSegmentGroup("PAI", "PAT", "FII", "MOA", "RFF")]
-public class SUPRES_SG21 : PAI
+public class SUPRES_SG21 : PAI, ISegmentGroup
 {
 	/// <summary>
 	/// Payment terms basis
@@ -464,7 +465,7 @@ public class SUPRES_SG21 : PAI
 }
 
 [EdiSegmentGroup("RCS", "MOA", "RFF", "FTX")]
-public class SUPRES_SG22 : RCS
+public class SUPRES_SG22 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount

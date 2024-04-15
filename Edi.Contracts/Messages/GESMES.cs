@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// GESMES
 /// </summary>
 [EdiMessage]
-public class GESMES
+public class GESMES : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class GESMES
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -62,7 +63,7 @@ public class GESMES
 }
 
 [EdiSegmentGroup("FNT", "FTX")]
-public class GESMES_SG1 : FNT
+public class GESMES_SG1 : FNT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -71,7 +72,7 @@ public class GESMES_SG1 : FNT
 }
 
 [EdiSegmentGroup("NAD", "IDE", "CTA")]
-public class GESMES_SG2 : NAD
+public class GESMES_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Identity
@@ -86,7 +87,7 @@ public class GESMES_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class GESMES_SG3 : CTA
+public class GESMES_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -95,7 +96,7 @@ public class GESMES_SG3 : CTA
 }
 
 [EdiSegmentGroup("VLI", "DTM", "FTX", "IDE", "GIR", "CDV")]
-public class GESMES_SG4 : VLI
+public class GESMES_SG4 : VLI, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -125,7 +126,7 @@ public class GESMES_SG4 : VLI
 }
 
 [EdiSegmentGroup("GIR", "DTM")]
-public class GESMES_SG5 : GIR
+public class GESMES_SG5 : GIR, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -134,7 +135,7 @@ public class GESMES_SG5 : GIR
 }
 
 [EdiSegmentGroup("CDV", "FTX", "IDE")]
-public class GESMES_SG6 : CDV
+public class GESMES_SG6 : CDV, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -148,7 +149,7 @@ public class GESMES_SG6 : CDV
 }
 
 [EdiSegmentGroup("STC", "FTX", "IDE")]
-public class GESMES_SG7 : STC
+public class GESMES_SG7 : STC, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -162,7 +163,7 @@ public class GESMES_SG7 : STC
 }
 
 [EdiSegmentGroup("ASI", "GIS", "FTX", "IDE", "SCD")]
-public class GESMES_SG8 : ASI
+public class GESMES_SG8 : ASI, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -187,7 +188,7 @@ public class GESMES_SG8 : ASI
 }
 
 [EdiSegmentGroup("SCD", "ATT", "IDE")]
-public class GESMES_SG9 : SCD
+public class GESMES_SG9 : SCD, ISegmentGroup
 {
 	/// <summary>
 	/// Attribute
@@ -202,7 +203,7 @@ public class GESMES_SG9 : SCD
 }
 
 [EdiSegmentGroup("IDE", "ATT", "DTM")]
-public class GESMES_SG10 : IDE
+public class GESMES_SG10 : IDE, ISegmentGroup
 {
 	/// <summary>
 	/// Attribute
@@ -216,7 +217,7 @@ public class GESMES_SG10 : IDE
 }
 
 [EdiSegmentGroup("DSI", "STS", "DTM", "FTX", "GIR", "ARR", "IDE", "NAD", "FNS", "FNT")]
-public class GESMES_SG11 : DSI
+public class GESMES_SG11 : DSI, ISegmentGroup
 {
 	/// <summary>
 	/// Status
@@ -266,7 +267,7 @@ public class GESMES_SG11 : DSI
 }
 
 [EdiSegmentGroup("IDE", "GIS", "DTM", "CDV", "SCD")]
-public class GESMES_SG12 : IDE
+public class GESMES_SG12 : IDE, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -291,7 +292,7 @@ public class GESMES_SG12 : IDE
 }
 
 [EdiSegmentGroup("CDV", "FTX")]
-public class GESMES_SG13 : CDV
+public class GESMES_SG13 : CDV, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -300,7 +301,7 @@ public class GESMES_SG13 : CDV
 }
 
 [EdiSegmentGroup("SCD", "ATT", "DTM", "CDV")]
-public class GESMES_SG14 : SCD
+public class GESMES_SG14 : SCD, ISegmentGroup
 {
 	/// <summary>
 	/// Attribute
@@ -320,7 +321,7 @@ public class GESMES_SG14 : SCD
 }
 
 [EdiSegmentGroup("CDV", "FTX")]
-public class GESMES_SG15 : CDV
+public class GESMES_SG15 : CDV, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -329,7 +330,7 @@ public class GESMES_SG15 : CDV
 }
 
 [EdiSegmentGroup("NAD", "IDE", "CTA")]
-public class GESMES_SG16 : NAD
+public class GESMES_SG16 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Identity
@@ -344,7 +345,7 @@ public class GESMES_SG16 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class GESMES_SG17 : CTA
+public class GESMES_SG17 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -353,7 +354,7 @@ public class GESMES_SG17 : CTA
 }
 
 [EdiSegmentGroup("FNS", "REL")]
-public class GESMES_SG18 : FNS
+public class GESMES_SG18 : FNS, ISegmentGroup
 {
 	/// <summary>
 	/// SG19
@@ -363,7 +364,7 @@ public class GESMES_SG18 : FNS
 }
 
 [EdiSegmentGroup("REL", "ARR", "IDE")]
-public class GESMES_SG19 : REL
+public class GESMES_SG19 : REL, ISegmentGroup
 {
 	/// <summary>
 	/// Array information
@@ -377,7 +378,7 @@ public class GESMES_SG19 : REL
 }
 
 [EdiSegmentGroup("FNT", "FTX")]
-public class GESMES_SG20 : FNT
+public class GESMES_SG20 : FNT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text

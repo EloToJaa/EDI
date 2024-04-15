@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To give specific identification numbers, either as single numbers or ranges.
 /// </summary>
 [EdiSegment, EdiPath("GIN")]
-public class GIN
+public class GIN : ISegment
 {
 	/// <summary>
 	/// Code specifying the type/source of identity number.
@@ -51,7 +52,7 @@ public class GIN
 /// Goods item identification numbers, start and end of consecutively numbered range.
 /// </summary>
 [EdiElement]
-public class GIN_IdentityNumberRange
+public class GIN_IdentityNumberRange : IElement
 {
 	/// <summary>
 	/// The number given to an object for its unique identification.

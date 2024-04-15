@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CUSEXP
 /// </summary>
 [EdiMessage]
-public class CUSEXP
+public class CUSEXP : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,17 +24,17 @@ public class CUSEXP
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Place/location identification
 	/// </summary>
-	public List<LOC>? PlaceLocationIdentification1C { get; set; }
+	public List<LOC>? PlaceLocationIdentificationC { get; set; }
 
 	/// <summary>
 	/// Control total
 	/// </summary>
-	public List<CNT>? ControlTotal1C { get; set; }
+	public List<CNT>? ControlTotalC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class CUSEXP
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class CUSEXP_SG1 : NAD
+public class CUSEXP_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -77,7 +78,7 @@ public class CUSEXP_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CUSEXP_SG2 : CTA
+public class CUSEXP_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -86,7 +87,7 @@ public class CUSEXP_SG2 : CTA
 }
 
 [EdiSegmentGroup("TDT", "DTM", "LOC")]
-public class CUSEXP_SG3 : TDT
+public class CUSEXP_SG3 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -101,7 +102,7 @@ public class CUSEXP_SG3 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class CUSEXP_SG4 : LOC
+public class CUSEXP_SG4 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -110,7 +111,7 @@ public class CUSEXP_SG4 : LOC
 }
 
 [EdiSegmentGroup("EQD", "SEL")]
-public class CUSEXP_SG5 : EQD
+public class CUSEXP_SG5 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Seal number
@@ -119,7 +120,7 @@ public class CUSEXP_SG5 : EQD
 }
 
 [EdiSegmentGroup("RFF", "NAD", "CNT", "CNI")]
-public class CUSEXP_SG6 : RFF
+public class CUSEXP_SG6 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Name and address
@@ -139,7 +140,7 @@ public class CUSEXP_SG6 : RFF
 }
 
 [EdiSegmentGroup("CNI", "SGP", "CNT", "MEA", "LOC", "NAD", "GDS", "PAC", "TOD", "MOA", "TAX", "DOC", "CST")]
-public class CUSEXP_SG7 : CNI
+public class CUSEXP_SG7 : CNI, ISegmentGroup
 {
 	/// <summary>
 	/// Split goods placement
@@ -204,7 +205,7 @@ public class CUSEXP_SG7 : CNI
 }
 
 [EdiSegmentGroup("GDS", "FTX")]
-public class CUSEXP_SG8 : GDS
+public class CUSEXP_SG8 : GDS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -213,7 +214,7 @@ public class CUSEXP_SG8 : GDS
 }
 
 [EdiSegmentGroup("PAC", "PCI")]
-public class CUSEXP_SG9 : PAC
+public class CUSEXP_SG9 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Package identification
@@ -222,7 +223,7 @@ public class CUSEXP_SG9 : PAC
 }
 
 [EdiSegmentGroup("TOD", "LOC", "FTX")]
-public class CUSEXP_SG10 : TOD
+public class CUSEXP_SG10 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -236,7 +237,7 @@ public class CUSEXP_SG10 : TOD
 }
 
 [EdiSegmentGroup("MOA", "CUX")]
-public class CUSEXP_SG11 : MOA
+public class CUSEXP_SG11 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// SG12
@@ -246,7 +247,7 @@ public class CUSEXP_SG11 : MOA
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class CUSEXP_SG12 : CUX
+public class CUSEXP_SG12 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -255,7 +256,7 @@ public class CUSEXP_SG12 : CUX
 }
 
 [EdiSegmentGroup("TAX", "MOA", "GIS")]
-public class CUSEXP_SG13 : TAX
+public class CUSEXP_SG13 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -269,7 +270,7 @@ public class CUSEXP_SG13 : TAX
 }
 
 [EdiSegmentGroup("DOC", "DTM", "LOC")]
-public class CUSEXP_SG14 : DOC
+public class CUSEXP_SG14 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -283,7 +284,7 @@ public class CUSEXP_SG14 : DOC
 }
 
 [EdiSegmentGroup("CST", "FTX", "LOC", "MEA", "TAX")]
-public class CUSEXP_SG15 : CST
+public class CUSEXP_SG15 : CST, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -308,7 +309,7 @@ public class CUSEXP_SG15 : CST
 }
 
 [EdiSegmentGroup("TAX", "MOA", "GIS")]
-public class CUSEXP_SG16 : TAX
+public class CUSEXP_SG16 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -322,7 +323,7 @@ public class CUSEXP_SG16 : TAX
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class CUSEXP_SG17 : AUT
+public class CUSEXP_SG17 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify the relevance of a characteristic information for subsequent business processes.
 /// </summary>
 [EdiSegment, EdiPath("CCI")]
-public class CCI
+public class CCI : ISegment
 {
 	/// <summary>
 	/// Specification of the type of class.
@@ -40,7 +41,7 @@ public class CCI
 /// Identification of measurement type.
 /// </summary>
 [EdiElement]
-public class CCI_MeasurementDetails
+public class CCI_MeasurementDetails : IElement
 {
 	/// <summary>
 	/// Specification of the property measured.
@@ -71,7 +72,7 @@ public class CCI_MeasurementDetails
 /// Specific product characteristic data.
 /// </summary>
 [EdiElement]
-public class CCI_ProductCharacteristic
+public class CCI_ProductCharacteristic : IElement
 {
 	/// <summary>
 	/// A code from an industry code list which provides specific data about a product characteristic.

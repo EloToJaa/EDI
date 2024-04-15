@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace Edi.Contracts.Qualifiers;
@@ -6,7 +7,7 @@ namespace Edi.Contracts.Qualifiers;
 /// <summary>
 /// Percentage qualifier
 /// </summary>
-public class PercentageQualifier
+public class PercentageQualifier : IQualifier
 {
 	/// <summary>
 	/// String assign converter

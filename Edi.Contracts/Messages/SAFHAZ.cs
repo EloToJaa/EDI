@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// SAFHAZ
 /// </summary>
 [EdiMessage]
-public class SAFHAZ
+public class SAFHAZ : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,17 +24,17 @@ public class SAFHAZ
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1C { get; set; }
+	public List<RFF>? ReferenceC { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class SAFHAZ
 }
 
 [EdiSegmentGroup("NAD", "RFF", "CTA")]
-public class SAFHAZ_SG1 : NAD
+public class SAFHAZ_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -67,7 +68,7 @@ public class SAFHAZ_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class SAFHAZ_SG2 : CTA
+public class SAFHAZ_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -76,7 +77,7 @@ public class SAFHAZ_SG2 : CTA
 }
 
 [EdiSegmentGroup("DOC", "IMD", "PIA", "MEA", "RCS", "RFF", "DTM", "FTX", "NAD", "SFI")]
-public class SAFHAZ_SG3 : DOC
+public class SAFHAZ_SG3 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Item description
@@ -126,7 +127,7 @@ public class SAFHAZ_SG3 : DOC
 }
 
 [EdiSegmentGroup("NAD", "RFF", "CTA")]
-public class SAFHAZ_SG4 : NAD
+public class SAFHAZ_SG4 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -141,7 +142,7 @@ public class SAFHAZ_SG4 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class SAFHAZ_SG5 : CTA
+public class SAFHAZ_SG5 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -150,7 +151,7 @@ public class SAFHAZ_SG5 : CTA
 }
 
 [EdiSegmentGroup("SFI", "PIA", "EQD", "FTX", "NAD", "HAN", "IMD", "DGS", "CCI")]
-public class SAFHAZ_SG6 : SFI
+public class SAFHAZ_SG6 : SFI, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -195,7 +196,7 @@ public class SAFHAZ_SG6 : SFI
 }
 
 [EdiSegmentGroup("NAD", "RFF", "CTA")]
-public class SAFHAZ_SG7 : NAD
+public class SAFHAZ_SG7 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -210,7 +211,7 @@ public class SAFHAZ_SG7 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class SAFHAZ_SG8 : CTA
+public class SAFHAZ_SG8 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -219,7 +220,7 @@ public class SAFHAZ_SG8 : CTA
 }
 
 [EdiSegmentGroup("HAN", "FTX")]
-public class SAFHAZ_SG9 : HAN
+public class SAFHAZ_SG9 : HAN, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -228,7 +229,7 @@ public class SAFHAZ_SG9 : HAN
 }
 
 [EdiSegmentGroup("IMD", "MEA", "PCD", "RFF", "FTX")]
-public class SAFHAZ_SG10 : IMD
+public class SAFHAZ_SG10 : IMD, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -252,7 +253,7 @@ public class SAFHAZ_SG10 : IMD
 }
 
 [EdiSegmentGroup("DGS", "RFF", "FTX", "PAC")]
-public class SAFHAZ_SG11 : DGS
+public class SAFHAZ_SG11 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -272,7 +273,7 @@ public class SAFHAZ_SG11 : DGS
 }
 
 [EdiSegmentGroup("PAC", "PCI")]
-public class SAFHAZ_SG12 : PAC
+public class SAFHAZ_SG12 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Package identification
@@ -281,7 +282,7 @@ public class SAFHAZ_SG12 : PAC
 }
 
 [EdiSegmentGroup("CCI", "IMD", "FTX", "CAV", "RFF", "MEA")]
-public class SAFHAZ_SG13 : CCI
+public class SAFHAZ_SG13 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Item description
@@ -311,7 +312,7 @@ public class SAFHAZ_SG13 : CCI
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class SAFHAZ_SG14 : RFF
+public class SAFHAZ_SG14 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -320,7 +321,7 @@ public class SAFHAZ_SG14 : RFF
 }
 
 [EdiSegmentGroup("MEA", "TEM", "DTM", "RFF", "FTX")]
-public class SAFHAZ_SG15 : MEA
+public class SAFHAZ_SG15 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Test method

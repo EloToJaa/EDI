@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// DELJIT
 /// </summary>
 [EdiMessage]
-public class DELJIT
+public class DELJIT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class DELJIT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class DELJIT
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DELJIT_SG1 : RFF
+public class DELJIT_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -61,7 +62,7 @@ public class DELJIT_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FTX", "CTA")]
-public class DELJIT_SG2 : NAD
+public class DELJIT_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -81,7 +82,7 @@ public class DELJIT_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class DELJIT_SG3 : CTA
+public class DELJIT_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -90,7 +91,7 @@ public class DELJIT_SG3 : CTA
 }
 
 [EdiSegmentGroup("SEQ", "DTM", "GIR", "LOC", "PAC", "LIN")]
-public class DELJIT_SG4 : SEQ
+public class DELJIT_SG4 : SEQ, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -120,7 +121,7 @@ public class DELJIT_SG4 : SEQ
 }
 
 [EdiSegmentGroup("PAC", "PCI")]
-public class DELJIT_SG5 : PAC
+public class DELJIT_SG5 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// SG6
@@ -130,7 +131,7 @@ public class DELJIT_SG5 : PAC
 }
 
 [EdiSegmentGroup("PCI", "GIN")]
-public class DELJIT_SG6 : PCI
+public class DELJIT_SG6 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Goods identity number
@@ -139,7 +140,7 @@ public class DELJIT_SG6 : PCI
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "ALI", "GIR", "TDT", "FTX", "PAC", "DTM", "RFF", "LOC", "QTY")]
-public class DELJIT_SG7 : LIN
+public class DELJIT_SG7 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -199,7 +200,7 @@ public class DELJIT_SG7 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DELJIT_SG8 : RFF
+public class DELJIT_SG8 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -208,7 +209,7 @@ public class DELJIT_SG8 : RFF
 }
 
 [EdiSegmentGroup("LOC", "CTA")]
-public class DELJIT_SG9 : LOC
+public class DELJIT_SG9 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// SG10
@@ -218,7 +219,7 @@ public class DELJIT_SG9 : LOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class DELJIT_SG10 : CTA
+public class DELJIT_SG10 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -227,7 +228,7 @@ public class DELJIT_SG10 : CTA
 }
 
 [EdiSegmentGroup("QTY", "SCC", "DTM", "RFF")]
-public class DELJIT_SG11 : QTY
+public class DELJIT_SG11 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Scheduling conditions
@@ -247,7 +248,7 @@ public class DELJIT_SG11 : QTY
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DELJIT_SG12 : RFF
+public class DELJIT_SG12 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To provide details of the function of a monetary amount.
 /// </summary>
 [EdiSegment, EdiPath("ARD")]
-public class ARD
+public class ARD : ISegment
 {
 	/// <summary>
 	/// To identify the function of a related monetary amount.
@@ -21,7 +22,7 @@ public class ARD
 /// To identify the function of a related monetary amount.
 /// </summary>
 [EdiElement]
-public class ARD_MonetaryFunction
+public class ARD_MonetaryFunction : IElement
 {
 	/// <summary>
 	/// To specify the function of a related monetary amount.

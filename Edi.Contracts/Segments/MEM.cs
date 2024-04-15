@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify details about membership.
 /// </summary>
 [EdiSegment, EdiPath("MEM")]
-public class MEM
+public class MEM : ISegment
 {
 	/// <summary>
 	/// Specification of the meaning of a code to qualify membership data.
@@ -51,7 +52,7 @@ public class MEM
 /// Identification and/or description of a membership category for a member of a scheme or group.
 /// </summary>
 [EdiElement]
-public class MEM_MembershipCategory
+public class MEM_MembershipCategory : IElement
 {
 	/// <summary>
 	/// Identification of a membership category.
@@ -82,7 +83,7 @@ public class MEM_MembershipCategory
 /// Code and/or description of membership status.
 /// </summary>
 [EdiElement]
-public class MEM_MembershipStatus
+public class MEM_MembershipStatus : IElement
 {
 	/// <summary>
 	/// Identification of the membership status.
@@ -113,7 +114,7 @@ public class MEM_MembershipStatus
 /// Identification of a membership level.
 /// </summary>
 [EdiElement]
-public class MEM_MembershipLevel
+public class MEM_MembershipLevel : IElement
 {
 	/// <summary>
 	/// Specification of the meaning of a membership level.
@@ -150,7 +151,7 @@ public class MEM_MembershipLevel
 /// Identification of the applicable rate/tariff class.
 /// </summary>
 [EdiElement]
-public class MEM_RateTariffClass
+public class MEM_RateTariffClass : IElement
 {
 	/// <summary>
 	/// Identification of the rate/tariff class.
@@ -217,7 +218,7 @@ public class MEM_RateTariffClass
 /// Code and/or description of the reason for a change.
 /// </summary>
 [EdiElement]
-public class MEM_ReasonForChange
+public class MEM_ReasonForChange : IElement
 {
 	/// <summary>
 	/// Identification of the reason for a change.

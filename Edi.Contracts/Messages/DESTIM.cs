@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// DESTIM
 /// </summary>
 [EdiMessage]
-public class DESTIM
+public class DESTIM : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class DESTIM
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// General indicator
@@ -38,12 +39,12 @@ public class DESTIM
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1C { get; set; }
+	public List<RFF>? ReferenceC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -92,7 +93,7 @@ public class DESTIM
 }
 
 [EdiSegmentGroup("EQD", "DIM", "IMD")]
-public class DESTIM_SG1 : EQD
+public class DESTIM_SG1 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Dimensions
@@ -106,7 +107,7 @@ public class DESTIM_SG1 : EQD
 }
 
 [EdiSegmentGroup("NAD", "MOA", "CTA")]
-public class DESTIM_SG2 : NAD
+public class DESTIM_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -121,7 +122,7 @@ public class DESTIM_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class DESTIM_SG3 : CTA
+public class DESTIM_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -130,7 +131,7 @@ public class DESTIM_SG3 : CTA
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM")]
-public class DESTIM_SG4 : TDT
+public class DESTIM_SG4 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -144,7 +145,7 @@ public class DESTIM_SG4 : TDT
 }
 
 [EdiSegmentGroup("DTM", "LOC", "NAD")]
-public class DESTIM_SG5 : DTM
+public class DESTIM_SG5 : DTM, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -158,7 +159,7 @@ public class DESTIM_SG5 : DTM
 }
 
 [EdiSegmentGroup("RFF", "DTM", "NAD", "MOA")]
-public class DESTIM_SG6 : RFF
+public class DESTIM_SG6 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -177,7 +178,7 @@ public class DESTIM_SG6 : RFF
 }
 
 [EdiSegmentGroup("LIN", "DIM", "QTY", "FTX", "DAM", "RTE", "NAD")]
-public class DESTIM_SG7 : LIN
+public class DESTIM_SG7 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Dimensions
@@ -212,7 +213,7 @@ public class DESTIM_SG7 : LIN
 }
 
 [EdiSegmentGroup("DAM", "COD")]
-public class DESTIM_SG8 : DAM
+public class DESTIM_SG8 : DAM, ISegmentGroup
 {
 	/// <summary>
 	/// Component details
@@ -221,7 +222,7 @@ public class DESTIM_SG8 : DAM
 }
 
 [EdiSegmentGroup("RTE", "QTY")]
-public class DESTIM_SG9 : RTE
+public class DESTIM_SG9 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -230,7 +231,7 @@ public class DESTIM_SG9 : RTE
 }
 
 [EdiSegmentGroup("NAD", "MOA")]
-public class DESTIM_SG10 : NAD
+public class DESTIM_SG10 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG11
@@ -240,7 +241,7 @@ public class DESTIM_SG10 : NAD
 }
 
 [EdiSegmentGroup("MOA", "TAX", "MEA")]
-public class DESTIM_SG11 : MOA
+public class DESTIM_SG11 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Duty/tax/fee details

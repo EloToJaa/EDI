@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify the structure of an array.
 /// </summary>
 [EdiSegment, EdiPath("ASI")]
-public class ASI
+public class ASI : ISegment
 {
 	/// <summary>
 	/// The identification of an array structure.
@@ -40,7 +41,7 @@ public class ASI
 /// The identification of an array structure.
 /// </summary>
 [EdiElement]
-public class ASI_ArrayStructureIdentification
+public class ASI_ArrayStructureIdentification : IElement
 {
 	/// <summary>
 	/// The identifier of an array structure.
@@ -59,7 +60,7 @@ public class ASI_ArrayStructureIdentification
 /// Identification of a transaction party by code.
 /// </summary>
 [EdiElement]
-public class ASI_PartyIdentificationDetails
+public class ASI_PartyIdentificationDetails : IElement
 {
 	/// <summary>
 	/// Code identifying a party involved in a transaction.

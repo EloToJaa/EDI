@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// MEDREQ
 /// </summary>
 [EdiMessage]
-public class MEDREQ
+public class MEDREQ : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class MEDREQ
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class MEDREQ
 }
 
 [EdiSegmentGroup("PNA", "ADR", "COM", "FTX", "RFF", "SEQ", "LAN", "SPR", "QUA", "EMP")]
-public class MEDREQ_SG1 : PNA
+public class MEDREQ_SG1 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -101,7 +102,7 @@ public class MEDREQ_SG1 : PNA
 }
 
 [EdiSegmentGroup("FCA", "GIS", "RFF", "DTM", "PTY", "CIN", "FTX", "LAN", "PAC", "IRQ", "TEM", "HAN", "SCC", "DOC", "ATT")]
-public class MEDREQ_SG2 : FCA
+public class MEDREQ_SG2 : FCA, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -176,7 +177,7 @@ public class MEDREQ_SG2 : FCA
 }
 
 [EdiSegmentGroup("SCC", "QTY", "DTM", "FTX")]
-public class MEDREQ_SG3 : SCC
+public class MEDREQ_SG3 : SCC, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -195,7 +196,7 @@ public class MEDREQ_SG3 : SCC
 }
 
 [EdiSegmentGroup("DOC", "RFF", "DTM")]
-public class MEDREQ_SG4 : DOC
+public class MEDREQ_SG4 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -209,7 +210,7 @@ public class MEDREQ_SG4 : DOC
 }
 
 [EdiSegmentGroup("ATT", "RFF", "ADR", "COM", "HAN", "REL", "IMD", "FTX", "PNA", "DTM", "PDI", "NAT", "LAN", "CCI", "PAS", "CAV", "SEQ", "GIS")]
-public class MEDREQ_SG5 : ATT
+public class MEDREQ_SG5 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -299,7 +300,7 @@ public class MEDREQ_SG5 : ATT
 }
 
 [EdiSegmentGroup("PAS", "LOC", "DTM", "RFF")]
-public class MEDREQ_SG6 : PAS
+public class MEDREQ_SG6 : PAS, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -318,7 +319,7 @@ public class MEDREQ_SG6 : PAS
 }
 
 [EdiSegmentGroup("CAV", "CIN", "LAN", "DTM", "FTX", "RFF", "STS", "CLI")]
-public class MEDREQ_SG7 : CAV
+public class MEDREQ_SG7 : CAV, ISegmentGroup
 {
 	/// <summary>
 	/// Clinical information
@@ -358,7 +359,7 @@ public class MEDREQ_SG7 : CAV
 }
 
 [EdiSegmentGroup("STS", "SEQ", "GIS", "RSL", "CCI", "CIN", "DTM", "FTX", "RFF", "RSL", "REL")]
-public class MEDREQ_SG8 : STS
+public class MEDREQ_SG8 : STS, ISegmentGroup
 {
 	/// <summary>
 	/// Sequence details
@@ -413,7 +414,7 @@ public class MEDREQ_SG8 : STS
 }
 
 [EdiSegmentGroup("RSL", "FTX", "CCI")]
-public class MEDREQ_SG9 : RSL
+public class MEDREQ_SG9 : RSL, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -427,7 +428,7 @@ public class MEDREQ_SG9 : RSL
 }
 
 [EdiSegmentGroup("REL", "RFF")]
-public class MEDREQ_SG10 : REL
+public class MEDREQ_SG10 : REL, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -436,7 +437,7 @@ public class MEDREQ_SG10 : REL
 }
 
 [EdiSegmentGroup("CLI", "IMD")]
-public class MEDREQ_SG11 : CLI
+public class MEDREQ_SG11 : CLI, ISegmentGroup
 {
 	/// <summary>
 	/// SG12
@@ -446,7 +447,7 @@ public class MEDREQ_SG11 : CLI
 }
 
 [EdiSegmentGroup("IMD", "DSG", "FTX", "INP")]
-public class MEDREQ_SG12 : IMD
+public class MEDREQ_SG12 : IMD, ISegmentGroup
 {
 	/// <summary>
 	/// Dosage administration
@@ -465,7 +466,7 @@ public class MEDREQ_SG12 : IMD
 }
 
 [EdiSegmentGroup("SEQ", "IMD", "PRC", "RFF", "QTY", "DTM", "PAC", "PTY", "FTX", "TDT", "HAN", "LOC", "ADR", "CLI")]
-public class MEDREQ_SG13 : SEQ
+public class MEDREQ_SG13 : SEQ, ISegmentGroup
 {
 	/// <summary>
 	/// Item description
@@ -535,7 +536,7 @@ public class MEDREQ_SG13 : SEQ
 }
 
 [EdiSegmentGroup("CLI", "IMD", "DSG", "DTM", "FTX", "QTY", "INP")]
-public class MEDREQ_SG14 : CLI
+public class MEDREQ_SG14 : CLI, ISegmentGroup
 {
 	/// <summary>
 	/// Item description
@@ -569,7 +570,7 @@ public class MEDREQ_SG14 : CLI
 }
 
 [EdiSegmentGroup("GIS", "CCI", "PTY", "QTY", "CIN", "DTM", "FTX", "TEM", "MOA", "RFF", "HAN", "SCC")]
-public class MEDREQ_SG15 : GIS
+public class MEDREQ_SG15 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Characteristic/class id
@@ -629,7 +630,7 @@ public class MEDREQ_SG15 : GIS
 }
 
 [EdiSegmentGroup("SCC", "QTY", "DTM", "FTX")]
-public class MEDREQ_SG16 : SCC
+public class MEDREQ_SG16 : SCC, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -648,7 +649,7 @@ public class MEDREQ_SG16 : SCC
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class MEDREQ_SG17 : AUT
+public class MEDREQ_SG17 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

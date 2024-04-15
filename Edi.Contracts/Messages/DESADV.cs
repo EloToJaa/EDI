@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// DESADV
 /// </summary>
 [EdiMessage]
-public class DESADV
+public class DESADV : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,22 +24,22 @@ public class DESADV
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Additional information
 	/// </summary>
-	public List<ALI>? AdditionalInformation1C { get; set; }
+	public List<ALI>? AdditionalInformationC { get; set; }
 
 	/// <summary>
 	/// Measurements
 	/// </summary>
-	public List<MEA>? Measurements1C { get; set; }
+	public List<MEA>? MeasurementsC { get; set; }
 
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public List<MOA>? MonetaryAmount1C { get; set; }
+	public List<MOA>? MonetaryAmountC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -82,7 +83,7 @@ public class DESADV
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DESADV_SG1 : RFF
+public class DESADV_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -91,7 +92,7 @@ public class DESADV_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "CTA")]
-public class DESADV_SG2 : NAD
+public class DESADV_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -111,7 +112,7 @@ public class DESADV_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DESADV_SG3 : RFF
+public class DESADV_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -120,7 +121,7 @@ public class DESADV_SG3 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class DESADV_SG4 : CTA
+public class DESADV_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -129,7 +130,7 @@ public class DESADV_SG4 : CTA
 }
 
 [EdiSegmentGroup("TOD", "LOC", "FTX")]
-public class DESADV_SG5 : TOD
+public class DESADV_SG5 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -143,7 +144,7 @@ public class DESADV_SG5 : TOD
 }
 
 [EdiSegmentGroup("TDT", "PCD", "LOC")]
-public class DESADV_SG6 : TDT
+public class DESADV_SG6 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -158,7 +159,7 @@ public class DESADV_SG6 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class DESADV_SG7 : LOC
+public class DESADV_SG7 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -167,7 +168,7 @@ public class DESADV_SG7 : LOC
 }
 
 [EdiSegmentGroup("EQD", "MEA", "SEL", "EQA", "HAN")]
-public class DESADV_SG8 : EQD
+public class DESADV_SG8 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -192,7 +193,7 @@ public class DESADV_SG8 : EQD
 }
 
 [EdiSegmentGroup("HAN", "FTX")]
-public class DESADV_SG9 : HAN
+public class DESADV_SG9 : HAN, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -201,7 +202,7 @@ public class DESADV_SG9 : HAN
 }
 
 [EdiSegmentGroup("CPS", "FTX", "PAC", "LIN")]
-public class DESADV_SG10 : CPS
+public class DESADV_SG10 : CPS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -221,7 +222,7 @@ public class DESADV_SG10 : CPS
 }
 
 [EdiSegmentGroup("PAC", "MEA", "QTY", "HAN", "PCI")]
-public class DESADV_SG11 : PAC
+public class DESADV_SG11 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -246,7 +247,7 @@ public class DESADV_SG11 : PAC
 }
 
 [EdiSegmentGroup("HAN", "FTX")]
-public class DESADV_SG12 : HAN
+public class DESADV_SG12 : HAN, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -255,7 +256,7 @@ public class DESADV_SG12 : HAN
 }
 
 [EdiSegmentGroup("PCI", "RFF", "DTM", "GIR", "GIN")]
-public class DESADV_SG13 : PCI
+public class DESADV_SG13 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -280,7 +281,7 @@ public class DESADV_SG13 : PCI
 }
 
 [EdiSegmentGroup("GIN", "DLM")]
-public class DESADV_SG14 : GIN
+public class DESADV_SG14 : GIN, ISegmentGroup
 {
 	/// <summary>
 	/// Delivery limitations
@@ -289,7 +290,7 @@ public class DESADV_SG14 : GIN
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "MEA", "QTY", "ALI", "GIN", "GIR", "DLM", "DTM", "NAD", "TDT", "HAN", "FTX", "MOA", "RFF", "DGS", "LOC", "SGP", "PCI", "QVR")]
-public class DESADV_SG15 : LIN
+public class DESADV_SG15 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -394,7 +395,7 @@ public class DESADV_SG15 : LIN
 }
 
 [EdiSegmentGroup("RFF", "NAD", "CTA", "DTM")]
-public class DESADV_SG16 : RFF
+public class DESADV_SG16 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Name and address
@@ -413,7 +414,7 @@ public class DESADV_SG16 : RFF
 }
 
 [EdiSegmentGroup("DGS", "QTY", "FTX")]
-public class DESADV_SG17 : DGS
+public class DESADV_SG17 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -427,7 +428,7 @@ public class DESADV_SG17 : DGS
 }
 
 [EdiSegmentGroup("LOC", "NAD", "DTM", "QTY")]
-public class DESADV_SG18 : LOC
+public class DESADV_SG18 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Name and address
@@ -446,7 +447,7 @@ public class DESADV_SG18 : LOC
 }
 
 [EdiSegmentGroup("SGP", "QTY")]
-public class DESADV_SG19 : SGP
+public class DESADV_SG19 : SGP, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -455,7 +456,7 @@ public class DESADV_SG19 : SGP
 }
 
 [EdiSegmentGroup("PCI", "DTM", "MEA", "QTY", "GIN", "HAN")]
-public class DESADV_SG20 : PCI
+public class DESADV_SG20 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -485,7 +486,7 @@ public class DESADV_SG20 : PCI
 }
 
 [EdiSegmentGroup("GIN", "DLM")]
-public class DESADV_SG21 : GIN
+public class DESADV_SG21 : GIN, ISegmentGroup
 {
 	/// <summary>
 	/// Delivery limitations
@@ -494,7 +495,7 @@ public class DESADV_SG21 : GIN
 }
 
 [EdiSegmentGroup("HAN", "FTX", "GIN")]
-public class DESADV_SG22 : HAN
+public class DESADV_SG22 : HAN, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -508,7 +509,7 @@ public class DESADV_SG22 : HAN
 }
 
 [EdiSegmentGroup("QVR", "DTM")]
-public class DESADV_SG23 : QVR
+public class DESADV_SG23 : QVR, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

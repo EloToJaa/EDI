@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// A segment specifying technical rules.
 /// </summary>
 [EdiSegment, EdiPath("TRU")]
-public class TRU
+public class TRU : ISegment
 {
 	/// <summary>
 	/// The number given to an object for its unique identification.

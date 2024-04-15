@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the usage of a data element.
 /// </summary>
 [EdiSegment, EdiPath("ELU")]
-public class ELU
+public class ELU : ISegment
 {
 	/// <summary>
 	/// Tag of a data element.

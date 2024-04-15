@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the placement of goods in relation to equipment.
 /// </summary>
 [EdiSegment, EdiPath("SGP")]
-public class SGP
+public class SGP : ISegment
 {
 	/// <summary>
 	/// Marks (letters and/or numbers) identifying equipment used for transport such as a container.
@@ -28,7 +29,7 @@ public class SGP
 /// Marks (letters and/or numbers) identifying equipment used for transport such as a container.
 /// </summary>
 [EdiElement]
-public class SGP_EquipmentIdentification
+public class SGP_EquipmentIdentification : IElement
 {
 	/// <summary>
 	/// Marks (letters and/or numbers) which identify equipment e.g. unit load device.

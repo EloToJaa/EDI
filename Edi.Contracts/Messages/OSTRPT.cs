@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// OSTRPT
 /// </summary>
 [EdiMessage]
-public class OSTRPT
+public class OSTRPT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,17 +24,17 @@ public class OSTRPT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public RFF? Reference1C { get; set; }
+	public RFF? ReferenceC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class OSTRPT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class OSTRPT_SG1 : NAD
+public class OSTRPT_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -62,7 +63,7 @@ public class OSTRPT_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class OSTRPT_SG2 : CTA
+public class OSTRPT_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -71,7 +72,7 @@ public class OSTRPT_SG2 : CTA
 }
 
 [EdiSegmentGroup("DOC", "DTM", "STS", "LIN")]
-public class OSTRPT_SG3 : DOC
+public class OSTRPT_SG3 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -91,7 +92,7 @@ public class OSTRPT_SG3 : DOC
 }
 
 [EdiSegmentGroup("STS", "DTM", "PCD", "QTY", "NAD")]
-public class OSTRPT_SG4 : STS
+public class OSTRPT_SG4 : STS, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -115,7 +116,7 @@ public class OSTRPT_SG4 : STS
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "MEA", "GIN", "RCS", "FTX", "RFF", "STS", "SCC")]
-public class OSTRPT_SG5 : LIN
+public class OSTRPT_SG5 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -165,7 +166,7 @@ public class OSTRPT_SG5 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class OSTRPT_SG6 : RFF
+public class OSTRPT_SG6 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -174,7 +175,7 @@ public class OSTRPT_SG6 : RFF
 }
 
 [EdiSegmentGroup("STS", "DTM", "PCD", "QTY", "NAD", "TDT", "TOD", "EQD", "PAC")]
-public class OSTRPT_SG7 : STS
+public class OSTRPT_SG7 : STS, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -219,7 +220,7 @@ public class OSTRPT_SG7 : STS
 }
 
 [EdiSegmentGroup("NAD", "RFF", "CTA")]
-public class OSTRPT_SG8 : NAD
+public class OSTRPT_SG8 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -234,7 +235,7 @@ public class OSTRPT_SG8 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class OSTRPT_SG9 : CTA
+public class OSTRPT_SG9 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -243,7 +244,7 @@ public class OSTRPT_SG9 : CTA
 }
 
 [EdiSegmentGroup("TDT", "LOC")]
-public class OSTRPT_SG10 : TDT
+public class OSTRPT_SG10 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -252,7 +253,7 @@ public class OSTRPT_SG10 : TDT
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class OSTRPT_SG11 : TOD
+public class OSTRPT_SG11 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -261,7 +262,7 @@ public class OSTRPT_SG11 : TOD
 }
 
 [EdiSegmentGroup("EQD", "HAN")]
-public class OSTRPT_SG12 : EQD
+public class OSTRPT_SG12 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -270,7 +271,7 @@ public class OSTRPT_SG12 : EQD
 }
 
 [EdiSegmentGroup("PAC", "QTY", "PCI")]
-public class OSTRPT_SG13 : PAC
+public class OSTRPT_SG13 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -285,7 +286,7 @@ public class OSTRPT_SG13 : PAC
 }
 
 [EdiSegmentGroup("PCI", "RFF")]
-public class OSTRPT_SG14 : PCI
+public class OSTRPT_SG14 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -294,7 +295,7 @@ public class OSTRPT_SG14 : PCI
 }
 
 [EdiSegmentGroup("SCC", "LOC")]
-public class OSTRPT_SG15 : SCC
+public class OSTRPT_SG15 : SCC, ISegmentGroup
 {
 	/// <summary>
 	/// SG16
@@ -304,7 +305,7 @@ public class OSTRPT_SG15 : SCC
 }
 
 [EdiSegmentGroup("LOC", "DTM", "QTY", "STS")]
-public class OSTRPT_SG16 : LOC
+public class OSTRPT_SG16 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -324,7 +325,7 @@ public class OSTRPT_SG16 : LOC
 }
 
 [EdiSegmentGroup("STS", "DTM", "PCD", "QTY", "NAD")]
-public class OSTRPT_SG17 : STS
+public class OSTRPT_SG17 : STS, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

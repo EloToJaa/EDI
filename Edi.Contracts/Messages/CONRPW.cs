@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CONRPW
 /// </summary>
 [EdiMessage]
-public class CONRPW
+public class CONRPW : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -67,7 +68,7 @@ public class CONRPW
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class CONRPW_SG1 : NAD
+public class CONRPW_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -77,7 +78,7 @@ public class CONRPW_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CONRPW_SG2 : CTA
+public class CONRPW_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact

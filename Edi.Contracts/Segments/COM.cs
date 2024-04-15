@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a communication number of a department or a person to whom communication should be directed.
 /// </summary>
 [EdiSegment, EdiPath("COM")]
-public class COM
+public class COM : ISegment
 {
 	/// <summary>
 	/// Communication number of a department or employee in a specified channel.
@@ -21,7 +22,7 @@ public class COM
 /// Communication number of a department or employee in a specified channel.
 /// </summary>
 [EdiElement]
-public class COM_CommunicationContact
+public class COM_CommunicationContact : IElement
 {
 	/// <summary>
 	/// The communication number.

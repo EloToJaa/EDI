@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a unit of equipment.
 /// </summary>
 [EdiSegment, EdiPath("EQD")]
-public class EQD
+public class EQD : ISegment
 {
 	/// <summary>
 	/// Code identifying type of equipment.
@@ -52,7 +53,7 @@ public class EQD
 /// Marks (letters and/or numbers) identifying equipment used for transport such as a container.
 /// </summary>
 [EdiElement]
-public class EQD_EquipmentIdentification
+public class EQD_EquipmentIdentification : IElement
 {
 	/// <summary>
 	/// Marks (letters and/or numbers) which identify equipment e.g. unit load device.
@@ -83,7 +84,7 @@ public class EQD_EquipmentIdentification
 /// Code and/or name identifying size and type of equipment used in transport. Code preferred.
 /// </summary>
 [EdiElement]
-public class EQD_EquipmentSizeAndType
+public class EQD_EquipmentSizeAndType : IElement
 {
 	/// <summary>
 	/// Coded description of the size and type of equipment e.g. unit load device.

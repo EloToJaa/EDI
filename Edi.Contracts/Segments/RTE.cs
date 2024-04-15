@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify rate information.
 /// </summary>
 [EdiSegment, EdiPath("RTE")]
-public class RTE
+public class RTE : ISegment
 {
 	/// <summary>
 	/// Rate per unit and rate basis.
@@ -21,7 +22,7 @@ public class RTE
 /// Rate per unit and rate basis.
 /// </summary>
 [EdiElement]
-public class RTE_RateDetails
+public class RTE_RateDetails : IElement
 {
 	/// <summary>
 	/// Identification of the type of rate.

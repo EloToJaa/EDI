@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// INSPRE
 /// </summary>
 [EdiMessage]
-public class INSPRE
+public class INSPRE : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class INSPRE
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1C { get; set; }
+	public List<RFF>? ReferenceC { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -38,7 +39,7 @@ public class INSPRE
 	/// <summary>
 	/// Insurance cover description
 	/// </summary>
-	public ICD? InsuranceCoverDescription1C { get; set; }
+	public ICD? InsuranceCoverDescriptionC { get; set; }
 
 	/// <summary>
 	/// SG2
@@ -53,12 +54,12 @@ public class INSPRE
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public List<MOA>? MonetaryAmount1M { get; set; }
+	public List<MOA>? MonetaryAmountM { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public FTX? FreeText1C { get; set; }
+	public FTX? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG9
@@ -72,7 +73,7 @@ public class INSPRE
 }
 
 [EdiSegmentGroup("ATT", "PCD")]
-public class INSPRE_SG1 : ATT
+public class INSPRE_SG1 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -81,7 +82,7 @@ public class INSPRE_SG1 : ATT
 }
 
 [EdiSegmentGroup("NAD", "ATT", "CTA", "COM", "RFF")]
-public class INSPRE_SG2 : NAD
+public class INSPRE_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Attribute
@@ -105,7 +106,7 @@ public class INSPRE_SG2 : NAD
 }
 
 [EdiSegmentGroup("DTM", "ICD", "CUX")]
-public class INSPRE_SG3 : DTM
+public class INSPRE_SG3 : DTM, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -119,7 +120,7 @@ public class INSPRE_SG3 : DTM
 }
 
 [EdiSegmentGroup("ICD", "FTX", "RFF", "MOA")]
-public class INSPRE_SG4 : ICD
+public class INSPRE_SG4 : ICD, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -139,7 +140,7 @@ public class INSPRE_SG4 : ICD
 }
 
 [EdiSegmentGroup("MOA", "DTM", "IND", "ATT", "TAX")]
-public class INSPRE_SG5 : MOA
+public class INSPRE_SG5 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -164,7 +165,7 @@ public class INSPRE_SG5 : MOA
 }
 
 [EdiSegmentGroup("IND", "DTM")]
-public class INSPRE_SG6 : IND
+public class INSPRE_SG6 : IND, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -173,7 +174,7 @@ public class INSPRE_SG6 : IND
 }
 
 [EdiSegmentGroup("ATT", "PCD")]
-public class INSPRE_SG7 : ATT
+public class INSPRE_SG7 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -182,7 +183,7 @@ public class INSPRE_SG7 : ATT
 }
 
 [EdiSegmentGroup("TAX", "PCD")]
-public class INSPRE_SG8 : TAX
+public class INSPRE_SG8 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -191,7 +192,7 @@ public class INSPRE_SG8 : TAX
 }
 
 [EdiSegmentGroup("DTM", "MOA")]
-public class INSPRE_SG9 : DTM
+public class INSPRE_SG9 : DTM, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount

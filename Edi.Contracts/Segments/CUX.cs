@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify currencies used in the transaction and relevant details for the rate of exchange.
 /// </summary>
 [EdiSegment, EdiPath("CUX")]
-public class CUX
+public class CUX : ISegment
 {
 	/// <summary>
 	/// The usage to which a currency relates.
@@ -40,7 +41,7 @@ public class CUX
 /// The usage to which a currency relates.
 /// </summary>
 [EdiElement]
-public class CUX_CurrencyDetails
+public class CUX_CurrencyDetails : IElement
 {
 	/// <summary>
 	/// Specification of the usage to which the currency relates.

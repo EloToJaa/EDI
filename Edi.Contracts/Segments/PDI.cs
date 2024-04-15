@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify items of person demographic information.
 /// </summary>
 [EdiSegment, EdiPath("PDI")]
-public class PDI
+public class PDI : ISegment
 {
 	/// <summary>
 	/// Code giving the gender of a person, animal or plant.
@@ -33,7 +34,7 @@ public class PDI
 /// To specify the marital status of a person.
 /// </summary>
 [EdiElement]
-public class PDI_MaritalStatusDetails
+public class PDI_MaritalStatusDetails : IElement
 {
 	/// <summary>
 	/// Code giving the marital status of a person.
@@ -64,7 +65,7 @@ public class PDI_MaritalStatusDetails
 /// To specify the religion of a person.
 /// </summary>
 [EdiElement]
-public class PDI_ReligionDetails
+public class PDI_ReligionDetails : IElement
 {
 	/// <summary>
 	/// To specify the religion of a person in a coded form.

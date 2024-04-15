@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// COSTCO
 /// </summary>
 [EdiMessage]
-public class COSTCO
+public class COSTCO : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class COSTCO
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class COSTCO
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class COSTCO_SG1 : RFF
+public class COSTCO_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class COSTCO_SG1 : RFF
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM")]
-public class COSTCO_SG2 : TDT
+public class COSTCO_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -90,7 +91,7 @@ public class COSTCO_SG2 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class COSTCO_SG3 : NAD
+public class COSTCO_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -100,7 +101,7 @@ public class COSTCO_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class COSTCO_SG4 : CTA
+public class COSTCO_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -109,7 +110,7 @@ public class COSTCO_SG4 : CTA
 }
 
 [EdiSegmentGroup("EQD", "RFF", "DTM", "TSR", "DIM", "SEL", "EQA", "HAN", "NAD")]
-public class COSTCO_SG5 : EQD
+public class COSTCO_SG5 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -153,7 +154,7 @@ public class COSTCO_SG5 : EQD
 }
 
 [EdiSegmentGroup("CNI", "RFF", "GID")]
-public class COSTCO_SG6 : CNI
+public class COSTCO_SG6 : CNI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -168,7 +169,7 @@ public class COSTCO_SG6 : CNI
 }
 
 [EdiSegmentGroup("GID", "HAN", "TMP", "RNG", "FTX", "MEA", "PCI", "DOC", "SGP", "DGS")]
-public class COSTCO_SG7 : GID
+public class COSTCO_SG7 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -218,7 +219,7 @@ public class COSTCO_SG7 : GID
 }
 
 [EdiSegmentGroup("SGP", "MEA")]
-public class COSTCO_SG8 : SGP
+public class COSTCO_SG8 : SGP, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -227,7 +228,7 @@ public class COSTCO_SG8 : SGP
 }
 
 [EdiSegmentGroup("DGS", "FTX", "MEA", "SGP")]
-public class COSTCO_SG9 : DGS
+public class COSTCO_SG9 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -247,7 +248,7 @@ public class COSTCO_SG9 : DGS
 }
 
 [EdiSegmentGroup("SGP", "MEA")]
-public class COSTCO_SG10 : SGP
+public class COSTCO_SG10 : SGP, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements

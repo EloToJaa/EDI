@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// ORDERS
 /// </summary>
 [EdiMessage]
-public class ORDERS
+public class ORDERS : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,27 +24,27 @@ public class ORDERS
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Payment instructions
 	/// </summary>
-	public PAI? PaymentInstructions1C { get; set; }
+	public PAI? PaymentInstructionsC { get; set; }
 
 	/// <summary>
 	/// Additional information
 	/// </summary>
-	public List<ALI>? AdditionalInformation1C { get; set; }
+	public List<ALI>? AdditionalInformationC { get; set; }
 
 	/// <summary>
 	/// Item description
 	/// </summary>
-	public List<IMD>? ItemDescription1C { get; set; }
+	public List<IMD>? ItemDescriptionC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -128,7 +129,7 @@ public class ORDERS
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public List<MOA>? MonetaryAmount1C { get; set; }
+	public List<MOA>? MonetaryAmountC { get; set; }
 
 	/// <summary>
 	/// Control total
@@ -147,7 +148,7 @@ public class ORDERS
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ORDERS_SG1 : RFF
+public class ORDERS_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -156,7 +157,7 @@ public class ORDERS_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FII", "RFF", "DOC", "CTA")]
-public class ORDERS_SG2 : NAD
+public class ORDERS_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -186,7 +187,7 @@ public class ORDERS_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ORDERS_SG3 : RFF
+public class ORDERS_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -195,7 +196,7 @@ public class ORDERS_SG3 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class ORDERS_SG4 : DOC
+public class ORDERS_SG4 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -204,7 +205,7 @@ public class ORDERS_SG4 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class ORDERS_SG5 : CTA
+public class ORDERS_SG5 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -213,7 +214,7 @@ public class ORDERS_SG5 : CTA
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class ORDERS_SG6 : TAX
+public class ORDERS_SG6 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -227,7 +228,7 @@ public class ORDERS_SG6 : TAX
 }
 
 [EdiSegmentGroup("CUX", "PCD", "DTM")]
-public class ORDERS_SG7 : CUX
+public class ORDERS_SG7 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -241,7 +242,7 @@ public class ORDERS_SG7 : CUX
 }
 
 [EdiSegmentGroup("PAT", "DTM", "PCD", "MOA")]
-public class ORDERS_SG8 : PAT
+public class ORDERS_SG8 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -261,7 +262,7 @@ public class ORDERS_SG8 : PAT
 }
 
 [EdiSegmentGroup("MOA", "GIR")]
-public class ORDERS_SG9 : MOA
+public class ORDERS_SG9 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Related identification numbers
@@ -270,7 +271,7 @@ public class ORDERS_SG9 : MOA
 }
 
 [EdiSegmentGroup("TDT", "LOC")]
-public class ORDERS_SG10 : TDT
+public class ORDERS_SG10 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// SG11
@@ -280,7 +281,7 @@ public class ORDERS_SG10 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class ORDERS_SG11 : LOC
+public class ORDERS_SG11 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -289,7 +290,7 @@ public class ORDERS_SG11 : LOC
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class ORDERS_SG12 : TOD
+public class ORDERS_SG12 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -298,7 +299,7 @@ public class ORDERS_SG12 : TOD
 }
 
 [EdiSegmentGroup("PAC", "MEA", "PCI")]
-public class ORDERS_SG13 : PAC
+public class ORDERS_SG13 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -313,7 +314,7 @@ public class ORDERS_SG13 : PAC
 }
 
 [EdiSegmentGroup("PCI", "RFF", "DTM", "GIN")]
-public class ORDERS_SG14 : PCI
+public class ORDERS_SG14 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -332,7 +333,7 @@ public class ORDERS_SG14 : PCI
 }
 
 [EdiSegmentGroup("EQD", "HAN", "MEA", "FTX")]
-public class ORDERS_SG15 : EQD
+public class ORDERS_SG15 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -351,7 +352,7 @@ public class ORDERS_SG15 : EQD
 }
 
 [EdiSegmentGroup("SCC", "FTX", "RFF", "QTY")]
-public class ORDERS_SG16 : SCC
+public class ORDERS_SG16 : SCC, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -371,7 +372,7 @@ public class ORDERS_SG16 : SCC
 }
 
 [EdiSegmentGroup("QTY", "DTM")]
-public class ORDERS_SG17 : QTY
+public class ORDERS_SG17 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -380,7 +381,7 @@ public class ORDERS_SG17 : QTY
 }
 
 [EdiSegmentGroup("APR", "DTM", "RNG")]
-public class ORDERS_SG18 : APR
+public class ORDERS_SG18 : APR, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -394,7 +395,7 @@ public class ORDERS_SG18 : APR
 }
 
 [EdiSegmentGroup("ALC", "ALI", "DTM", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class ORDERS_SG19 : ALC
+public class ORDERS_SG19 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -434,7 +435,7 @@ public class ORDERS_SG19 : ALC
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class ORDERS_SG20 : QTY
+public class ORDERS_SG20 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -443,7 +444,7 @@ public class ORDERS_SG20 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class ORDERS_SG21 : PCD
+public class ORDERS_SG21 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -452,7 +453,7 @@ public class ORDERS_SG21 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG")]
-public class ORDERS_SG22 : MOA
+public class ORDERS_SG22 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -461,7 +462,7 @@ public class ORDERS_SG22 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class ORDERS_SG23 : RTE
+public class ORDERS_SG23 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -470,7 +471,7 @@ public class ORDERS_SG23 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA")]
-public class ORDERS_SG24 : TAX
+public class ORDERS_SG24 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -479,7 +480,7 @@ public class ORDERS_SG24 : TAX
 }
 
 [EdiSegmentGroup("RCS", "RFF", "DTM", "FTX")]
-public class ORDERS_SG25 : RCS
+public class ORDERS_SG25 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -498,7 +499,7 @@ public class ORDERS_SG25 : RCS
 }
 
 [EdiSegmentGroup("DGS", "FTX", "CTA")]
-public class ORDERS_SG26 : DGS
+public class ORDERS_SG26 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -513,7 +514,7 @@ public class ORDERS_SG26 : DGS
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class ORDERS_SG27 : CTA
+public class ORDERS_SG27 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -522,7 +523,7 @@ public class ORDERS_SG27 : CTA
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "MEA", "QTY", "PCD", "ALI", "DTM", "MOA", "GIN", "GIR", "QVR", "DOC", "PAI", "FTX", "CCI", "PAT", "PRI", "RFF", "PAC", "LOC", "TAX", "NAD", "ALC", "TDT", "TOD", "EQD", "SCC", "RCS", "STG", "DGS")]
-public class ORDERS_SG28 : LIN
+public class ORDERS_SG28 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -677,7 +678,7 @@ public class ORDERS_SG28 : LIN
 }
 
 [EdiSegmentGroup("CCI", "CAV", "MEA")]
-public class ORDERS_SG29 : CCI
+public class ORDERS_SG29 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Characteristic value
@@ -691,7 +692,7 @@ public class ORDERS_SG29 : CCI
 }
 
 [EdiSegmentGroup("PAT", "DTM", "PCD", "MOA")]
-public class ORDERS_SG30 : PAT
+public class ORDERS_SG30 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -711,7 +712,7 @@ public class ORDERS_SG30 : PAT
 }
 
 [EdiSegmentGroup("MOA", "GIR")]
-public class ORDERS_SG31 : MOA
+public class ORDERS_SG31 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Related identification numbers
@@ -720,7 +721,7 @@ public class ORDERS_SG31 : MOA
 }
 
 [EdiSegmentGroup("PRI", "CUX", "APR", "RNG", "DTM")]
-public class ORDERS_SG32 : PRI
+public class ORDERS_SG32 : PRI, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -744,7 +745,7 @@ public class ORDERS_SG32 : PRI
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ORDERS_SG33 : RFF
+public class ORDERS_SG33 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -753,7 +754,7 @@ public class ORDERS_SG33 : RFF
 }
 
 [EdiSegmentGroup("PAC", "MEA", "QTY", "DTM", "RFF", "PCI")]
-public class ORDERS_SG34 : PAC
+public class ORDERS_SG34 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -783,7 +784,7 @@ public class ORDERS_SG34 : PAC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ORDERS_SG35 : RFF
+public class ORDERS_SG35 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -792,7 +793,7 @@ public class ORDERS_SG35 : RFF
 }
 
 [EdiSegmentGroup("PCI", "RFF", "DTM", "GIN")]
-public class ORDERS_SG36 : PCI
+public class ORDERS_SG36 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -811,7 +812,7 @@ public class ORDERS_SG36 : PCI
 }
 
 [EdiSegmentGroup("LOC", "QTY", "PCD", "DTM")]
-public class ORDERS_SG37 : LOC
+public class ORDERS_SG37 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -830,7 +831,7 @@ public class ORDERS_SG37 : LOC
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class ORDERS_SG38 : TAX
+public class ORDERS_SG38 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -844,7 +845,7 @@ public class ORDERS_SG38 : TAX
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "DOC", "CTA")]
-public class ORDERS_SG39 : NAD
+public class ORDERS_SG39 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -869,7 +870,7 @@ public class ORDERS_SG39 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ORDERS_SG40 : RFF
+public class ORDERS_SG40 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -878,7 +879,7 @@ public class ORDERS_SG40 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class ORDERS_SG41 : DOC
+public class ORDERS_SG41 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -887,7 +888,7 @@ public class ORDERS_SG41 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class ORDERS_SG42 : CTA
+public class ORDERS_SG42 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -896,7 +897,7 @@ public class ORDERS_SG42 : CTA
 }
 
 [EdiSegmentGroup("ALC", "ALI", "DTM", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class ORDERS_SG43 : ALC
+public class ORDERS_SG43 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -936,7 +937,7 @@ public class ORDERS_SG43 : ALC
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class ORDERS_SG44 : QTY
+public class ORDERS_SG44 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -945,7 +946,7 @@ public class ORDERS_SG44 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class ORDERS_SG45 : PCD
+public class ORDERS_SG45 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -954,7 +955,7 @@ public class ORDERS_SG45 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG")]
-public class ORDERS_SG46 : MOA
+public class ORDERS_SG46 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -963,7 +964,7 @@ public class ORDERS_SG46 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class ORDERS_SG47 : RTE
+public class ORDERS_SG47 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -972,7 +973,7 @@ public class ORDERS_SG47 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA")]
-public class ORDERS_SG48 : TAX
+public class ORDERS_SG48 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -981,7 +982,7 @@ public class ORDERS_SG48 : TAX
 }
 
 [EdiSegmentGroup("TDT", "LOC")]
-public class ORDERS_SG49 : TDT
+public class ORDERS_SG49 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// SG50
@@ -991,7 +992,7 @@ public class ORDERS_SG49 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class ORDERS_SG50 : LOC
+public class ORDERS_SG50 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -1000,7 +1001,7 @@ public class ORDERS_SG50 : LOC
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class ORDERS_SG51 : TOD
+public class ORDERS_SG51 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -1009,7 +1010,7 @@ public class ORDERS_SG51 : TOD
 }
 
 [EdiSegmentGroup("EQD", "HAN", "MEA", "FTX")]
-public class ORDERS_SG52 : EQD
+public class ORDERS_SG52 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -1028,7 +1029,7 @@ public class ORDERS_SG52 : EQD
 }
 
 [EdiSegmentGroup("SCC", "FTX", "RFF", "QTY")]
-public class ORDERS_SG53 : SCC
+public class ORDERS_SG53 : SCC, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -1048,7 +1049,7 @@ public class ORDERS_SG53 : SCC
 }
 
 [EdiSegmentGroup("QTY", "DTM")]
-public class ORDERS_SG54 : QTY
+public class ORDERS_SG54 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -1057,7 +1058,7 @@ public class ORDERS_SG54 : QTY
 }
 
 [EdiSegmentGroup("RCS", "RFF", "DTM", "FTX")]
-public class ORDERS_SG55 : RCS
+public class ORDERS_SG55 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -1076,7 +1077,7 @@ public class ORDERS_SG55 : RCS
 }
 
 [EdiSegmentGroup("STG", "QTY")]
-public class ORDERS_SG56 : STG
+public class ORDERS_SG56 : STG, ISegmentGroup
 {
 	/// <summary>
 	/// SG57
@@ -1086,7 +1087,7 @@ public class ORDERS_SG56 : STG
 }
 
 [EdiSegmentGroup("QTY", "MOA")]
-public class ORDERS_SG57 : QTY
+public class ORDERS_SG57 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -1095,7 +1096,7 @@ public class ORDERS_SG57 : QTY
 }
 
 [EdiSegmentGroup("DGS", "FTX", "CTA")]
-public class ORDERS_SG58 : DGS
+public class ORDERS_SG58 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -1110,7 +1111,7 @@ public class ORDERS_SG58 : DGS
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class ORDERS_SG59 : CTA
+public class ORDERS_SG59 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -1119,7 +1120,7 @@ public class ORDERS_SG59 : CTA
 }
 
 [EdiSegmentGroup("ALC", "ALI", "MOA")]
-public class ORDERS_SG60 : ALC
+public class ORDERS_SG60 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information

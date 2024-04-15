@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// BAPLTE
 /// </summary>
 [EdiMessage]
-public class BAPLTE
+public class BAPLTE : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class BAPLTE
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1M { get; set; }
+	public DTM? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class BAPLTE
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class BAPLTE_SG1 : RFF
+public class BAPLTE_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -61,7 +62,7 @@ public class BAPLTE_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class BAPLTE_SG2 : NAD
+public class BAPLTE_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -71,7 +72,7 @@ public class BAPLTE_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class BAPLTE_SG3 : CTA
+public class BAPLTE_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -80,7 +81,7 @@ public class BAPLTE_SG3 : CTA
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM", "RFF", "FTX")]
-public class BAPLTE_SG4 : TDT
+public class BAPLTE_SG4 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -104,7 +105,7 @@ public class BAPLTE_SG4 : TDT
 }
 
 [EdiSegmentGroup("LOC", "GID", "EQD")]
-public class BAPLTE_SG5 : LOC
+public class BAPLTE_SG5 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Goods item details
@@ -119,7 +120,7 @@ public class BAPLTE_SG5 : LOC
 }
 
 [EdiSegmentGroup("EQD", "EQN")]
-public class BAPLTE_SG6 : EQD
+public class BAPLTE_SG6 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units

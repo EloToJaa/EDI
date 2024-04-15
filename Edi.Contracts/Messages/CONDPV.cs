@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CONDPV
 /// </summary>
 [EdiMessage]
-public class CONDPV
+public class CONDPV : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class CONDPV
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Authentication result
@@ -33,7 +34,7 @@ public class CONDPV
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class CONDPV
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CONDPV_SG1 : RFF
+public class CONDPV_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class CONDPV_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FII", "RFF", "DOC", "CTA")]
-public class CONDPV_SG2 : NAD
+public class CONDPV_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -106,7 +107,7 @@ public class CONDPV_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CONDPV_SG3 : RFF
+public class CONDPV_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -115,7 +116,7 @@ public class CONDPV_SG3 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class CONDPV_SG4 : DOC
+public class CONDPV_SG4 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -124,7 +125,7 @@ public class CONDPV_SG4 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CONDPV_SG5 : CTA
+public class CONDPV_SG5 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -133,7 +134,7 @@ public class CONDPV_SG5 : CTA
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class CONDPV_SG6 : CUX
+public class CONDPV_SG6 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -142,7 +143,7 @@ public class CONDPV_SG6 : CUX
 }
 
 [EdiSegmentGroup("IND", "RFF", "DTM")]
-public class CONDPV_SG7 : IND
+public class CONDPV_SG7 : IND, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -156,7 +157,7 @@ public class CONDPV_SG7 : IND
 }
 
 [EdiSegmentGroup("BII", "RCS", "PAI", "PAT", "APR", "ARD", "NAD")]
-public class CONDPV_SG8 : BII
+public class CONDPV_SG8 : BII, ISegmentGroup
 {
 	/// <summary>
 	/// Requirements and conditions
@@ -191,7 +192,7 @@ public class CONDPV_SG8 : BII
 }
 
 [EdiSegmentGroup("APR", "DTM")]
-public class CONDPV_SG9 : APR
+public class CONDPV_SG9 : APR, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -200,7 +201,7 @@ public class CONDPV_SG9 : APR
 }
 
 [EdiSegmentGroup("ARD", "MOA", "FTX", "TAX")]
-public class CONDPV_SG10 : ARD
+public class CONDPV_SG10 : ARD, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -220,7 +221,7 @@ public class CONDPV_SG10 : ARD
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class CONDPV_SG11 : TAX
+public class CONDPV_SG11 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -234,7 +235,7 @@ public class CONDPV_SG11 : TAX
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FII", "RFF", "DOC", "CTA")]
-public class CONDPV_SG12 : NAD
+public class CONDPV_SG12 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -264,7 +265,7 @@ public class CONDPV_SG12 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CONDPV_SG13 : RFF
+public class CONDPV_SG13 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -273,7 +274,7 @@ public class CONDPV_SG13 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class CONDPV_SG14 : DOC
+public class CONDPV_SG14 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -282,7 +283,7 @@ public class CONDPV_SG14 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CONDPV_SG15 : CTA
+public class CONDPV_SG15 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact

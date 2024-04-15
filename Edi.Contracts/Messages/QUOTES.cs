@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// QUOTES
 /// </summary>
 [EdiMessage]
-public class QUOTES
+public class QUOTES : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,22 +24,22 @@ public class QUOTES
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Payment instructions
 	/// </summary>
-	public PAI? PaymentInstructions1C { get; set; }
+	public PAI? PaymentInstructionsC { get; set; }
 
 	/// <summary>
 	/// Additional information
 	/// </summary>
-	public List<ALI>? AdditionalInformation1C { get; set; }
+	public List<ALI>? AdditionalInformationC { get; set; }
 
 	/// <summary>
 	/// Item description
 	/// </summary>
-	public IMD? ItemDescription1C { get; set; }
+	public IMD? ItemDescriptionC { get; set; }
 
 	/// <summary>
 	/// Information required
@@ -48,7 +49,7 @@ public class QUOTES
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -138,7 +139,7 @@ public class QUOTES
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public List<MOA>? MonetaryAmount1C { get; set; }
+	public List<MOA>? MonetaryAmountC { get; set; }
 
 	/// <summary>
 	/// Control total
@@ -157,7 +158,7 @@ public class QUOTES
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QUOTES_SG1 : RFF
+public class QUOTES_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -166,7 +167,7 @@ public class QUOTES_SG1 : RFF
 }
 
 [EdiSegmentGroup("AJT", "FTX")]
-public class QUOTES_SG2 : AJT
+public class QUOTES_SG2 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -175,7 +176,7 @@ public class QUOTES_SG2 : AJT
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class QUOTES_SG3 : TAX
+public class QUOTES_SG3 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -189,7 +190,7 @@ public class QUOTES_SG3 : TAX
 }
 
 [EdiSegmentGroup("CUX", "PCD", "DTM")]
-public class QUOTES_SG4 : CUX
+public class QUOTES_SG4 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -203,7 +204,7 @@ public class QUOTES_SG4 : CUX
 }
 
 [EdiSegmentGroup("PAT", "DTM", "PCD", "MOA")]
-public class QUOTES_SG5 : PAT
+public class QUOTES_SG5 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -222,7 +223,7 @@ public class QUOTES_SG5 : PAT
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class QUOTES_SG6 : TOD
+public class QUOTES_SG6 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -231,7 +232,7 @@ public class QUOTES_SG6 : TOD
 }
 
 [EdiSegmentGroup("EQD", "HAN", "MEA", "FTX")]
-public class QUOTES_SG7 : EQD
+public class QUOTES_SG7 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -250,7 +251,7 @@ public class QUOTES_SG7 : EQD
 }
 
 [EdiSegmentGroup("RCS", "RFF", "DTM", "FTX")]
-public class QUOTES_SG8 : RCS
+public class QUOTES_SG8 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -269,7 +270,7 @@ public class QUOTES_SG8 : RCS
 }
 
 [EdiSegmentGroup("APR", "PRI", "QTY", "DTM", "MOA", "RNG")]
-public class QUOTES_SG9 : APR
+public class QUOTES_SG9 : APR, ISegmentGroup
 {
 	/// <summary>
 	/// Price details
@@ -298,7 +299,7 @@ public class QUOTES_SG9 : APR
 }
 
 [EdiSegmentGroup("DLM", "MOA", "DTM")]
-public class QUOTES_SG10 : DLM
+public class QUOTES_SG10 : DLM, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -312,7 +313,7 @@ public class QUOTES_SG10 : DLM
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FII", "RFF", "DOC", "CTA")]
-public class QUOTES_SG11 : NAD
+public class QUOTES_SG11 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -342,7 +343,7 @@ public class QUOTES_SG11 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM", "LOC")]
-public class QUOTES_SG12 : RFF
+public class QUOTES_SG12 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -356,7 +357,7 @@ public class QUOTES_SG12 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class QUOTES_SG13 : DOC
+public class QUOTES_SG13 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -365,7 +366,7 @@ public class QUOTES_SG13 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class QUOTES_SG14 : CTA
+public class QUOTES_SG14 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -374,7 +375,7 @@ public class QUOTES_SG14 : CTA
 }
 
 [EdiSegmentGroup("TDT", "QTY", "LOC")]
-public class QUOTES_SG15 : TDT
+public class QUOTES_SG15 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -389,7 +390,7 @@ public class QUOTES_SG15 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class QUOTES_SG16 : LOC
+public class QUOTES_SG16 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -398,7 +399,7 @@ public class QUOTES_SG16 : LOC
 }
 
 [EdiSegmentGroup("PAC", "MEA", "PCI")]
-public class QUOTES_SG17 : PAC
+public class QUOTES_SG17 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -413,7 +414,7 @@ public class QUOTES_SG17 : PAC
 }
 
 [EdiSegmentGroup("PCI", "RFF", "DTM", "GIN")]
-public class QUOTES_SG18 : PCI
+public class QUOTES_SG18 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -432,7 +433,7 @@ public class QUOTES_SG18 : PCI
 }
 
 [EdiSegmentGroup("SCC", "FTX", "QTY")]
-public class QUOTES_SG19 : SCC
+public class QUOTES_SG19 : SCC, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -447,7 +448,7 @@ public class QUOTES_SG19 : SCC
 }
 
 [EdiSegmentGroup("QTY", "DTM")]
-public class QUOTES_SG20 : QTY
+public class QUOTES_SG20 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -456,7 +457,7 @@ public class QUOTES_SG20 : QTY
 }
 
 [EdiSegmentGroup("ALC", "ALI", "DTM", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class QUOTES_SG21 : ALC
+public class QUOTES_SG21 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -496,7 +497,7 @@ public class QUOTES_SG21 : ALC
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class QUOTES_SG22 : QTY
+public class QUOTES_SG22 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -505,7 +506,7 @@ public class QUOTES_SG22 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class QUOTES_SG23 : PCD
+public class QUOTES_SG23 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -514,7 +515,7 @@ public class QUOTES_SG23 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG")]
-public class QUOTES_SG24 : MOA
+public class QUOTES_SG24 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -523,7 +524,7 @@ public class QUOTES_SG24 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class QUOTES_SG25 : RTE
+public class QUOTES_SG25 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -532,7 +533,7 @@ public class QUOTES_SG25 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA")]
-public class QUOTES_SG26 : TAX
+public class QUOTES_SG26 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -541,7 +542,7 @@ public class QUOTES_SG26 : TAX
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "MEA", "QTY", "PCD", "ALI", "DTM", "GIN", "GIR", "QVR", "FTX", "DGS", "PAI", "DOC", "CCI", "MOA", "AJT", "PRI", "RFF", "LOC", "TAX", "TOD", "EQD", "RCS", "PAT", "PAC", "NAD", "ALC", "TDT", "SCC")]
-public class QUOTES_SG27 : LIN
+public class QUOTES_SG27 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -696,7 +697,7 @@ public class QUOTES_SG27 : LIN
 }
 
 [EdiSegmentGroup("CCI", "CAV", "MEA")]
-public class QUOTES_SG28 : CCI
+public class QUOTES_SG28 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Characteristic value
@@ -710,7 +711,7 @@ public class QUOTES_SG28 : CCI
 }
 
 [EdiSegmentGroup("MOA", "QTY", "IMD", "CUX", "DTM")]
-public class QUOTES_SG29 : MOA
+public class QUOTES_SG29 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -734,7 +735,7 @@ public class QUOTES_SG29 : MOA
 }
 
 [EdiSegmentGroup("AJT", "FTX")]
-public class QUOTES_SG30 : AJT
+public class QUOTES_SG30 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -743,7 +744,7 @@ public class QUOTES_SG30 : AJT
 }
 
 [EdiSegmentGroup("PRI", "APR", "RNG", "CUX", "DTM")]
-public class QUOTES_SG31 : PRI
+public class QUOTES_SG31 : PRI, ISegmentGroup
 {
 	/// <summary>
 	/// Additional price information
@@ -767,7 +768,7 @@ public class QUOTES_SG31 : PRI
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QUOTES_SG32 : RFF
+public class QUOTES_SG32 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -776,7 +777,7 @@ public class QUOTES_SG32 : RFF
 }
 
 [EdiSegmentGroup("LOC", "QTY", "DTM")]
-public class QUOTES_SG33 : LOC
+public class QUOTES_SG33 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -790,7 +791,7 @@ public class QUOTES_SG33 : LOC
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class QUOTES_SG34 : TAX
+public class QUOTES_SG34 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -804,7 +805,7 @@ public class QUOTES_SG34 : TAX
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class QUOTES_SG35 : TOD
+public class QUOTES_SG35 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -813,7 +814,7 @@ public class QUOTES_SG35 : TOD
 }
 
 [EdiSegmentGroup("EQD", "HAN", "MEA", "FTX")]
-public class QUOTES_SG36 : EQD
+public class QUOTES_SG36 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -832,7 +833,7 @@ public class QUOTES_SG36 : EQD
 }
 
 [EdiSegmentGroup("RCS", "RFF", "DTM", "FTX")]
-public class QUOTES_SG37 : RCS
+public class QUOTES_SG37 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -851,7 +852,7 @@ public class QUOTES_SG37 : RCS
 }
 
 [EdiSegmentGroup("PAT", "DTM", "PCD", "MOA")]
-public class QUOTES_SG38 : PAT
+public class QUOTES_SG38 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -870,7 +871,7 @@ public class QUOTES_SG38 : PAT
 }
 
 [EdiSegmentGroup("PAC", "MEA", "QTY", "DTM", "RFF", "PCI")]
-public class QUOTES_SG39 : PAC
+public class QUOTES_SG39 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -900,7 +901,7 @@ public class QUOTES_SG39 : PAC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QUOTES_SG40 : RFF
+public class QUOTES_SG40 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -909,7 +910,7 @@ public class QUOTES_SG40 : RFF
 }
 
 [EdiSegmentGroup("PCI", "RFF", "DTM", "GIN")]
-public class QUOTES_SG41 : PCI
+public class QUOTES_SG41 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -928,7 +929,7 @@ public class QUOTES_SG41 : PCI
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "DOC", "CTA")]
-public class QUOTES_SG42 : NAD
+public class QUOTES_SG42 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -953,7 +954,7 @@ public class QUOTES_SG42 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QUOTES_SG43 : RFF
+public class QUOTES_SG43 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -962,7 +963,7 @@ public class QUOTES_SG43 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class QUOTES_SG44 : DOC
+public class QUOTES_SG44 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -971,7 +972,7 @@ public class QUOTES_SG44 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class QUOTES_SG45 : CTA
+public class QUOTES_SG45 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -980,7 +981,7 @@ public class QUOTES_SG45 : CTA
 }
 
 [EdiSegmentGroup("ALC", "ALI", "DTM", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class QUOTES_SG46 : ALC
+public class QUOTES_SG46 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -1020,7 +1021,7 @@ public class QUOTES_SG46 : ALC
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class QUOTES_SG47 : QTY
+public class QUOTES_SG47 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -1029,7 +1030,7 @@ public class QUOTES_SG47 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class QUOTES_SG48 : PCD
+public class QUOTES_SG48 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -1038,7 +1039,7 @@ public class QUOTES_SG48 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG")]
-public class QUOTES_SG49 : MOA
+public class QUOTES_SG49 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -1047,7 +1048,7 @@ public class QUOTES_SG49 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class QUOTES_SG50 : RTE
+public class QUOTES_SG50 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -1056,7 +1057,7 @@ public class QUOTES_SG50 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA")]
-public class QUOTES_SG51 : TAX
+public class QUOTES_SG51 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -1065,7 +1066,7 @@ public class QUOTES_SG51 : TAX
 }
 
 [EdiSegmentGroup("TDT", "QTY", "LOC")]
-public class QUOTES_SG52 : TDT
+public class QUOTES_SG52 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -1080,7 +1081,7 @@ public class QUOTES_SG52 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class QUOTES_SG53 : LOC
+public class QUOTES_SG53 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -1089,7 +1090,7 @@ public class QUOTES_SG53 : LOC
 }
 
 [EdiSegmentGroup("SCC", "FTX", "QTY")]
-public class QUOTES_SG54 : SCC
+public class QUOTES_SG54 : SCC, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -1104,7 +1105,7 @@ public class QUOTES_SG54 : SCC
 }
 
 [EdiSegmentGroup("QTY", "DTM")]
-public class QUOTES_SG55 : QTY
+public class QUOTES_SG55 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -1113,7 +1114,7 @@ public class QUOTES_SG55 : QTY
 }
 
 [EdiSegmentGroup("ALC", "MOA", "ALI")]
-public class QUOTES_SG56 : ALC
+public class QUOTES_SG56 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount

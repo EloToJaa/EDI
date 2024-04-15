@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify parties to an instruction and where relevant, the instruction.
 /// </summary>
 [EdiSegment, EdiPath("INP")]
-public class INP
+public class INP : ISegment
 {
 	/// <summary>
 	/// Identify the sending and receiving parties of the instruction.
@@ -40,7 +41,7 @@ public class INP
 /// Identify the sending and receiving parties of the instruction.
 /// </summary>
 [EdiElement]
-public class INP_PartiesToInstruction
+public class INP_PartiesToInstruction : IElement
 {
 	/// <summary>
 	/// Party responsible for carrying out the instruction.
@@ -59,7 +60,7 @@ public class INP_PartiesToInstruction
 /// To specify an instruction.
 /// </summary>
 [EdiElement]
-public class INP_Instruction
+public class INP_Instruction : IElement
 {
 	/// <summary>
 	/// Code giving specific meaning to the type of instructions.
@@ -96,7 +97,7 @@ public class INP_Instruction
 /// Provides information regarding the status of an instruction.
 /// </summary>
 [EdiElement]
-public class INP_StatusOfInstruction
+public class INP_StatusOfInstruction : IElement
 {
 	/// <summary>
 	/// Provides information regarding a status.

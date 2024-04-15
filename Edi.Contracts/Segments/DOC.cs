@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify documents, either printed, electronically transferred, or referenced as specified in message description, including, where relevant, the identification of the type of transaction that will result from this message.
 /// </summary>
 [EdiSegment, EdiPath("DOC")]
-public class DOC
+public class DOC : ISegment
 {
 	/// <summary>
 	/// Identification of a type of document/message by code or name. Code preferred.
@@ -46,7 +47,7 @@ public class DOC
 /// Identification of a type of document/message by code or name. Code preferred.
 /// </summary>
 [EdiElement]
-public class DOC_DocumentMessageName
+public class DOC_DocumentMessageName : IElement
 {
 	/// <summary>
 	/// Document/message identifier expressed in code.
@@ -77,7 +78,7 @@ public class DOC_DocumentMessageName
 /// Identification of document/message by number, status, source and/or language.
 /// </summary>
 [EdiElement]
-public class DOC_DocumentMessageDetails
+public class DOC_DocumentMessageDetails : IElement
 {
 	/// <summary>
 	/// Reference number assigned to the document/message by the issuer.

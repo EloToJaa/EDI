@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// FINSTA
 /// </summary>
 [EdiMessage]
-public class FINSTA
+public class FINSTA : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class FINSTA
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1M { get; set; }
+	public DTM? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -62,7 +63,7 @@ public class FINSTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class FINSTA_SG1 : RFF
+public class FINSTA_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -71,7 +72,7 @@ public class FINSTA_SG1 : RFF
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class FINSTA_SG2 : FII
+public class FINSTA_SG2 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -85,7 +86,7 @@ public class FINSTA_SG2 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class FINSTA_SG3 : NAD
+public class FINSTA_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -99,7 +100,7 @@ public class FINSTA_SG3 : NAD
 }
 
 [EdiSegmentGroup("LIN", "FII", "RFF", "FTX", "MOA", "SEQ")]
-public class FINSTA_SG4 : LIN
+public class FINSTA_SG4 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Financial institution information
@@ -129,7 +130,7 @@ public class FINSTA_SG4 : LIN
 }
 
 [EdiSegmentGroup("MOA", "DTM")]
-public class FINSTA_SG5 : MOA
+public class FINSTA_SG5 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -138,7 +139,7 @@ public class FINSTA_SG5 : MOA
 }
 
 [EdiSegmentGroup("SEQ", "RFF", "DTM", "BUS", "MOA", "FTX")]
-public class FINSTA_SG6 : SEQ
+public class FINSTA_SG6 : SEQ, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -167,7 +168,7 @@ public class FINSTA_SG6 : SEQ
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class FINSTA_SG7 : AUT
+public class FINSTA_SG7 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To give a precise definition of all necessary elements belonging to the configuration of a computer system like hardware, firmware, operating system, communication (VANS, network type, protocol, format) and application software.
 /// </summary>
 [EdiSegment, EdiPath("CED")]
-public class CED
+public class CED : ISegment
 {
 	/// <summary>
 	/// A code to identify the computer environment details.
@@ -27,7 +28,7 @@ public class CED
 /// To identify parts of a computer environment.
 /// </summary>
 [EdiElement]
-public class CED_ComputerEnvironmentIdentification
+public class CED_ComputerEnvironmentIdentification : IElement
 {
 	/// <summary>
 	/// A code to identify the computer environment.

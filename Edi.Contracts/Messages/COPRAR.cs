@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// COPRAR
 /// </summary>
 [EdiMessage]
-public class COPRAR
+public class COPRAR : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class COPRAR
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -62,7 +63,7 @@ public class COPRAR
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class COPRAR_SG1 : RFF
+public class COPRAR_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -71,7 +72,7 @@ public class COPRAR_SG1 : RFF
 }
 
 [EdiSegmentGroup("TDT", "RFF", "LOC", "DTM", "FTX")]
-public class COPRAR_SG2 : TDT
+public class COPRAR_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -95,7 +96,7 @@ public class COPRAR_SG2 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class COPRAR_SG3 : NAD
+public class COPRAR_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -105,7 +106,7 @@ public class COPRAR_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class COPRAR_SG4 : CTA
+public class COPRAR_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -114,7 +115,7 @@ public class COPRAR_SG4 : CTA
 }
 
 [EdiSegmentGroup("EQD", "RFF", "EQN", "TMD", "DTM", "LOC", "MEA", "DIM", "TMP", "RNG", "SEL", "FTX", "DGS", "EQA", "HAN", "TDT", "NAD")]
-public class COPRAR_SG5 : EQD
+public class COPRAR_SG5 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -198,7 +199,7 @@ public class COPRAR_SG5 : EQD
 }
 
 [EdiSegmentGroup("TDT", "RFF", "LOC", "DTM")]
-public class COPRAR_SG6 : TDT
+public class COPRAR_SG6 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Reference

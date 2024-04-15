@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To separate header, detail and summary sections of a message.
 /// </summary>
 [EdiSegment, EdiPath("UNS")]
-public class UNS
+public class UNS : ISegment
 {
 	/// <summary>
 	/// Separates sections in a message.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify dimensions.
 /// </summary>
 [EdiSegment, EdiPath("DIM")]
-public class DIM
+public class DIM : ISegment
 {
 	/// <summary>
 	/// To specify the dimensions applicable to each of the transportable units.
@@ -27,7 +28,7 @@ public class DIM
 /// Specification of the dimensions of a transportable unit.
 /// </summary>
 [EdiElement]
-public class DIM_Dimensions
+public class DIM_Dimensions : IElement
 {
 	/// <summary>
 	/// Indication of the unit of measurement in which weight (mass), capacity, length, area, volume or other quantity is expressed.

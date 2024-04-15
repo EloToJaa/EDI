@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a footnote.
 /// </summary>
 [EdiSegment, EdiPath("FNT")]
-public class FNT
+public class FNT : ISegment
 {
 	/// <summary>
 	/// The identification of a footnote.
@@ -40,7 +41,7 @@ public class FNT
 /// The identification of a footnote.
 /// </summary>
 [EdiElement]
-public class FNT_FootnoteIdentification
+public class FNT_FootnoteIdentification : IElement
 {
 	/// <summary>
 	/// The identifier of a footnote.
@@ -59,7 +60,7 @@ public class FNT_FootnoteIdentification
 /// Identification of a transaction party by code.
 /// </summary>
 [EdiElement]
-public class FNT_PartyIdentificationDetails
+public class FNT_PartyIdentificationDetails : IElement
 {
 	/// <summary>
 	/// Code identifying a party involved in a transaction.

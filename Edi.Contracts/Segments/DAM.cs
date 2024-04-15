@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify damage including action taken.
 /// </summary>
 [EdiSegment, EdiPath("DAM")]
-public class DAM
+public class DAM : ISegment
 {
 	/// <summary>
 	/// Code giving specific meaning to the damage details.
@@ -45,7 +46,7 @@ public class DAM
 /// To specify the type of damage to an object.
 /// </summary>
 [EdiElement]
-public class DAM_TypeOfDamage
+public class DAM_TypeOfDamage : IElement
 {
 	/// <summary>
 	/// Code specifying the type of damage to an object.
@@ -76,7 +77,7 @@ public class DAM_TypeOfDamage
 /// To specify where the damage is on an object.
 /// </summary>
 [EdiElement]
-public class DAM_DamageArea
+public class DAM_DamageArea : IElement
 {
 	/// <summary>
 	/// Code specifying where the damage is on an object.
@@ -107,7 +108,7 @@ public class DAM_DamageArea
 /// To specify the severity of damage to an object.
 /// </summary>
 [EdiElement]
-public class DAM_DamageSeverity
+public class DAM_DamageSeverity : IElement
 {
 	/// <summary>
 	/// Code specifying the severity of damage to an object.
@@ -138,7 +139,7 @@ public class DAM_DamageSeverity
 /// To indicate an action which has been taken or is to be taken (e.g. in relation to a certain object).
 /// </summary>
 [EdiElement]
-public class DAM_Action
+public class DAM_Action : IElement
 {
 	/// <summary>
 	/// Code specifying the action to be taken or already taken.

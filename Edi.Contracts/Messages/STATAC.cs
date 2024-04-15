@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// STATAC
 /// </summary>
 [EdiMessage]
-public class STATAC
+public class STATAC : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class STATAC
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1C { get; set; }
+	public List<RFF>? ReferenceC { get; set; }
 
 	/// <summary>
 	/// Currencies
@@ -53,7 +54,7 @@ public class STATAC
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public List<MOA>? MonetaryAmount1M { get; set; }
+	public List<MOA>? MonetaryAmountM { get; set; }
 
 	/// <summary>
 	/// Free text
@@ -67,7 +68,7 @@ public class STATAC
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class STATAC_SG1 : NAD
+public class STATAC_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -77,7 +78,7 @@ public class STATAC_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class STATAC_SG2 : CTA
+public class STATAC_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -86,7 +87,7 @@ public class STATAC_SG2 : CTA
 }
 
 [EdiSegmentGroup("DOC", "MOA", "DTM", "RFF")]
-public class STATAC_SG3 : DOC
+public class STATAC_SG3 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount

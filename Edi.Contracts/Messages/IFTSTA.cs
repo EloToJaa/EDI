@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// IFTSTA
 /// </summary>
 [EdiMessage]
-public class IFTSTA
+public class IFTSTA : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class IFTSTA
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Transport service requirements
@@ -43,17 +44,17 @@ public class IFTSTA
 	/// <summary>
 	/// Place/location identification
 	/// </summary>
-	public List<LOC>? PlaceLocationIdentification1C { get; set; }
+	public List<LOC>? PlaceLocationIdentificationC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Control total
 	/// </summary>
-	public List<CNT>? ControlTotal1C { get; set; }
+	public List<CNT>? ControlTotalC { get; set; }
 
 	/// <summary>
 	/// SG4
@@ -67,7 +68,7 @@ public class IFTSTA
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class IFTSTA_SG1 : NAD
+public class IFTSTA_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -77,7 +78,7 @@ public class IFTSTA_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFTSTA_SG2 : CTA
+public class IFTSTA_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -86,7 +87,7 @@ public class IFTSTA_SG2 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTSTA_SG3 : RFF
+public class IFTSTA_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -95,7 +96,7 @@ public class IFTSTA_SG3 : RFF
 }
 
 [EdiSegmentGroup("CNI", "LOC", "CNT", "STS")]
-public class IFTSTA_SG4 : CNI
+public class IFTSTA_SG4 : CNI, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -115,7 +116,7 @@ public class IFTSTA_SG4 : CNI
 }
 
 [EdiSegmentGroup("STS", "RFF", "DTM", "DOC", "FTX", "NAD", "LOC", "PCI", "TDT", "EQD", "GID")]
-public class IFTSTA_SG5 : STS
+public class IFTSTA_SG5 : STS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -170,7 +171,7 @@ public class IFTSTA_SG5 : STS
 }
 
 [EdiSegmentGroup("TDT", "RFF", "LOC", "DTM")]
-public class IFTSTA_SG6 : TDT
+public class IFTSTA_SG6 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -189,7 +190,7 @@ public class IFTSTA_SG6 : TDT
 }
 
 [EdiSegmentGroup("EQD", "MEA", "DIM", "SEL", "TPL", "EQA")]
-public class IFTSTA_SG7 : EQD
+public class IFTSTA_SG7 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -219,7 +220,7 @@ public class IFTSTA_SG7 : EQD
 }
 
 [EdiSegmentGroup("EQA", "SEL")]
-public class IFTSTA_SG8 : EQA
+public class IFTSTA_SG8 : EQA, ISegmentGroup
 {
 	/// <summary>
 	/// Seal number
@@ -228,7 +229,7 @@ public class IFTSTA_SG8 : EQA
 }
 
 [EdiSegmentGroup("GID", "HAN", "SGP", "DGS", "FTX", "MEA", "DIM", "PCI")]
-public class IFTSTA_SG9 : GID
+public class IFTSTA_SG9 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -268,7 +269,7 @@ public class IFTSTA_SG9 : GID
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFTSTA_SG10 : MEA
+public class IFTSTA_SG10 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -277,7 +278,7 @@ public class IFTSTA_SG10 : MEA
 }
 
 [EdiSegmentGroup("DIM", "EQN")]
-public class IFTSTA_SG11 : DIM
+public class IFTSTA_SG11 : DIM, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -286,7 +287,7 @@ public class IFTSTA_SG11 : DIM
 }
 
 [EdiSegmentGroup("PCI", "GIN")]
-public class IFTSTA_SG12 : PCI
+public class IFTSTA_SG12 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Goods identity number

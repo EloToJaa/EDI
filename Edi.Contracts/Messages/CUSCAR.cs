@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CUSCAR
 /// </summary>
 [EdiMessage]
-public class CUSCAR
+public class CUSCAR : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class CUSCAR
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -38,7 +39,7 @@ public class CUSCAR
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG4
@@ -48,7 +49,7 @@ public class CUSCAR
 	/// <summary>
 	/// General indicator
 	/// </summary>
-	public List<GIS>? GeneralIndicator1C { get; set; }
+	public List<GIS>? GeneralIndicatorC { get; set; }
 
 	/// <summary>
 	/// SG5
@@ -58,7 +59,7 @@ public class CUSCAR
 	/// <summary>
 	/// Control total
 	/// </summary>
-	public List<CNT>? ControlTotal1C { get; set; }
+	public List<CNT>? ControlTotalC { get; set; }
 
 	/// <summary>
 	/// SG7
@@ -77,7 +78,7 @@ public class CUSCAR
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CUSCAR_SG1 : RFF
+public class CUSCAR_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -86,7 +87,7 @@ public class CUSCAR_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class CUSCAR_SG2 : NAD
+public class CUSCAR_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -96,7 +97,7 @@ public class CUSCAR_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CUSCAR_SG3 : CTA
+public class CUSCAR_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -105,7 +106,7 @@ public class CUSCAR_SG3 : CTA
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM")]
-public class CUSCAR_SG4 : TDT
+public class CUSCAR_SG4 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -119,7 +120,7 @@ public class CUSCAR_SG4 : TDT
 }
 
 [EdiSegmentGroup("EQD", "TSR", "MEA", "DIM", "SEL", "NAD", "GIS", "TMP")]
-public class CUSCAR_SG5 : EQD
+public class CUSCAR_SG5 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Transport service requirements
@@ -159,7 +160,7 @@ public class CUSCAR_SG5 : EQD
 }
 
 [EdiSegmentGroup("TMP", "RNG")]
-public class CUSCAR_SG6 : TMP
+public class CUSCAR_SG6 : TMP, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -168,7 +169,7 @@ public class CUSCAR_SG6 : TMP
 }
 
 [EdiSegmentGroup("CNI", "CNT", "RFF")]
-public class CUSCAR_SG7 : CNI
+public class CUSCAR_SG7 : CNI, ISegmentGroup
 {
 	/// <summary>
 	/// Control total
@@ -183,7 +184,7 @@ public class CUSCAR_SG7 : CNI
 }
 
 [EdiSegmentGroup("RFF", "CNT", "MOA", "LOC", "GIS", "CUX", "CPI", "TDT", "NAD", "QTY", "GID")]
-public class CUSCAR_SG8 : RFF
+public class CUSCAR_SG8 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Control total
@@ -238,7 +239,7 @@ public class CUSCAR_SG8 : RFF
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM", "MEA", "RFF")]
-public class CUSCAR_SG9 : TDT
+public class CUSCAR_SG9 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -263,7 +264,7 @@ public class CUSCAR_SG9 : TDT
 }
 
 [EdiSegmentGroup("RFF", "TSR")]
-public class CUSCAR_SG10 : RFF
+public class CUSCAR_SG10 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Transport service requirements
@@ -272,7 +273,7 @@ public class CUSCAR_SG10 : RFF
 }
 
 [EdiSegmentGroup("NAD", "DTM", "RFF", "CTA")]
-public class CUSCAR_SG11 : NAD
+public class CUSCAR_SG11 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -292,7 +293,7 @@ public class CUSCAR_SG11 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CUSCAR_SG12 : CTA
+public class CUSCAR_SG12 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -301,7 +302,7 @@ public class CUSCAR_SG12 : CTA
 }
 
 [EdiSegmentGroup("QTY", "FTX")]
-public class CUSCAR_SG13 : QTY
+public class CUSCAR_SG13 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -310,7 +311,7 @@ public class CUSCAR_SG13 : QTY
 }
 
 [EdiSegmentGroup("GID", "PAC", "HAN", "FTX", "MEA", "MOA", "SGP", "DGS", "PCI", "CST", "TMD", "GIS", "QTY")]
-public class CUSCAR_SG14 : GID
+public class CUSCAR_SG14 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Package
@@ -375,7 +376,7 @@ public class CUSCAR_SG14 : GID
 }
 
 [EdiSegmentGroup("GIS", "DTM", "DOC")]
-public class CUSCAR_SG15 : GIS
+public class CUSCAR_SG15 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -389,7 +390,7 @@ public class CUSCAR_SG15 : GIS
 }
 
 [EdiSegmentGroup("QTY", "FTX")]
-public class CUSCAR_SG16 : QTY
+public class CUSCAR_SG16 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -398,7 +399,7 @@ public class CUSCAR_SG16 : QTY
 }
 
 [EdiSegmentGroup("AUT", "DTM", "RFF")]
-public class CUSCAR_SG17 : AUT
+public class CUSCAR_SG17 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

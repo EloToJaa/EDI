@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CONEST
 /// </summary>
 [EdiMessage]
-public class CONEST
+public class CONEST : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class CONEST
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public RFF? Reference1M { get; set; }
+	public RFF? ReferenceM { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1M { get; set; }
+	public DTM? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Authentication result
@@ -72,7 +73,7 @@ public class CONEST
 }
 
 [EdiSegmentGroup("IND", "RCS", "GIS")]
-public class CONEST_SG1 : IND
+public class CONEST_SG1 : IND, ISegmentGroup
 {
 	/// <summary>
 	/// Requirements and conditions
@@ -87,7 +88,7 @@ public class CONEST_SG1 : IND
 }
 
 [EdiSegmentGroup("GIS", "BII")]
-public class CONEST_SG2 : GIS
+public class CONEST_SG2 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -97,7 +98,7 @@ public class CONEST_SG2 : GIS
 }
 
 [EdiSegmentGroup("BII", "IMD")]
-public class CONEST_SG3 : BII
+public class CONEST_SG3 : BII, ISegmentGroup
 {
 	/// <summary>
 	/// Item description
@@ -106,7 +107,7 @@ public class CONEST_SG3 : BII
 }
 
 [EdiSegmentGroup("BII", "RCS", "GIS", "NAD", "LOC", "APR", "ALI", "QTY", "DTM", "RTE", "RFF", "CUX", "ALC", "RCS", "ARD", "NAD")]
-public class CONEST_SG4 : BII
+public class CONEST_SG4 : BII, ISegmentGroup
 {
 	/// <summary>
 	/// Requirements and conditions
@@ -186,7 +187,7 @@ public class CONEST_SG4 : BII
 }
 
 [EdiSegmentGroup("RFF", "DTM", "GIS", "FTX")]
-public class CONEST_SG5 : RFF
+public class CONEST_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -205,7 +206,7 @@ public class CONEST_SG5 : RFF
 }
 
 [EdiSegmentGroup("CUX", "DTM", "FTX")]
-public class CONEST_SG6 : CUX
+public class CONEST_SG6 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -219,7 +220,7 @@ public class CONEST_SG6 : CUX
 }
 
 [EdiSegmentGroup("ALC", "RFF", "DTM", "RNG", "FTX", "PCD")]
-public class CONEST_SG7 : ALC
+public class CONEST_SG7 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -249,7 +250,7 @@ public class CONEST_SG7 : ALC
 }
 
 [EdiSegmentGroup("PCD", "RFF")]
-public class CONEST_SG8 : PCD
+public class CONEST_SG8 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -258,7 +259,7 @@ public class CONEST_SG8 : PCD
 }
 
 [EdiSegmentGroup("RCS", "BII", "FTX")]
-public class CONEST_SG9 : RCS
+public class CONEST_SG9 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Structure identification
@@ -272,7 +273,7 @@ public class CONEST_SG9 : RCS
 }
 
 [EdiSegmentGroup("ARD", "MOA", "FTX", "TAX", "ALC")]
-public class CONEST_SG10 : ARD
+public class CONEST_SG10 : ARD, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -297,7 +298,7 @@ public class CONEST_SG10 : ARD
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class CONEST_SG11 : TAX
+public class CONEST_SG11 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -311,7 +312,7 @@ public class CONEST_SG11 : TAX
 }
 
 [EdiSegmentGroup("ALC", "ALI", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class CONEST_SG12 : ALC
+public class CONEST_SG12 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -346,7 +347,7 @@ public class CONEST_SG12 : ALC
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class CONEST_SG13 : QTY
+public class CONEST_SG13 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -355,7 +356,7 @@ public class CONEST_SG13 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class CONEST_SG14 : PCD
+public class CONEST_SG14 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -364,7 +365,7 @@ public class CONEST_SG14 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG")]
-public class CONEST_SG15 : MOA
+public class CONEST_SG15 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -373,7 +374,7 @@ public class CONEST_SG15 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class CONEST_SG16 : RTE
+public class CONEST_SG16 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -382,7 +383,7 @@ public class CONEST_SG16 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA")]
-public class CONEST_SG17 : TAX
+public class CONEST_SG17 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -391,7 +392,7 @@ public class CONEST_SG17 : TAX
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FII", "FTX", "RFF", "DOC", "CTA")]
-public class CONEST_SG18 : NAD
+public class CONEST_SG18 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -426,7 +427,7 @@ public class CONEST_SG18 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CONEST_SG19 : RFF
+public class CONEST_SG19 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -435,7 +436,7 @@ public class CONEST_SG19 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class CONEST_SG20 : DOC
+public class CONEST_SG20 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -444,7 +445,7 @@ public class CONEST_SG20 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CONEST_SG21 : CTA
+public class CONEST_SG21 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -453,7 +454,7 @@ public class CONEST_SG21 : CTA
 }
 
 [EdiSegmentGroup("BII", "RCS", "GIS", "RFF", "DIM", "LIN", "QTY", "TAX", "RCS", "ALC", "IMD")]
-public class CONEST_SG22 : BII
+public class CONEST_SG22 : BII, ISegmentGroup
 {
 	/// <summary>
 	/// Requirements and conditions
@@ -508,7 +509,7 @@ public class CONEST_SG22 : BII
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CONEST_SG23 : RFF
+public class CONEST_SG23 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -517,7 +518,7 @@ public class CONEST_SG23 : RFF
 }
 
 [EdiSegmentGroup("DIM", "APR", "FTX")]
-public class CONEST_SG24 : DIM
+public class CONEST_SG24 : DIM, ISegmentGroup
 {
 	/// <summary>
 	/// Additional price information
@@ -531,7 +532,7 @@ public class CONEST_SG24 : DIM
 }
 
 [EdiSegmentGroup("LIN", "IMD")]
-public class CONEST_SG25 : LIN
+public class CONEST_SG25 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// SG26
@@ -541,7 +542,7 @@ public class CONEST_SG25 : LIN
 }
 
 [EdiSegmentGroup("IMD", "RFF", "GIS")]
-public class CONEST_SG26 : IMD
+public class CONEST_SG26 : IMD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -555,7 +556,7 @@ public class CONEST_SG26 : IMD
 }
 
 [EdiSegmentGroup("QTY", "GIS", "APR", "PRI")]
-public class CONEST_SG27 : QTY
+public class CONEST_SG27 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -575,7 +576,7 @@ public class CONEST_SG27 : QTY
 }
 
 [EdiSegmentGroup("PRI", "GIS", "ARD")]
-public class CONEST_SG28 : PRI
+public class CONEST_SG28 : PRI, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -590,7 +591,7 @@ public class CONEST_SG28 : PRI
 }
 
 [EdiSegmentGroup("ARD", "MOA")]
-public class CONEST_SG29 : ARD
+public class CONEST_SG29 : ARD, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -599,7 +600,7 @@ public class CONEST_SG29 : ARD
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class CONEST_SG30 : TAX
+public class CONEST_SG30 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -613,7 +614,7 @@ public class CONEST_SG30 : TAX
 }
 
 [EdiSegmentGroup("RCS", "BII", "GIS")]
-public class CONEST_SG31 : RCS
+public class CONEST_SG31 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Structure identification
@@ -627,7 +628,7 @@ public class CONEST_SG31 : RCS
 }
 
 [EdiSegmentGroup("ALC", "RFF", "DTM", "RNG", "FTX", "PCD")]
-public class CONEST_SG32 : ALC
+public class CONEST_SG32 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -657,7 +658,7 @@ public class CONEST_SG32 : ALC
 }
 
 [EdiSegmentGroup("PCD", "RFF")]
-public class CONEST_SG33 : PCD
+public class CONEST_SG33 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -666,7 +667,7 @@ public class CONEST_SG33 : PCD
 }
 
 [EdiSegmentGroup("IMD", "QTY", "MOA", "PRI")]
-public class CONEST_SG34 : IMD
+public class CONEST_SG34 : IMD, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity

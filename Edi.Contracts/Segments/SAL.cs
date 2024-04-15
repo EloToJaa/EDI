@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// Identification of a remuneration type.
 /// </summary>
 [EdiSegment, EdiPath("SAL")]
-public class SAL
+public class SAL : ISegment
 {
 	/// <summary>
 	/// Identification of the type of a remuneration.
@@ -21,7 +22,7 @@ public class SAL
 /// Identification of the type of a remuneration.
 /// </summary>
 [EdiElement]
-public class SAL_RemunerationTypeIdentification
+public class SAL_RemunerationTypeIdentification : IElement
 {
 	/// <summary>
 	/// Remuneration type in coded form.

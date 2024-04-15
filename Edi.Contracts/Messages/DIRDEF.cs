@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// DIRDEF
 /// </summary>
 [EdiMessage]
-public class DIRDEF
+public class DIRDEF : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -28,12 +29,12 @@ public class DIRDEF
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -72,7 +73,7 @@ public class DIRDEF
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class DIRDEF_SG1 : NAD
+public class DIRDEF_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -82,7 +83,7 @@ public class DIRDEF_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class DIRDEF_SG2 : CTA
+public class DIRDEF_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -91,7 +92,7 @@ public class DIRDEF_SG2 : CTA
 }
 
 [EdiSegmentGroup("MSG", "FTX", "DTM", "SGU")]
-public class DIRDEF_SG3 : MSG
+public class DIRDEF_SG3 : MSG, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -111,7 +112,7 @@ public class DIRDEF_SG3 : MSG
 }
 
 [EdiSegmentGroup("SGU", "FTX", "GRU")]
-public class DIRDEF_SG4 : SGU
+public class DIRDEF_SG4 : SGU, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -126,7 +127,7 @@ public class DIRDEF_SG4 : SGU
 }
 
 [EdiSegmentGroup("GRU", "FTX")]
-public class DIRDEF_SG5 : GRU
+public class DIRDEF_SG5 : GRU, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -135,7 +136,7 @@ public class DIRDEF_SG5 : GRU
 }
 
 [EdiSegmentGroup("SEG", "FTX", "ELU", "REL")]
-public class DIRDEF_SG6 : SEG
+public class DIRDEF_SG6 : SEG, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -154,7 +155,7 @@ public class DIRDEF_SG6 : SEG
 }
 
 [EdiSegmentGroup("CMP", "FTX", "ELU")]
-public class DIRDEF_SG7 : CMP
+public class DIRDEF_SG7 : CMP, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -168,7 +169,7 @@ public class DIRDEF_SG7 : CMP
 }
 
 [EdiSegmentGroup("ELM", "FTX")]
-public class DIRDEF_SG8 : ELM
+public class DIRDEF_SG8 : ELM, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -177,7 +178,7 @@ public class DIRDEF_SG8 : ELM
 }
 
 [EdiSegmentGroup("CDS", "FTX", "CDV")]
-public class DIRDEF_SG9 : CDS
+public class DIRDEF_SG9 : CDS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -192,7 +193,7 @@ public class DIRDEF_SG9 : CDS
 }
 
 [EdiSegmentGroup("CDV", "FTX")]
-public class DIRDEF_SG10 : CDV
+public class DIRDEF_SG10 : CDV, ISegmentGroup
 {
 	/// <summary>
 	/// Free text

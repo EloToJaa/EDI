@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace Edi.Contracts.Qualifiers;
@@ -6,7 +7,7 @@ namespace Edi.Contracts.Qualifiers;
 /// <summary>
 /// Intra-company payment, coded
 /// </summary>
-public class IntracompanyPaymentCoded
+public class IntracompanyPaymentCoded : IQualifier
 {
 	/// <summary>
 	/// String assign converter

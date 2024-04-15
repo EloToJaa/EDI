@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// IFTMBC
 /// </summary>
 [EdiMessage]
-public class IFTMBC
+public class IFTMBC : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,27 +24,27 @@ public class IFTMBC
 	/// <summary>
 	/// Contact information
 	/// </summary>
-	public CTA? ContactInformation1C { get; set; }
+	public CTA? ContactInformationC { get; set; }
 
 	/// <summary>
 	/// Communication contact
 	/// </summary>
-	public List<COM>? CommunicationContact1C { get; set; }
+	public List<COM>? CommunicationContactC { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Transport service requirements
 	/// </summary>
-	public List<TSR>? TransportServiceRequirements1C { get; set; }
+	public List<TSR>? TransportServiceRequirementsC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Control total
@@ -92,7 +93,7 @@ public class IFTMBC
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class IFTMBC_SG1 : LOC
+public class IFTMBC_SG1 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -101,7 +102,7 @@ public class IFTMBC_SG1 : LOC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTMBC_SG2 : RFF
+public class IFTMBC_SG2 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -110,7 +111,7 @@ public class IFTMBC_SG2 : RFF
 }
 
 [EdiSegmentGroup("TDT", "DTM", "TSR", "LOC", "RFF")]
-public class IFTMBC_SG3 : TDT
+public class IFTMBC_SG3 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -135,7 +136,7 @@ public class IFTMBC_SG3 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class IFTMBC_SG4 : LOC
+public class IFTMBC_SG4 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -144,7 +145,7 @@ public class IFTMBC_SG4 : LOC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTMBC_SG5 : RFF
+public class IFTMBC_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -153,7 +154,7 @@ public class IFTMBC_SG5 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "CTA", "TSR")]
-public class IFTMBC_SG6 : NAD
+public class IFTMBC_SG6 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -173,7 +174,7 @@ public class IFTMBC_SG6 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFTMBC_SG7 : CTA
+public class IFTMBC_SG7 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -182,7 +183,7 @@ public class IFTMBC_SG7 : CTA
 }
 
 [EdiSegmentGroup("TSR", "RFF", "LOC", "TPL", "FTX")]
-public class IFTMBC_SG8 : TSR
+public class IFTMBC_SG8 : TSR, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -206,7 +207,7 @@ public class IFTMBC_SG8 : TSR
 }
 
 [EdiSegmentGroup("GID", "HAN", "TMP", "RNG", "TMD", "LOC", "FTX", "NAD", "GDS", "MEA", "DIM", "RFF", "DOC", "DGS")]
-public class IFTMBC_SG9 : GID
+public class IFTMBC_SG9 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -276,7 +277,7 @@ public class IFTMBC_SG9 : GID
 }
 
 [EdiSegmentGroup("NAD", "DTM")]
-public class IFTMBC_SG10 : NAD
+public class IFTMBC_SG10 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -285,7 +286,7 @@ public class IFTMBC_SG10 : NAD
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFTMBC_SG11 : MEA
+public class IFTMBC_SG11 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -294,7 +295,7 @@ public class IFTMBC_SG11 : MEA
 }
 
 [EdiSegmentGroup("DIM", "EQN")]
-public class IFTMBC_SG12 : DIM
+public class IFTMBC_SG12 : DIM, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -303,7 +304,7 @@ public class IFTMBC_SG12 : DIM
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTMBC_SG13 : RFF
+public class IFTMBC_SG13 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -312,7 +313,7 @@ public class IFTMBC_SG13 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class IFTMBC_SG14 : DOC
+public class IFTMBC_SG14 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -321,7 +322,7 @@ public class IFTMBC_SG14 : DOC
 }
 
 [EdiSegmentGroup("DGS", "FTX", "CTA", "MEA")]
-public class IFTMBC_SG15 : DGS
+public class IFTMBC_SG15 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -341,7 +342,7 @@ public class IFTMBC_SG15 : DGS
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFTMBC_SG16 : CTA
+public class IFTMBC_SG16 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -350,7 +351,7 @@ public class IFTMBC_SG16 : CTA
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFTMBC_SG17 : MEA
+public class IFTMBC_SG17 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -359,7 +360,7 @@ public class IFTMBC_SG17 : MEA
 }
 
 [EdiSegmentGroup("EQD", "EQN", "TMD", "MEA", "DIM", "HAN", "TMP", "RNG", "FTX", "NAD")]
-public class IFTMBC_SG18 : EQD
+public class IFTMBC_SG18 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -409,7 +410,7 @@ public class IFTMBC_SG18 : EQD
 }
 
 [EdiSegmentGroup("NAD", "DTM")]
-public class IFTMBC_SG19 : NAD
+public class IFTMBC_SG19 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

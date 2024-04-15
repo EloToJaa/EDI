@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify handling and where necessary, notify hazards.
 /// </summary>
 [EdiSegment, EdiPath("HAN")]
-public class HAN
+public class HAN : ISegment
 {
 	/// <summary>
 	/// Instruction for the handling of goods, products or articles in shipment, storage etc.
@@ -27,7 +28,7 @@ public class HAN
 /// Instruction for the handling of goods, products or articles in shipment, storage etc.
 /// </summary>
 [EdiElement]
-public class HAN_HandlingInstructions
+public class HAN_HandlingInstructions : IElement
 {
 	/// <summary>
 	/// Identification of the instructions on how specified goods, packages or containers should be handled.
@@ -58,7 +59,7 @@ public class HAN_HandlingInstructions
 /// To specify a hazardous material.
 /// </summary>
 [EdiElement]
-public class HAN_HazardousMaterial
+public class HAN_HazardousMaterial : IElement
 {
 	/// <summary>
 	/// Code specifying the kind of hazard for a material.

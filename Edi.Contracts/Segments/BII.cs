@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// A segment used to convey an indexing structure mechanism which identifies the positioning of a group or item.
 /// </summary>
 [EdiSegment, EdiPath("BII")]
-public class BII
+public class BII : ISegment
 {
 	/// <summary>
 	/// To qualify the indexing structure established for a project.
@@ -34,7 +35,7 @@ public class BII
 /// A sequenced collection of facetted codes used for multiple indexing purposes.
 /// </summary>
 [EdiElement]
-public class BII_BillLevelIdentification
+public class BII_BillLevelIdentification : IElement
 {
 	/// <summary>
 	/// The first facet of a sequencing mechanism used to position an item within an indexing structure.

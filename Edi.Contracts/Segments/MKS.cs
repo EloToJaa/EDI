@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify to which market and/or through which sales distribution channel and/or for which end-use the sales of product/service have been made or are given as forecast.
 /// </summary>
 [EdiSegment, EdiPath("MKS")]
-public class MKS
+public class MKS : ISegment
 {
 	/// <summary>
 	/// Identification of the subject areas to which the specified conditions apply.
@@ -34,7 +35,7 @@ public class MKS
 /// Identification of sales channel for marketing data, sales, forecast, planning...
 /// </summary>
 [EdiElement]
-public class MKS_SalesChannelIdentification
+public class MKS_SalesChannelIdentification : IElement
 {
 	/// <summary>
 	/// Code identifying a sales channel for marketing information.

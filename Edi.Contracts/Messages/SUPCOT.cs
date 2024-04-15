@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// SUPCOT
 /// </summary>
 [EdiMessage]
-public class SUPCOT
+public class SUPCOT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class SUPCOT
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1M { get; set; }
+	public List<RFF>? ReferenceM { get; set; }
 
 	/// <summary>
 	/// Payment instructions
@@ -33,7 +34,7 @@ public class SUPCOT
 	/// <summary>
 	/// Currencies
 	/// </summary>
-	public CUX? Currencies1C { get; set; }
+	public CUX? CurrenciesC { get; set; }
 
 	/// <summary>
 	/// Financial institution information
@@ -43,17 +44,17 @@ public class SUPCOT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Payment terms basis
 	/// </summary>
-	public PAT? PaymentTermsBasis1C { get; set; }
+	public PAT? PaymentTermsBasisC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -78,7 +79,7 @@ public class SUPCOT
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public MOA? MonetaryAmount1M { get; set; }
+	public MOA? MonetaryAmountM { get; set; }
 
 	/// <summary>
 	/// Control total
@@ -97,7 +98,7 @@ public class SUPCOT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class SUPCOT_SG1 : NAD
+public class SUPCOT_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -107,7 +108,7 @@ public class SUPCOT_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class SUPCOT_SG2 : CTA
+public class SUPCOT_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -116,7 +117,7 @@ public class SUPCOT_SG2 : CTA
 }
 
 [EdiSegmentGroup("NAD", "ATT", "RFF", "DTM", "EMP", "LOC", "FTX", "PAT")]
-public class SUPCOT_SG3 : NAD
+public class SUPCOT_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Attribute
@@ -156,7 +157,7 @@ public class SUPCOT_SG3 : NAD
 }
 
 [EdiSegmentGroup("PAT", "MOA", "CUX", "DTM", "FTX", "COT")]
-public class SUPCOT_SG4 : PAT
+public class SUPCOT_SG4 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -186,7 +187,7 @@ public class SUPCOT_SG4 : PAT
 }
 
 [EdiSegmentGroup("COT", "MOA", "DTM", "FTX")]
-public class SUPCOT_SG5 : COT
+public class SUPCOT_SG5 : COT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount

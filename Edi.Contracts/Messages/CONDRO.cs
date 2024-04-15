@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CONDRO
 /// </summary>
 [EdiMessage]
-public class CONDRO
+public class CONDRO : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class CONDRO
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Authentication result
@@ -38,7 +39,7 @@ public class CONDRO
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class CONDRO
 }
 
 [EdiSegmentGroup("RFF", "DOC", "DTM", "FTX")]
-public class CONDRO_SG1 : RFF
+public class CONDRO_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Document/message details
@@ -86,7 +87,7 @@ public class CONDRO_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FTX", "RFF", "CTA")]
-public class CONDRO_SG2 : NAD
+public class CONDRO_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -111,7 +112,7 @@ public class CONDRO_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "CED", "DTM")]
-public class CONDRO_SG3 : RFF
+public class CONDRO_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Computer environment details
@@ -125,7 +126,7 @@ public class CONDRO_SG3 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM", "LOC")]
-public class CONDRO_SG4 : CTA
+public class CONDRO_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -139,7 +140,7 @@ public class CONDRO_SG4 : CTA
 }
 
 [EdiSegmentGroup("DOC", "INP", "RFF", "MEA", "EFI")]
-public class CONDRO_SG5 : DOC
+public class CONDRO_SG5 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Parties to instruction
@@ -164,7 +165,7 @@ public class CONDRO_SG5 : DOC
 }
 
 [EdiSegmentGroup("EFI", "CED", "DTM")]
-public class CONDRO_SG6 : EFI
+public class CONDRO_SG6 : EFI, ISegmentGroup
 {
 	/// <summary>
 	/// Computer environment details
@@ -178,7 +179,7 @@ public class CONDRO_SG6 : EFI
 }
 
 [EdiSegmentGroup("BII", "GIS", "DTM", "IMD", "RFF", "QTY", "LOC")]
-public class CONDRO_SG7 : BII
+public class CONDRO_SG7 : BII, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -213,7 +214,7 @@ public class CONDRO_SG7 : BII
 }
 
 [EdiSegmentGroup("LOC", "DIM", "QTY", "MEA")]
-public class CONDRO_SG8 : LOC
+public class CONDRO_SG8 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Dimensions

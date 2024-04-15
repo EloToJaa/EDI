@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To indicate which information is requested in a responding message.
 /// </summary>
 [EdiSegment, EdiPath("IRQ")]
-public class IRQ
+public class IRQ : ISegment
 {
 	/// <summary>
 	/// To specify the information requested in a responding message.
@@ -21,7 +22,7 @@ public class IRQ
 /// To specify the information requested in a responding message.
 /// </summary>
 [EdiElement]
-public class IRQ_InformationRequest
+public class IRQ_InformationRequest : IElement
 {
 	/// <summary>
 	/// To specify the information requested in a responding message in a coded form.

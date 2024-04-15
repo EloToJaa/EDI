@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// SLSRPT
 /// </summary>
 [EdiMessage]
-public class SLSRPT
+public class SLSRPT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class SLSRPT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -57,7 +58,7 @@ public class SLSRPT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class SLSRPT_SG1 : NAD
+public class SLSRPT_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -67,7 +68,7 @@ public class SLSRPT_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class SLSRPT_SG2 : CTA
+public class SLSRPT_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -76,7 +77,7 @@ public class SLSRPT_SG2 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class SLSRPT_SG3 : RFF
+public class SLSRPT_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -85,7 +86,7 @@ public class SLSRPT_SG3 : RFF
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class SLSRPT_SG4 : CUX
+public class SLSRPT_SG4 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -94,7 +95,7 @@ public class SLSRPT_SG4 : CUX
 }
 
 [EdiSegmentGroup("LOC", "DTM", "RFF", "LIN")]
-public class SLSRPT_SG5 : LOC
+public class SLSRPT_SG5 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -114,7 +115,7 @@ public class SLSRPT_SG5 : LOC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class SLSRPT_SG6 : RFF
+public class SLSRPT_SG6 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -123,7 +124,7 @@ public class SLSRPT_SG6 : RFF
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "PAC", "RFF", "DOC", "ALI", "MOA", "PRI", "GIN", "QTY")]
-public class SLSRPT_SG7 : LIN
+public class SLSRPT_SG7 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -178,7 +179,7 @@ public class SLSRPT_SG7 : LIN
 }
 
 [EdiSegmentGroup("QTY", "MKS", "NAD", "PRI", "DTM", "RFF")]
-public class SLSRPT_SG8 : QTY
+public class SLSRPT_SG8 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Market/sales channel information
@@ -207,7 +208,7 @@ public class SLSRPT_SG8 : QTY
 }
 
 [EdiSegmentGroup("GIS", "LIN")]
-public class SLSRPT_SG9 : GIS
+public class SLSRPT_SG9 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// SG10
@@ -217,7 +218,7 @@ public class SLSRPT_SG9 : GIS
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "PAC", "MOA", "LOC")]
-public class SLSRPT_SG10 : LIN
+public class SLSRPT_SG10 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -247,7 +248,7 @@ public class SLSRPT_SG10 : LIN
 }
 
 [EdiSegmentGroup("LOC", "RFF", "DTM", "MOA", "QTY")]
-public class SLSRPT_SG11 : LOC
+public class SLSRPT_SG11 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -272,7 +273,7 @@ public class SLSRPT_SG11 : LOC
 }
 
 [EdiSegmentGroup("QTY", "PRI", "DTM", "RFF")]
-public class SLSRPT_SG12 : QTY
+public class SLSRPT_SG12 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Price details

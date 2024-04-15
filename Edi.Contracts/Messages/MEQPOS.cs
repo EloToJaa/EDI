@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// MEQPOS
 /// </summary>
 [EdiMessage]
-public class MEQPOS
+public class MEQPOS : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class MEQPOS
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Quantity
@@ -33,7 +34,7 @@ public class MEQPOS
 	/// <summary>
 	/// Place/location identification
 	/// </summary>
-	public LOC? PlaceLocationIdentification1M { get; set; }
+	public LOC? PlaceLocationIdentificationM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -62,7 +63,7 @@ public class MEQPOS
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class MEQPOS_SG1 : RFF
+public class MEQPOS_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -71,7 +72,7 @@ public class MEQPOS_SG1 : RFF
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM")]
-public class MEQPOS_SG2 : TDT
+public class MEQPOS_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -85,7 +86,7 @@ public class MEQPOS_SG2 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class MEQPOS_SG3 : NAD
+public class MEQPOS_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -95,7 +96,7 @@ public class MEQPOS_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class MEQPOS_SG4 : CTA
+public class MEQPOS_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -104,7 +105,7 @@ public class MEQPOS_SG4 : CTA
 }
 
 [EdiSegmentGroup("EQD", "LOC", "DTM")]
-public class MEQPOS_SG5 : EQD
+public class MEQPOS_SG5 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification

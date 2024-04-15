@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// INVOIC
 /// </summary>
 [EdiMessage]
-public class INVOIC
+public class INVOIC : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,42 +24,42 @@ public class INVOIC
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Payment instructions
 	/// </summary>
-	public PAI? PaymentInstructions1C { get; set; }
+	public PAI? PaymentInstructionsC { get; set; }
 
 	/// <summary>
 	/// Additional information
 	/// </summary>
-	public List<ALI>? AdditionalInformation1C { get; set; }
+	public List<ALI>? AdditionalInformationC { get; set; }
 
 	/// <summary>
 	/// Item description
 	/// </summary>
-	public IMD? ItemDescription1C { get; set; }
+	public IMD? ItemDescriptionC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Place/location identification
 	/// </summary>
-	public List<LOC>? PlaceLocationIdentification1C { get; set; }
+	public List<LOC>? PlaceLocationIdentificationC { get; set; }
 
 	/// <summary>
 	/// General indicator
 	/// </summary>
-	public List<GIS>? GeneralIndicator1C { get; set; }
+	public List<GIS>? GeneralIndicatorC { get; set; }
 
 	/// <summary>
 	/// Dangerous goods
 	/// </summary>
-	public DGS? DangerousGoods1C { get; set; }
+	public DGS? DangerousGoodsC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -157,7 +158,7 @@ public class INVOIC
 }
 
 [EdiSegmentGroup("RFF", "DTM", "GIR", "LOC", "MEA", "QTY", "FTX", "MOA")]
-public class INVOIC_SG1 : RFF
+public class INVOIC_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -196,7 +197,7 @@ public class INVOIC_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FII", "RFF", "DOC", "CTA")]
-public class INVOIC_SG2 : NAD
+public class INVOIC_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -226,7 +227,7 @@ public class INVOIC_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class INVOIC_SG3 : RFF
+public class INVOIC_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -235,7 +236,7 @@ public class INVOIC_SG3 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class INVOIC_SG4 : DOC
+public class INVOIC_SG4 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -244,7 +245,7 @@ public class INVOIC_SG4 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class INVOIC_SG5 : CTA
+public class INVOIC_SG5 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -253,7 +254,7 @@ public class INVOIC_SG5 : CTA
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class INVOIC_SG6 : TAX
+public class INVOIC_SG6 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -267,7 +268,7 @@ public class INVOIC_SG6 : TAX
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class INVOIC_SG7 : CUX
+public class INVOIC_SG7 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -276,7 +277,7 @@ public class INVOIC_SG7 : CUX
 }
 
 [EdiSegmentGroup("PAT", "DTM", "PCD", "MOA", "PAI", "FII")]
-public class INVOIC_SG8 : PAT
+public class INVOIC_SG8 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -305,7 +306,7 @@ public class INVOIC_SG8 : PAT
 }
 
 [EdiSegmentGroup("TDT", "TSR", "LOC", "RFF")]
-public class INVOIC_SG9 : TDT
+public class INVOIC_SG9 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Transport service requirements
@@ -325,7 +326,7 @@ public class INVOIC_SG9 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class INVOIC_SG10 : LOC
+public class INVOIC_SG10 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -334,7 +335,7 @@ public class INVOIC_SG10 : LOC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class INVOIC_SG11 : RFF
+public class INVOIC_SG11 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -343,7 +344,7 @@ public class INVOIC_SG11 : RFF
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class INVOIC_SG12 : TOD
+public class INVOIC_SG12 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -352,7 +353,7 @@ public class INVOIC_SG12 : TOD
 }
 
 [EdiSegmentGroup("PAC", "MEA", "EQD", "PCI")]
-public class INVOIC_SG13 : PAC
+public class INVOIC_SG13 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -372,7 +373,7 @@ public class INVOIC_SG13 : PAC
 }
 
 [EdiSegmentGroup("PCI", "RFF", "DTM", "GIN")]
-public class INVOIC_SG14 : PCI
+public class INVOIC_SG14 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -391,7 +392,7 @@ public class INVOIC_SG14 : PCI
 }
 
 [EdiSegmentGroup("ALC", "ALI", "FTX", "RFF", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class INVOIC_SG15 : ALC
+public class INVOIC_SG15 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -436,7 +437,7 @@ public class INVOIC_SG15 : ALC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class INVOIC_SG16 : RFF
+public class INVOIC_SG16 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -445,7 +446,7 @@ public class INVOIC_SG16 : RFF
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class INVOIC_SG17 : QTY
+public class INVOIC_SG17 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -454,7 +455,7 @@ public class INVOIC_SG17 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class INVOIC_SG18 : PCD
+public class INVOIC_SG18 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -463,7 +464,7 @@ public class INVOIC_SG18 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG", "CUX", "DTM")]
-public class INVOIC_SG19 : MOA
+public class INVOIC_SG19 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -482,7 +483,7 @@ public class INVOIC_SG19 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class INVOIC_SG20 : RTE
+public class INVOIC_SG20 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -491,7 +492,7 @@ public class INVOIC_SG20 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA")]
-public class INVOIC_SG21 : TAX
+public class INVOIC_SG21 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -500,7 +501,7 @@ public class INVOIC_SG21 : TAX
 }
 
 [EdiSegmentGroup("RCS", "RFF", "DTM", "FTX")]
-public class INVOIC_SG22 : RCS
+public class INVOIC_SG22 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -519,7 +520,7 @@ public class INVOIC_SG22 : RCS
 }
 
 [EdiSegmentGroup("AJT", "FTX")]
-public class INVOIC_SG23 : AJT
+public class INVOIC_SG23 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -528,7 +529,7 @@ public class INVOIC_SG23 : AJT
 }
 
 [EdiSegmentGroup("INP", "FTX")]
-public class INVOIC_SG24 : INP
+public class INVOIC_SG24 : INP, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -537,7 +538,7 @@ public class INVOIC_SG24 : INP
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "MEA", "QTY", "PCD", "ALI", "DTM", "GIN", "GIR", "QVR", "EQD", "FTX", "DGS", "MOA", "PAT", "PRI", "RFF", "PAC", "LOC", "TAX", "NAD", "ALC", "TDT", "TOD", "RCS", "GIS")]
-public class INVOIC_SG25 : LIN
+public class INVOIC_SG25 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -672,7 +673,7 @@ public class INVOIC_SG25 : LIN
 }
 
 [EdiSegmentGroup("MOA", "CUX")]
-public class INVOIC_SG26 : MOA
+public class INVOIC_SG26 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -681,7 +682,7 @@ public class INVOIC_SG26 : MOA
 }
 
 [EdiSegmentGroup("PAT", "DTM", "PCD", "MOA")]
-public class INVOIC_SG27 : PAT
+public class INVOIC_SG27 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -700,7 +701,7 @@ public class INVOIC_SG27 : PAT
 }
 
 [EdiSegmentGroup("PRI", "CUX", "APR", "RNG", "DTM")]
-public class INVOIC_SG28 : PRI
+public class INVOIC_SG28 : PRI, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -724,7 +725,7 @@ public class INVOIC_SG28 : PRI
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class INVOIC_SG29 : RFF
+public class INVOIC_SG29 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -733,7 +734,7 @@ public class INVOIC_SG29 : RFF
 }
 
 [EdiSegmentGroup("PAC", "MEA", "EQD", "PCI")]
-public class INVOIC_SG30 : PAC
+public class INVOIC_SG30 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -753,7 +754,7 @@ public class INVOIC_SG30 : PAC
 }
 
 [EdiSegmentGroup("PCI", "RFF", "DTM", "GIN")]
-public class INVOIC_SG31 : PCI
+public class INVOIC_SG31 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -772,7 +773,7 @@ public class INVOIC_SG31 : PCI
 }
 
 [EdiSegmentGroup("LOC", "QTY", "DTM")]
-public class INVOIC_SG32 : LOC
+public class INVOIC_SG32 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -786,7 +787,7 @@ public class INVOIC_SG32 : LOC
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class INVOIC_SG33 : TAX
+public class INVOIC_SG33 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -800,7 +801,7 @@ public class INVOIC_SG33 : TAX
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "DOC", "CTA")]
-public class INVOIC_SG34 : NAD
+public class INVOIC_SG34 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -825,7 +826,7 @@ public class INVOIC_SG34 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class INVOIC_SG35 : RFF
+public class INVOIC_SG35 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -834,7 +835,7 @@ public class INVOIC_SG35 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class INVOIC_SG36 : DOC
+public class INVOIC_SG36 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -843,7 +844,7 @@ public class INVOIC_SG36 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class INVOIC_SG37 : CTA
+public class INVOIC_SG37 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -852,7 +853,7 @@ public class INVOIC_SG37 : CTA
 }
 
 [EdiSegmentGroup("ALC", "ALI", "DTM", "FTX", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class INVOIC_SG38 : ALC
+public class INVOIC_SG38 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -897,7 +898,7 @@ public class INVOIC_SG38 : ALC
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class INVOIC_SG39 : QTY
+public class INVOIC_SG39 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -906,7 +907,7 @@ public class INVOIC_SG39 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class INVOIC_SG40 : PCD
+public class INVOIC_SG40 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -915,7 +916,7 @@ public class INVOIC_SG40 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG", "CUX", "DTM")]
-public class INVOIC_SG41 : MOA
+public class INVOIC_SG41 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -934,7 +935,7 @@ public class INVOIC_SG41 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class INVOIC_SG42 : RTE
+public class INVOIC_SG42 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -943,7 +944,7 @@ public class INVOIC_SG42 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA")]
-public class INVOIC_SG43 : TAX
+public class INVOIC_SG43 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -952,7 +953,7 @@ public class INVOIC_SG43 : TAX
 }
 
 [EdiSegmentGroup("TDT", "LOC")]
-public class INVOIC_SG44 : TDT
+public class INVOIC_SG44 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// SG45
@@ -962,7 +963,7 @@ public class INVOIC_SG44 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class INVOIC_SG45 : LOC
+public class INVOIC_SG45 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -971,7 +972,7 @@ public class INVOIC_SG45 : LOC
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class INVOIC_SG46 : TOD
+public class INVOIC_SG46 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -980,7 +981,7 @@ public class INVOIC_SG46 : TOD
 }
 
 [EdiSegmentGroup("RCS", "RFF", "DTM", "FTX")]
-public class INVOIC_SG47 : RCS
+public class INVOIC_SG47 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -999,7 +1000,7 @@ public class INVOIC_SG47 : RCS
 }
 
 [EdiSegmentGroup("GIS", "RFF", "DTM", "GIR", "LOC", "MEA", "QTY", "FTX", "MOA")]
-public class INVOIC_SG48 : GIS
+public class INVOIC_SG48 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -1043,7 +1044,7 @@ public class INVOIC_SG48 : GIS
 }
 
 [EdiSegmentGroup("MOA", "RFF")]
-public class INVOIC_SG49 : MOA
+public class INVOIC_SG49 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// SG50
@@ -1053,7 +1054,7 @@ public class INVOIC_SG49 : MOA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class INVOIC_SG50 : RFF
+public class INVOIC_SG50 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -1062,7 +1063,7 @@ public class INVOIC_SG50 : RFF
 }
 
 [EdiSegmentGroup("TAX", "MOA")]
-public class INVOIC_SG51 : TAX
+public class INVOIC_SG51 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -1071,7 +1072,7 @@ public class INVOIC_SG51 : TAX
 }
 
 [EdiSegmentGroup("ALC", "ALI", "MOA", "FTX")]
-public class INVOIC_SG52 : ALC
+public class INVOIC_SG52 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information

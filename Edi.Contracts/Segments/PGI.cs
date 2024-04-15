@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To indicate the group in which a product belongs.
 /// </summary>
 [EdiSegment, EdiPath("PGI")]
-public class PGI
+public class PGI : ISegment
 {
 	/// <summary>
 	/// Specification of the type of product group used for products.
@@ -27,7 +28,7 @@ public class PGI
 /// To give product group information.
 /// </summary>
 [EdiElement]
-public class PGI_ProductGroup
+public class PGI_ProductGroup : IElement
 {
 	/// <summary>
 	/// Code allocated by the seller to identify uniquely his product group for a product or series of products.

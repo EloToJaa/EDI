@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// A segment to identify hierarchical connections from a given item to higher or lower levelled item.
 /// </summary>
 [EdiSegment, EdiPath("HYN")]
-public class HYN
+public class HYN : ISegment
 {
 	/// <summary>
 	/// To qualify the object of the given hierarchy (e.g. product hierarchy, company hierarchy..).
@@ -39,7 +40,7 @@ public class HYN
 /// Goods identification for a specified source.
 /// </summary>
 [EdiElement]
-public class HYN_ItemNumberIdentification
+public class HYN_ItemNumberIdentification : IElement
 {
 	/// <summary>
 	/// A number allocated to a group or item.

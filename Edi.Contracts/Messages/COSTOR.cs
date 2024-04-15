@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// COSTOR
 /// </summary>
 [EdiMessage]
-public class COSTOR
+public class COSTOR : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class COSTOR
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class COSTOR
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class COSTOR_SG1 : RFF
+public class COSTOR_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class COSTOR_SG1 : RFF
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM")]
-public class COSTOR_SG2 : TDT
+public class COSTOR_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -90,7 +91,7 @@ public class COSTOR_SG2 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class COSTOR_SG3 : NAD
+public class COSTOR_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -100,7 +101,7 @@ public class COSTOR_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class COSTOR_SG4 : CTA
+public class COSTOR_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -109,7 +110,7 @@ public class COSTOR_SG4 : CTA
 }
 
 [EdiSegmentGroup("EQD", "RFF", "EQN", "DTM", "TSR", "LOC", "DIM", "HAN", "NAD")]
-public class COSTOR_SG5 : EQD
+public class COSTOR_SG5 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -154,7 +155,7 @@ public class COSTOR_SG5 : EQD
 }
 
 [EdiSegmentGroup("NAD", "DTM")]
-public class COSTOR_SG6 : NAD
+public class COSTOR_SG6 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -163,7 +164,7 @@ public class COSTOR_SG6 : NAD
 }
 
 [EdiSegmentGroup("CNI", "RFF", "NAD", "GID")]
-public class COSTOR_SG7 : CNI
+public class COSTOR_SG7 : CNI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -183,7 +184,7 @@ public class COSTOR_SG7 : CNI
 }
 
 [EdiSegmentGroup("GID", "HAN", "TMP", "RNG", "FTX", "DTM", "NAD", "MEA", "PCI", "DOC", "SGP", "DGS")]
-public class COSTOR_SG8 : GID
+public class COSTOR_SG8 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -243,7 +244,7 @@ public class COSTOR_SG8 : GID
 }
 
 [EdiSegmentGroup("NAD", "DTM")]
-public class COSTOR_SG9 : NAD
+public class COSTOR_SG9 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -252,7 +253,7 @@ public class COSTOR_SG9 : NAD
 }
 
 [EdiSegmentGroup("SGP", "MEA")]
-public class COSTOR_SG10 : SGP
+public class COSTOR_SG10 : SGP, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -261,7 +262,7 @@ public class COSTOR_SG10 : SGP
 }
 
 [EdiSegmentGroup("DGS", "FTX", "MEA", "SGP")]
-public class COSTOR_SG11 : DGS
+public class COSTOR_SG11 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -281,7 +282,7 @@ public class COSTOR_SG11 : DGS
 }
 
 [EdiSegmentGroup("SGP", "MEA")]
-public class COSTOR_SG12 : SGP
+public class COSTOR_SG12 : SGP, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements

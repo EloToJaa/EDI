@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the link of one non-EDIFACT external file to an EDIFACT message.
 /// </summary>
 [EdiSegment, EdiPath("EFI")]
-public class EFI
+public class EFI : ISegment
 {
 	/// <summary>
 	/// To identify a file.
@@ -34,7 +35,7 @@ public class EFI
 /// To identify a file.
 /// </summary>
 [EdiElement]
-public class EFI_FileIdentification
+public class EFI_FileIdentification : IElement
 {
 	/// <summary>
 	/// Name assigned to a file.
@@ -53,7 +54,7 @@ public class EFI_FileIdentification
 /// To define details relevant to a file.
 /// </summary>
 [EdiElement]
-public class EFI_FileDetails
+public class EFI_FileDetails : IElement
 {
 	/// <summary>
 	/// To give an identification of the file format.

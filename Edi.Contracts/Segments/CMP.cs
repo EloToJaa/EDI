@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a composite data element and to give its class and maintenance operation.
 /// </summary>
 [EdiSegment, EdiPath("CMP")]
-public class CMP
+public class CMP : ISegment
 {
 	/// <summary>
 	/// Tag of a composite data element.

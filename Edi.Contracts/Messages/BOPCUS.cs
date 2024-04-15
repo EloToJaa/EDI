@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// BOPCUS
 /// </summary>
 [EdiMessage]
-public class BOPCUS
+public class BOPCUS : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class BOPCUS
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class BOPCUS
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class BOPCUS_SG1 : RFF
+public class BOPCUS_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -61,7 +62,7 @@ public class BOPCUS_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class BOPCUS_SG2 : NAD
+public class BOPCUS_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -75,7 +76,7 @@ public class BOPCUS_SG2 : NAD
 }
 
 [EdiSegmentGroup("LIN", "FII", "DTM", "RFF", "NAD", "MOA", "DOC", "RCS")]
-public class BOPCUS_SG3 : LIN
+public class BOPCUS_SG3 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Financial institution information
@@ -115,7 +116,7 @@ public class BOPCUS_SG3 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class BOPCUS_SG4 : RFF
+public class BOPCUS_SG4 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -124,7 +125,7 @@ public class BOPCUS_SG4 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class BOPCUS_SG5 : NAD
+public class BOPCUS_SG5 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -138,7 +139,7 @@ public class BOPCUS_SG5 : NAD
 }
 
 [EdiSegmentGroup("MOA", "CUX")]
-public class BOPCUS_SG6 : MOA
+public class BOPCUS_SG6 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -147,7 +148,7 @@ public class BOPCUS_SG6 : MOA
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class BOPCUS_SG7 : DOC
+public class BOPCUS_SG7 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -156,7 +157,7 @@ public class BOPCUS_SG7 : DOC
 }
 
 [EdiSegmentGroup("RCS", "FTX", "MOA", "LOC")]
-public class BOPCUS_SG8 : RCS
+public class BOPCUS_SG8 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -175,7 +176,7 @@ public class BOPCUS_SG8 : RCS
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class BOPCUS_SG9 : AUT
+public class BOPCUS_SG9 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

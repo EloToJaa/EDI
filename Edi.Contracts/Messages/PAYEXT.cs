@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// PAYEXT
 /// </summary>
 [EdiMessage]
-public class PAYEXT
+public class PAYEXT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -38,7 +39,7 @@ public class PAYEXT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -87,7 +88,7 @@ public class PAYEXT
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PAYEXT_SG1 : RFF
+public class PAYEXT_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -96,7 +97,7 @@ public class PAYEXT_SG1 : RFF
 }
 
 [EdiSegmentGroup("MOA", "CUX", "DTM", "RFF")]
-public class PAYEXT_SG2 : MOA
+public class PAYEXT_SG2 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -115,7 +116,7 @@ public class PAYEXT_SG2 : MOA
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class PAYEXT_SG3 : FII
+public class PAYEXT_SG3 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -129,7 +130,7 @@ public class PAYEXT_SG3 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class PAYEXT_SG4 : NAD
+public class PAYEXT_SG4 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -143,7 +144,7 @@ public class PAYEXT_SG4 : NAD
 }
 
 [EdiSegmentGroup("INP", "FTX", "DTM")]
-public class PAYEXT_SG5 : INP
+public class PAYEXT_SG5 : INP, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -157,7 +158,7 @@ public class PAYEXT_SG5 : INP
 }
 
 [EdiSegmentGroup("GIS", "MOA", "LOC", "NAD", "RCS", "FTX")]
-public class PAYEXT_SG6 : GIS
+public class PAYEXT_SG6 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -186,7 +187,7 @@ public class PAYEXT_SG6 : GIS
 }
 
 [EdiSegmentGroup("PRC", "FTX", "DOC", "GIS")]
-public class PAYEXT_SG7 : PRC
+public class PAYEXT_SG7 : PRC, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -206,7 +207,7 @@ public class PAYEXT_SG7 : PRC
 }
 
 [EdiSegmentGroup("DOC", "MOA", "DTM", "RFF", "NAD", "CUX", "AJT", "DLI")]
-public class PAYEXT_SG8 : DOC
+public class PAYEXT_SG8 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -246,7 +247,7 @@ public class PAYEXT_SG8 : DOC
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class PAYEXT_SG9 : CUX
+public class PAYEXT_SG9 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -255,7 +256,7 @@ public class PAYEXT_SG9 : CUX
 }
 
 [EdiSegmentGroup("AJT", "MOA", "RFF", "FTX")]
-public class PAYEXT_SG10 : AJT
+public class PAYEXT_SG10 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -274,7 +275,7 @@ public class PAYEXT_SG10 : AJT
 }
 
 [EdiSegmentGroup("DLI", "MOA", "PIA", "DTM", "CUX", "AJT")]
-public class PAYEXT_SG11 : DLI
+public class PAYEXT_SG11 : DLI, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -304,7 +305,7 @@ public class PAYEXT_SG11 : DLI
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class PAYEXT_SG12 : CUX
+public class PAYEXT_SG12 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -313,7 +314,7 @@ public class PAYEXT_SG12 : CUX
 }
 
 [EdiSegmentGroup("AJT", "MOA", "RFF", "FTX")]
-public class PAYEXT_SG13 : AJT
+public class PAYEXT_SG13 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -332,7 +333,7 @@ public class PAYEXT_SG13 : AJT
 }
 
 [EdiSegmentGroup("GIS", "MOA")]
-public class PAYEXT_SG14 : GIS
+public class PAYEXT_SG14 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -341,7 +342,7 @@ public class PAYEXT_SG14 : GIS
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class PAYEXT_SG15 : AUT
+public class PAYEXT_SG15 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

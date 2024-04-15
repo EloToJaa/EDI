@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CASRES
 /// </summary>
 [EdiMessage]
-public class CASRES
+public class CASRES : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class CASRES
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Application error information
@@ -43,12 +44,12 @@ public class CASRES
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public List<MOA>? MonetaryAmount1C { get; set; }
+	public List<MOA>? MonetaryAmountC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class CASRES
 }
 
 [EdiSegmentGroup("NAD", "SEQ", "FTX")]
-public class CASRES_SG1 : NAD
+public class CASRES_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Sequence details
@@ -81,7 +82,7 @@ public class CASRES_SG1 : NAD
 }
 
 [EdiSegmentGroup("DOC", "GIR", "PAT", "DTM", "MOA", "FTX")]
-public class CASRES_SG2 : DOC
+public class CASRES_SG2 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Related identification numbers

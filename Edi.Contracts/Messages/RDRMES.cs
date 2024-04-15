@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// RDRMES
 /// </summary>
 [EdiMessage]
-public class RDRMES
+public class RDRMES : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class RDRMES
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -42,7 +43,7 @@ public class RDRMES
 }
 
 [EdiSegmentGroup("NAD", "RFF", "FTX", "CTA")]
-public class RDRMES_SG1 : NAD
+public class RDRMES_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -62,7 +63,7 @@ public class RDRMES_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class RDRMES_SG2 : CTA
+public class RDRMES_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -71,7 +72,7 @@ public class RDRMES_SG2 : CTA
 }
 
 [EdiSegmentGroup("IDE", "NAD", "SCD")]
-public class RDRMES_SG3 : IDE
+public class RDRMES_SG3 : IDE, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -86,7 +87,7 @@ public class RDRMES_SG3 : IDE
 }
 
 [EdiSegmentGroup("NAD", "RFF", "FTX", "CTA")]
-public class RDRMES_SG4 : NAD
+public class RDRMES_SG4 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -106,7 +107,7 @@ public class RDRMES_SG4 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class RDRMES_SG5 : CTA
+public class RDRMES_SG5 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -115,7 +116,7 @@ public class RDRMES_SG5 : CTA
 }
 
 [EdiSegmentGroup("SCD", "ARR", "RFF", "DTM", "FTX", "NAD")]
-public class RDRMES_SG6 : SCD
+public class RDRMES_SG6 : SCD, ISegmentGroup
 {
 	/// <summary>
 	/// Array information
@@ -145,7 +146,7 @@ public class RDRMES_SG6 : SCD
 }
 
 [EdiSegmentGroup("NAD", "RFF", "FTX", "CTA")]
-public class RDRMES_SG7 : NAD
+public class RDRMES_SG7 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -165,7 +166,7 @@ public class RDRMES_SG7 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class RDRMES_SG8 : CTA
+public class RDRMES_SG8 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact

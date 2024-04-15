@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// MSCONS
 /// </summary>
 [EdiMessage]
-public class MSCONS
+public class MSCONS : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class MSCONS
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -57,7 +58,7 @@ public class MSCONS
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class MSCONS_SG1 : RFF
+public class MSCONS_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -66,7 +67,7 @@ public class MSCONS_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "RFF", "CTA")]
-public class MSCONS_SG2 : NAD
+public class MSCONS_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -81,7 +82,7 @@ public class MSCONS_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class MSCONS_SG3 : RFF
+public class MSCONS_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -90,7 +91,7 @@ public class MSCONS_SG3 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class MSCONS_SG4 : CTA
+public class MSCONS_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -99,7 +100,7 @@ public class MSCONS_SG4 : CTA
 }
 
 [EdiSegmentGroup("NAD", "LOC")]
-public class MSCONS_SG5 : NAD
+public class MSCONS_SG5 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG6
@@ -109,7 +110,7 @@ public class MSCONS_SG5 : NAD
 }
 
 [EdiSegmentGroup("LOC", "DTM", "RFF", "CCI", "LIN")]
-public class MSCONS_SG6 : LOC
+public class MSCONS_SG6 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -134,7 +135,7 @@ public class MSCONS_SG6 : LOC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class MSCONS_SG7 : RFF
+public class MSCONS_SG7 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -143,7 +144,7 @@ public class MSCONS_SG7 : RFF
 }
 
 [EdiSegmentGroup("CCI", "DTM")]
-public class MSCONS_SG8 : CCI
+public class MSCONS_SG8 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -152,7 +153,7 @@ public class MSCONS_SG8 : CCI
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "PRI", "NAD", "MOA", "QTY", "CCI")]
-public class MSCONS_SG9 : LIN
+public class MSCONS_SG9 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -192,7 +193,7 @@ public class MSCONS_SG9 : LIN
 }
 
 [EdiSegmentGroup("QTY", "DTM")]
-public class MSCONS_SG10 : QTY
+public class MSCONS_SG10 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -201,7 +202,7 @@ public class MSCONS_SG10 : QTY
 }
 
 [EdiSegmentGroup("CCI", "MEA", "DTM")]
-public class MSCONS_SG11 : CCI
+public class MSCONS_SG11 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify an index.
 /// </summary>
 [EdiSegment, EdiPath("IND")]
-public class IND
+public class IND : ISegment
 {
 	/// <summary>
 	/// To identify an index.
@@ -27,7 +28,7 @@ public class IND
 /// To identify an index.
 /// </summary>
 [EdiElement]
-public class IND_IndexIdentification
+public class IND_IndexIdentification : IElement
 {
 	/// <summary>
 	/// To identify the type of index being referred to.
@@ -58,7 +59,7 @@ public class IND_IndexIdentification
 /// To identify the value of an index.
 /// </summary>
 [EdiElement]
-public class IND_IndexValue
+public class IND_IndexValue : IElement
 {
 	/// <summary>
 	/// To specify the value of an index.

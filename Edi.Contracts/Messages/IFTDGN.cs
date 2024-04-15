@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// IFTDGN
 /// </summary>
 [EdiMessage]
-public class IFTDGN
+public class IFTDGN : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,17 +24,17 @@ public class IFTDGN
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Handling instructions
 	/// </summary>
-	public HAN? HandlingInstructions1C { get; set; }
+	public HAN? HandlingInstructionsC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class IFTDGN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTDGN_SG1 : RFF
+public class IFTDGN_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class IFTDGN_SG1 : RFF
 }
 
 [EdiSegmentGroup("TDT", "RFF", "LOC", "DTM")]
-public class IFTDGN_SG2 : TDT
+public class IFTDGN_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -95,7 +96,7 @@ public class IFTDGN_SG2 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class IFTDGN_SG3 : NAD
+public class IFTDGN_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -105,7 +106,7 @@ public class IFTDGN_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFTDGN_SG4 : CTA
+public class IFTDGN_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -114,7 +115,7 @@ public class IFTDGN_SG4 : CTA
 }
 
 [EdiSegmentGroup("EQD", "MEA")]
-public class IFTDGN_SG5 : EQD
+public class IFTDGN_SG5 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -123,7 +124,7 @@ public class IFTDGN_SG5 : EQD
 }
 
 [EdiSegmentGroup("CNI", "HAN", "DTM", "LOC", "TDT", "NAD", "GID")]
-public class IFTDGN_SG6 : CNI
+public class IFTDGN_SG6 : CNI, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -158,7 +159,7 @@ public class IFTDGN_SG6 : CNI
 }
 
 [EdiSegmentGroup("TDT", "RFF")]
-public class IFTDGN_SG7 : TDT
+public class IFTDGN_SG7 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -167,7 +168,7 @@ public class IFTDGN_SG7 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA", "RFF")]
-public class IFTDGN_SG8 : NAD
+public class IFTDGN_SG8 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG9
@@ -181,7 +182,7 @@ public class IFTDGN_SG8 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFTDGN_SG9 : CTA
+public class IFTDGN_SG9 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -190,7 +191,7 @@ public class IFTDGN_SG9 : CTA
 }
 
 [EdiSegmentGroup("GID", "FTX", "PCI", "SGP", "DGS")]
-public class IFTDGN_SG10 : GID
+public class IFTDGN_SG10 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -215,7 +216,7 @@ public class IFTDGN_SG10 : GID
 }
 
 [EdiSegmentGroup("SGP", "MEA")]
-public class IFTDGN_SG11 : SGP
+public class IFTDGN_SG11 : SGP, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -224,7 +225,7 @@ public class IFTDGN_SG11 : SGP
 }
 
 [EdiSegmentGroup("DGS", "FTX", "MEA", "LOC", "RFF", "SGP")]
-public class IFTDGN_SG12 : DGS
+public class IFTDGN_SG12 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -254,7 +255,7 @@ public class IFTDGN_SG12 : DGS
 }
 
 [EdiSegmentGroup("SGP", "LOC", "MEA")]
-public class IFTDGN_SG13 : SGP
+public class IFTDGN_SG13 : SGP, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification

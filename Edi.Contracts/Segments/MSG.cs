@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a message type and to give its class and maintenance operation.
 /// </summary>
 [EdiSegment, EdiPath("MSG")]
-public class MSG
+public class MSG : ISegment
 {
 	/// <summary>
 	/// Identification of the message.
@@ -34,7 +35,7 @@ public class MSG
 /// Identification of the message.
 /// </summary>
 [EdiElement]
-public class MSG_MessageIdentifier
+public class MSG_MessageIdentifier : IElement
 {
 	/// <summary>
 	/// Code identifying a type of message as assigned by its controlling agency.

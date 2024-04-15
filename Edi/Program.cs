@@ -28,9 +28,9 @@ namespace Edi
             string filePath = Path.Combine(dirPath, "INVOIC_a2i24021713091266429e1.edi.c2e");
 
             var grammar = EdiGrammar.NewEdiFact();
-            var interchange = default(Interchange<Edi.Contracts.Messages.INVOIC>);
+            var interchange = default(Interchange<Contracts.Messages.INVOIC>);
             using var stream = new StreamReader(filePath);
-            interchange = new EdiSerializer().Deserialize<Interchange<Edi.Contracts.Messages.INVOIC>>(stream, grammar);
+            interchange = new EdiSerializer().Deserialize<Interchange<Contracts.Messages.INVOIC>>(stream, grammar);
 
             string json = JsonSerializer.Serialize(interchange, new JsonSerializerOptions
             {

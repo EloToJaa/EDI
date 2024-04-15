@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// BOPDIR
 /// </summary>
 [EdiMessage]
-public class BOPDIR
+public class BOPDIR : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class BOPDIR
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class BOPDIR
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class BOPDIR_SG1 : RFF
+public class BOPDIR_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class BOPDIR_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class BOPDIR_SG2 : NAD
+public class BOPDIR_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -90,7 +91,7 @@ public class BOPDIR_SG2 : NAD
 }
 
 [EdiSegmentGroup("LIN", "FII", "RCS")]
-public class BOPDIR_SG3 : LIN
+public class BOPDIR_SG3 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Financial institution information
@@ -105,7 +106,7 @@ public class BOPDIR_SG3 : LIN
 }
 
 [EdiSegmentGroup("RCS", "FTX", "RFF", "NAD", "MOA", "LOC")]
-public class BOPDIR_SG4 : RCS
+public class BOPDIR_SG4 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -134,7 +135,7 @@ public class BOPDIR_SG4 : RCS
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class BOPDIR_SG5 : RFF
+public class BOPDIR_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -143,7 +144,7 @@ public class BOPDIR_SG5 : RFF
 }
 
 [EdiSegmentGroup("MOA", "CUX")]
-public class BOPDIR_SG6 : MOA
+public class BOPDIR_SG6 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -152,7 +153,7 @@ public class BOPDIR_SG6 : MOA
 }
 
 [EdiSegmentGroup("LIN", "RCS", "FII", "NAD", "MOA", "RCS")]
-public class BOPDIR_SG7 : LIN
+public class BOPDIR_SG7 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Requirements and conditions
@@ -182,7 +183,7 @@ public class BOPDIR_SG7 : LIN
 }
 
 [EdiSegmentGroup("RCS", "FTX", "GIR", "RFF", "FII", "NAD", "MOA", "LOC")]
-public class BOPDIR_SG8 : RCS
+public class BOPDIR_SG8 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -221,7 +222,7 @@ public class BOPDIR_SG8 : RCS
 }
 
 [EdiSegmentGroup("GIR", "QTY", "PRI")]
-public class BOPDIR_SG9 : GIR
+public class BOPDIR_SG9 : GIR, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -235,7 +236,7 @@ public class BOPDIR_SG9 : GIR
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class BOPDIR_SG10 : RFF
+public class BOPDIR_SG10 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -244,7 +245,7 @@ public class BOPDIR_SG10 : RFF
 }
 
 [EdiSegmentGroup("RFF", "RCS")]
-public class BOPDIR_SG11 : RFF
+public class BOPDIR_SG11 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// SG12
@@ -254,7 +255,7 @@ public class BOPDIR_SG11 : RFF
 }
 
 [EdiSegmentGroup("RCS", "FTX", "SEQ")]
-public class BOPDIR_SG12 : RCS
+public class BOPDIR_SG12 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -269,7 +270,7 @@ public class BOPDIR_SG12 : RCS
 }
 
 [EdiSegmentGroup("SEQ", "GIR", "MOA")]
-public class BOPDIR_SG13 : SEQ
+public class BOPDIR_SG13 : SEQ, ISegmentGroup
 {
 	/// <summary>
 	/// SG14
@@ -284,7 +285,7 @@ public class BOPDIR_SG13 : SEQ
 }
 
 [EdiSegmentGroup("GIR", "QTY", "PRI")]
-public class BOPDIR_SG14 : GIR
+public class BOPDIR_SG14 : GIR, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -298,7 +299,7 @@ public class BOPDIR_SG14 : GIR
 }
 
 [EdiSegmentGroup("MOA", "NAD")]
-public class BOPDIR_SG15 : MOA
+public class BOPDIR_SG15 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Name and address
@@ -307,7 +308,7 @@ public class BOPDIR_SG15 : MOA
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class BOPDIR_SG16 : AUT
+public class BOPDIR_SG16 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

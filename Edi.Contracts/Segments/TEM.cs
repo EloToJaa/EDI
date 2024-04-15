@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To describe the nature of the test performed.
 /// </summary>
 [EdiSegment, EdiPath("TEM")]
-public class TEM
+public class TEM : ISegment
 {
 	/// <summary>
 	/// Specification of the test method employed.
@@ -51,7 +52,7 @@ public class TEM
 /// Specification of the test method employed.
 /// </summary>
 [EdiElement]
-public class TEM_TestMethod
+public class TEM_TestMethod : IElement
 {
 	/// <summary>
 	/// Code to specify the test method employed.
@@ -82,7 +83,7 @@ public class TEM_TestMethod
 /// To identify the reason for the test as specified.
 /// </summary>
 [EdiElement]
-public class TEM_TestReason
+public class TEM_TestReason : IElement
 {
 	/// <summary>
 	/// Reason for performing a test by code.

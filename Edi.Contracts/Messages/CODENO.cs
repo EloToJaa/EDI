@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CODENO
 /// </summary>
 [EdiMessage]
-public class CODENO
+public class CODENO : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class CODENO
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
@@ -67,7 +68,7 @@ public class CODENO
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CODENO_SG1 : RFF
+public class CODENO_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class CODENO_SG1 : RFF
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM")]
-public class CODENO_SG2 : TDT
+public class CODENO_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -90,7 +91,7 @@ public class CODENO_SG2 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class CODENO_SG3 : NAD
+public class CODENO_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -100,7 +101,7 @@ public class CODENO_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CODENO_SG4 : CTA
+public class CODENO_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -109,7 +110,7 @@ public class CODENO_SG4 : CTA
 }
 
 [EdiSegmentGroup("GID", "DOC", "SGP")]
-public class CODENO_SG5 : GID
+public class CODENO_SG5 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// SG6
@@ -123,7 +124,7 @@ public class CODENO_SG5 : GID
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class CODENO_SG6 : DOC
+public class CODENO_SG6 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -132,7 +133,7 @@ public class CODENO_SG6 : DOC
 }
 
 [EdiSegmentGroup("EQD", "RFF", "NAD")]
-public class CODENO_SG7 : EQD
+public class CODENO_SG7 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference

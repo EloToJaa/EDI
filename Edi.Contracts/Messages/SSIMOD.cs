@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// SSIMOD
 /// </summary>
 [EdiMessage]
-public class SSIMOD
+public class SSIMOD : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class SSIMOD
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1C { get; set; }
+	public DTM? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// General indicator
@@ -52,7 +53,7 @@ public class SSIMOD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class SSIMOD_SG1 : RFF
+public class SSIMOD_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -61,7 +62,7 @@ public class SSIMOD_SG1 : RFF
 }
 
 [EdiSegmentGroup("IND", "FTX", "PNA")]
-public class SSIMOD_SG2 : IND
+public class SSIMOD_SG2 : IND, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -76,7 +77,7 @@ public class SSIMOD_SG2 : IND
 }
 
 [EdiSegmentGroup("PNA", "ADR", "GIR", "NAT", "DOC", "ATT", "DTM", "PDI")]
-public class SSIMOD_SG3 : PNA
+public class SSIMOD_SG3 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -116,7 +117,7 @@ public class SSIMOD_SG3 : PNA
 }
 
 [EdiSegmentGroup("DTM", "ADR")]
-public class SSIMOD_SG4 : DTM
+public class SSIMOD_SG4 : DTM, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -125,7 +126,7 @@ public class SSIMOD_SG4 : DTM
 }
 
 [EdiSegmentGroup("PDI", "DTM")]
-public class SSIMOD_SG5 : PDI
+public class SSIMOD_SG5 : PDI, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -134,7 +135,7 @@ public class SSIMOD_SG5 : PDI
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class SSIMOD_SG6 : AUT
+public class SSIMOD_SG6 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

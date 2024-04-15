@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify a related set of identification numbers.
 /// </summary>
 [EdiSegment, EdiPath("GIR")]
-public class GIR
+public class GIR : ISegment
 {
 	/// <summary>
 	/// Identification of the type of set.
@@ -51,7 +52,7 @@ public class GIR
 /// The identification of an object.
 /// </summary>
 [EdiElement]
-public class GIR_IdentificationNumber
+public class GIR_IdentificationNumber : IElement
 {
 	/// <summary>
 	/// The number given to an object for its unique identification.

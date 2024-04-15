@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// PRODEX
 /// </summary>
 [EdiMessage]
-public class PRODEX
+public class PRODEX : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class PRODEX
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Measurements
 	/// </summary>
-	public MEA? Measurements1M { get; set; }
+	public MEA? MeasurementsM { get; set; }
 
 	/// <summary>
 	/// Name and address
@@ -52,7 +53,7 @@ public class PRODEX
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PRODEX_SG1 : RFF
+public class PRODEX_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -61,7 +62,7 @@ public class PRODEX_SG1 : RFF
 }
 
 [EdiSegmentGroup("IMD", "QTY", "LIN")]
-public class PRODEX_SG2 : IMD
+public class PRODEX_SG2 : IMD, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -76,7 +77,7 @@ public class PRODEX_SG2 : IMD
 }
 
 [EdiSegmentGroup("LIN", "GIS", "LOC", "DTM", "MEA", "QTY", "TDT", "RFF")]
-public class PRODEX_SG3 : LIN
+public class PRODEX_SG3 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -116,7 +117,7 @@ public class PRODEX_SG3 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PRODEX_SG4 : RFF
+public class PRODEX_SG4 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a process.
 /// </summary>
 [EdiSegment, EdiPath("PRC")]
-public class PRC
+public class PRC : ISegment
 {
 	/// <summary>
 	/// Identification of process type and description.
@@ -27,7 +28,7 @@ public class PRC
 /// Identification of process type and description.
 /// </summary>
 [EdiElement]
-public class PRC_ProcessTypeAndDescription
+public class PRC_ProcessTypeAndDescription : IElement
 {
 	/// <summary>
 	/// Specification of a process or subprocess.
@@ -64,7 +65,7 @@ public class PRC_ProcessTypeAndDescription
 /// To identify the details of a specific process.
 /// </summary>
 [EdiElement]
-public class PRC_ProcessIdentificationDetails
+public class PRC_ProcessIdentificationDetails : IElement
 {
 	/// <summary>
 	/// Code to identify a specific process.

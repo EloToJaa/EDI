@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CONPVA
 /// </summary>
 [EdiMessage]
-public class CONPVA
+public class CONPVA : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class CONPVA
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Authentication result
@@ -33,7 +34,7 @@ public class CONPVA
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -92,7 +93,7 @@ public class CONPVA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CONPVA_SG1 : RFF
+public class CONPVA_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -101,7 +102,7 @@ public class CONPVA_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FII", "RFF", "DOC", "CTA")]
-public class CONPVA_SG2 : NAD
+public class CONPVA_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -131,7 +132,7 @@ public class CONPVA_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CONPVA_SG3 : RFF
+public class CONPVA_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -140,7 +141,7 @@ public class CONPVA_SG3 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class CONPVA_SG4 : DOC
+public class CONPVA_SG4 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -149,7 +150,7 @@ public class CONPVA_SG4 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CONPVA_SG5 : CTA
+public class CONPVA_SG5 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -158,7 +159,7 @@ public class CONPVA_SG5 : CTA
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class CONPVA_SG6 : CUX
+public class CONPVA_SG6 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -167,7 +168,7 @@ public class CONPVA_SG6 : CUX
 }
 
 [EdiSegmentGroup("IND", "RFF", "DTM")]
-public class CONPVA_SG7 : IND
+public class CONPVA_SG7 : IND, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -181,7 +182,7 @@ public class CONPVA_SG7 : IND
 }
 
 [EdiSegmentGroup("BII", "RCS", "PAI", "PAT", "APR", "ARD", "NAD")]
-public class CONPVA_SG8 : BII
+public class CONPVA_SG8 : BII, ISegmentGroup
 {
 	/// <summary>
 	/// Requirements and conditions
@@ -216,7 +217,7 @@ public class CONPVA_SG8 : BII
 }
 
 [EdiSegmentGroup("APR", "DTM")]
-public class CONPVA_SG9 : APR
+public class CONPVA_SG9 : APR, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -225,7 +226,7 @@ public class CONPVA_SG9 : APR
 }
 
 [EdiSegmentGroup("ARD", "MOA", "FTX", "TAX", "ALC")]
-public class CONPVA_SG10 : ARD
+public class CONPVA_SG10 : ARD, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -250,7 +251,7 @@ public class CONPVA_SG10 : ARD
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class CONPVA_SG11 : TAX
+public class CONPVA_SG11 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -264,7 +265,7 @@ public class CONPVA_SG11 : TAX
 }
 
 [EdiSegmentGroup("ALC", "ALI", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class CONPVA_SG12 : ALC
+public class CONPVA_SG12 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -299,7 +300,7 @@ public class CONPVA_SG12 : ALC
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class CONPVA_SG13 : QTY
+public class CONPVA_SG13 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -308,7 +309,7 @@ public class CONPVA_SG13 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class CONPVA_SG14 : PCD
+public class CONPVA_SG14 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -317,7 +318,7 @@ public class CONPVA_SG14 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG")]
-public class CONPVA_SG15 : MOA
+public class CONPVA_SG15 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -326,7 +327,7 @@ public class CONPVA_SG15 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class CONPVA_SG16 : RTE
+public class CONPVA_SG16 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -335,7 +336,7 @@ public class CONPVA_SG16 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA")]
-public class CONPVA_SG17 : TAX
+public class CONPVA_SG17 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -344,7 +345,7 @@ public class CONPVA_SG17 : TAX
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FII", "RFF", "DOC", "CTA")]
-public class CONPVA_SG18 : NAD
+public class CONPVA_SG18 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -374,7 +375,7 @@ public class CONPVA_SG18 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CONPVA_SG19 : RFF
+public class CONPVA_SG19 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -383,7 +384,7 @@ public class CONPVA_SG19 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class CONPVA_SG20 : DOC
+public class CONPVA_SG20 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -392,7 +393,7 @@ public class CONPVA_SG20 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CONPVA_SG21 : CTA
+public class CONPVA_SG21 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -401,7 +402,7 @@ public class CONPVA_SG21 : CTA
 }
 
 [EdiSegmentGroup("BII", "RCS", "QTY", "PRI", "MOA", "LIN", "APR", "TAX", "ALC")]
-public class CONPVA_SG22 : BII
+public class CONPVA_SG22 : BII, ISegmentGroup
 {
 	/// <summary>
 	/// Requirements and conditions
@@ -446,7 +447,7 @@ public class CONPVA_SG22 : BII
 }
 
 [EdiSegmentGroup("LIN", "IMD")]
-public class CONPVA_SG23 : LIN
+public class CONPVA_SG23 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// SG24
@@ -456,7 +457,7 @@ public class CONPVA_SG23 : LIN
 }
 
 [EdiSegmentGroup("IMD", "RFF", "GIS")]
-public class CONPVA_SG24 : IMD
+public class CONPVA_SG24 : IMD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -470,7 +471,7 @@ public class CONPVA_SG24 : IMD
 }
 
 [EdiSegmentGroup("APR", "DTM")]
-public class CONPVA_SG25 : APR
+public class CONPVA_SG25 : APR, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -479,7 +480,7 @@ public class CONPVA_SG25 : APR
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class CONPVA_SG26 : TAX
+public class CONPVA_SG26 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -493,7 +494,7 @@ public class CONPVA_SG26 : TAX
 }
 
 [EdiSegmentGroup("ALC", "ALI", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class CONPVA_SG27 : ALC
+public class CONPVA_SG27 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -528,7 +529,7 @@ public class CONPVA_SG27 : ALC
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class CONPVA_SG28 : QTY
+public class CONPVA_SG28 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -537,7 +538,7 @@ public class CONPVA_SG28 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class CONPVA_SG29 : PCD
+public class CONPVA_SG29 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -546,7 +547,7 @@ public class CONPVA_SG29 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG")]
-public class CONPVA_SG30 : MOA
+public class CONPVA_SG30 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -555,7 +556,7 @@ public class CONPVA_SG30 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class CONPVA_SG31 : RTE
+public class CONPVA_SG31 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -564,7 +565,7 @@ public class CONPVA_SG31 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA")]
-public class CONPVA_SG32 : TAX
+public class CONPVA_SG32 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -573,7 +574,7 @@ public class CONPVA_SG32 : TAX
 }
 
 [EdiSegmentGroup("TAX", "MOA")]
-public class CONPVA_SG33 : TAX
+public class CONPVA_SG33 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount

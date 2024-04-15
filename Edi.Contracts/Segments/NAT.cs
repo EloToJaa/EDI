@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify a nationality.
 /// </summary>
 [EdiSegment, EdiPath("NAT")]
-public class NAT
+public class NAT : ISegment
 {
 	/// <summary>
 	/// To qualify a nationality.
@@ -27,7 +28,7 @@ public class NAT
 /// To specify a nationality.
 /// </summary>
 [EdiElement]
-public class NAT_NationalityDetails
+public class NAT_NationalityDetails : IElement
 {
 	/// <summary>
 	/// Code for country of which an entity is the subject.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// RETACC
 /// </summary>
 [EdiMessage]
-public class RETACC
+public class RETACC : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -18,7 +19,7 @@ public class RETACC
 	/// <summary>
 	/// General indicator
 	/// </summary>
-	public List<GIS>? GeneralIndicator1M { get; set; }
+	public List<GIS>? GeneralIndicatorM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -28,12 +29,12 @@ public class RETACC
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG2
@@ -57,7 +58,7 @@ public class RETACC
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM", "RFF")]
-public class RETACC_SG1 : NAD
+public class RETACC_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -76,7 +77,7 @@ public class RETACC_SG1 : NAD
 }
 
 [EdiSegmentGroup("CUX", "RFF", "FTX", "MOA")]
-public class RETACC_SG2 : CUX
+public class RETACC_SG2 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -96,7 +97,7 @@ public class RETACC_SG2 : CUX
 }
 
 [EdiSegmentGroup("MOA", "DTM", "PCD", "GIS", "LOC", "FTX", "RFF")]
-public class RETACC_SG3 : MOA
+public class RETACC_SG3 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -131,7 +132,7 @@ public class RETACC_SG3 : MOA
 }
 
 [EdiSegmentGroup("RFF", "DTM", "COM", "FTX")]
-public class RETACC_SG4 : RFF
+public class RETACC_SG4 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -150,7 +151,7 @@ public class RETACC_SG4 : RFF
 }
 
 [EdiSegmentGroup("MOA", "GIS", "NAD", "PAI", "RFF", "DTM")]
-public class RETACC_SG5 : MOA
+public class RETACC_SG5 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -179,7 +180,7 @@ public class RETACC_SG5 : MOA
 }
 
 [EdiSegmentGroup("NAD", "PCD", "RFF", "GIS", "MOA")]
-public class RETACC_SG6 : NAD
+public class RETACC_SG6 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details

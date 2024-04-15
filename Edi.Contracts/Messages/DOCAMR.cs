@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// DOCAMR
 /// </summary>
 [EdiMessage]
-public class DOCAMR
+public class DOCAMR : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class DOCAMR
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1M { get; set; }
+	public List<RFF>? ReferenceM { get; set; }
 
 	/// <summary>
 	/// Financial charges allocation
@@ -33,7 +34,7 @@ public class DOCAMR
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Monetary amount
@@ -77,7 +78,7 @@ public class DOCAMR
 }
 
 [EdiSegmentGroup("FII", "RFF", "CTA", "COM")]
-public class DOCAMR_SG1 : FII
+public class DOCAMR_SG1 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -96,7 +97,7 @@ public class DOCAMR_SG1 : FII
 }
 
 [EdiSegmentGroup("NAD", "RFF", "CTA", "COM")]
-public class DOCAMR_SG2 : NAD
+public class DOCAMR_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -115,7 +116,7 @@ public class DOCAMR_SG2 : NAD
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class DOCAMR_SG3 : AUT
+public class DOCAMR_SG3 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

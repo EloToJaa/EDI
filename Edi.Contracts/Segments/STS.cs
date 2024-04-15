@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the type of industry sector/application to which this segment refers, giving the status and status reason relevant to conducting business and/or services.
 /// </summary>
 [EdiSegment, EdiPath("STS")]
-public class STS
+public class STS : ISegment
 {
 	/// <summary>
 	/// To specify the type of status in relation to an industry sector or business function.
@@ -57,7 +58,7 @@ public class STS
 /// To specify the type of status in relation to an industry sector or business function.
 /// </summary>
 [EdiElement]
-public class STS_StatusType
+public class STS_StatusType : IElement
 {
 	/// <summary>
 	/// Code identifying the type of status event.
@@ -82,7 +83,7 @@ public class STS_StatusType
 /// To specify a status event.
 /// </summary>
 [EdiElement]
-public class STS_StatusEvent
+public class STS_StatusEvent : IElement
 {
 	/// <summary>
 	/// Code identifying a status event.
@@ -113,7 +114,7 @@ public class STS_StatusEvent
 /// To specify the reason behind a status event.
 /// </summary>
 [EdiElement]
-public class STS_StatusReason
+public class STS_StatusReason : IElement
 {
 	/// <summary>
 	/// Code identifying the reason behind a status event.

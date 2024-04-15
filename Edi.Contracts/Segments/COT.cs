@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify details about membership contributions.
 /// </summary>
 [EdiSegment, EdiPath("COT")]
-public class COT
+public class COT : ISegment
 {
 	/// <summary>
 	/// Specification of the meaning of a financial contribution to a scheme or group.
@@ -45,7 +46,7 @@ public class COT
 /// Identification of the type of a contribution to a scheme or group.
 /// </summary>
 [EdiElement]
-public class COT_ContributionType
+public class COT_ContributionType : IElement
 {
 	/// <summary>
 	/// Identification of the type of a contribution to a scheme or group.
@@ -76,7 +77,7 @@ public class COT_ContributionType
 /// To specify an instruction.
 /// </summary>
 [EdiElement]
-public class COT_Instruction
+public class COT_Instruction : IElement
 {
 	/// <summary>
 	/// Code giving specific meaning to the type of instructions.
@@ -113,7 +114,7 @@ public class COT_Instruction
 /// Identification of the applicable rate/tariff class.
 /// </summary>
 [EdiElement]
-public class COT_RateTariffClass
+public class COT_RateTariffClass : IElement
 {
 	/// <summary>
 	/// Identification of the rate/tariff class.
@@ -180,7 +181,7 @@ public class COT_RateTariffClass
 /// Code and/or description of the reason for a change.
 /// </summary>
 [EdiElement]
-public class COT_ReasonForChange
+public class COT_ReasonForChange : IElement
 {
 	/// <summary>
 	/// Identification of the reason for a change.

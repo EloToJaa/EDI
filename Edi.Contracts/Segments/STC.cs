@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify a statistical concept.
 /// </summary>
 [EdiSegment, EdiPath("STC")]
-public class STC
+public class STC : ISegment
 {
 	/// <summary>
 	/// The identification of a statistical concept.
@@ -40,7 +41,7 @@ public class STC
 /// The identification of a statistical concept.
 /// </summary>
 [EdiElement]
-public class STC_StatisticalConceptIdentification
+public class STC_StatisticalConceptIdentification : IElement
 {
 	/// <summary>
 	/// The identifier of a statistical concept.
@@ -59,7 +60,7 @@ public class STC_StatisticalConceptIdentification
 /// Identification of a transaction party by code.
 /// </summary>
 [EdiElement]
-public class STC_PartyIdentificationDetails
+public class STC_PartyIdentificationDetails : IElement
 {
 	/// <summary>
 	/// Code identifying a party involved in a transaction.

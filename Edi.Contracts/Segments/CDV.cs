@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To provide information related to a code value.
 /// </summary>
 [EdiSegment, EdiPath("CDV")]
-public class CDV
+public class CDV : ISegment
 {
 	/// <summary>
 	/// Value of the code.

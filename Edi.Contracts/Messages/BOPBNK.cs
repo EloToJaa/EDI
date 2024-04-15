@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// BOPBNK
 /// </summary>
 [EdiMessage]
-public class BOPBNK
+public class BOPBNK : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class BOPBNK
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class BOPBNK
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class BOPBNK_SG1 : RFF
+public class BOPBNK_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -61,7 +62,7 @@ public class BOPBNK_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class BOPBNK_SG2 : NAD
+public class BOPBNK_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -75,7 +76,7 @@ public class BOPBNK_SG2 : NAD
 }
 
 [EdiSegmentGroup("LIN", "MOA", "RCS")]
-public class BOPBNK_SG3 : LIN
+public class BOPBNK_SG3 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -90,7 +91,7 @@ public class BOPBNK_SG3 : LIN
 }
 
 [EdiSegmentGroup("RCS", "FTX", "MOA")]
-public class BOPBNK_SG4 : RCS
+public class BOPBNK_SG4 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -105,7 +106,7 @@ public class BOPBNK_SG4 : RCS
 }
 
 [EdiSegmentGroup("MOA", "GIR", "RFF", "NAD", "LOC")]
-public class BOPBNK_SG5 : MOA
+public class BOPBNK_SG5 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// SG6
@@ -129,7 +130,7 @@ public class BOPBNK_SG5 : MOA
 }
 
 [EdiSegmentGroup("GIR", "QTY", "PRI")]
-public class BOPBNK_SG6 : GIR
+public class BOPBNK_SG6 : GIR, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -143,7 +144,7 @@ public class BOPBNK_SG6 : GIR
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class BOPBNK_SG7 : RFF
+public class BOPBNK_SG7 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -152,7 +153,7 @@ public class BOPBNK_SG7 : RFF
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class BOPBNK_SG8 : AUT
+public class BOPBNK_SG8 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

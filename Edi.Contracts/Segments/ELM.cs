@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a simple data element and give related details.
 /// </summary>
 [EdiSegment, EdiPath("ELM")]
-public class ELM
+public class ELM : ISegment
 {
 	/// <summary>
 	/// Tag of a simple data element.

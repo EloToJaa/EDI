@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// IFTRIN
 /// </summary>
 [EdiMessage]
-public class IFTRIN
+public class IFTRIN : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class IFTRIN
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
@@ -57,7 +58,7 @@ public class IFTRIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTRIN_SG1 : RFF
+public class IFTRIN_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -66,7 +67,7 @@ public class IFTRIN_SG1 : RFF
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class IFTRIN_SG2 : LOC
+public class IFTRIN_SG2 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -75,7 +76,7 @@ public class IFTRIN_SG2 : LOC
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class IFTRIN_SG3 : NAD
+public class IFTRIN_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -85,7 +86,7 @@ public class IFTRIN_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFTRIN_SG4 : CTA
+public class IFTRIN_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -94,7 +95,7 @@ public class IFTRIN_SG4 : CTA
 }
 
 [EdiSegmentGroup("TDT", "DTM", "LOC", "RFF", "CUX", "MEA", "TCC")]
-public class IFTRIN_SG5 : TDT
+public class IFTRIN_SG5 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -129,7 +130,7 @@ public class IFTRIN_SG5 : TDT
 }
 
 [EdiSegmentGroup("TCC", "EQN", "PCD", "QTY", "PRI", "MOA")]
-public class IFTRIN_SG6 : TCC
+public class IFTRIN_SG6 : TCC, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units

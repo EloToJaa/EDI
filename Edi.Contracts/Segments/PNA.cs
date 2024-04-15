@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify information necessary to establish the identity of a party.
 /// </summary>
 [EdiSegment, EdiPath("PNA")]
-public class PNA
+public class PNA : ISegment
 {
 	/// <summary>
 	/// Code giving specific meaning to a party.
@@ -75,7 +76,7 @@ public class PNA
 /// The identification of an object.
 /// </summary>
 [EdiElement]
-public class PNA_IdentificationNumber
+public class PNA_IdentificationNumber : IElement
 {
 	/// <summary>
 	/// The number given to an object for its unique identification.
@@ -100,7 +101,7 @@ public class PNA_IdentificationNumber
 /// Identification of a transaction party by code.
 /// </summary>
 [EdiElement]
-public class PNA_PartyIdentificationDetails
+public class PNA_PartyIdentificationDetails : IElement
 {
 	/// <summary>
 	/// Code identifying a party involved in a transaction.
@@ -125,7 +126,7 @@ public class PNA_PartyIdentificationDetails
 /// To specify a name component.
 /// </summary>
 [EdiElement]
-public class PNA_NameComponentDetails
+public class PNA_NameComponentDetails : IElement
 {
 	/// <summary>
 	/// To indicate a part of the name such as family name or given name.

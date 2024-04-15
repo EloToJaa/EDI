@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// BAPLIE
 /// </summary>
 [EdiMessage]
-public class BAPLIE
+public class BAPLIE : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class BAPLIE
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1M { get; set; }
+	public DTM? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class BAPLIE
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class BAPLIE_SG1 : RFF
+public class BAPLIE_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -61,7 +62,7 @@ public class BAPLIE_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class BAPLIE_SG2 : NAD
+public class BAPLIE_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -71,7 +72,7 @@ public class BAPLIE_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class BAPLIE_SG3 : CTA
+public class BAPLIE_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -80,7 +81,7 @@ public class BAPLIE_SG3 : CTA
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM", "RFF", "FTX")]
-public class BAPLIE_SG4 : TDT
+public class BAPLIE_SG4 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -104,7 +105,7 @@ public class BAPLIE_SG4 : TDT
 }
 
 [EdiSegmentGroup("LOC", "GID", "GDS", "FTX", "MEA", "DIM", "TMP", "RNG", "LOC", "RFF", "EQD", "DGS")]
-public class BAPLIE_SG5 : LOC
+public class BAPLIE_SG5 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Goods item details
@@ -164,7 +165,7 @@ public class BAPLIE_SG5 : LOC
 }
 
 [EdiSegmentGroup("EQD", "EQA", "NAD")]
-public class BAPLIE_SG6 : EQD
+public class BAPLIE_SG6 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Attached equipment
@@ -178,7 +179,7 @@ public class BAPLIE_SG6 : EQD
 }
 
 [EdiSegmentGroup("DGS", "FTX")]
-public class BAPLIE_SG7 : DGS
+public class BAPLIE_SG7 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text

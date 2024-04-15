@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// VATDEC
 /// </summary>
 [EdiMessage]
-public class VATDEC
+public class VATDEC : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class VATDEC
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1C { get; set; }
+	public DTM? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Place/location identification
 	/// </summary>
-	public LOC? PlaceLocationIdentification1C { get; set; }
+	public LOC? PlaceLocationIdentificationC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class VATDEC
 }
 
 [EdiSegmentGroup("NAD", "CTA", "RFF", "FII", "PAI", "GIS", "LOC", "DTM")]
-public class VATDEC_SG1 : NAD
+public class VATDEC_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -92,7 +93,7 @@ public class VATDEC_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class VATDEC_SG2 : CTA
+public class VATDEC_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -101,7 +102,7 @@ public class VATDEC_SG2 : CTA
 }
 
 [EdiSegmentGroup("RFF", "FTX")]
-public class VATDEC_SG3 : RFF
+public class VATDEC_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -110,7 +111,7 @@ public class VATDEC_SG3 : RFF
 }
 
 [EdiSegmentGroup("DTM", "GIS", "MEA", "DMS", "LIN")]
-public class VATDEC_SG4 : DTM
+public class VATDEC_SG4 : DTM, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -135,7 +136,7 @@ public class VATDEC_SG4 : DTM
 }
 
 [EdiSegmentGroup("DMS", "MOA", "MEA", "PCD", "GIS")]
-public class VATDEC_SG5 : DMS
+public class VATDEC_SG5 : DMS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -159,7 +160,7 @@ public class VATDEC_SG5 : DMS
 }
 
 [EdiSegmentGroup("LIN", "NAD", "GIS", "MOA")]
-public class VATDEC_SG6 : LIN
+public class VATDEC_SG6 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// SG7
@@ -179,7 +180,7 @@ public class VATDEC_SG6 : LIN
 }
 
 [EdiSegmentGroup("NAD", "CTA", "RFF", "FII")]
-public class VATDEC_SG7 : NAD
+public class VATDEC_SG7 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG8
@@ -198,7 +199,7 @@ public class VATDEC_SG7 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class VATDEC_SG8 : CTA
+public class VATDEC_SG8 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -207,7 +208,7 @@ public class VATDEC_SG8 : CTA
 }
 
 [EdiSegmentGroup("MOA", "ARD", "PCD", "GIS", "DMS")]
-public class VATDEC_SG9 : MOA
+public class VATDEC_SG9 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Amounts relationship details
@@ -232,7 +233,7 @@ public class VATDEC_SG9 : MOA
 }
 
 [EdiSegmentGroup("DMS", "MOA", "MEA", "PCD", "GIS")]
-public class VATDEC_SG10 : DMS
+public class VATDEC_SG10 : DMS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -256,7 +257,7 @@ public class VATDEC_SG10 : DMS
 }
 
 [EdiSegmentGroup("AUT", "DTM", "RFF")]
-public class VATDEC_SG11 : AUT
+public class VATDEC_SG11 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

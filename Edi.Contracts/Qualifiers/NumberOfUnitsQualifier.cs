@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace Edi.Contracts.Qualifiers;
@@ -6,7 +7,7 @@ namespace Edi.Contracts.Qualifiers;
 /// <summary>
 /// Number of units qualifier
 /// </summary>
-public class NumberOfUnitsQualifier
+public class NumberOfUnitsQualifier : IQualifier
 {
 	/// <summary>
 	/// String assign converter

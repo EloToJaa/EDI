@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a segment and give its class and maintenance operation.
 /// </summary>
 [EdiSegment, EdiPath("SEG")]
-public class SEG
+public class SEG : ISegment
 {
 	/// <summary>
 	/// Tag of a segment.

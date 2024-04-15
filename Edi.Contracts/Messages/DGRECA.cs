@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// DGRECA
 /// </summary>
 [EdiMessage]
-public class DGRECA
+public class DGRECA : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class DGRECA
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class DGRECA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DGRECA_SG1 : RFF
+public class DGRECA_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -61,7 +62,7 @@ public class DGRECA_SG1 : RFF
 }
 
 [EdiSegmentGroup("TDT", "DTM", "LOC", "RFF", "MEA")]
-public class DGRECA_SG2 : TDT
+public class DGRECA_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -85,7 +86,7 @@ public class DGRECA_SG2 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class DGRECA_SG3 : NAD
+public class DGRECA_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -95,7 +96,7 @@ public class DGRECA_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class DGRECA_SG4 : CTA
+public class DGRECA_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -104,7 +105,7 @@ public class DGRECA_SG4 : CTA
 }
 
 [EdiSegmentGroup("DGS", "FTX", "MEA", "LOC", "SGP")]
-public class DGRECA_SG5 : DGS
+public class DGRECA_SG5 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text

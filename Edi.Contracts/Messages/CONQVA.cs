@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CONQVA
 /// </summary>
 [EdiMessage]
-public class CONQVA
+public class CONQVA : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class CONQVA
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Authentication result
@@ -62,7 +63,7 @@ public class CONQVA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CONQVA_SG1 : RFF
+public class CONQVA_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -71,7 +72,7 @@ public class CONQVA_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FII", "RFF", "DOC", "CTA")]
-public class CONQVA_SG2 : NAD
+public class CONQVA_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -101,7 +102,7 @@ public class CONQVA_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CONQVA_SG3 : RFF
+public class CONQVA_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -110,7 +111,7 @@ public class CONQVA_SG3 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class CONQVA_SG4 : DOC
+public class CONQVA_SG4 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -119,7 +120,7 @@ public class CONQVA_SG4 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CONQVA_SG5 : CTA
+public class CONQVA_SG5 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -128,7 +129,7 @@ public class CONQVA_SG5 : CTA
 }
 
 [EdiSegmentGroup("BII", "RCS", "QTY", "PRI", "LIN", "TAX")]
-public class CONQVA_SG6 : BII
+public class CONQVA_SG6 : BII, ISegmentGroup
 {
 	/// <summary>
 	/// Requirements and conditions
@@ -158,7 +159,7 @@ public class CONQVA_SG6 : BII
 }
 
 [EdiSegmentGroup("LIN", "IMD")]
-public class CONQVA_SG7 : LIN
+public class CONQVA_SG7 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// SG8
@@ -168,7 +169,7 @@ public class CONQVA_SG7 : LIN
 }
 
 [EdiSegmentGroup("IMD", "RFF", "GIS")]
-public class CONQVA_SG8 : IMD
+public class CONQVA_SG8 : IMD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -182,7 +183,7 @@ public class CONQVA_SG8 : IMD
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class CONQVA_SG9 : TAX
+public class CONQVA_SG9 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify placement of goods or equipment in relation to the transport used. The segment serves as a pointer to the TDT segment group.
 /// </summary>
 [EdiSegment, EdiPath("TPL")]
-public class TPL
+public class TPL : ISegment
 {
 	/// <summary>
 	/// Code and/or name identifying the means of transport.
@@ -21,7 +22,7 @@ public class TPL
 /// Code and/or name identifying the means of transport.
 /// </summary>
 [EdiElement]
-public class TPL_TransportIdentification
+public class TPL_TransportIdentification : IElement
 {
 	/// <summary>
 	/// Identification of the means of transport by name or number.

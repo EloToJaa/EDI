@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// JOBAPP
 /// </summary>
 [EdiMessage]
-public class JOBAPP
+public class JOBAPP : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class JOBAPP
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -57,7 +58,7 @@ public class JOBAPP
 }
 
 [EdiSegmentGroup("PNA", "ADR", "LOC", "DTM", "CTA")]
-public class JOBAPP_SG1 : PNA
+public class JOBAPP_SG1 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -82,7 +83,7 @@ public class JOBAPP_SG1 : PNA
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class JOBAPP_SG2 : CTA
+public class JOBAPP_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -91,7 +92,7 @@ public class JOBAPP_SG2 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class JOBAPP_SG3 : RFF
+public class JOBAPP_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -100,7 +101,7 @@ public class JOBAPP_SG3 : RFF
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class JOBAPP_SG4 : GIS
+public class JOBAPP_SG4 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -109,7 +110,7 @@ public class JOBAPP_SG4 : GIS
 }
 
 [EdiSegmentGroup("RFF", "DTM", "PNA", "GIS", "RCS", "SAL", "EMP")]
-public class JOBAPP_SG5 : RFF
+public class JOBAPP_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -144,7 +145,7 @@ public class JOBAPP_SG5 : RFF
 }
 
 [EdiSegmentGroup("PNA", "DTM", "LOC", "NAT", "PDI", "DOC")]
-public class JOBAPP_SG6 : PNA
+public class JOBAPP_SG6 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -173,7 +174,7 @@ public class JOBAPP_SG6 : PNA
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class JOBAPP_SG7 : GIS
+public class JOBAPP_SG7 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -182,7 +183,7 @@ public class JOBAPP_SG7 : GIS
 }
 
 [EdiSegmentGroup("RCS", "FTX")]
-public class JOBAPP_SG8 : RCS
+public class JOBAPP_SG8 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -191,7 +192,7 @@ public class JOBAPP_SG8 : RCS
 }
 
 [EdiSegmentGroup("SAL", "FTX", "ATT", "GIS", "MOA")]
-public class JOBAPP_SG9 : SAL
+public class JOBAPP_SG9 : SAL, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -216,7 +217,7 @@ public class JOBAPP_SG9 : SAL
 }
 
 [EdiSegmentGroup("ATT", "FTX")]
-public class JOBAPP_SG10 : ATT
+public class JOBAPP_SG10 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -225,7 +226,7 @@ public class JOBAPP_SG10 : ATT
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class JOBAPP_SG11 : GIS
+public class JOBAPP_SG11 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -234,7 +235,7 @@ public class JOBAPP_SG11 : GIS
 }
 
 [EdiSegmentGroup("MOA", "RNG", "FTX")]
-public class JOBAPP_SG12 : MOA
+public class JOBAPP_SG12 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -248,7 +249,7 @@ public class JOBAPP_SG12 : MOA
 }
 
 [EdiSegmentGroup("EMP", "LOC", "ATT", "LAN")]
-public class JOBAPP_SG13 : EMP
+public class JOBAPP_SG13 : EMP, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -268,7 +269,7 @@ public class JOBAPP_SG13 : EMP
 }
 
 [EdiSegmentGroup("ATT", "FTX", "PTY")]
-public class JOBAPP_SG14 : ATT
+public class JOBAPP_SG14 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -282,7 +283,7 @@ public class JOBAPP_SG14 : ATT
 }
 
 [EdiSegmentGroup("LAN", "GIS")]
-public class JOBAPP_SG15 : LAN
+public class JOBAPP_SG15 : LAN, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator

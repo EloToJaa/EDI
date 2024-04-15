@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// DOCARE
 /// </summary>
 [EdiMessage]
-public class DOCARE
+public class DOCARE : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class DOCARE
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1M { get; set; }
+	public List<RFF>? ReferenceM { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1C { get; set; }
+	public DTM? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class DOCARE
 }
 
 [EdiSegmentGroup("FII", "RFF", "CTA", "COM")]
-public class DOCARE_SG1 : FII
+public class DOCARE_SG1 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -71,7 +72,7 @@ public class DOCARE_SG1 : FII
 }
 
 [EdiSegmentGroup("NAD", "RFF", "CTA", "COM")]
-public class DOCARE_SG2 : NAD
+public class DOCARE_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -90,7 +91,7 @@ public class DOCARE_SG2 : NAD
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class DOCARE_SG3 : AUT
+public class DOCARE_SG3 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

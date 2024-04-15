@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify scheduling conditions.
 /// </summary>
 [EdiSegment, EdiPath("SCC")]
-public class SCC
+public class SCC : ISegment
 {
 	/// <summary>
 	/// Code indicating the level of commitment of schedule information.
@@ -33,7 +34,7 @@ public class SCC
 /// Shipment, delivery or production interval pattern and timing.
 /// </summary>
 [EdiElement]
-public class SCC_PatternDescription
+public class SCC_PatternDescription : IElement
 {
 	/// <summary>
 	/// Code specifying interval grouping of the delivery, production, etc. of the schedule.

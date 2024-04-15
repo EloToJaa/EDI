@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// DOCAMI
 /// </summary>
 [EdiMessage]
-public class DOCAMI
+public class DOCAMI : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,17 +24,17 @@ public class DOCAMI
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1M { get; set; }
+	public List<RFF>? ReferenceM { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public List<MOA>? MonetaryAmount1C { get; set; }
+	public List<MOA>? MonetaryAmountC { get; set; }
 
 	/// <summary>
 	/// Place/location identification
@@ -77,7 +78,7 @@ public class DOCAMI
 }
 
 [EdiSegmentGroup("FII", "RFF", "CTA", "COM")]
-public class DOCAMI_SG1 : FII
+public class DOCAMI_SG1 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -96,7 +97,7 @@ public class DOCAMI_SG1 : FII
 }
 
 [EdiSegmentGroup("NAD", "RFF", "CTA", "COM")]
-public class DOCAMI_SG2 : NAD
+public class DOCAMI_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -115,7 +116,7 @@ public class DOCAMI_SG2 : NAD
 }
 
 [EdiSegmentGroup("FCA", "MOA", "ALC")]
-public class DOCAMI_SG3 : FCA
+public class DOCAMI_SG3 : FCA, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -130,7 +131,7 @@ public class DOCAMI_SG3 : FCA
 }
 
 [EdiSegmentGroup("ALC", "PCD", "MOA", "DTM", "TAX")]
-public class DOCAMI_SG4 : ALC
+public class DOCAMI_SG4 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -155,7 +156,7 @@ public class DOCAMI_SG4 : ALC
 }
 
 [EdiSegmentGroup("TAX", "MOA", "DTM")]
-public class DOCAMI_SG5 : TAX
+public class DOCAMI_SG5 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -169,7 +170,7 @@ public class DOCAMI_SG5 : TAX
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class DOCAMI_SG6 : AUT
+public class DOCAMI_SG6 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

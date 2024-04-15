@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace Edi.Contracts.Qualifiers;
@@ -6,7 +7,7 @@ namespace Edi.Contracts.Qualifiers;
 /// <summary>
 /// Document/message status, coded
 /// </summary>
-public class DocumentMessageStatusCoded
+public class DocumentMessageStatusCoded : IQualifier
 {
 	/// <summary>
 	/// String assign converter

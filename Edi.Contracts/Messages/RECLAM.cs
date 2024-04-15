@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// RECLAM
 /// </summary>
 [EdiMessage]
-public class RECLAM
+public class RECLAM : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -28,12 +29,12 @@ public class RECLAM
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG3
@@ -43,17 +44,17 @@ public class RECLAM
 	/// <summary>
 	/// Place/location identification
 	/// </summary>
-	public LOC? PlaceLocationIdentification1C { get; set; }
+	public LOC? PlaceLocationIdentificationC { get; set; }
 
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public MOA? MonetaryAmount1C { get; set; }
+	public MOA? MonetaryAmountC { get; set; }
 
 	/// <summary>
 	/// Percentage details
 	/// </summary>
-	public PCD? PercentageDetails1C { get; set; }
+	public PCD? PercentageDetailsC { get; set; }
 
 	/// <summary>
 	/// SG4
@@ -77,7 +78,7 @@ public class RECLAM
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class RECLAM_SG1 : GIS
+public class RECLAM_SG1 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -86,7 +87,7 @@ public class RECLAM_SG1 : GIS
 }
 
 [EdiSegmentGroup("NAD", "PCD", "CTA", "COM", "RFF", "GIS", "FTX")]
-public class RECLAM_SG2 : NAD
+public class RECLAM_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -120,7 +121,7 @@ public class RECLAM_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM", "COM", "FTX")]
-public class RECLAM_SG3 : RFF
+public class RECLAM_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -139,7 +140,7 @@ public class RECLAM_SG3 : RFF
 }
 
 [EdiSegmentGroup("GIS", "RFF", "LOC", "DTM", "FTX", "PCD", "CUX", "NAD")]
-public class RECLAM_SG4 : GIS
+public class RECLAM_SG4 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -179,7 +180,7 @@ public class RECLAM_SG4 : GIS
 }
 
 [EdiSegmentGroup("CUX", "GIS", "FTX", "MOA", "PCD")]
-public class RECLAM_SG5 : CUX
+public class RECLAM_SG5 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -203,7 +204,7 @@ public class RECLAM_SG5 : CUX
 }
 
 [EdiSegmentGroup("MOA", "GIS", "CUX", "FTX")]
-public class RECLAM_SG6 : MOA
+public class RECLAM_SG6 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -222,7 +223,7 @@ public class RECLAM_SG6 : MOA
 }
 
 [EdiSegmentGroup("NAD", "PCD")]
-public class RECLAM_SG7 : NAD
+public class RECLAM_SG7 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -231,7 +232,7 @@ public class RECLAM_SG7 : NAD
 }
 
 [EdiSegmentGroup("CUX", "MOA")]
-public class RECLAM_SG8 : CUX
+public class RECLAM_SG8 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// SG9
@@ -241,7 +242,7 @@ public class RECLAM_SG8 : CUX
 }
 
 [EdiSegmentGroup("MOA", "PCD", "CUX", "FTX", "RFF", "GIS")]
-public class RECLAM_SG9 : MOA
+public class RECLAM_SG9 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -270,7 +271,7 @@ public class RECLAM_SG9 : MOA
 }
 
 [EdiSegmentGroup("RFF", "DTM", "COM", "FTX")]
-public class RECLAM_SG10 : RFF
+public class RECLAM_SG10 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

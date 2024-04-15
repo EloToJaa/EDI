@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify regulatory safety information.
 /// </summary>
 [EdiSegment, EdiPath("SFI")]
-public class SFI
+public class SFI : ISegment
 {
 	/// <summary>
 	/// A unique number assigned by the sender to identify a level within a hierarchical structure.
@@ -40,7 +41,7 @@ public class SFI
 /// To identify the safety section to which information relates.
 /// </summary>
 [EdiElement]
-public class SFI_SafetySection
+public class SFI_SafetySection : IElement
 {
 	/// <summary>
 	/// To identify the safety section number.
@@ -59,7 +60,7 @@ public class SFI_SafetySection
 /// To identify additional safety information.
 /// </summary>
 [EdiElement]
-public class SFI_AdditionalSafetyInformation
+public class SFI_AdditionalSafetyInformation : IElement
 {
 	/// <summary>
 	/// Element to identify the additional safety information in coded form.

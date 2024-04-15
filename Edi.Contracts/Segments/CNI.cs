@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify one consignment.
 /// </summary>
 [EdiSegment, EdiPath("CNI")]
-public class CNI
+public class CNI : ISegment
 {
 	/// <summary>
 	/// Serial number differentiating each separate consignment included in the consolidation.
@@ -34,7 +35,7 @@ public class CNI
 /// Identification of document/message by number, status, source and/or language.
 /// </summary>
 [EdiElement]
-public class CNI_DocumentMessageDetails
+public class CNI_DocumentMessageDetails : IElement
 {
 	/// <summary>
 	/// Reference number assigned to the document/message by the issuer.

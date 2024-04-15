@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify item details relating to quantity variances.
 /// </summary>
 [EdiSegment, EdiPath("QVR")]
-public class QVR
+public class QVR : ISegment
 {
 	/// <summary>
 	/// Information on quantity difference.
@@ -33,7 +34,7 @@ public class QVR
 /// Information on quantity difference.
 /// </summary>
 [EdiElement]
-public class QVR_QuantityDifferenceInformation
+public class QVR_QuantityDifferenceInformation : IElement
 {
 	/// <summary>
 	/// Numeric value of variance between ordered/shipped/invoiced quantities.
@@ -52,7 +53,7 @@ public class QVR_QuantityDifferenceInformation
 /// Code and/or description of the reason for a change.
 /// </summary>
 [EdiElement]
-public class QVR_ReasonForChange
+public class QVR_ReasonForChange : IElement
 {
 	/// <summary>
 	/// Identification of the reason for a change.

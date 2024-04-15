@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// IFTSAI
 /// </summary>
 [EdiMessage]
-public class IFTSAI
+public class IFTSAI : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class IFTSAI
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// General indicator
@@ -72,7 +73,7 @@ public class IFTSAI
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTSAI_SG1 : RFF
+public class IFTSAI_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -81,7 +82,7 @@ public class IFTSAI_SG1 : RFF
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class IFTSAI_SG2 : LOC
+public class IFTSAI_SG2 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -90,7 +91,7 @@ public class IFTSAI_SG2 : LOC
 }
 
 [EdiSegmentGroup("EQD", "EQN", "MEA", "DIM", "FTX")]
-public class IFTSAI_SG3 : EQD
+public class IFTSAI_SG3 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -114,7 +115,7 @@ public class IFTSAI_SG3 : EQD
 }
 
 [EdiSegmentGroup("TDT", "DTM", "TSR", "RFF", "FTX", "EQD", "QTY", "MEA", "LOC")]
-public class IFTSAI_SG4 : TDT
+public class IFTSAI_SG4 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -159,7 +160,7 @@ public class IFTSAI_SG4 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM", "RFF")]
-public class IFTSAI_SG5 : LOC
+public class IFTSAI_SG5 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -173,7 +174,7 @@ public class IFTSAI_SG5 : LOC
 }
 
 [EdiSegmentGroup("NAD", "LOC", "CTA")]
-public class IFTSAI_SG6 : NAD
+public class IFTSAI_SG6 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -188,7 +189,7 @@ public class IFTSAI_SG6 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFTSAI_SG7 : CTA
+public class IFTSAI_SG7 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -197,7 +198,7 @@ public class IFTSAI_SG7 : CTA
 }
 
 [EdiSegmentGroup("GID", "HAN", "FTX", "GDS", "MEA", "DIM", "DGS")]
-public class IFTSAI_SG8 : GID
+public class IFTSAI_SG8 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -232,7 +233,7 @@ public class IFTSAI_SG8 : GID
 }
 
 [EdiSegmentGroup("GDS", "FTX")]
-public class IFTSAI_SG9 : GDS
+public class IFTSAI_SG9 : GDS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -241,7 +242,7 @@ public class IFTSAI_SG9 : GDS
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFTSAI_SG10 : MEA
+public class IFTSAI_SG10 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -250,7 +251,7 @@ public class IFTSAI_SG10 : MEA
 }
 
 [EdiSegmentGroup("DIM", "EQN")]
-public class IFTSAI_SG11 : DIM
+public class IFTSAI_SG11 : DIM, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -259,7 +260,7 @@ public class IFTSAI_SG11 : DIM
 }
 
 [EdiSegmentGroup("DGS", "FTX")]
-public class IFTSAI_SG12 : DGS
+public class IFTSAI_SG12 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text

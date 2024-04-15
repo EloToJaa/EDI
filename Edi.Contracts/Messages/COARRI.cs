@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// COARRI
 /// </summary>
 [EdiMessage]
-public class COARRI
+public class COARRI : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class COARRI
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -62,7 +63,7 @@ public class COARRI
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class COARRI_SG1 : RFF
+public class COARRI_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -71,7 +72,7 @@ public class COARRI_SG1 : RFF
 }
 
 [EdiSegmentGroup("TDT", "RFF", "LOC", "DTM")]
-public class COARRI_SG2 : TDT
+public class COARRI_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -90,7 +91,7 @@ public class COARRI_SG2 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class COARRI_SG3 : NAD
+public class COARRI_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -100,7 +101,7 @@ public class COARRI_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class COARRI_SG4 : CTA
+public class COARRI_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -109,7 +110,7 @@ public class COARRI_SG4 : CTA
 }
 
 [EdiSegmentGroup("EQD", "RFF", "GDS", "TMD", "DTM", "LOC", "MEA", "DIM", "TMP", "RNG", "SEL", "FTX", "DGS", "EQA", "PIA", "HAN", "DAM", "TDT", "NAD")]
-public class COARRI_SG5 : EQD
+public class COARRI_SG5 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -203,7 +204,7 @@ public class COARRI_SG5 : EQD
 }
 
 [EdiSegmentGroup("DAM", "COD")]
-public class COARRI_SG6 : DAM
+public class COARRI_SG6 : DAM, ISegmentGroup
 {
 	/// <summary>
 	/// Component details
@@ -212,7 +213,7 @@ public class COARRI_SG6 : DAM
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM")]
-public class COARRI_SG7 : TDT
+public class COARRI_SG7 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification

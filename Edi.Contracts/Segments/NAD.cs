@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the name/address and their related function, either by CO82 only and/or unstructured by CO58 or structured by CO80 thru 3207.
 /// </summary>
 [EdiSegment, EdiPath("NAD")]
-public class NAD
+public class NAD : ISegment
 {
 	/// <summary>
 	/// Code giving specific meaning to a party.
@@ -70,7 +71,7 @@ public class NAD
 /// Identification of a transaction party by code.
 /// </summary>
 [EdiElement]
-public class NAD_PartyIdentificationDetails
+public class NAD_PartyIdentificationDetails : IElement
 {
 	/// <summary>
 	/// Code identifying a party involved in a transaction.
@@ -95,7 +96,7 @@ public class NAD_PartyIdentificationDetails
 /// Unstructured name and address: one to five lines.
 /// </summary>
 [EdiElement]
-public class NAD_NameAndAddress
+public class NAD_NameAndAddress : IElement
 {
 	/// <summary>
 	/// Free form name and address description.
@@ -132,7 +133,7 @@ public class NAD_NameAndAddress
 /// Identification of a transaction party by name, one to five lines. Party name may be formatted.
 /// </summary>
 [EdiElement]
-public class NAD_PartyName
+public class NAD_PartyName : IElement
 {
 	/// <summary>
 	/// Name of a party involved in a transaction.
@@ -175,7 +176,7 @@ public class NAD_PartyName
 /// Street address and/or PO Box number in a structured address: one to three lines.
 /// </summary>
 [EdiElement]
-public class NAD_Street
+public class NAD_Street : IElement
 {
 	/// <summary>
 	/// Street and number in plain language, or Post Office Box No.

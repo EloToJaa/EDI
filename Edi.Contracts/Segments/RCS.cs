@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify sector/subject requirements and conditions.
 /// </summary>
 [EdiSegment, EdiPath("RCS")]
-public class RCS
+public class RCS : ISegment
 {
 	/// <summary>
 	/// Identification of the subject areas to which the specified conditions apply.
@@ -34,7 +35,7 @@ public class RCS
 /// To identify the specific rule/condition requirement.
 /// </summary>
 [EdiElement]
-public class RCS_RequirementConditionIdentification
+public class RCS_RequirementConditionIdentification : IElement
 {
 	/// <summary>
 	/// Code identifying a specific rule, regulation or condition.

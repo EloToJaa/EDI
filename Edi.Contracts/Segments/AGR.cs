@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the agreement details.
 /// </summary>
 [EdiSegment, EdiPath("AGR")]
-public class AGR
+public class AGR : ISegment
 {
 	/// <summary>
 	/// Identification of specific agreement type by code or name.
@@ -28,7 +29,7 @@ public class AGR
 /// Identification of specific agreement type by code or name.
 /// </summary>
 [EdiElement]
-public class AGR_AgreementTypeIdentification
+public class AGR_AgreementTypeIdentification : IElement
 {
 	/// <summary>
 	/// Indication of the type of agreement.

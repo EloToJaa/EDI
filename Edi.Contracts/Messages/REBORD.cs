@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// REBORD
 /// </summary>
 [EdiMessage]
-public class REBORD
+public class REBORD : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -18,7 +19,7 @@ public class REBORD
 	/// <summary>
 	/// General indicator
 	/// </summary>
-	public List<GIS>? GeneralIndicator1M { get; set; }
+	public List<GIS>? GeneralIndicatorM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -28,12 +29,12 @@ public class REBORD
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG2
@@ -57,7 +58,7 @@ public class REBORD
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM", "RFF")]
-public class REBORD_SG1 : NAD
+public class REBORD_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -76,7 +77,7 @@ public class REBORD_SG1 : NAD
 }
 
 [EdiSegmentGroup("ARD", "CUX", "GIS", "LOC", "DTM", "FTX", "RFF", "REL")]
-public class REBORD_SG2 : ARD
+public class REBORD_SG2 : ARD, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -116,7 +117,7 @@ public class REBORD_SG2 : ARD
 }
 
 [EdiSegmentGroup("REL", "RFF", "GIS", "LOC", "NAD", "DTM", "FTX", "PCD", "MOA")]
-public class REBORD_SG3 : REL
+public class REBORD_SG3 : REL, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -161,7 +162,7 @@ public class REBORD_SG3 : REL
 }
 
 [EdiSegmentGroup("PCD", "NAD")]
-public class REBORD_SG4 : PCD
+public class REBORD_SG4 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Name and address
@@ -170,7 +171,7 @@ public class REBORD_SG4 : PCD
 }
 
 [EdiSegmentGroup("MOA", "GIS", "PCD", "DTM", "RFF", "CUX")]
-public class REBORD_SG5 : MOA
+public class REBORD_SG5 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -199,7 +200,7 @@ public class REBORD_SG5 : MOA
 }
 
 [EdiSegmentGroup("RFF", "DTM", "COM")]
-public class REBORD_SG6 : RFF
+public class REBORD_SG6 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -213,7 +214,7 @@ public class REBORD_SG6 : RFF
 }
 
 [EdiSegmentGroup("MOA", "RFF", "PCD")]
-public class REBORD_SG7 : MOA
+public class REBORD_SG7 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// SG8
@@ -227,7 +228,7 @@ public class REBORD_SG7 : MOA
 }
 
 [EdiSegmentGroup("RFF", "DTM", "COM")]
-public class REBORD_SG8 : RFF
+public class REBORD_SG8 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

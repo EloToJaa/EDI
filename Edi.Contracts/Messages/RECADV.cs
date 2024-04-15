@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// RECADV
 /// </summary>
 [EdiMessage]
-public class RECADV
+public class RECADV : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class RECADV
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Additional information
@@ -77,7 +78,7 @@ public class RECADV
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class RECADV_SG1 : RFF
+public class RECADV_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -86,7 +87,7 @@ public class RECADV_SG1 : RFF
 }
 
 [EdiSegmentGroup("DOC", "CDI")]
-public class RECADV_SG2 : DOC
+public class RECADV_SG2 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -96,7 +97,7 @@ public class RECADV_SG2 : DOC
 }
 
 [EdiSegmentGroup("CDI", "INP")]
-public class RECADV_SG3 : CDI
+public class RECADV_SG3 : CDI, ISegmentGroup
 {
 	/// <summary>
 	/// Parties to instruction
@@ -105,7 +106,7 @@ public class RECADV_SG3 : CDI
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "CTA")]
-public class RECADV_SG4 : NAD
+public class RECADV_SG4 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -125,7 +126,7 @@ public class RECADV_SG4 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class RECADV_SG5 : RFF
+public class RECADV_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -134,7 +135,7 @@ public class RECADV_SG5 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class RECADV_SG6 : CTA
+public class RECADV_SG6 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -143,7 +144,7 @@ public class RECADV_SG6 : CTA
 }
 
 [EdiSegmentGroup("TOD", "CDI", "LOC")]
-public class RECADV_SG7 : TOD
+public class RECADV_SG7 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// SG8
@@ -158,7 +159,7 @@ public class RECADV_SG7 : TOD
 }
 
 [EdiSegmentGroup("CDI", "INP")]
-public class RECADV_SG8 : CDI
+public class RECADV_SG8 : CDI, ISegmentGroup
 {
 	/// <summary>
 	/// Parties to instruction
@@ -167,7 +168,7 @@ public class RECADV_SG8 : CDI
 }
 
 [EdiSegmentGroup("LOC", "CDI")]
-public class RECADV_SG9 : LOC
+public class RECADV_SG9 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Physical or logical state
@@ -176,7 +177,7 @@ public class RECADV_SG9 : LOC
 }
 
 [EdiSegmentGroup("TDT", "DTM", "CDI")]
-public class RECADV_SG10 : TDT
+public class RECADV_SG10 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -190,7 +191,7 @@ public class RECADV_SG10 : TDT
 }
 
 [EdiSegmentGroup("EQD", "CDI", "SEL", "EQA")]
-public class RECADV_SG11 : EQD
+public class RECADV_SG11 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// SG12
@@ -210,7 +211,7 @@ public class RECADV_SG11 : EQD
 }
 
 [EdiSegmentGroup("CDI", "INP")]
-public class RECADV_SG12 : CDI
+public class RECADV_SG12 : CDI, ISegmentGroup
 {
 	/// <summary>
 	/// Parties to instruction
@@ -219,7 +220,7 @@ public class RECADV_SG12 : CDI
 }
 
 [EdiSegmentGroup("SEL", "CDI")]
-public class RECADV_SG13 : SEL
+public class RECADV_SG13 : SEL, ISegmentGroup
 {
 	/// <summary>
 	/// Physical or logical state
@@ -228,7 +229,7 @@ public class RECADV_SG13 : SEL
 }
 
 [EdiSegmentGroup("EQA", "CDI")]
-public class RECADV_SG14 : EQA
+public class RECADV_SG14 : EQA, ISegmentGroup
 {
 	/// <summary>
 	/// SG15
@@ -238,7 +239,7 @@ public class RECADV_SG14 : EQA
 }
 
 [EdiSegmentGroup("CDI", "INP")]
-public class RECADV_SG15 : CDI
+public class RECADV_SG15 : CDI, ISegmentGroup
 {
 	/// <summary>
 	/// Parties to instruction
@@ -247,7 +248,7 @@ public class RECADV_SG15 : CDI
 }
 
 [EdiSegmentGroup("CPS", "PAC", "LIN")]
-public class RECADV_SG16 : CPS
+public class RECADV_SG16 : CPS, ISegmentGroup
 {
 	/// <summary>
 	/// SG17
@@ -262,7 +263,7 @@ public class RECADV_SG16 : CPS
 }
 
 [EdiSegmentGroup("PAC", "QVR", "PCI")]
-public class RECADV_SG17 : PAC
+public class RECADV_SG17 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity variances
@@ -277,7 +278,7 @@ public class RECADV_SG17 : PAC
 }
 
 [EdiSegmentGroup("PCI", "RFF", "CDI", "GIN")]
-public class RECADV_SG18 : PCI
+public class RECADV_SG18 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -297,7 +298,7 @@ public class RECADV_SG18 : PCI
 }
 
 [EdiSegmentGroup("CDI", "INP")]
-public class RECADV_SG19 : CDI
+public class RECADV_SG19 : CDI, ISegmentGroup
 {
 	/// <summary>
 	/// Parties to instruction
@@ -306,7 +307,7 @@ public class RECADV_SG19 : CDI
 }
 
 [EdiSegmentGroup("GIN", "CDI")]
-public class RECADV_SG20 : GIN
+public class RECADV_SG20 : GIN, ISegmentGroup
 {
 	/// <summary>
 	/// SG21
@@ -316,7 +317,7 @@ public class RECADV_SG20 : GIN
 }
 
 [EdiSegmentGroup("CDI", "INP")]
-public class RECADV_SG21 : CDI
+public class RECADV_SG21 : CDI, ISegmentGroup
 {
 	/// <summary>
 	/// Parties to instruction
@@ -325,7 +326,7 @@ public class RECADV_SG21 : CDI
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "QTY", "QVR", "DTM", "PRI", "CDI", "DOC", "GIN", "RFF", "PCI")]
-public class RECADV_SG22 : LIN
+public class RECADV_SG22 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -385,7 +386,7 @@ public class RECADV_SG22 : LIN
 }
 
 [EdiSegmentGroup("CDI", "INP")]
-public class RECADV_SG23 : CDI
+public class RECADV_SG23 : CDI, ISegmentGroup
 {
 	/// <summary>
 	/// Parties to instruction
@@ -394,7 +395,7 @@ public class RECADV_SG23 : CDI
 }
 
 [EdiSegmentGroup("DOC", "CDI")]
-public class RECADV_SG24 : DOC
+public class RECADV_SG24 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// SG25
@@ -404,7 +405,7 @@ public class RECADV_SG24 : DOC
 }
 
 [EdiSegmentGroup("CDI", "INP")]
-public class RECADV_SG25 : CDI
+public class RECADV_SG25 : CDI, ISegmentGroup
 {
 	/// <summary>
 	/// Parties to instruction
@@ -413,7 +414,7 @@ public class RECADV_SG25 : CDI
 }
 
 [EdiSegmentGroup("GIN", "CDI")]
-public class RECADV_SG26 : GIN
+public class RECADV_SG26 : GIN, ISegmentGroup
 {
 	/// <summary>
 	/// SG27
@@ -423,7 +424,7 @@ public class RECADV_SG26 : GIN
 }
 
 [EdiSegmentGroup("CDI", "INP")]
-public class RECADV_SG27 : CDI
+public class RECADV_SG27 : CDI, ISegmentGroup
 {
 	/// <summary>
 	/// Parties to instruction
@@ -432,7 +433,7 @@ public class RECADV_SG27 : CDI
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class RECADV_SG28 : RFF
+public class RECADV_SG28 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -441,7 +442,7 @@ public class RECADV_SG28 : RFF
 }
 
 [EdiSegmentGroup("PCI", "QTY", "QVR", "CDI", "GIN")]
-public class RECADV_SG29 : PCI
+public class RECADV_SG29 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -466,7 +467,7 @@ public class RECADV_SG29 : PCI
 }
 
 [EdiSegmentGroup("CDI", "INP")]
-public class RECADV_SG30 : CDI
+public class RECADV_SG30 : CDI, ISegmentGroup
 {
 	/// <summary>
 	/// Parties to instruction
@@ -475,7 +476,7 @@ public class RECADV_SG30 : CDI
 }
 
 [EdiSegmentGroup("GIN", "CDI")]
-public class RECADV_SG31 : GIN
+public class RECADV_SG31 : GIN, ISegmentGroup
 {
 	/// <summary>
 	/// SG32
@@ -485,7 +486,7 @@ public class RECADV_SG31 : GIN
 }
 
 [EdiSegmentGroup("CDI", "INP")]
-public class RECADV_SG32 : CDI
+public class RECADV_SG32 : CDI, ISegmentGroup
 {
 	/// <summary>
 	/// Parties to instruction

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// PARTIN
 /// </summary>
 [EdiMessage]
-public class PARTIN
+public class PARTIN : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class PARTIN
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Financial institution information
 	/// </summary>
-	public List<FII>? FinancialInstitutionInformation1C { get; set; }
+	public List<FII>? FinancialInstitutionInformationC { get; set; }
 
 	/// <summary>
 	/// Free text
@@ -62,7 +63,7 @@ public class PARTIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PARTIN_SG1 : RFF
+public class PARTIN_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -71,7 +72,7 @@ public class PARTIN_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class PARTIN_SG2 : NAD
+public class PARTIN_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -81,7 +82,7 @@ public class PARTIN_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class PARTIN_SG3 : CTA
+public class PARTIN_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -90,7 +91,7 @@ public class PARTIN_SG3 : CTA
 }
 
 [EdiSegmentGroup("NAD", "DTM", "FII", "LOC", "RFF", "CTA", "SCC", "TOD", "PAI")]
-public class PARTIN_SG4 : NAD
+public class PARTIN_SG4 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -135,7 +136,7 @@ public class PARTIN_SG4 : NAD
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class PARTIN_SG5 : LOC
+public class PARTIN_SG5 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -144,7 +145,7 @@ public class PARTIN_SG5 : LOC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PARTIN_SG6 : RFF
+public class PARTIN_SG6 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -153,7 +154,7 @@ public class PARTIN_SG6 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class PARTIN_SG7 : CTA
+public class PARTIN_SG7 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -162,7 +163,7 @@ public class PARTIN_SG7 : CTA
 }
 
 [EdiSegmentGroup("SCC", "DTM")]
-public class PARTIN_SG8 : SCC
+public class PARTIN_SG8 : SCC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -171,7 +172,7 @@ public class PARTIN_SG8 : SCC
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class PARTIN_SG9 : TOD
+public class PARTIN_SG9 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -180,7 +181,7 @@ public class PARTIN_SG9 : TOD
 }
 
 [EdiSegmentGroup("PAI", "PAT", "CUX")]
-public class PARTIN_SG10 : PAI
+public class PARTIN_SG10 : PAI, ISegmentGroup
 {
 	/// <summary>
 	/// Payment terms basis

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify limitations on deliveries.
 /// </summary>
 [EdiSegment, EdiPath("DLM")]
-public class DLM
+public class DLM : ISegment
 {
 	/// <summary>
 	/// Code to identify the back order agreement.
@@ -40,7 +41,7 @@ public class DLM
 /// To specify an instruction.
 /// </summary>
 [EdiElement]
-public class DLM_Instruction
+public class DLM_Instruction : IElement
 {
 	/// <summary>
 	/// Code giving specific meaning to the type of instructions.
@@ -77,7 +78,7 @@ public class DLM_Instruction
 /// Identification of a special service by a code from a specified source or by description.
 /// </summary>
 [EdiElement]
-public class DLM_SpecialServicesIdentification
+public class DLM_SpecialServicesIdentification : IElement
 {
 	/// <summary>
 	/// Code identifying a special service.

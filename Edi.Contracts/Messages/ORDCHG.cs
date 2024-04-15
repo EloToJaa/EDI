@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// ORDCHG
 /// </summary>
 [EdiMessage]
-public class ORDCHG
+public class ORDCHG : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,27 +24,27 @@ public class ORDCHG
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Payment instructions
 	/// </summary>
-	public PAI? PaymentInstructions1C { get; set; }
+	public PAI? PaymentInstructionsC { get; set; }
 
 	/// <summary>
 	/// Additional information
 	/// </summary>
-	public List<ALI>? AdditionalInformation1C { get; set; }
+	public List<ALI>? AdditionalInformationC { get; set; }
 
 	/// <summary>
 	/// Item description
 	/// </summary>
-	public IMD? ItemDescription1C { get; set; }
+	public IMD? ItemDescriptionC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -128,7 +129,7 @@ public class ORDCHG
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public List<MOA>? MonetaryAmount1C { get; set; }
+	public List<MOA>? MonetaryAmountC { get; set; }
 
 	/// <summary>
 	/// Control total
@@ -147,7 +148,7 @@ public class ORDCHG
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ORDCHG_SG1 : RFF
+public class ORDCHG_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -156,7 +157,7 @@ public class ORDCHG_SG1 : RFF
 }
 
 [EdiSegmentGroup("AJT", "FTX")]
-public class ORDCHG_SG2 : AJT
+public class ORDCHG_SG2 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -165,7 +166,7 @@ public class ORDCHG_SG2 : AJT
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FII", "RFF", "DOC", "CTA")]
-public class ORDCHG_SG3 : NAD
+public class ORDCHG_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -195,7 +196,7 @@ public class ORDCHG_SG3 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ORDCHG_SG4 : RFF
+public class ORDCHG_SG4 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -204,7 +205,7 @@ public class ORDCHG_SG4 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class ORDCHG_SG5 : DOC
+public class ORDCHG_SG5 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -213,7 +214,7 @@ public class ORDCHG_SG5 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class ORDCHG_SG6 : CTA
+public class ORDCHG_SG6 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -222,7 +223,7 @@ public class ORDCHG_SG6 : CTA
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class ORDCHG_SG7 : TAX
+public class ORDCHG_SG7 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -236,7 +237,7 @@ public class ORDCHG_SG7 : TAX
 }
 
 [EdiSegmentGroup("CUX", "PCD", "DTM")]
-public class ORDCHG_SG8 : CUX
+public class ORDCHG_SG8 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -250,7 +251,7 @@ public class ORDCHG_SG8 : CUX
 }
 
 [EdiSegmentGroup("PAT", "DTM", "PCD", "MOA")]
-public class ORDCHG_SG9 : PAT
+public class ORDCHG_SG9 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -269,7 +270,7 @@ public class ORDCHG_SG9 : PAT
 }
 
 [EdiSegmentGroup("TDT", "LOC")]
-public class ORDCHG_SG10 : TDT
+public class ORDCHG_SG10 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// SG11
@@ -279,7 +280,7 @@ public class ORDCHG_SG10 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class ORDCHG_SG11 : LOC
+public class ORDCHG_SG11 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -288,7 +289,7 @@ public class ORDCHG_SG11 : LOC
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class ORDCHG_SG12 : TOD
+public class ORDCHG_SG12 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -297,7 +298,7 @@ public class ORDCHG_SG12 : TOD
 }
 
 [EdiSegmentGroup("PAC", "MEA", "PCI")]
-public class ORDCHG_SG13 : PAC
+public class ORDCHG_SG13 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -312,7 +313,7 @@ public class ORDCHG_SG13 : PAC
 }
 
 [EdiSegmentGroup("PCI", "RFF", "DTM", "GIN")]
-public class ORDCHG_SG14 : PCI
+public class ORDCHG_SG14 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -331,7 +332,7 @@ public class ORDCHG_SG14 : PCI
 }
 
 [EdiSegmentGroup("EQD", "HAN", "MEA", "FTX")]
-public class ORDCHG_SG15 : EQD
+public class ORDCHG_SG15 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -350,7 +351,7 @@ public class ORDCHG_SG15 : EQD
 }
 
 [EdiSegmentGroup("SCC", "FTX", "RFF", "QTY")]
-public class ORDCHG_SG16 : SCC
+public class ORDCHG_SG16 : SCC, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -370,7 +371,7 @@ public class ORDCHG_SG16 : SCC
 }
 
 [EdiSegmentGroup("QTY", "DTM")]
-public class ORDCHG_SG17 : QTY
+public class ORDCHG_SG17 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -379,7 +380,7 @@ public class ORDCHG_SG17 : QTY
 }
 
 [EdiSegmentGroup("APR", "DTM", "RNG")]
-public class ORDCHG_SG18 : APR
+public class ORDCHG_SG18 : APR, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -393,7 +394,7 @@ public class ORDCHG_SG18 : APR
 }
 
 [EdiSegmentGroup("ALC", "ALI", "DTM", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class ORDCHG_SG19 : ALC
+public class ORDCHG_SG19 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -433,7 +434,7 @@ public class ORDCHG_SG19 : ALC
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class ORDCHG_SG20 : QTY
+public class ORDCHG_SG20 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -442,7 +443,7 @@ public class ORDCHG_SG20 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class ORDCHG_SG21 : PCD
+public class ORDCHG_SG21 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -451,7 +452,7 @@ public class ORDCHG_SG21 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG")]
-public class ORDCHG_SG22 : MOA
+public class ORDCHG_SG22 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -460,7 +461,7 @@ public class ORDCHG_SG22 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class ORDCHG_SG23 : RTE
+public class ORDCHG_SG23 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -469,7 +470,7 @@ public class ORDCHG_SG23 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA")]
-public class ORDCHG_SG24 : TAX
+public class ORDCHG_SG24 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -478,7 +479,7 @@ public class ORDCHG_SG24 : TAX
 }
 
 [EdiSegmentGroup("RCS", "RFF", "DTM", "FTX")]
-public class ORDCHG_SG25 : RCS
+public class ORDCHG_SG25 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -497,7 +498,7 @@ public class ORDCHG_SG25 : RCS
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "MEA", "QTY", "PCD", "ALI", "DTM", "MOA", "GIN", "GIR", "QVR", "DOC", "PAI", "FTX", "CCI", "PAT", "AJT", "PRI", "RFF", "PAC", "LOC", "TAX", "NAD", "ALC", "TDT", "TOD", "EQD", "SCC", "RCS", "STG")]
-public class ORDCHG_SG26 : LIN
+public class ORDCHG_SG26 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -652,7 +653,7 @@ public class ORDCHG_SG26 : LIN
 }
 
 [EdiSegmentGroup("CCI", "CAV", "MEA")]
-public class ORDCHG_SG27 : CCI
+public class ORDCHG_SG27 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Characteristic value
@@ -666,7 +667,7 @@ public class ORDCHG_SG27 : CCI
 }
 
 [EdiSegmentGroup("PAT", "DTM", "PCD", "MOA")]
-public class ORDCHG_SG28 : PAT
+public class ORDCHG_SG28 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -685,7 +686,7 @@ public class ORDCHG_SG28 : PAT
 }
 
 [EdiSegmentGroup("AJT", "FTX")]
-public class ORDCHG_SG29 : AJT
+public class ORDCHG_SG29 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -694,7 +695,7 @@ public class ORDCHG_SG29 : AJT
 }
 
 [EdiSegmentGroup("PRI", "CUX", "APR", "RNG", "DTM")]
-public class ORDCHG_SG30 : PRI
+public class ORDCHG_SG30 : PRI, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -718,7 +719,7 @@ public class ORDCHG_SG30 : PRI
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ORDCHG_SG31 : RFF
+public class ORDCHG_SG31 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -727,7 +728,7 @@ public class ORDCHG_SG31 : RFF
 }
 
 [EdiSegmentGroup("PAC", "MEA", "QTY", "DTM", "RFF", "PCI")]
-public class ORDCHG_SG32 : PAC
+public class ORDCHG_SG32 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -757,7 +758,7 @@ public class ORDCHG_SG32 : PAC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ORDCHG_SG33 : RFF
+public class ORDCHG_SG33 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -766,7 +767,7 @@ public class ORDCHG_SG33 : RFF
 }
 
 [EdiSegmentGroup("PCI", "RFF", "DTM", "GIN")]
-public class ORDCHG_SG34 : PCI
+public class ORDCHG_SG34 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -785,7 +786,7 @@ public class ORDCHG_SG34 : PCI
 }
 
 [EdiSegmentGroup("LOC", "QTY", "DTM")]
-public class ORDCHG_SG35 : LOC
+public class ORDCHG_SG35 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -799,7 +800,7 @@ public class ORDCHG_SG35 : LOC
 }
 
 [EdiSegmentGroup("TAX", "MOA", "LOC")]
-public class ORDCHG_SG36 : TAX
+public class ORDCHG_SG36 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -813,7 +814,7 @@ public class ORDCHG_SG36 : TAX
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "DOC", "CTA")]
-public class ORDCHG_SG37 : NAD
+public class ORDCHG_SG37 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -838,7 +839,7 @@ public class ORDCHG_SG37 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class ORDCHG_SG38 : RFF
+public class ORDCHG_SG38 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -847,7 +848,7 @@ public class ORDCHG_SG38 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class ORDCHG_SG39 : DOC
+public class ORDCHG_SG39 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -856,7 +857,7 @@ public class ORDCHG_SG39 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class ORDCHG_SG40 : CTA
+public class ORDCHG_SG40 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -865,7 +866,7 @@ public class ORDCHG_SG40 : CTA
 }
 
 [EdiSegmentGroup("ALC", "ALI", "DTM", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class ORDCHG_SG41 : ALC
+public class ORDCHG_SG41 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -905,7 +906,7 @@ public class ORDCHG_SG41 : ALC
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class ORDCHG_SG42 : QTY
+public class ORDCHG_SG42 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -914,7 +915,7 @@ public class ORDCHG_SG42 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class ORDCHG_SG43 : PCD
+public class ORDCHG_SG43 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -923,7 +924,7 @@ public class ORDCHG_SG43 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG")]
-public class ORDCHG_SG44 : MOA
+public class ORDCHG_SG44 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -932,7 +933,7 @@ public class ORDCHG_SG44 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class ORDCHG_SG45 : RTE
+public class ORDCHG_SG45 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -941,7 +942,7 @@ public class ORDCHG_SG45 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA")]
-public class ORDCHG_SG46 : TAX
+public class ORDCHG_SG46 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -950,7 +951,7 @@ public class ORDCHG_SG46 : TAX
 }
 
 [EdiSegmentGroup("TDT", "LOC")]
-public class ORDCHG_SG47 : TDT
+public class ORDCHG_SG47 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// SG48
@@ -960,7 +961,7 @@ public class ORDCHG_SG47 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class ORDCHG_SG48 : LOC
+public class ORDCHG_SG48 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -969,7 +970,7 @@ public class ORDCHG_SG48 : LOC
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class ORDCHG_SG49 : TOD
+public class ORDCHG_SG49 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -978,7 +979,7 @@ public class ORDCHG_SG49 : TOD
 }
 
 [EdiSegmentGroup("EQD", "HAN", "MEA", "FTX")]
-public class ORDCHG_SG50 : EQD
+public class ORDCHG_SG50 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -997,7 +998,7 @@ public class ORDCHG_SG50 : EQD
 }
 
 [EdiSegmentGroup("SCC", "FTX", "RFF", "QTY")]
-public class ORDCHG_SG51 : SCC
+public class ORDCHG_SG51 : SCC, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -1017,7 +1018,7 @@ public class ORDCHG_SG51 : SCC
 }
 
 [EdiSegmentGroup("QTY", "DTM")]
-public class ORDCHG_SG52 : QTY
+public class ORDCHG_SG52 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -1026,7 +1027,7 @@ public class ORDCHG_SG52 : QTY
 }
 
 [EdiSegmentGroup("RCS", "RFF", "DTM", "FTX")]
-public class ORDCHG_SG53 : RCS
+public class ORDCHG_SG53 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -1045,7 +1046,7 @@ public class ORDCHG_SG53 : RCS
 }
 
 [EdiSegmentGroup("STG", "QTY")]
-public class ORDCHG_SG54 : STG
+public class ORDCHG_SG54 : STG, ISegmentGroup
 {
 	/// <summary>
 	/// SG55
@@ -1055,7 +1056,7 @@ public class ORDCHG_SG54 : STG
 }
 
 [EdiSegmentGroup("QTY", "MOA")]
-public class ORDCHG_SG55 : QTY
+public class ORDCHG_SG55 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -1064,7 +1065,7 @@ public class ORDCHG_SG55 : QTY
 }
 
 [EdiSegmentGroup("ALC", "ALI", "MOA")]
-public class ORDCHG_SG56 : ALC
+public class ORDCHG_SG56 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information

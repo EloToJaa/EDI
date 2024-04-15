@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a directory and to give its release, status, controlling agency, language and maintenance operation.
 /// </summary>
 [EdiSegment, EdiPath("DII")]
-public class DII
+public class DII : ISegment
 {
 	/// <summary>
 	/// To specify the version number or name of an object.

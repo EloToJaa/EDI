@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To provide information related to the kind of stage in a process, the number of stages and the actual stage.
 /// </summary>
 [EdiSegment, EdiPath("STG")]
-public class STG
+public class STG : ISegment
 {
 	/// <summary>
 	/// Code identifying the kind of stage in a process.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a range.
 /// </summary>
 [EdiSegment, EdiPath("RNG")]
-public class RNG
+public class RNG : ISegment
 {
 	/// <summary>
 	/// Identification of the type of range.
@@ -27,7 +28,7 @@ public class RNG
 /// Range minimum and maximum limits.
 /// </summary>
 [EdiElement]
-public class RNG_Range
+public class RNG_Range : IElement
 {
 	/// <summary>
 	/// Indication of the unit of measurement in which weight (mass), capacity, length, area, volume or other quantity is expressed.

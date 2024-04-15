@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// SANCRT
 /// </summary>
 [EdiMessage]
-public class SANCRT
+public class SANCRT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,32 +24,32 @@ public class SANCRT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Place/location identification
 	/// </summary>
-	public List<LOC>? PlaceLocationIdentification1C { get; set; }
+	public List<LOC>? PlaceLocationIdentificationC { get; set; }
 
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1C { get; set; }
+	public List<RFF>? ReferenceC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Measurements
 	/// </summary>
-	public List<MEA>? Measurements1C { get; set; }
+	public List<MEA>? MeasurementsC { get; set; }
 
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public List<MOA>? MonetaryAmount1C { get; set; }
+	public List<MOA>? MonetaryAmountC { get; set; }
 
 	/// <summary>
 	/// General indicator
@@ -58,7 +59,7 @@ public class SANCRT
 	/// <summary>
 	/// Customs status of goods
 	/// </summary>
-	public CST? CustomsStatusOfGoods1C { get; set; }
+	public CST? CustomsStatusOfGoodsC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -112,7 +113,7 @@ public class SANCRT
 }
 
 [EdiSegmentGroup("DOC", "DTM", "LOC")]
-public class SANCRT_SG1 : DOC
+public class SANCRT_SG1 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -126,7 +127,7 @@ public class SANCRT_SG1 : DOC
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class SANCRT_SG2 : NAD
+public class SANCRT_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -136,7 +137,7 @@ public class SANCRT_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class SANCRT_SG3 : CTA
+public class SANCRT_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -145,7 +146,7 @@ public class SANCRT_SG3 : CTA
 }
 
 [EdiSegmentGroup("TDT", "DTM", "LOC", "RFF")]
-public class SANCRT_SG4 : TDT
+public class SANCRT_SG4 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -164,7 +165,7 @@ public class SANCRT_SG4 : TDT
 }
 
 [EdiSegmentGroup("PAC", "PCI", "MEA")]
-public class SANCRT_SG5 : PAC
+public class SANCRT_SG5 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Package identification
@@ -178,7 +179,7 @@ public class SANCRT_SG5 : PAC
 }
 
 [EdiSegmentGroup("EQD", "TMP", "SEL")]
-public class SANCRT_SG6 : EQD
+public class SANCRT_SG6 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Temperature
@@ -193,7 +194,7 @@ public class SANCRT_SG6 : EQD
 }
 
 [EdiSegmentGroup("SEL", "DTM", "LOC")]
-public class SANCRT_SG7 : SEL
+public class SANCRT_SG7 : SEL, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -207,7 +208,7 @@ public class SANCRT_SG7 : SEL
 }
 
 [EdiSegmentGroup("PRC", "IMD", "NAD", "MEA", "DTM", "LOC", "DOC", "RFF", "TMP")]
-public class SANCRT_SG8 : PRC
+public class SANCRT_SG8 : PRC, ISegmentGroup
 {
 	/// <summary>
 	/// Item description
@@ -251,7 +252,7 @@ public class SANCRT_SG8 : PRC
 }
 
 [EdiSegmentGroup("LIN", "CST", "MEA", "PIA", "IMD", "GIN", "RFF", "ATT", "DTM", "LOC", "FTX", "QTY", "MOA", "DOC", "NAD", "PAC", "EQD", "PRC")]
-public class SANCRT_SG9 : LIN
+public class SANCRT_SG9 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Customs status of goods
@@ -341,7 +342,7 @@ public class SANCRT_SG9 : LIN
 }
 
 [EdiSegmentGroup("DOC", "DTM", "LOC")]
-public class SANCRT_SG10 : DOC
+public class SANCRT_SG10 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -355,7 +356,7 @@ public class SANCRT_SG10 : DOC
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class SANCRT_SG11 : NAD
+public class SANCRT_SG11 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG12
@@ -365,7 +366,7 @@ public class SANCRT_SG11 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class SANCRT_SG12 : CTA
+public class SANCRT_SG12 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -374,7 +375,7 @@ public class SANCRT_SG12 : CTA
 }
 
 [EdiSegmentGroup("PAC", "PCI", "MEA")]
-public class SANCRT_SG13 : PAC
+public class SANCRT_SG13 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Package identification
@@ -388,7 +389,7 @@ public class SANCRT_SG13 : PAC
 }
 
 [EdiSegmentGroup("EQD", "TMP", "SEL")]
-public class SANCRT_SG14 : EQD
+public class SANCRT_SG14 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Temperature
@@ -403,7 +404,7 @@ public class SANCRT_SG14 : EQD
 }
 
 [EdiSegmentGroup("SEL", "DTM", "LOC")]
-public class SANCRT_SG15 : SEL
+public class SANCRT_SG15 : SEL, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -417,7 +418,7 @@ public class SANCRT_SG15 : SEL
 }
 
 [EdiSegmentGroup("PRC", "IMD", "NAD", "MEA", "DTM", "LOC", "DOC", "RFF", "TMP")]
-public class SANCRT_SG16 : PRC
+public class SANCRT_SG16 : PRC, ISegmentGroup
 {
 	/// <summary>
 	/// Item description
@@ -461,7 +462,7 @@ public class SANCRT_SG16 : PRC
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class SANCRT_SG17 : AUT
+public class SANCRT_SG17 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

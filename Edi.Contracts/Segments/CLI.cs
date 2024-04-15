@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify a clinical intervention such as treatments and investigations.
 /// </summary>
 [EdiSegment, EdiPath("CLI")]
-public class CLI
+public class CLI : ISegment
 {
 	/// <summary>
 	/// To specify the type of clinical intervention.
@@ -27,7 +28,7 @@ public class CLI
 /// To specify a clinical intervention.
 /// </summary>
 [EdiElement]
-public class CLI_ClinicalInterventionDetails
+public class CLI_ClinicalInterventionDetails : IElement
 {
 	/// <summary>
 	/// To specify a clinical intervention.

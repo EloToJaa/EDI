@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify a pertinent quantity.
 /// </summary>
 [EdiSegment, EdiPath("QTY")]
-public class QTY
+public class QTY : ISegment
 {
 	/// <summary>
 	/// Quantity information in a transaction, qualified when relevant.
@@ -21,7 +22,7 @@ public class QTY
 /// Quantity information in a transaction, qualified when relevant.
 /// </summary>
 [EdiElement]
-public class QTY_QuantityDetails
+public class QTY_QuantityDetails : IElement
 {
 	/// <summary>
 	/// Code giving specific meaning to a quantity.

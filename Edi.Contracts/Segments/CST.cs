@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify goods in terms of customs identities, status and intended use.
 /// </summary>
 [EdiSegment, EdiPath("CST")]
-public class CST
+public class CST : ISegment
 {
 	/// <summary>
 	/// Serial number differentiating each separate goods item entry of a consignment as contained in one document/declaration.
@@ -51,7 +52,7 @@ public class CST
 /// Specification of goods in terms of customs identity.
 /// </summary>
 [EdiElement]
-public class CST_CustomsIdentityCodes
+public class CST_CustomsIdentityCodes : IElement
 {
 	/// <summary>
 	/// To specify goods in terms of customs identity.

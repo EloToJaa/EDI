@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// VESDEP
 /// </summary>
 [EdiMessage]
-public class VESDEP
+public class VESDEP : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class VESDEP
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -57,7 +58,7 @@ public class VESDEP
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class VESDEP_SG1 : RFF
+public class VESDEP_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -66,7 +67,7 @@ public class VESDEP_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class VESDEP_SG2 : NAD
+public class VESDEP_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -76,7 +77,7 @@ public class VESDEP_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class VESDEP_SG3 : CTA
+public class VESDEP_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -85,7 +86,7 @@ public class VESDEP_SG3 : CTA
 }
 
 [EdiSegmentGroup("TDT", "RFF", "LOC", "DTM", "MEA")]
-public class VESDEP_SG4 : TDT
+public class VESDEP_SG4 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -109,7 +110,7 @@ public class VESDEP_SG4 : TDT
 }
 
 [EdiSegmentGroup("QTY", "FTX")]
-public class VESDEP_SG5 : QTY
+public class VESDEP_SG5 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Free text

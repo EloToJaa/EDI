@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CUSREP
 /// </summary>
 [EdiMessage]
-public class CUSREP
+public class CUSREP : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class CUSREP
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Quantity
 	/// </summary>
-	public List<QTY>? Quantity1C { get; set; }
+	public List<QTY>? QuantityC { get; set; }
 
 	/// <summary>
 	/// Free text
@@ -43,7 +44,7 @@ public class CUSREP
 	/// <summary>
 	/// General indicator
 	/// </summary>
-	public List<GIS>? GeneralIndicator1C { get; set; }
+	public List<GIS>? GeneralIndicatorC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -92,7 +93,7 @@ public class CUSREP
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CUSREP_SG1 : RFF
+public class CUSREP_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -101,7 +102,7 @@ public class CUSREP_SG1 : RFF
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class CUSREP_SG2 : LOC
+public class CUSREP_SG2 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -110,7 +111,7 @@ public class CUSREP_SG2 : LOC
 }
 
 [EdiSegmentGroup("DOC", "RFF", "DTM", "LOC")]
-public class CUSREP_SG3 : DOC
+public class CUSREP_SG3 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -129,7 +130,7 @@ public class CUSREP_SG3 : DOC
 }
 
 [EdiSegmentGroup("TAX", "MOA", "GIS")]
-public class CUSREP_SG4 : TAX
+public class CUSREP_SG4 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -143,7 +144,7 @@ public class CUSREP_SG4 : TAX
 }
 
 [EdiSegmentGroup("NAD", "CTA", "RFF")]
-public class CUSREP_SG5 : NAD
+public class CUSREP_SG5 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG6
@@ -158,7 +159,7 @@ public class CUSREP_SG5 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CUSREP_SG6 : CTA
+public class CUSREP_SG6 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -167,7 +168,7 @@ public class CUSREP_SG6 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CUSREP_SG7 : RFF
+public class CUSREP_SG7 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -176,7 +177,7 @@ public class CUSREP_SG7 : RFF
 }
 
 [EdiSegmentGroup("TDT", "TPL", "DTM", "LOC")]
-public class CUSREP_SG8 : TDT
+public class CUSREP_SG8 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Transport placement
@@ -196,7 +197,7 @@ public class CUSREP_SG8 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM", "QTY")]
-public class CUSREP_SG9 : LOC
+public class CUSREP_SG9 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -210,7 +211,7 @@ public class CUSREP_SG9 : LOC
 }
 
 [EdiSegmentGroup("EQD", "EQN")]
-public class CUSREP_SG10 : EQD
+public class CUSREP_SG10 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -219,7 +220,7 @@ public class CUSREP_SG10 : EQD
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class CUSREP_SG11 : AUT
+public class CUSREP_SG11 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

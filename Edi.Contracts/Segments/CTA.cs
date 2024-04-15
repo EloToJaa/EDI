@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a person or a department to whom communication should be directed.
 /// </summary>
 [EdiSegment, EdiPath("CTA")]
-public class CTA
+public class CTA : ISegment
 {
 	/// <summary>
 	/// Code specifying the function of a contact (e.g. department or person).
@@ -27,7 +28,7 @@ public class CTA
 /// Code and/or name of a department or employee. Code preferred.
 /// </summary>
 [EdiElement]
-public class CTA_DepartmentOrEmployeeDetails
+public class CTA_DepartmentOrEmployeeDetails : IElement
 {
 	/// <summary>
 	/// Internal identification code.

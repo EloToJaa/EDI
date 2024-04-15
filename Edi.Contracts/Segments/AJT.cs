@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify the reason for an adjustment.
 /// </summary>
 [EdiSegment, EdiPath("AJT")]
-public class AJT
+public class AJT : ISegment
 {
 	/// <summary>
 	/// Indication of reason for adjustment.

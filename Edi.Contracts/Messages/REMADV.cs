@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// REMADV
 /// </summary>
 [EdiMessage]
-public class REMADV
+public class REMADV : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class REMADV
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1C { get; set; }
+	public List<RFF>? ReferenceC { get; set; }
 
 	/// <summary>
 	/// Financial institution information
@@ -43,7 +44,7 @@ public class REMADV
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// General indicator
@@ -73,7 +74,7 @@ public class REMADV
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public List<MOA>? MonetaryAmount1M { get; set; }
+	public List<MOA>? MonetaryAmountM { get; set; }
 
 	/// <summary>
 	/// Message trailer
@@ -82,7 +83,7 @@ public class REMADV
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class REMADV_SG1 : NAD
+public class REMADV_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -92,7 +93,7 @@ public class REMADV_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class REMADV_SG2 : CTA
+public class REMADV_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -101,7 +102,7 @@ public class REMADV_SG2 : CTA
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class REMADV_SG3 : CUX
+public class REMADV_SG3 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -110,7 +111,7 @@ public class REMADV_SG3 : CUX
 }
 
 [EdiSegmentGroup("DOC", "MOA", "DTM", "RFF", "NAD", "CUX", "AJT", "INP", "DLI")]
-public class REMADV_SG4 : DOC
+public class REMADV_SG4 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -155,7 +156,7 @@ public class REMADV_SG4 : DOC
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class REMADV_SG5 : CUX
+public class REMADV_SG5 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -164,7 +165,7 @@ public class REMADV_SG5 : CUX
 }
 
 [EdiSegmentGroup("AJT", "MOA", "RFF", "FTX")]
-public class REMADV_SG6 : AJT
+public class REMADV_SG6 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -183,7 +184,7 @@ public class REMADV_SG6 : AJT
 }
 
 [EdiSegmentGroup("INP", "FTX")]
-public class REMADV_SG7 : INP
+public class REMADV_SG7 : INP, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -192,7 +193,7 @@ public class REMADV_SG7 : INP
 }
 
 [EdiSegmentGroup("DLI", "MOA", "PIA", "DTM", "CUX", "AJT")]
-public class REMADV_SG8 : DLI
+public class REMADV_SG8 : DLI, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -222,7 +223,7 @@ public class REMADV_SG8 : DLI
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class REMADV_SG9 : CUX
+public class REMADV_SG9 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -231,7 +232,7 @@ public class REMADV_SG9 : CUX
 }
 
 [EdiSegmentGroup("AJT", "MOA", "RFF", "FTX")]
-public class REMADV_SG10 : AJT
+public class REMADV_SG10 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount

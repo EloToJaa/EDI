@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the number of units.
 /// </summary>
 [EdiSegment, EdiPath("EQN")]
-public class EQN
+public class EQN : ISegment
 {
 	/// <summary>
 	/// Identification of number of units and its purpose.
@@ -21,7 +22,7 @@ public class EQN
 /// Identification of number of units and its purpose.
 /// </summary>
 [EdiElement]
-public class EQN_NumberOfUnitDetails
+public class EQN_NumberOfUnitDetails : IElement
 {
 	/// <summary>
 	/// Number of units of a certain type.

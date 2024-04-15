@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To provide information related to the processing and purpose of a financial message.
 /// </summary>
 [EdiSegment, EdiPath("BUS")]
-public class BUS
+public class BUS : ISegment
 {
 	/// <summary>
 	/// To specify a business reason.
@@ -46,7 +47,7 @@ public class BUS
 /// To specify a business reason.
 /// </summary>
 [EdiElement]
-public class BUS_BusinessFunction
+public class BUS_BusinessFunction : IElement
 {
 	/// <summary>
 	/// Specification of the type of business function.
@@ -83,7 +84,7 @@ public class BUS_BusinessFunction
 /// Identification of a bank operation by code.
 /// </summary>
 [EdiElement]
-public class BUS_BankOperation
+public class BUS_BankOperation : IElement
 {
 	/// <summary>
 	/// Describe the method to transfer funds in coded form.

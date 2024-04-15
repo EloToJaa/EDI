@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To contain the data in a array.
 /// </summary>
 [EdiSegment, EdiPath("ARR")]
-public class ARR
+public class ARR : ISegment
 {
 	/// <summary>
 	/// To identify the position of an object in a structure containing the object.
@@ -27,7 +28,7 @@ public class ARR
 /// To identify the position of an object in a structure containing the object.
 /// </summary>
 [EdiElement]
-public class ARR_PositionIdentification
+public class ARR_PositionIdentification : IElement
 {
 	/// <summary>
 	/// A unique number assigned by the sender to identify a level within a hierarchical structure.
@@ -46,7 +47,7 @@ public class ARR_PositionIdentification
 /// To contain the data for a contiguous set of cells in an array.
 /// </summary>
 [EdiElement]
-public class ARR_ArrayCellDetails
+public class ARR_ArrayCellDetails : IElement
 {
 	/// <summary>
 	/// Contains the data for a cell in an array.

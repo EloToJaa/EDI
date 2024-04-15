@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CONDRA
 /// </summary>
 [EdiMessage]
-public class CONDRA
+public class CONDRA : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,27 +24,27 @@ public class CONDRA
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Authentication result
 	/// </summary>
-	public List<AUT>? AuthenticationResult1C { get; set; }
+	public List<AUT>? AuthenticationResultC { get; set; }
 
 	/// <summary>
 	/// Agreement identification
 	/// </summary>
-	public List<AGR>? AgreementIdentification1C { get; set; }
+	public List<AGR>? AgreementIdentificationC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Quantity
 	/// </summary>
-	public List<QTY>? Quantity1C { get; set; }
+	public List<QTY>? QuantityC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class CONDRA
 }
 
 [EdiSegmentGroup("RFF", "DOC", "DTM", "FTX")]
-public class CONDRA_SG1 : RFF
+public class CONDRA_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Document/message details
@@ -86,7 +87,7 @@ public class CONDRA_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FTX", "INP", "RCS", "RFF", "CTA")]
-public class CONDRA_SG2 : NAD
+public class CONDRA_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -121,7 +122,7 @@ public class CONDRA_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CONDRA_SG3 : RFF
+public class CONDRA_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -130,7 +131,7 @@ public class CONDRA_SG3 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM", "LOC")]
-public class CONDRA_SG4 : CTA
+public class CONDRA_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -144,7 +145,7 @@ public class CONDRA_SG4 : CTA
 }
 
 [EdiSegmentGroup("EFI", "CED", "RFF", "DTM", "QTY", "BII")]
-public class CONDRA_SG5 : EFI
+public class CONDRA_SG5 : EFI, ISegmentGroup
 {
 	/// <summary>
 	/// Computer environment details
@@ -174,7 +175,7 @@ public class CONDRA_SG5 : EFI
 }
 
 [EdiSegmentGroup("BII", "GIS", "DTM", "IMD", "QTY", "CTA", "AUT", "AGR", "INP", "RCS", "LOC", "DIM", "MEA", "RFF")]
-public class CONDRA_SG6 : BII
+public class CONDRA_SG6 : BII, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -244,7 +245,7 @@ public class CONDRA_SG6 : BII
 }
 
 [EdiSegmentGroup("RFF", "DOC", "SEQ")]
-public class CONDRA_SG7 : RFF
+public class CONDRA_SG7 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// SG8
@@ -259,7 +260,7 @@ public class CONDRA_SG7 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class CONDRA_SG8 : DOC
+public class CONDRA_SG8 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -268,7 +269,7 @@ public class CONDRA_SG8 : DOC
 }
 
 [EdiSegmentGroup("SEQ", "BII", "RFF", "GIS", "DTM", "IMD")]
-public class CONDRA_SG9 : SEQ
+public class CONDRA_SG9 : SEQ, ISegmentGroup
 {
 	/// <summary>
 	/// Structure identification

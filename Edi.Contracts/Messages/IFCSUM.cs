@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// IFCSUM
 /// </summary>
 [EdiMessage]
-public class IFCSUM
+public class IFCSUM : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,22 +24,22 @@ public class IFCSUM
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public List<MOA>? MonetaryAmount1C { get; set; }
+	public List<MOA>? MonetaryAmountC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Control total
 	/// </summary>
-	public List<CNT>? ControlTotal1C { get; set; }
+	public List<CNT>? ControlTotalC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -82,7 +83,7 @@ public class IFCSUM
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFCSUM_SG1 : RFF
+public class IFCSUM_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -91,7 +92,7 @@ public class IFCSUM_SG1 : RFF
 }
 
 [EdiSegmentGroup("GOR", "DTM", "LOC", "SEL", "FTX", "DOC")]
-public class IFCSUM_SG2 : GOR
+public class IFCSUM_SG2 : GOR, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -121,7 +122,7 @@ public class IFCSUM_SG2 : GOR
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class IFCSUM_SG3 : DOC
+public class IFCSUM_SG3 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -130,7 +131,7 @@ public class IFCSUM_SG3 : DOC
 }
 
 [EdiSegmentGroup("NAD", "CTA", "RFF")]
-public class IFCSUM_SG4 : NAD
+public class IFCSUM_SG4 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG5
@@ -145,7 +146,7 @@ public class IFCSUM_SG4 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFCSUM_SG5 : CTA
+public class IFCSUM_SG5 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -154,7 +155,7 @@ public class IFCSUM_SG5 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFCSUM_SG6 : RFF
+public class IFCSUM_SG6 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -163,7 +164,7 @@ public class IFCSUM_SG6 : RFF
 }
 
 [EdiSegmentGroup("TCC", "PRI", "EQN", "PCD", "MOA", "QTY", "LOC")]
-public class IFCSUM_SG7 : TCC
+public class IFCSUM_SG7 : TCC, ISegmentGroup
 {
 	/// <summary>
 	/// Price details
@@ -197,7 +198,7 @@ public class IFCSUM_SG7 : TCC
 }
 
 [EdiSegmentGroup("TDT", "TSR", "LOC", "DTM", "SEL", "FTX", "MEA", "DIM", "CTA", "NAD")]
-public class IFCSUM_SG8 : TDT
+public class IFCSUM_SG8 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Transport service requirements
@@ -247,7 +248,7 @@ public class IFCSUM_SG8 : TDT
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFCSUM_SG9 : MEA
+public class IFCSUM_SG9 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -256,7 +257,7 @@ public class IFCSUM_SG9 : MEA
 }
 
 [EdiSegmentGroup("DIM", "EQN")]
-public class IFCSUM_SG10 : DIM
+public class IFCSUM_SG10 : DIM, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -265,7 +266,7 @@ public class IFCSUM_SG10 : DIM
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFCSUM_SG11 : CTA
+public class IFCSUM_SG11 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -274,7 +275,7 @@ public class IFCSUM_SG11 : CTA
 }
 
 [EdiSegmentGroup("NAD", "LOC", "CTA", "DOC", "TCC", "RFF")]
-public class IFCSUM_SG12 : NAD
+public class IFCSUM_SG12 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -304,7 +305,7 @@ public class IFCSUM_SG12 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFCSUM_SG13 : CTA
+public class IFCSUM_SG13 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -313,7 +314,7 @@ public class IFCSUM_SG13 : CTA
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class IFCSUM_SG14 : DOC
+public class IFCSUM_SG14 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -322,7 +323,7 @@ public class IFCSUM_SG14 : DOC
 }
 
 [EdiSegmentGroup("TCC", "PRI", "EQN", "PCD", "MOA", "QTY")]
-public class IFCSUM_SG15 : TCC
+public class IFCSUM_SG15 : TCC, ISegmentGroup
 {
 	/// <summary>
 	/// Price details
@@ -351,7 +352,7 @@ public class IFCSUM_SG15 : TCC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFCSUM_SG16 : RFF
+public class IFCSUM_SG16 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -360,7 +361,7 @@ public class IFCSUM_SG16 : RFF
 }
 
 [EdiSegmentGroup("EQD", "EQN", "TPL", "TMD", "MEA", "DIM", "SEL", "NAD", "LOC", "HAN", "TMP", "FTX", "EQA")]
-public class IFCSUM_SG17 : EQD
+public class IFCSUM_SG17 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -425,7 +426,7 @@ public class IFCSUM_SG17 : EQD
 }
 
 [EdiSegmentGroup("EQA", "EQN")]
-public class IFCSUM_SG18 : EQA
+public class IFCSUM_SG18 : EQA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -434,7 +435,7 @@ public class IFCSUM_SG18 : EQA
 }
 
 [EdiSegmentGroup("CNI", "SGP", "TPL", "CTA", "COM", "DTM", "CNT", "TSR", "CUX", "MOA", "FTX", "LOC", "TOD", "RFF", "GOR", "CPI", "TCC", "TDT", "NAD", "GID", "EQD")]
-public class IFCSUM_SG19 : CNI
+public class IFCSUM_SG19 : CNI, ISegmentGroup
 {
 	/// <summary>
 	/// SG20
@@ -539,7 +540,7 @@ public class IFCSUM_SG19 : CNI
 }
 
 [EdiSegmentGroup("SGP", "MEA")]
-public class IFCSUM_SG20 : SGP
+public class IFCSUM_SG20 : SGP, ISegmentGroup
 {
 	/// <summary>
 	/// SG21
@@ -549,7 +550,7 @@ public class IFCSUM_SG20 : SGP
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFCSUM_SG21 : MEA
+public class IFCSUM_SG21 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -558,7 +559,7 @@ public class IFCSUM_SG21 : MEA
 }
 
 [EdiSegmentGroup("TPL", "MEA")]
-public class IFCSUM_SG22 : TPL
+public class IFCSUM_SG22 : TPL, ISegmentGroup
 {
 	/// <summary>
 	/// SG23
@@ -568,7 +569,7 @@ public class IFCSUM_SG22 : TPL
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFCSUM_SG23 : MEA
+public class IFCSUM_SG23 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -577,7 +578,7 @@ public class IFCSUM_SG23 : MEA
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class IFCSUM_SG24 : LOC
+public class IFCSUM_SG24 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -586,7 +587,7 @@ public class IFCSUM_SG24 : LOC
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class IFCSUM_SG25 : TOD
+public class IFCSUM_SG25 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -595,7 +596,7 @@ public class IFCSUM_SG25 : TOD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFCSUM_SG26 : RFF
+public class IFCSUM_SG26 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -604,7 +605,7 @@ public class IFCSUM_SG26 : RFF
 }
 
 [EdiSegmentGroup("GOR", "DTM", "LOC", "SEL", "FTX", "DOC")]
-public class IFCSUM_SG27 : GOR
+public class IFCSUM_SG27 : GOR, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -634,7 +635,7 @@ public class IFCSUM_SG27 : GOR
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class IFCSUM_SG28 : DOC
+public class IFCSUM_SG28 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -643,7 +644,7 @@ public class IFCSUM_SG28 : DOC
 }
 
 [EdiSegmentGroup("CPI", "RFF", "CUX", "LOC", "MOA")]
-public class IFCSUM_SG29 : CPI
+public class IFCSUM_SG29 : CPI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -667,7 +668,7 @@ public class IFCSUM_SG29 : CPI
 }
 
 [EdiSegmentGroup("TCC", "LOC", "FTX", "CUX", "PRI", "EQN", "PCD", "MOA", "QTY")]
-public class IFCSUM_SG30 : TCC
+public class IFCSUM_SG30 : TCC, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -711,7 +712,7 @@ public class IFCSUM_SG30 : TCC
 }
 
 [EdiSegmentGroup("TDT", "DTM", "TSR", "LOC", "RFF")]
-public class IFCSUM_SG31 : TDT
+public class IFCSUM_SG31 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -736,7 +737,7 @@ public class IFCSUM_SG31 : TDT
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class IFCSUM_SG32 : LOC
+public class IFCSUM_SG32 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -745,7 +746,7 @@ public class IFCSUM_SG32 : LOC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFCSUM_SG33 : RFF
+public class IFCSUM_SG33 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -754,7 +755,7 @@ public class IFCSUM_SG33 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "MOA", "CTA", "DOC", "TCC", "RFF", "CPI", "TSR")]
-public class IFCSUM_SG34 : NAD
+public class IFCSUM_SG34 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -799,7 +800,7 @@ public class IFCSUM_SG34 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFCSUM_SG35 : CTA
+public class IFCSUM_SG35 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -808,7 +809,7 @@ public class IFCSUM_SG35 : CTA
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class IFCSUM_SG36 : DOC
+public class IFCSUM_SG36 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -817,7 +818,7 @@ public class IFCSUM_SG36 : DOC
 }
 
 [EdiSegmentGroup("TCC", "PRI", "EQN", "PCD", "MOA", "QTY")]
-public class IFCSUM_SG37 : TCC
+public class IFCSUM_SG37 : TCC, ISegmentGroup
 {
 	/// <summary>
 	/// Price details
@@ -846,7 +847,7 @@ public class IFCSUM_SG37 : TCC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFCSUM_SG38 : RFF
+public class IFCSUM_SG38 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -855,7 +856,7 @@ public class IFCSUM_SG38 : RFF
 }
 
 [EdiSegmentGroup("CPI", "RFF", "CUX", "LOC", "MOA")]
-public class IFCSUM_SG39 : CPI
+public class IFCSUM_SG39 : CPI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -879,7 +880,7 @@ public class IFCSUM_SG39 : CPI
 }
 
 [EdiSegmentGroup("TSR", "RFF", "LOC", "TPL", "FTX")]
-public class IFCSUM_SG40 : TSR
+public class IFCSUM_SG40 : TSR, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -903,7 +904,7 @@ public class IFCSUM_SG40 : TSR
 }
 
 [EdiSegmentGroup("GID", "HAN", "TMP", "RNG", "TMD", "LOC", "MOA", "PIA", "GIN", "FTX", "NAD", "GDS", "MEA", "DIM", "RFF", "PCI", "DOC", "GOR", "TPL", "SGP", "TCC", "DGS")]
-public class IFCSUM_SG41 : GID
+public class IFCSUM_SG41 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -1013,7 +1014,7 @@ public class IFCSUM_SG41 : GID
 }
 
 [EdiSegmentGroup("NAD", "DTM")]
-public class IFCSUM_SG42 : NAD
+public class IFCSUM_SG42 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -1022,7 +1023,7 @@ public class IFCSUM_SG42 : NAD
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFCSUM_SG43 : MEA
+public class IFCSUM_SG43 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -1031,7 +1032,7 @@ public class IFCSUM_SG43 : MEA
 }
 
 [EdiSegmentGroup("DIM", "EQN")]
-public class IFCSUM_SG44 : DIM
+public class IFCSUM_SG44 : DIM, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -1040,7 +1041,7 @@ public class IFCSUM_SG44 : DIM
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFCSUM_SG45 : RFF
+public class IFCSUM_SG45 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -1049,7 +1050,7 @@ public class IFCSUM_SG45 : RFF
 }
 
 [EdiSegmentGroup("PCI", "RFF", "DTM", "GIN")]
-public class IFCSUM_SG46 : PCI
+public class IFCSUM_SG46 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -1068,7 +1069,7 @@ public class IFCSUM_SG46 : PCI
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class IFCSUM_SG47 : DOC
+public class IFCSUM_SG47 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -1077,7 +1078,7 @@ public class IFCSUM_SG47 : DOC
 }
 
 [EdiSegmentGroup("GOR", "DTM", "LOC", "SEL", "FTX", "DOC")]
-public class IFCSUM_SG48 : GOR
+public class IFCSUM_SG48 : GOR, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -1107,7 +1108,7 @@ public class IFCSUM_SG48 : GOR
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class IFCSUM_SG49 : DOC
+public class IFCSUM_SG49 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -1116,7 +1117,7 @@ public class IFCSUM_SG49 : DOC
 }
 
 [EdiSegmentGroup("TPL", "MEA")]
-public class IFCSUM_SG50 : TPL
+public class IFCSUM_SG50 : TPL, ISegmentGroup
 {
 	/// <summary>
 	/// SG51
@@ -1126,7 +1127,7 @@ public class IFCSUM_SG50 : TPL
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFCSUM_SG51 : MEA
+public class IFCSUM_SG51 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -1135,7 +1136,7 @@ public class IFCSUM_SG51 : MEA
 }
 
 [EdiSegmentGroup("SGP", "SEQ", "MEA")]
-public class IFCSUM_SG52 : SGP
+public class IFCSUM_SG52 : SGP, ISegmentGroup
 {
 	/// <summary>
 	/// Sequence details
@@ -1150,7 +1151,7 @@ public class IFCSUM_SG52 : SGP
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFCSUM_SG53 : MEA
+public class IFCSUM_SG53 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -1159,7 +1160,7 @@ public class IFCSUM_SG53 : MEA
 }
 
 [EdiSegmentGroup("TCC", "CUX", "PRI", "EQN", "PCD", "MOA", "QTY", "LOC")]
-public class IFCSUM_SG54 : TCC
+public class IFCSUM_SG54 : TCC, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -1198,7 +1199,7 @@ public class IFCSUM_SG54 : TCC
 }
 
 [EdiSegmentGroup("DGS", "FTX", "CTA", "MEA", "SGP")]
-public class IFCSUM_SG55 : DGS
+public class IFCSUM_SG55 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -1223,7 +1224,7 @@ public class IFCSUM_SG55 : DGS
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFCSUM_SG56 : CTA
+public class IFCSUM_SG56 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -1232,7 +1233,7 @@ public class IFCSUM_SG56 : CTA
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFCSUM_SG57 : MEA
+public class IFCSUM_SG57 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -1241,7 +1242,7 @@ public class IFCSUM_SG57 : MEA
 }
 
 [EdiSegmentGroup("SGP", "MEA")]
-public class IFCSUM_SG58 : SGP
+public class IFCSUM_SG58 : SGP, ISegmentGroup
 {
 	/// <summary>
 	/// SG59
@@ -1251,7 +1252,7 @@ public class IFCSUM_SG58 : SGP
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFCSUM_SG59 : MEA
+public class IFCSUM_SG59 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -1260,7 +1261,7 @@ public class IFCSUM_SG59 : MEA
 }
 
 [EdiSegmentGroup("EQD", "EQN", "TMD", "MEA", "DIM", "SEL", "TPL", "HAN", "TMP", "FTX", "TCC", "NAD", "EQA")]
-public class IFCSUM_SG60 : EQD
+public class IFCSUM_SG60 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -1325,7 +1326,7 @@ public class IFCSUM_SG60 : EQD
 }
 
 [EdiSegmentGroup("TCC", "PRI", "EQN", "PCD", "MOA", "QTY")]
-public class IFCSUM_SG61 : TCC
+public class IFCSUM_SG61 : TCC, ISegmentGroup
 {
 	/// <summary>
 	/// Price details
@@ -1354,7 +1355,7 @@ public class IFCSUM_SG61 : TCC
 }
 
 [EdiSegmentGroup("NAD", "DTM")]
-public class IFCSUM_SG62 : NAD
+public class IFCSUM_SG62 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -1363,7 +1364,7 @@ public class IFCSUM_SG62 : NAD
 }
 
 [EdiSegmentGroup("EQA", "EQN")]
-public class IFCSUM_SG63 : EQA
+public class IFCSUM_SG63 : EQA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units

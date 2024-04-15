@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// IFTFCC
 /// </summary>
 [EdiMessage]
-public class IFTFCC
+public class IFTFCC : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,27 +24,27 @@ public class IFTFCC
 	/// <summary>
 	/// Contact information
 	/// </summary>
-	public CTA? ContactInformation1C { get; set; }
+	public CTA? ContactInformationC { get; set; }
 
 	/// <summary>
 	/// Communication contact
 	/// </summary>
-	public List<COM>? CommunicationContact1C { get; set; }
+	public List<COM>? CommunicationContactC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Transport service requirements
 	/// </summary>
-	public List<TSR>? TransportServiceRequirements1C { get; set; }
+	public List<TSR>? TransportServiceRequirementsC { get; set; }
 
 	/// <summary>
 	/// Document/message details
@@ -127,7 +128,7 @@ public class IFTFCC
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class IFTFCC_SG1 : LOC
+public class IFTFCC_SG1 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -136,7 +137,7 @@ public class IFTFCC_SG1 : LOC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTFCC_SG2 : RFF
+public class IFTFCC_SG2 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -145,7 +146,7 @@ public class IFTFCC_SG2 : RFF
 }
 
 [EdiSegmentGroup("MOA", "PCD")]
-public class IFTFCC_SG3 : MOA
+public class IFTFCC_SG3 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -154,7 +155,7 @@ public class IFTFCC_SG3 : MOA
 }
 
 [EdiSegmentGroup("TAX", "PCD", "MOA")]
-public class IFTFCC_SG4 : TAX
+public class IFTFCC_SG4 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -168,7 +169,7 @@ public class IFTFCC_SG4 : TAX
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class IFTFCC_SG5 : CUX
+public class IFTFCC_SG5 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -177,7 +178,7 @@ public class IFTFCC_SG5 : CUX
 }
 
 [EdiSegmentGroup("TCC", "LOC", "DTM", "RFF", "FTX", "PCD", "QTY", "PRI", "MOA")]
-public class IFTFCC_SG6 : TCC
+public class IFTFCC_SG6 : TCC, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -222,7 +223,7 @@ public class IFTFCC_SG6 : TCC
 }
 
 [EdiSegmentGroup("PRI", "CUX")]
-public class IFTFCC_SG7 : PRI
+public class IFTFCC_SG7 : PRI, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -231,7 +232,7 @@ public class IFTFCC_SG7 : PRI
 }
 
 [EdiSegmentGroup("MOA", "CUX", "PCD", "TAX")]
-public class IFTFCC_SG8 : MOA
+public class IFTFCC_SG8 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// SG9
@@ -251,7 +252,7 @@ public class IFTFCC_SG8 : MOA
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class IFTFCC_SG9 : CUX
+public class IFTFCC_SG9 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -260,7 +261,7 @@ public class IFTFCC_SG9 : CUX
 }
 
 [EdiSegmentGroup("TAX", "PCD")]
-public class IFTFCC_SG10 : TAX
+public class IFTFCC_SG10 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -269,7 +270,7 @@ public class IFTFCC_SG10 : TAX
 }
 
 [EdiSegmentGroup("NAD", "FII", "LOC", "CTA", "RFF")]
-public class IFTFCC_SG11 : NAD
+public class IFTFCC_SG11 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Financial institution information
@@ -294,7 +295,7 @@ public class IFTFCC_SG11 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFTFCC_SG12 : CTA
+public class IFTFCC_SG12 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -303,7 +304,7 @@ public class IFTFCC_SG12 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTFCC_SG13 : RFF
+public class IFTFCC_SG13 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -312,7 +313,7 @@ public class IFTFCC_SG13 : RFF
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class IFTFCC_SG14 : TOD
+public class IFTFCC_SG14 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -321,7 +322,7 @@ public class IFTFCC_SG14 : TOD
 }
 
 [EdiSegmentGroup("CPI", "CUX", "LOC", "MOA")]
-public class IFTFCC_SG15 : CPI
+public class IFTFCC_SG15 : CPI, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -340,7 +341,7 @@ public class IFTFCC_SG15 : CPI
 }
 
 [EdiSegmentGroup("PAT", "DTM", "PCD", "MOA")]
-public class IFTFCC_SG16 : PAT
+public class IFTFCC_SG16 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -359,7 +360,7 @@ public class IFTFCC_SG16 : PAT
 }
 
 [EdiSegmentGroup("TDT", "TCC", "DTM", "LOC", "RFF")]
-public class IFTFCC_SG17 : TDT
+public class IFTFCC_SG17 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Transport charge/rate calculations
@@ -384,7 +385,7 @@ public class IFTFCC_SG17 : TDT
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTFCC_SG18 : RFF
+public class IFTFCC_SG18 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -393,7 +394,7 @@ public class IFTFCC_SG18 : RFF
 }
 
 [EdiSegmentGroup("GID", "TCC", "HAN", "TMP", "TMD", "LOC", "PCI", "PIA", "FTX", "MEA", "DIM", "RFF", "DGS")]
-public class IFTFCC_SG19 : GID
+public class IFTFCC_SG19 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Transport charge/rate calculations
@@ -458,7 +459,7 @@ public class IFTFCC_SG19 : GID
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFTFCC_SG20 : MEA
+public class IFTFCC_SG20 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -467,7 +468,7 @@ public class IFTFCC_SG20 : MEA
 }
 
 [EdiSegmentGroup("DIM", "EQN")]
-public class IFTFCC_SG21 : DIM
+public class IFTFCC_SG21 : DIM, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -476,7 +477,7 @@ public class IFTFCC_SG21 : DIM
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTFCC_SG22 : RFF
+public class IFTFCC_SG22 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -485,7 +486,7 @@ public class IFTFCC_SG22 : RFF
 }
 
 [EdiSegmentGroup("DGS", "FTX")]
-public class IFTFCC_SG23 : DGS
+public class IFTFCC_SG23 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -494,7 +495,7 @@ public class IFTFCC_SG23 : DGS
 }
 
 [EdiSegmentGroup("EQD", "TCC", "EQN", "TMD", "MEA", "DIM", "SEL", "TPL", "FTX", "RFF", "NAD", "EQA")]
-public class IFTFCC_SG24 : EQD
+public class IFTFCC_SG24 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Transport charge/rate calculations
@@ -554,7 +555,7 @@ public class IFTFCC_SG24 : EQD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTFCC_SG25 : RFF
+public class IFTFCC_SG25 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -563,7 +564,7 @@ public class IFTFCC_SG25 : RFF
 }
 
 [EdiSegmentGroup("NAD", "DTM")]
-public class IFTFCC_SG26 : NAD
+public class IFTFCC_SG26 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -572,7 +573,7 @@ public class IFTFCC_SG26 : NAD
 }
 
 [EdiSegmentGroup("EQA", "EQN")]
-public class IFTFCC_SG27 : EQA
+public class IFTFCC_SG27 : EQA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -581,7 +582,7 @@ public class IFTFCC_SG27 : EQA
 }
 
 [EdiSegmentGroup("CNI", "TCC", "DTM", "TSR", "FTX", "MOA", "CUX", "LOC", "RFF", "TOD", "CPI", "TDT", "NAD", "GID", "EQD")]
-public class IFTFCC_SG28 : CNI
+public class IFTFCC_SG28 : CNI, ISegmentGroup
 {
 	/// <summary>
 	/// Transport charge/rate calculations
@@ -656,7 +657,7 @@ public class IFTFCC_SG28 : CNI
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class IFTFCC_SG29 : CUX
+public class IFTFCC_SG29 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -665,7 +666,7 @@ public class IFTFCC_SG29 : CUX
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class IFTFCC_SG30 : LOC
+public class IFTFCC_SG30 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -674,7 +675,7 @@ public class IFTFCC_SG30 : LOC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTFCC_SG31 : RFF
+public class IFTFCC_SG31 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -683,7 +684,7 @@ public class IFTFCC_SG31 : RFF
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class IFTFCC_SG32 : TOD
+public class IFTFCC_SG32 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -692,7 +693,7 @@ public class IFTFCC_SG32 : TOD
 }
 
 [EdiSegmentGroup("CPI", "CUX", "LOC", "MOA")]
-public class IFTFCC_SG33 : CPI
+public class IFTFCC_SG33 : CPI, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -711,7 +712,7 @@ public class IFTFCC_SG33 : CPI
 }
 
 [EdiSegmentGroup("TDT", "DTM", "LOC", "RFF")]
-public class IFTFCC_SG34 : TDT
+public class IFTFCC_SG34 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -730,7 +731,7 @@ public class IFTFCC_SG34 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA", "RFF")]
-public class IFTFCC_SG35 : NAD
+public class IFTFCC_SG35 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG36
@@ -744,7 +745,7 @@ public class IFTFCC_SG35 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFTFCC_SG36 : CTA
+public class IFTFCC_SG36 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -753,7 +754,7 @@ public class IFTFCC_SG36 : CTA
 }
 
 [EdiSegmentGroup("GID", "TCC", "HAN", "TMP", "TMD", "LOC", "PCI", "PIA", "FTX", "MEA", "DIM", "RFF", "DGS")]
-public class IFTFCC_SG37 : GID
+public class IFTFCC_SG37 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Transport charge/rate calculations
@@ -818,7 +819,7 @@ public class IFTFCC_SG37 : GID
 }
 
 [EdiSegmentGroup("MEA", "EQN")]
-public class IFTFCC_SG38 : MEA
+public class IFTFCC_SG38 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -827,7 +828,7 @@ public class IFTFCC_SG38 : MEA
 }
 
 [EdiSegmentGroup("DIM", "EQN")]
-public class IFTFCC_SG39 : DIM
+public class IFTFCC_SG39 : DIM, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units
@@ -836,7 +837,7 @@ public class IFTFCC_SG39 : DIM
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTFCC_SG40 : RFF
+public class IFTFCC_SG40 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -845,7 +846,7 @@ public class IFTFCC_SG40 : RFF
 }
 
 [EdiSegmentGroup("DGS", "FTX")]
-public class IFTFCC_SG41 : DGS
+public class IFTFCC_SG41 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -854,7 +855,7 @@ public class IFTFCC_SG41 : DGS
 }
 
 [EdiSegmentGroup("EQD", "TCC", "EQN", "TMD", "MEA", "DIM", "SEL", "TPL", "FTX", "RFF", "NAD", "EQA")]
-public class IFTFCC_SG42 : EQD
+public class IFTFCC_SG42 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Transport charge/rate calculations
@@ -914,7 +915,7 @@ public class IFTFCC_SG42 : EQD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTFCC_SG43 : RFF
+public class IFTFCC_SG43 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -923,7 +924,7 @@ public class IFTFCC_SG43 : RFF
 }
 
 [EdiSegmentGroup("NAD", "DTM")]
-public class IFTFCC_SG44 : NAD
+public class IFTFCC_SG44 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -932,7 +933,7 @@ public class IFTFCC_SG44 : NAD
 }
 
 [EdiSegmentGroup("EQA", "EQN")]
-public class IFTFCC_SG45 : EQA
+public class IFTFCC_SG45 : EQA, ISegmentGroup
 {
 	/// <summary>
 	/// Number of units

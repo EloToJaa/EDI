@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// PAYORD
 /// </summary>
 [EdiMessage]
-public class PAYORD
+public class PAYORD : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -38,12 +39,12 @@ public class PAYORD
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -92,7 +93,7 @@ public class PAYORD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PAYORD_SG1 : RFF
+public class PAYORD_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -101,7 +102,7 @@ public class PAYORD_SG1 : RFF
 }
 
 [EdiSegmentGroup("MOA", "CUX", "DTM", "RFF")]
-public class PAYORD_SG2 : MOA
+public class PAYORD_SG2 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -120,7 +121,7 @@ public class PAYORD_SG2 : MOA
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class PAYORD_SG3 : FII
+public class PAYORD_SG3 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -134,7 +135,7 @@ public class PAYORD_SG3 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class PAYORD_SG4 : NAD
+public class PAYORD_SG4 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -148,7 +149,7 @@ public class PAYORD_SG4 : NAD
 }
 
 [EdiSegmentGroup("INP", "FTX", "DTM")]
-public class PAYORD_SG5 : INP
+public class PAYORD_SG5 : INP, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -162,7 +163,7 @@ public class PAYORD_SG5 : INP
 }
 
 [EdiSegmentGroup("GIS", "MOA", "LOC", "NAD", "RCS", "FTX")]
-public class PAYORD_SG6 : GIS
+public class PAYORD_SG6 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -191,7 +192,7 @@ public class PAYORD_SG6 : GIS
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class PAYORD_SG7 : DOC
+public class PAYORD_SG7 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -200,7 +201,7 @@ public class PAYORD_SG7 : DOC
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class PAYORD_SG8 : AUT
+public class PAYORD_SG8 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

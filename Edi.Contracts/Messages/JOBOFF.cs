@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// JOBOFF
 /// </summary>
 [EdiMessage]
-public class JOBOFF
+public class JOBOFF : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class JOBOFF
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -57,7 +58,7 @@ public class JOBOFF
 }
 
 [EdiSegmentGroup("PNA", "ADR", "LOC", "DTM", "CTA")]
-public class JOBOFF_SG1 : PNA
+public class JOBOFF_SG1 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -82,7 +83,7 @@ public class JOBOFF_SG1 : PNA
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class JOBOFF_SG2 : CTA
+public class JOBOFF_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -91,7 +92,7 @@ public class JOBOFF_SG2 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class JOBOFF_SG3 : RFF
+public class JOBOFF_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -100,7 +101,7 @@ public class JOBOFF_SG3 : RFF
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class JOBOFF_SG4 : GIS
+public class JOBOFF_SG4 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -109,7 +110,7 @@ public class JOBOFF_SG4 : GIS
 }
 
 [EdiSegmentGroup("RFF", "RNG", "DTM", "QTY", "PNA", "GIS", "RFF", "RCS", "EMP", "SAL", "PNA")]
-public class JOBOFF_SG5 : RFF
+public class JOBOFF_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -164,7 +165,7 @@ public class JOBOFF_SG5 : RFF
 }
 
 [EdiSegmentGroup("PNA", "DTM", "LOC", "NAT", "PDI", "DOC")]
-public class JOBOFF_SG6 : PNA
+public class JOBOFF_SG6 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -193,7 +194,7 @@ public class JOBOFF_SG6 : PNA
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class JOBOFF_SG7 : GIS
+public class JOBOFF_SG7 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -202,7 +203,7 @@ public class JOBOFF_SG7 : GIS
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class JOBOFF_SG8 : RFF
+public class JOBOFF_SG8 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -211,7 +212,7 @@ public class JOBOFF_SG8 : RFF
 }
 
 [EdiSegmentGroup("RCS", "RFF", "DTM", "FTX")]
-public class JOBOFF_SG9 : RCS
+public class JOBOFF_SG9 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -230,7 +231,7 @@ public class JOBOFF_SG9 : RCS
 }
 
 [EdiSegmentGroup("EMP", "LOC", "ATT", "LAN")]
-public class JOBOFF_SG10 : EMP
+public class JOBOFF_SG10 : EMP, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -250,7 +251,7 @@ public class JOBOFF_SG10 : EMP
 }
 
 [EdiSegmentGroup("ATT", "FTX", "PTY")]
-public class JOBOFF_SG11 : ATT
+public class JOBOFF_SG11 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -264,7 +265,7 @@ public class JOBOFF_SG11 : ATT
 }
 
 [EdiSegmentGroup("LAN", "GIS")]
-public class JOBOFF_SG12 : LAN
+public class JOBOFF_SG12 : LAN, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -273,7 +274,7 @@ public class JOBOFF_SG12 : LAN
 }
 
 [EdiSegmentGroup("SAL", "FTX", "DTM", "ATT", "GIS", "MOA")]
-public class JOBOFF_SG13 : SAL
+public class JOBOFF_SG13 : SAL, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -303,7 +304,7 @@ public class JOBOFF_SG13 : SAL
 }
 
 [EdiSegmentGroup("ATT", "FTX")]
-public class JOBOFF_SG14 : ATT
+public class JOBOFF_SG14 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -312,7 +313,7 @@ public class JOBOFF_SG14 : ATT
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class JOBOFF_SG15 : GIS
+public class JOBOFF_SG15 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -321,7 +322,7 @@ public class JOBOFF_SG15 : GIS
 }
 
 [EdiSegmentGroup("MOA", "RNG", "FTX")]
-public class JOBOFF_SG16 : MOA
+public class JOBOFF_SG16 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -335,7 +336,7 @@ public class JOBOFF_SG16 : MOA
 }
 
 [EdiSegmentGroup("PNA", "ADR", "GIS", "LOC", "FTX", "DTM", "CTA")]
-public class JOBOFF_SG17 : PNA
+public class JOBOFF_SG17 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -370,7 +371,7 @@ public class JOBOFF_SG17 : PNA
 }
 
 [EdiSegmentGroup("DTM", "FTX")]
-public class JOBOFF_SG18 : DTM
+public class JOBOFF_SG18 : DTM, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -379,7 +380,7 @@ public class JOBOFF_SG18 : DTM
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class JOBOFF_SG19 : CTA
+public class JOBOFF_SG19 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify relevant duty/tax/fee information.
 /// </summary>
 [EdiSegment, EdiPath("TAX")]
-public class TAX
+public class TAX : ISegment
 {
 	/// <summary>
 	/// Code identifying the function of an duty, tax or fee information.
@@ -58,7 +59,7 @@ public class TAX
 /// Code and/or name identifying duty, tax or fee.
 /// </summary>
 [EdiElement]
-public class TAX_DutyTaxFeeType
+public class TAX_DutyTaxFeeType : IElement
 {
 	/// <summary>
 	/// Identification of the type of duty or tax or fee applicable to commodities or of tax applicable to services.
@@ -89,7 +90,7 @@ public class TAX_DutyTaxFeeType
 /// Indication of account reference for duties, taxes and/or fees.
 /// </summary>
 [EdiElement]
-public class TAX_DutyTaxFeeAccountDetail
+public class TAX_DutyTaxFeeAccountDetail : IElement
 {
 	/// <summary>
 	/// Identification of a particular duty, tax or fee.
@@ -114,7 +115,7 @@ public class TAX_DutyTaxFeeAccountDetail
 /// Rate of duty/tax/fee applicable to commodities or of tax applicable to services.
 /// </summary>
 [EdiElement]
-public class TAX_DutyTaxFeeDetail
+public class TAX_DutyTaxFeeDetail : IElement
 {
 	/// <summary>
 	/// Identification of the rate of duty or tax or fee applicable to commodities or of tax applicable to services.

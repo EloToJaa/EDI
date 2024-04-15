@@ -14,6 +14,7 @@ public class GeneratorService
 
         sb.Append("using System.Collections.Generic;\n");
         sb.Append($"using {namespaceName}.Qualifiers;\n");
+        sb.Append($"using {namespaceName}.Interfaces;\n");
         sb.Append("using indice.Edi.Serialization;\n\n");
 
         sb.Append($"namespace {namespaceName}.Segments;\n\n");
@@ -148,6 +149,7 @@ public class GeneratorService
         string className = ConvertToPascalCase(qualifierName);
 
         sb.Append("using System.Collections.Generic;\n");
+        sb.Append($"using {namespaceName}.Interfaces;\n");
         sb.Append("using System.Text.Json.Serialization;\n\n");
 
         sb.Append($"namespace {namespaceName}.Qualifiers;\n\n");
@@ -247,13 +249,14 @@ public class GeneratorService
 
     public string GenerateClassForMessage(string messageName, List<MessageSegment> messageSegments, string namespaceName)
     {
-        var occurences = CountOccurences(messageSegments.Select(e => IsSegmentGroup(e.SegmentName) ? e.SegmentName : ConvertToPascalCase(e.Description)).ToList());
+        var occurences = CountOccurences(messageSegments.Where(s => s.Depth == 1).Select(s => IsSegmentGroup(s.SegmentName) ? s.SegmentName : ConvertToPascalCase(s.Description)).ToList());
         var numbers = new Dictionary<string, int>();
 
         var sb = new StringBuilder();
 
         sb.Append("using System.Collections.Generic;\n");
         sb.Append($"using {namespaceName}.Segments;\n");
+        sb.Append($"using {namespaceName}.Interfaces;\n");
         sb.Append("using indice.Edi.Serialization;\n\n");
 
         sb.Append($"namespace {namespaceName}.Messages;\n\n");

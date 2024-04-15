@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To provide information concerning pricing related to class of trade, price multiplier, and reason for change.
 /// </summary>
 [EdiSegment, EdiPath("APR")]
-public class APR
+public class APR : ISegment
 {
 	/// <summary>
 	/// Code identifying the class of trade.
@@ -33,7 +34,7 @@ public class APR
 /// Price multiplier and its identification.
 /// </summary>
 [EdiElement]
-public class APR_PriceMultiplierInformation
+public class APR_PriceMultiplierInformation : IElement
 {
 	/// <summary>
 	/// Rate to be used to multiply a price.
@@ -52,7 +53,7 @@ public class APR_PriceMultiplierInformation
 /// Code and/or description of the reason for a change.
 /// </summary>
 [EdiElement]
-public class APR_ReasonForChange
+public class APR_ReasonForChange : IElement
 {
 	/// <summary>
 	/// Identification of the reason for a change.

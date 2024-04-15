@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify percentage information.
 /// </summary>
 [EdiSegment, EdiPath("PCD")]
-public class PCD
+public class PCD : ISegment
 {
 	/// <summary>
 	/// Percentage relating to a specified basis.
@@ -21,7 +22,7 @@ public class PCD
 /// Percentage relating to a specified basis.
 /// </summary>
 [EdiElement]
-public class PCD_PercentageDetails
+public class PCD_PercentageDetails : IElement
 {
 	/// <summary>
 	/// Identification of the usage of a percentage.

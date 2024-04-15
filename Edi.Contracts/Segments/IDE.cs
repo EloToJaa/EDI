@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify an object.
 /// </summary>
 [EdiSegment, EdiPath("IDE")]
-public class IDE
+public class IDE : ISegment
 {
 	/// <summary>
 	/// To identify a type of object.
@@ -57,7 +58,7 @@ public class IDE
 /// The identification of an object.
 /// </summary>
 [EdiElement]
-public class IDE_IdentificationNumber
+public class IDE_IdentificationNumber : IElement
 {
 	/// <summary>
 	/// The number given to an object for its unique identification.
@@ -82,7 +83,7 @@ public class IDE_IdentificationNumber
 /// Identification of a transaction party by code.
 /// </summary>
 [EdiElement]
-public class IDE_PartyIdentificationDetails
+public class IDE_PartyIdentificationDetails : IElement
 {
 	/// <summary>
 	/// Code identifying a party involved in a transaction.
@@ -107,7 +108,7 @@ public class IDE_PartyIdentificationDetails
 /// To identify the position of an object in a structure containing the object.
 /// </summary>
 [EdiElement]
-public class IDE_PositionIdentification
+public class IDE_PositionIdentification : IElement
 {
 	/// <summary>
 	/// A unique number assigned by the sender to identify a level within a hierarchical structure.
@@ -126,7 +127,7 @@ public class IDE_PositionIdentification
 /// Specific product characteristic data.
 /// </summary>
 [EdiElement]
-public class IDE_ProductCharacteristic
+public class IDE_ProductCharacteristic : IElement
 {
 	/// <summary>
 	/// A code from an industry code list which provides specific data about a product characteristic.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify dangerous goods.
 /// </summary>
 [EdiSegment, EdiPath("DGS")]
-public class DGS
+public class DGS : ISegment
 {
 	/// <summary>
 	/// Code indicating the regulation, international or national, applicable for a means of transport.
@@ -94,7 +95,7 @@ public class DGS
 /// The identification of the dangerous goods in code.
 /// </summary>
 [EdiElement]
-public class DGS_HazardCode
+public class DGS_HazardCode : IElement
 {
 	/// <summary>
 	/// Dangerous goods code.
@@ -119,7 +120,7 @@ public class DGS_HazardCode
 /// Information on United Nations Dangerous Goods classification.
 /// </summary>
 [EdiElement]
-public class DGS_UndgInformation
+public class DGS_UndgInformation : IElement
 {
 	/// <summary>
 	/// Unique serial number assigned within the United Nations to substances and articles contained in a list of the dangerous goods most commonly carried.
@@ -138,7 +139,7 @@ public class DGS_UndgInformation
 /// Temperature at which a vapor according to ISO 1523/73 can be ignited.
 /// </summary>
 [EdiElement]
-public class DGS_DangerousGoodsShipmentFlashpoint
+public class DGS_DangerousGoodsShipmentFlashpoint : IElement
 {
 	/// <summary>
 	/// Temperature in centigrade determined by the closed cup test as per ISO 1523/73 where a vapour is given off that can be ignited.
@@ -157,7 +158,7 @@ public class DGS_DangerousGoodsShipmentFlashpoint
 /// Identification of the Orange placard required on the means of transport.
 /// </summary>
 [EdiElement]
-public class DGS_HazardIdentification
+public class DGS_HazardIdentification : IElement
 {
 	/// <summary>
 	/// The id. number for the Orange Placard (upper part) required on the means of transport.
@@ -176,7 +177,7 @@ public class DGS_HazardIdentification
 /// Markings identifying the type of hazardous goods and similar information.
 /// </summary>
 [EdiElement]
-public class DGS_DangerousGoodsLabel
+public class DGS_DangerousGoodsLabel : IElement
 {
 	/// <summary>
 	/// Marking identifying the type of hazardous goods (substance), Loading/Unloading instructions and advising actions in case of emergency.

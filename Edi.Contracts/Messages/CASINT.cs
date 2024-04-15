@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CASINT
 /// </summary>
 [EdiMessage]
-public class CASINT
+public class CASINT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,27 +24,27 @@ public class CASINT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Place/location identification
 	/// </summary>
-	public List<LOC>? PlaceLocationIdentification1C { get; set; }
+	public List<LOC>? PlaceLocationIdentificationC { get; set; }
 
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1C { get; set; }
+	public List<RFF>? ReferenceC { get; set; }
 
 	/// <summary>
 	/// Attribute
 	/// </summary>
-	public List<ATT>? Attribute1C { get; set; }
+	public List<ATT>? AttributeC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -77,7 +78,7 @@ public class CASINT
 }
 
 [EdiSegmentGroup("NAD", "LOC")]
-public class CASINT_SG1 : NAD
+public class CASINT_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -86,7 +87,7 @@ public class CASINT_SG1 : NAD
 }
 
 [EdiSegmentGroup("MOA", "DTM", "FCA")]
-public class CASINT_SG2 : MOA
+public class CASINT_SG2 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -100,7 +101,7 @@ public class CASINT_SG2 : MOA
 }
 
 [EdiSegmentGroup("NAD", "SEQ", "LOC", "CTA", "COM", "RFF", "ATT", "PRC", "MEA", "DTM", "EMP", "FTX")]
-public class CASINT_SG3 : NAD
+public class CASINT_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Sequence details
@@ -159,7 +160,7 @@ public class CASINT_SG3 : NAD
 }
 
 [EdiSegmentGroup("DOC", "GIR", "PAT", "DTM", "FTX", "NAD", "MOA")]
-public class CASINT_SG4 : DOC
+public class CASINT_SG4 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Related identification numbers
@@ -194,7 +195,7 @@ public class CASINT_SG4 : DOC
 }
 
 [EdiSegmentGroup("NAD", "LOC")]
-public class CASINT_SG5 : NAD
+public class CASINT_SG5 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -203,7 +204,7 @@ public class CASINT_SG5 : NAD
 }
 
 [EdiSegmentGroup("MOA", "DTM", "FCA")]
-public class CASINT_SG6 : MOA
+public class CASINT_SG6 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

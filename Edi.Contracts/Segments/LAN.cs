@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify a language.
 /// </summary>
 [EdiSegment, EdiPath("LAN")]
-public class LAN
+public class LAN : ISegment
 {
 	/// <summary>
 	/// Type of language.
@@ -27,7 +28,7 @@ public class LAN
 /// To identify a language.
 /// </summary>
 [EdiElement]
-public class LAN_LanguageDetails
+public class LAN_LanguageDetails : IElement
 {
 	/// <summary>
 	/// Code of language (ISO 639-1988).

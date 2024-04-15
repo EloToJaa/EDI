@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the temperature setting.
 /// </summary>
 [EdiSegment, EdiPath("TMP")]
-public class TMP
+public class TMP : ISegment
 {
 	/// <summary>
 	/// A code giving specific meaning to the temperature.
@@ -27,7 +28,7 @@ public class TMP
 /// The temperature under which the goods are (to be) stored or shipped.
 /// </summary>
 [EdiElement]
-public class TMP_TemperatureSetting
+public class TMP_TemperatureSetting : IElement
 {
 	/// <summary>
 	/// The actual temperature value in degrees Celsius (e.g. 008, 020).

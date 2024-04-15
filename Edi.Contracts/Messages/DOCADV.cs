@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// DOCADV
 /// </summary>
 [EdiMessage]
-public class DOCADV
+public class DOCADV : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class DOCADV
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public RFF? Reference1M { get; set; }
+	public RFF? ReferenceM { get; set; }
 
 	/// <summary>
 	/// Business function
@@ -33,17 +34,17 @@ public class DOCADV
 	/// <summary>
 	/// Parties to instruction
 	/// </summary>
-	public List<INP>? PartiesToInstruction1M { get; set; }
+	public List<INP>? PartiesToInstructionM { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -122,7 +123,7 @@ public class DOCADV
 }
 
 [EdiSegmentGroup("FII", "RFF", "CTA", "COM")]
-public class DOCADV_SG1 : FII
+public class DOCADV_SG1 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -141,7 +142,7 @@ public class DOCADV_SG1 : FII
 }
 
 [EdiSegmentGroup("NAD", "RFF", "CTA", "COM")]
-public class DOCADV_SG2 : NAD
+public class DOCADV_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -160,7 +161,7 @@ public class DOCADV_SG2 : NAD
 }
 
 [EdiSegmentGroup("DTM", "LOC")]
-public class DOCADV_SG3 : DTM
+public class DOCADV_SG3 : DTM, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -169,7 +170,7 @@ public class DOCADV_SG3 : DTM
 }
 
 [EdiSegmentGroup("MOA", "ALC")]
-public class DOCADV_SG4 : MOA
+public class DOCADV_SG4 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// SG5
@@ -179,7 +180,7 @@ public class DOCADV_SG4 : MOA
 }
 
 [EdiSegmentGroup("ALC", "PCD")]
-public class DOCADV_SG5 : ALC
+public class DOCADV_SG5 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -188,7 +189,7 @@ public class DOCADV_SG5 : ALC
 }
 
 [EdiSegmentGroup("LOC", "DTM")]
-public class DOCADV_SG6 : LOC
+public class DOCADV_SG6 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -197,7 +198,7 @@ public class DOCADV_SG6 : LOC
 }
 
 [EdiSegmentGroup("PAI", "LOC")]
-public class DOCADV_SG7 : PAI
+public class DOCADV_SG7 : PAI, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -206,7 +207,7 @@ public class DOCADV_SG7 : PAI
 }
 
 [EdiSegmentGroup("PAT", "FII", "DTM", "MOA", "PCD", "FTX")]
-public class DOCADV_SG8 : PAT
+public class DOCADV_SG8 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Financial institution information
@@ -235,7 +236,7 @@ public class DOCADV_SG8 : PAT
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class DOCADV_SG9 : TOD
+public class DOCADV_SG9 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -244,7 +245,7 @@ public class DOCADV_SG9 : TOD
 }
 
 [EdiSegmentGroup("TSR", "LOC")]
-public class DOCADV_SG10 : TSR
+public class DOCADV_SG10 : TSR, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -253,7 +254,7 @@ public class DOCADV_SG10 : TSR
 }
 
 [EdiSegmentGroup("INP", "FTX", "DTM")]
-public class DOCADV_SG11 : INP
+public class DOCADV_SG11 : INP, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -267,7 +268,7 @@ public class DOCADV_SG11 : INP
 }
 
 [EdiSegmentGroup("FCA", "MOA", "ALC")]
-public class DOCADV_SG12 : FCA
+public class DOCADV_SG12 : FCA, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -282,7 +283,7 @@ public class DOCADV_SG12 : FCA
 }
 
 [EdiSegmentGroup("ALC", "PCD", "MOA", "DTM", "TAX")]
-public class DOCADV_SG13 : ALC
+public class DOCADV_SG13 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -307,7 +308,7 @@ public class DOCADV_SG13 : ALC
 }
 
 [EdiSegmentGroup("TAX", "MOA", "DTM")]
-public class DOCADV_SG14 : TAX
+public class DOCADV_SG14 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -321,7 +322,7 @@ public class DOCADV_SG14 : TAX
 }
 
 [EdiSegmentGroup("RFF", "DTM", "FTX")]
-public class DOCADV_SG15 : RFF
+public class DOCADV_SG15 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -335,7 +336,7 @@ public class DOCADV_SG15 : RFF
 }
 
 [EdiSegmentGroup("DOC", "MOA", "PCD", "LOC", "FTX", "ALI")]
-public class DOCADV_SG16 : DOC
+public class DOCADV_SG16 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -365,7 +366,7 @@ public class DOCADV_SG16 : DOC
 }
 
 [EdiSegmentGroup("ALI", "NAD")]
-public class DOCADV_SG17 : ALI
+public class DOCADV_SG17 : ALI, ISegmentGroup
 {
 	/// <summary>
 	/// SG18
@@ -375,7 +376,7 @@ public class DOCADV_SG17 : ALI
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class DOCADV_SG18 : NAD
+public class DOCADV_SG18 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -389,7 +390,7 @@ public class DOCADV_SG18 : NAD
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class DOCADV_SG19 : AUT
+public class DOCADV_SG19 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

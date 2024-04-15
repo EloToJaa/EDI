@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify additional or substitutional item identification codes.
 /// </summary>
 [EdiSegment, EdiPath("PIA")]
-public class PIA
+public class PIA : ISegment
 {
 	/// <summary>
 	/// Indication of the function of the product code.
@@ -51,7 +52,7 @@ public class PIA
 /// Goods identification for a specified source.
 /// </summary>
 [EdiElement]
-public class PIA_ItemNumberIdentification
+public class PIA_ItemNumberIdentification : IElement
 {
 	/// <summary>
 	/// A number allocated to a group or item.

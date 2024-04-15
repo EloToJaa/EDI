@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// BOPINF
 /// </summary>
 [EdiMessage]
-public class BOPINF
+public class BOPINF : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class BOPINF
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class BOPINF
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class BOPINF_SG1 : RFF
+public class BOPINF_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -61,7 +62,7 @@ public class BOPINF_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class BOPINF_SG2 : NAD
+public class BOPINF_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -75,7 +76,7 @@ public class BOPINF_SG2 : NAD
 }
 
 [EdiSegmentGroup("LIN", "RFF", "RCS")]
-public class BOPINF_SG3 : LIN
+public class BOPINF_SG3 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -90,7 +91,7 @@ public class BOPINF_SG3 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class BOPINF_SG4 : RFF
+public class BOPINF_SG4 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -99,7 +100,7 @@ public class BOPINF_SG4 : RFF
 }
 
 [EdiSegmentGroup("RCS", "FTX", "MOA", "LOC")]
-public class BOPINF_SG5 : RCS
+public class BOPINF_SG5 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -118,7 +119,7 @@ public class BOPINF_SG5 : RCS
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class BOPINF_SG6 : AUT
+public class BOPINF_SG6 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

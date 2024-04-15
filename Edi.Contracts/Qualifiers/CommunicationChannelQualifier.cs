@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace Edi.Contracts.Qualifiers;
@@ -6,7 +7,7 @@ namespace Edi.Contracts.Qualifiers;
 /// <summary>
 /// Communication channel qualifier
 /// </summary>
-public class CommunicationChannelQualifier
+public class CommunicationChannelQualifier : IQualifier
 {
 	/// <summary>
 	/// String assign converter

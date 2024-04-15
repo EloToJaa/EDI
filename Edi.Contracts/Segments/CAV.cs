@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To provide the value of a characteristic.
 /// </summary>
 [EdiSegment, EdiPath("CAV")]
-public class CAV
+public class CAV : ISegment
 {
 	/// <summary>
 	/// To provide the value of a characteristic.
@@ -21,7 +22,7 @@ public class CAV
 /// To provide the value of a characteristic.
 /// </summary>
 [EdiElement]
-public class CAV_CharacteristicValue
+public class CAV_CharacteristicValue : IElement
 {
 	/// <summary>
 	/// To identify the value of a particular characteristic in coded form.

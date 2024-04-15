@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// APERAK
 /// </summary>
 [EdiMessage]
-public class APERAK
+public class APERAK : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class APERAK
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Control total
@@ -57,7 +58,7 @@ public class APERAK
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class APERAK_SG1 : RFF
+public class APERAK_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -66,7 +67,7 @@ public class APERAK_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class APERAK_SG2 : NAD
+public class APERAK_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -80,7 +81,7 @@ public class APERAK_SG2 : NAD
 }
 
 [EdiSegmentGroup("ERC", "FTX", "RFF")]
-public class APERAK_SG3 : ERC
+public class APERAK_SG3 : ERC, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -95,7 +96,7 @@ public class APERAK_SG3 : ERC
 }
 
 [EdiSegmentGroup("RFF", "FTX")]
-public class APERAK_SG4 : RFF
+public class APERAK_SG4 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Free text

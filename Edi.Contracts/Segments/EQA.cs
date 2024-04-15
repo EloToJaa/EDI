@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify attached or related equipment.
 /// </summary>
 [EdiSegment, EdiPath("EQA")]
-public class EQA
+public class EQA : ISegment
 {
 	/// <summary>
 	/// Code identifying type of equipment.
@@ -27,7 +28,7 @@ public class EQA
 /// Marks (letters and/or numbers) identifying equipment used for transport such as a container.
 /// </summary>
 [EdiElement]
-public class EQA_EquipmentIdentification
+public class EQA_EquipmentIdentification : IElement
 {
 	/// <summary>
 	/// Marks (letters and/or numbers) which identify equipment e.g. unit load device.

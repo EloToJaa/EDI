@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CREMUL
 /// </summary>
 [EdiMessage]
-public class CREMUL
+public class CREMUL : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class CREMUL
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1C { get; set; }
+	public DTM? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Business function
 	/// </summary>
-	public BUS? BusinessFunction1C { get; set; }
+	public BUS? BusinessFunctionC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class CREMUL
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CREMUL_SG1 : RFF
+public class CREMUL_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class CREMUL_SG1 : RFF
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class CREMUL_SG2 : FII
+public class CREMUL_SG2 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -90,7 +91,7 @@ public class CREMUL_SG2 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class CREMUL_SG3 : NAD
+public class CREMUL_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -104,7 +105,7 @@ public class CREMUL_SG3 : NAD
 }
 
 [EdiSegmentGroup("LIN", "DTM", "BUS", "MOA", "RFF", "FII", "FCA", "SEQ")]
-public class CREMUL_SG4 : LIN
+public class CREMUL_SG4 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -144,7 +145,7 @@ public class CREMUL_SG4 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CREMUL_SG5 : RFF
+public class CREMUL_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -153,7 +154,7 @@ public class CREMUL_SG5 : RFF
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class CREMUL_SG6 : FII
+public class CREMUL_SG6 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -167,7 +168,7 @@ public class CREMUL_SG6 : FII
 }
 
 [EdiSegmentGroup("FCA", "MOA", "ALC")]
-public class CREMUL_SG7 : FCA
+public class CREMUL_SG7 : FCA, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -182,7 +183,7 @@ public class CREMUL_SG7 : FCA
 }
 
 [EdiSegmentGroup("ALC", "PCD", "MOA", "CUX", "DTM", "TAX")]
-public class CREMUL_SG8 : ALC
+public class CREMUL_SG8 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -212,7 +213,7 @@ public class CREMUL_SG8 : ALC
 }
 
 [EdiSegmentGroup("TAX", "MOA", "CUX", "DTM")]
-public class CREMUL_SG9 : TAX
+public class CREMUL_SG9 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -231,7 +232,7 @@ public class CREMUL_SG9 : TAX
 }
 
 [EdiSegmentGroup("SEQ", "DTM", "BUS", "FII", "RFF", "PAI", "MOA", "NAD", "INP", "GIS", "FCA", "PRC")]
-public class CREMUL_SG10 : SEQ
+public class CREMUL_SG10 : SEQ, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -291,7 +292,7 @@ public class CREMUL_SG10 : SEQ
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CREMUL_SG11 : RFF
+public class CREMUL_SG11 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -300,7 +301,7 @@ public class CREMUL_SG11 : RFF
 }
 
 [EdiSegmentGroup("PAI", "FTX")]
-public class CREMUL_SG12 : PAI
+public class CREMUL_SG12 : PAI, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -309,7 +310,7 @@ public class CREMUL_SG12 : PAI
 }
 
 [EdiSegmentGroup("MOA", "CUX", "DTM", "RFF")]
-public class CREMUL_SG13 : MOA
+public class CREMUL_SG13 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -328,7 +329,7 @@ public class CREMUL_SG13 : MOA
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class CREMUL_SG14 : NAD
+public class CREMUL_SG14 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -342,7 +343,7 @@ public class CREMUL_SG14 : NAD
 }
 
 [EdiSegmentGroup("INP", "FTX", "DTM")]
-public class CREMUL_SG15 : INP
+public class CREMUL_SG15 : INP, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -356,7 +357,7 @@ public class CREMUL_SG15 : INP
 }
 
 [EdiSegmentGroup("GIS", "MOA", "LOC", "NAD", "RCS", "FTX")]
-public class CREMUL_SG16 : GIS
+public class CREMUL_SG16 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -385,7 +386,7 @@ public class CREMUL_SG16 : GIS
 }
 
 [EdiSegmentGroup("FCA", "MOA", "ALC")]
-public class CREMUL_SG17 : FCA
+public class CREMUL_SG17 : FCA, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -400,7 +401,7 @@ public class CREMUL_SG17 : FCA
 }
 
 [EdiSegmentGroup("ALC", "PCD", "MOA", "CUX", "DTM", "TAX")]
-public class CREMUL_SG18 : ALC
+public class CREMUL_SG18 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -430,7 +431,7 @@ public class CREMUL_SG18 : ALC
 }
 
 [EdiSegmentGroup("TAX", "MOA", "CUX", "DTM")]
-public class CREMUL_SG19 : TAX
+public class CREMUL_SG19 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -449,7 +450,7 @@ public class CREMUL_SG19 : TAX
 }
 
 [EdiSegmentGroup("PRC", "FTX", "DOC", "GIS")]
-public class CREMUL_SG20 : PRC
+public class CREMUL_SG20 : PRC, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -469,7 +470,7 @@ public class CREMUL_SG20 : PRC
 }
 
 [EdiSegmentGroup("DOC", "MOA", "DTM", "RFF", "NAD", "CUX", "AJT", "FTX", "DLI")]
-public class CREMUL_SG21 : DOC
+public class CREMUL_SG21 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -514,7 +515,7 @@ public class CREMUL_SG21 : DOC
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class CREMUL_SG22 : CUX
+public class CREMUL_SG22 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -523,7 +524,7 @@ public class CREMUL_SG22 : CUX
 }
 
 [EdiSegmentGroup("AJT", "MOA", "RFF")]
-public class CREMUL_SG23 : AJT
+public class CREMUL_SG23 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -537,7 +538,7 @@ public class CREMUL_SG23 : AJT
 }
 
 [EdiSegmentGroup("DLI", "MOA", "PIA", "DTM", "CUX", "AJT")]
-public class CREMUL_SG24 : DLI
+public class CREMUL_SG24 : DLI, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -567,7 +568,7 @@ public class CREMUL_SG24 : DLI
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class CREMUL_SG25 : CUX
+public class CREMUL_SG25 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -576,7 +577,7 @@ public class CREMUL_SG25 : CUX
 }
 
 [EdiSegmentGroup("AJT", "MOA", "RFF", "FTX")]
-public class CREMUL_SG26 : AJT
+public class CREMUL_SG26 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -595,7 +596,7 @@ public class CREMUL_SG26 : AJT
 }
 
 [EdiSegmentGroup("GIS", "MOA")]
-public class CREMUL_SG27 : GIS
+public class CREMUL_SG27 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -604,7 +605,7 @@ public class CREMUL_SG27 : GIS
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class CREMUL_SG28 : AUT
+public class CREMUL_SG28 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

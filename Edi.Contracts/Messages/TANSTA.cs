@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// TANSTA
 /// </summary>
 [EdiMessage]
-public class TANSTA
+public class TANSTA : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class TANSTA
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1M { get; set; }
+	public DTM? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Name and address
@@ -52,7 +53,7 @@ public class TANSTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class TANSTA_SG1 : RFF
+public class TANSTA_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -61,7 +62,7 @@ public class TANSTA_SG1 : RFF
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM", "RFF", "FTX")]
-public class TANSTA_SG2 : TDT
+public class TANSTA_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -85,7 +86,7 @@ public class TANSTA_SG2 : TDT
 }
 
 [EdiSegmentGroup("LOC", "MEA", "DIM", "FTX")]
-public class TANSTA_SG3 : LOC
+public class TANSTA_SG3 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements

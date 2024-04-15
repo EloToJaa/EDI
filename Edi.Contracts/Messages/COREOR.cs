@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// COREOR
 /// </summary>
 [EdiMessage]
-public class COREOR
+public class COREOR : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class COREOR
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class COREOR
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class COREOR_SG1 : RFF
+public class COREOR_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class COREOR_SG1 : RFF
 }
 
 [EdiSegmentGroup("TDT", "RFF", "LOC", "DTM")]
-public class COREOR_SG2 : TDT
+public class COREOR_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -95,7 +96,7 @@ public class COREOR_SG2 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA", "RFF", "DTM")]
-public class COREOR_SG3 : NAD
+public class COREOR_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -114,7 +115,7 @@ public class COREOR_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class COREOR_SG4 : CTA
+public class COREOR_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -123,7 +124,7 @@ public class COREOR_SG4 : CTA
 }
 
 [EdiSegmentGroup("GID", "HAN", "FTX", "NAD", "MEA", "PCI", "SGP", "DGS")]
-public class COREOR_SG5 : GID
+public class COREOR_SG5 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Handling instructions
@@ -163,7 +164,7 @@ public class COREOR_SG5 : GID
 }
 
 [EdiSegmentGroup("NAD", "DTM", "RFF")]
-public class COREOR_SG6 : NAD
+public class COREOR_SG6 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -177,7 +178,7 @@ public class COREOR_SG6 : NAD
 }
 
 [EdiSegmentGroup("SGP", "MEA")]
-public class COREOR_SG7 : SGP
+public class COREOR_SG7 : SGP, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -186,7 +187,7 @@ public class COREOR_SG7 : SGP
 }
 
 [EdiSegmentGroup("DGS", "FTX", "MEA")]
-public class COREOR_SG8 : DGS
+public class COREOR_SG8 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -200,7 +201,7 @@ public class COREOR_SG8 : DGS
 }
 
 [EdiSegmentGroup("EQD", "RFF", "TSR", "MEA", "DIM", "TMP", "RNG", "SEL", "FTX", "EQA", "HAN", "TDT", "NAD")]
-public class COREOR_SG9 : EQD
+public class COREOR_SG9 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -265,7 +266,7 @@ public class COREOR_SG9 : EQD
 }
 
 [EdiSegmentGroup("TDT", "LOC", "DTM")]
-public class COREOR_SG10 : TDT
+public class COREOR_SG10 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -279,7 +280,7 @@ public class COREOR_SG10 : TDT
 }
 
 [EdiSegmentGroup("NAD", "DTM", "CTA", "COM")]
-public class COREOR_SG11 : NAD
+public class COREOR_SG11 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

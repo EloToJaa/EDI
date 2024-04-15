@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a data set.
 /// </summary>
 [EdiSegment, EdiPath("DSI")]
-public class DSI
+public class DSI : ISegment
 {
 	/// <summary>
 	/// The identification of a data set.
@@ -46,7 +47,7 @@ public class DSI
 /// The identification of a data set.
 /// </summary>
 [EdiElement]
-public class DSI_DataSetIdentification
+public class DSI_DataSetIdentification : IElement
 {
 	/// <summary>
 	/// The identifier of a data set.
@@ -65,7 +66,7 @@ public class DSI_DataSetIdentification
 /// Identification of a transaction party by code.
 /// </summary>
 [EdiElement]
-public class DSI_PartyIdentificationDetails
+public class DSI_PartyIdentificationDetails : IElement
 {
 	/// <summary>
 	/// Code identifying a party involved in a transaction.
@@ -90,7 +91,7 @@ public class DSI_PartyIdentificationDetails
 /// Identification of a sequence and source for sequencing.
 /// </summary>
 [EdiElement]
-public class DSI_SequenceInformation
+public class DSI_SequenceInformation : IElement
 {
 	/// <summary>
 	/// Number indicating the position in a sequence.

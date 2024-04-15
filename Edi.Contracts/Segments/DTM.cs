@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify date, and/or time, or period.
 /// </summary>
 [EdiSegment, EdiPath("DTM")]
-public class DTM
+public class DTM : ISegment
 {
 	/// <summary>
 	/// Date and/or time, or period relevant to the specified date/time/period type.
@@ -21,7 +22,7 @@ public class DTM
 /// Date and/or time, or period relevant to the specified date/time/period type.
 /// </summary>
 [EdiElement]
-public class DTM_DateTimePeriod
+public class DTM_DateTimePeriod : IElement
 {
 	/// <summary>
 	/// Code giving specific meaning to a date, time or period.

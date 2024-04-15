@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the transport details such as mode of transport, means of transport, its conveyance reference number and the identification of the means of transport. The segment may be pointed to by the TPL segment.
 /// </summary>
 [EdiSegment, EdiPath("TDT")]
-public class TDT
+public class TDT : ISegment
 {
 	/// <summary>
 	/// Qualifier giving a specific meaning to the transport details.
@@ -70,7 +71,7 @@ public class TDT
 /// Method of transport code or name. Code preferred.
 /// </summary>
 [EdiElement]
-public class TDT_ModeOfTransport
+public class TDT_ModeOfTransport : IElement
 {
 	/// <summary>
 	/// Coded method of transport used for the carriage of the goods.
@@ -89,7 +90,7 @@ public class TDT_ModeOfTransport
 /// Code and/or name identifying the type of means of transport.
 /// </summary>
 [EdiElement]
-public class TDT_TransportMeans
+public class TDT_TransportMeans : IElement
 {
 	/// <summary>
 	/// Code defining the type of the means of transport being utilized.
@@ -108,7 +109,7 @@ public class TDT_TransportMeans
 /// Identification of a carrier by code and/or by name. Code preferred.
 /// </summary>
 [EdiElement]
-public class TDT_Carrier
+public class TDT_Carrier : IElement
 {
 	/// <summary>
 	/// Identification of party undertaking or arranging transport of goods between named points.
@@ -139,7 +140,7 @@ public class TDT_Carrier
 /// To provide details of reason for, and responsibility for, use of transportation other than normally utilized.
 /// </summary>
 [EdiElement]
-public class TDT_ExcessTransportationInformation
+public class TDT_ExcessTransportationInformation : IElement
 {
 	/// <summary>
 	/// Indication of reason for excess transportation.
@@ -164,7 +165,7 @@ public class TDT_ExcessTransportationInformation
 /// Code and/or name identifying the means of transport.
 /// </summary>
 [EdiElement]
-public class TDT_TransportIdentification
+public class TDT_TransportIdentification : IElement
 {
 	/// <summary>
 	/// Identification of the means of transport by name or number.

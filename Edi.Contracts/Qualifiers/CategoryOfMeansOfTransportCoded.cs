@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace Edi.Contracts.Qualifiers;
@@ -6,7 +7,7 @@ namespace Edi.Contracts.Qualifiers;
 /// <summary>
 /// Category of means of transport, coded
 /// </summary>
-public class CategoryOfMeansOfTransportCoded
+public class CategoryOfMeansOfTransportCoded : IQualifier
 {
 	/// <summary>
 	/// String assign converter

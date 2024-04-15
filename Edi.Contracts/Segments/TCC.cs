@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify charges.
 /// </summary>
 [EdiSegment, EdiPath("TCC")]
-public class TCC
+public class TCC : ISegment
 {
 	/// <summary>
 	/// Identification of a charge by code and/or by name.
@@ -39,7 +40,7 @@ public class TCC
 /// Identification of a charge by code and/or by name.
 /// </summary>
 [EdiElement]
-public class TCC_Charge
+public class TCC_Charge : IElement
 {
 	/// <summary>
 	/// Coded description of freight charges and other charges (used in combination with 1131/3055).
@@ -82,7 +83,7 @@ public class TCC_Charge
 /// Identification of the applicable rate/tariff class.
 /// </summary>
 [EdiElement]
-public class TCC_RateTariffClass
+public class TCC_RateTariffClass : IElement
 {
 	/// <summary>
 	/// Identification of the rate/tariff class.
@@ -149,7 +150,7 @@ public class TCC_RateTariffClass
 /// Identification of commodity/rates.
 /// </summary>
 [EdiElement]
-public class TCC_CommodityRateDetail
+public class TCC_CommodityRateDetail : IElement
 {
 	/// <summary>
 	/// Code identifying goods for Customs, transport or statistical purposes (generic term).
@@ -174,7 +175,7 @@ public class TCC_CommodityRateDetail
 /// Identification of the applicable rate/tariff class.
 /// </summary>
 [EdiElement]
-public class TCC_RateTariffClassDetail
+public class TCC_RateTariffClassDetail : IElement
 {
 	/// <summary>
 	/// Identification of the rate/tariff class.

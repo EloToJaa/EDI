@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// RESETT
 /// </summary>
 [EdiMessage]
-public class RESETT
+public class RESETT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -18,7 +19,7 @@ public class RESETT
 	/// <summary>
 	/// General indicator
 	/// </summary>
-	public List<GIS>? GeneralIndicator1M { get; set; }
+	public List<GIS>? GeneralIndicatorM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -28,12 +29,12 @@ public class RESETT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG2
@@ -57,7 +58,7 @@ public class RESETT
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM", "RFF")]
-public class RESETT_SG1 : NAD
+public class RESETT_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -76,7 +77,7 @@ public class RESETT_SG1 : NAD
 }
 
 [EdiSegmentGroup("RFF", "GIS")]
-public class RESETT_SG2 : RFF
+public class RESETT_SG2 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -86,7 +87,7 @@ public class RESETT_SG2 : RFF
 }
 
 [EdiSegmentGroup("GIS", "PAI", "NAD", "DTM", "RFF", "GIS", "MOA", "CUX", "FTX", "NAD")]
-public class RESETT_SG3 : GIS
+public class RESETT_SG3 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Payment instructions
@@ -136,7 +137,7 @@ public class RESETT_SG3 : GIS
 }
 
 [EdiSegmentGroup("RFF", "COM", "DTM", "FTX")]
-public class RESETT_SG4 : RFF
+public class RESETT_SG4 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -155,7 +156,7 @@ public class RESETT_SG4 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM", "PCD", "RFF", "GIS", "MOA")]
-public class RESETT_SG5 : NAD
+public class RESETT_SG5 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -189,7 +190,7 @@ public class RESETT_SG5 : NAD
 }
 
 [EdiSegmentGroup("MOA", "NAD", "PAI", "RFF", "DTM")]
-public class RESETT_SG6 : MOA
+public class RESETT_SG6 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Name and address

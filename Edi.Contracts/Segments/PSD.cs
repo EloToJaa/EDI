@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To define the physical sample parameters associated with a test, resulting in discrete measurements.
 /// </summary>
 [EdiSegment, EdiPath("PSD")]
-public class PSD
+public class PSD : ISegment
 {
 	/// <summary>
 	/// Code specifying the stage in the product development cycle at which the specimen was selected for testing.
@@ -63,7 +64,7 @@ public class PSD
 /// Number of samples collected per specified unit of measure.
 /// </summary>
 [EdiElement]
-public class PSD_FrequencyDetails
+public class PSD_FrequencyDetails : IElement
 {
 	/// <summary>
 	/// Indication of the application of a frequency.
@@ -88,7 +89,7 @@ public class PSD_FrequencyDetails
 /// Identification of location within the specimen, from which the sample was taken.
 /// </summary>
 [EdiElement]
-public class PSD_SampleLocationDetails
+public class PSD_SampleLocationDetails : IElement
 {
 	/// <summary>
 	/// Code specifying the location, within the specimen, from which the sample was taken.

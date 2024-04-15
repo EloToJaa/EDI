@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// QALITY
 /// </summary>
 [EdiMessage]
-public class QALITY
+public class QALITY : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,22 +24,22 @@ public class QALITY
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Item description
 	/// </summary>
-	public List<IMD>? ItemDescription1C { get; set; }
+	public List<IMD>? ItemDescriptionC { get; set; }
 
 	/// <summary>
 	/// Measurements
 	/// </summary>
-	public List<MEA>? Measurements1C { get; set; }
+	public List<MEA>? MeasurementsC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -62,7 +63,7 @@ public class QALITY
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG1 : RFF
+public class QALITY_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -71,7 +72,7 @@ public class QALITY_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "CTA")]
-public class QALITY_SG2 : NAD
+public class QALITY_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -91,7 +92,7 @@ public class QALITY_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG3 : RFF
+public class QALITY_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -100,7 +101,7 @@ public class QALITY_SG3 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class QALITY_SG4 : CTA
+public class QALITY_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -109,7 +110,7 @@ public class QALITY_SG4 : CTA
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "MEA", "PSD", "SPS", "DTM", "QTY", "FTX", "RFF", "NAD", "TEM", "CCI", "GIN", "PRC")]
-public class QALITY_SG5 : LIN
+public class QALITY_SG5 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -184,7 +185,7 @@ public class QALITY_SG5 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG6 : RFF
+public class QALITY_SG6 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -193,7 +194,7 @@ public class QALITY_SG6 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "CTA")]
-public class QALITY_SG7 : NAD
+public class QALITY_SG7 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -213,7 +214,7 @@ public class QALITY_SG7 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG8 : RFF
+public class QALITY_SG8 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -222,7 +223,7 @@ public class QALITY_SG8 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class QALITY_SG9 : CTA
+public class QALITY_SG9 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -231,7 +232,7 @@ public class QALITY_SG9 : CTA
 }
 
 [EdiSegmentGroup("TEM", "MEA", "DTM", "RFF")]
-public class QALITY_SG10 : TEM
+public class QALITY_SG10 : TEM, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -251,7 +252,7 @@ public class QALITY_SG10 : TEM
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG11 : RFF
+public class QALITY_SG11 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -260,7 +261,7 @@ public class QALITY_SG11 : RFF
 }
 
 [EdiSegmentGroup("CCI", "PSD", "SPS", "DTM", "FTX", "RFF", "MEA", "STA", "TEM")]
-public class QALITY_SG12 : CCI
+public class QALITY_SG12 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Physical sample description
@@ -305,7 +306,7 @@ public class QALITY_SG12 : CCI
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG13 : RFF
+public class QALITY_SG13 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -314,7 +315,7 @@ public class QALITY_SG13 : RFF
 }
 
 [EdiSegmentGroup("MEA", "DTM", "RFF")]
-public class QALITY_SG14 : MEA
+public class QALITY_SG14 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -329,7 +330,7 @@ public class QALITY_SG14 : MEA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG15 : RFF
+public class QALITY_SG15 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -338,7 +339,7 @@ public class QALITY_SG15 : RFF
 }
 
 [EdiSegmentGroup("STA", "DTM", "RFF")]
-public class QALITY_SG16 : STA
+public class QALITY_SG16 : STA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -353,7 +354,7 @@ public class QALITY_SG16 : STA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG17 : RFF
+public class QALITY_SG17 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -362,7 +363,7 @@ public class QALITY_SG17 : RFF
 }
 
 [EdiSegmentGroup("TEM", "MEA", "DTM", "RFF")]
-public class QALITY_SG18 : TEM
+public class QALITY_SG18 : TEM, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -382,7 +383,7 @@ public class QALITY_SG18 : TEM
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG19 : RFF
+public class QALITY_SG19 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -391,7 +392,7 @@ public class QALITY_SG19 : RFF
 }
 
 [EdiSegmentGroup("GIN", "DTM", "RFF", "CCI")]
-public class QALITY_SG20 : GIN
+public class QALITY_SG20 : GIN, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -411,7 +412,7 @@ public class QALITY_SG20 : GIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG21 : RFF
+public class QALITY_SG21 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -420,7 +421,7 @@ public class QALITY_SG21 : RFF
 }
 
 [EdiSegmentGroup("CCI", "PSD", "SPS", "DTM", "FTX", "RFF", "MEA", "STA", "TEM")]
-public class QALITY_SG22 : CCI
+public class QALITY_SG22 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Physical sample description
@@ -465,7 +466,7 @@ public class QALITY_SG22 : CCI
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG23 : RFF
+public class QALITY_SG23 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -474,7 +475,7 @@ public class QALITY_SG23 : RFF
 }
 
 [EdiSegmentGroup("MEA", "DTM", "RFF")]
-public class QALITY_SG24 : MEA
+public class QALITY_SG24 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -489,7 +490,7 @@ public class QALITY_SG24 : MEA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG25 : RFF
+public class QALITY_SG25 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -498,7 +499,7 @@ public class QALITY_SG25 : RFF
 }
 
 [EdiSegmentGroup("STA", "DTM", "RFF")]
-public class QALITY_SG26 : STA
+public class QALITY_SG26 : STA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -513,7 +514,7 @@ public class QALITY_SG26 : STA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG27 : RFF
+public class QALITY_SG27 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -522,7 +523,7 @@ public class QALITY_SG27 : RFF
 }
 
 [EdiSegmentGroup("TEM", "MEA", "DTM", "RFF")]
-public class QALITY_SG28 : TEM
+public class QALITY_SG28 : TEM, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -542,7 +543,7 @@ public class QALITY_SG28 : TEM
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG29 : RFF
+public class QALITY_SG29 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -551,7 +552,7 @@ public class QALITY_SG29 : RFF
 }
 
 [EdiSegmentGroup("PRC", "NAD", "CCI")]
-public class QALITY_SG30 : PRC
+public class QALITY_SG30 : PRC, ISegmentGroup
 {
 	/// <summary>
 	/// SG31
@@ -566,7 +567,7 @@ public class QALITY_SG30 : PRC
 }
 
 [EdiSegmentGroup("NAD", "LOC")]
-public class QALITY_SG31 : NAD
+public class QALITY_SG31 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -575,7 +576,7 @@ public class QALITY_SG31 : NAD
 }
 
 [EdiSegmentGroup("CCI", "PSD", "SPS", "DTM", "FTX", "RFF", "MEA", "STA", "TEM")]
-public class QALITY_SG32 : CCI
+public class QALITY_SG32 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Physical sample description
@@ -620,7 +621,7 @@ public class QALITY_SG32 : CCI
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG33 : RFF
+public class QALITY_SG33 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -629,7 +630,7 @@ public class QALITY_SG33 : RFF
 }
 
 [EdiSegmentGroup("MEA", "DTM", "RFF")]
-public class QALITY_SG34 : MEA
+public class QALITY_SG34 : MEA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -644,7 +645,7 @@ public class QALITY_SG34 : MEA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG35 : RFF
+public class QALITY_SG35 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -653,7 +654,7 @@ public class QALITY_SG35 : RFF
 }
 
 [EdiSegmentGroup("STA", "DTM", "RFF")]
-public class QALITY_SG36 : STA
+public class QALITY_SG36 : STA, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -668,7 +669,7 @@ public class QALITY_SG36 : STA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG37 : RFF
+public class QALITY_SG37 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -677,7 +678,7 @@ public class QALITY_SG37 : RFF
 }
 
 [EdiSegmentGroup("TEM", "MEA", "DTM", "RFF")]
-public class QALITY_SG38 : TEM
+public class QALITY_SG38 : TEM, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -697,7 +698,7 @@ public class QALITY_SG38 : TEM
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class QALITY_SG39 : RFF
+public class QALITY_SG39 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

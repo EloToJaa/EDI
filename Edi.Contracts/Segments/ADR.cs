@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify an address.
 /// </summary>
 [EdiSegment, EdiPath("ADR")]
-public class ADR
+public class ADR : ISegment
 {
 	/// <summary>
 	/// To describe the usage of an address.
@@ -57,7 +58,7 @@ public class ADR
 /// To describe the usage of an address.
 /// </summary>
 [EdiElement]
-public class ADR_AddressUsage
+public class ADR_AddressUsage : IElement
 {
 	/// <summary>
 	/// To specify the purpose of the address.
@@ -82,7 +83,7 @@ public class ADR_AddressUsage
 /// To specify the details of an address.
 /// </summary>
 [EdiElement]
-public class ADR_AddressDetails
+public class ADR_AddressDetails : IElement
 {
 	/// <summary>
 	/// To specify the content of the various address components.
@@ -125,7 +126,7 @@ public class ADR_AddressDetails
 /// To specify a part of a country (eg county or part of a city).
 /// </summary>
 [EdiElement]
-public class ADR_CountrySubentityDetails
+public class ADR_CountrySubentityDetails : IElement
 {
 	/// <summary>
 	/// Identification of the name of sub-entities (state, province) defined by appropriate governmental agencies.
@@ -156,7 +157,7 @@ public class ADR_CountrySubentityDetails
 /// Identification of a location by code or name.
 /// </summary>
 [EdiElement]
-public class ADR_LocationIdentification
+public class ADR_LocationIdentification : IElement
 {
 	/// <summary>
 	/// Identification of the name of place/location, other than 3164 City name.

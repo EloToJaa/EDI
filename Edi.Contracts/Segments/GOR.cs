@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To indicate the requirement for a specific govermental action and/or procedure or which specific procedure is valid for a specific part of the transport.
 /// </summary>
 [EdiSegment, EdiPath("GOR")]
-public class GOR
+public class GOR : ISegment
 {
 	/// <summary>
 	/// Code indicating the movement of goods (e.g. import, export, transit).
@@ -45,7 +46,7 @@ public class GOR
 /// Code indicating a type of government action.
 /// </summary>
 [EdiElement]
-public class GOR_GovernmentAction
+public class GOR_GovernmentAction : IElement
 {
 	/// <summary>
 	/// To indicate government agencies that are involved.

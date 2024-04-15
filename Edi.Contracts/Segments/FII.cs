@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify an account and a related financial institution.
 /// </summary>
 [EdiSegment, EdiPath("FII")]
-public class FII
+public class FII : ISegment
 {
 	/// <summary>
 	/// Code giving specific meaning to a party.
@@ -40,7 +41,7 @@ public class FII
 /// Identification of an account holder by account number and/or account holder name in one or two lines. Number preferred.
 /// </summary>
 [EdiElement]
-public class FII_AccountIdentification
+public class FII_AccountIdentification : IElement
 {
 	/// <summary>
 	/// Account number of the holder of the account.
@@ -71,7 +72,7 @@ public class FII_AccountIdentification
 /// Identification of a financial institution by code branch number, or name and name of place. Code or branch number preferred.
 /// </summary>
 [EdiElement]
-public class FII_InstitutionIdentification
+public class FII_InstitutionIdentification : IElement
 {
 	/// <summary>
 	/// Code identifying an institution.

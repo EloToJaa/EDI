@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CONWQD
 /// </summary>
 [EdiMessage]
-public class CONWQD
+public class CONWQD : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class CONWQD
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Authentication result
@@ -33,7 +34,7 @@ public class CONWQD
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -57,7 +58,7 @@ public class CONWQD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CONWQD_SG1 : RFF
+public class CONWQD_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -66,7 +67,7 @@ public class CONWQD_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FII", "RFF", "DOC", "CTA")]
-public class CONWQD_SG2 : NAD
+public class CONWQD_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -96,7 +97,7 @@ public class CONWQD_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CONWQD_SG3 : RFF
+public class CONWQD_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -105,7 +106,7 @@ public class CONWQD_SG3 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class CONWQD_SG4 : DOC
+public class CONWQD_SG4 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -114,7 +115,7 @@ public class CONWQD_SG4 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CONWQD_SG5 : CTA
+public class CONWQD_SG5 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -123,7 +124,7 @@ public class CONWQD_SG5 : CTA
 }
 
 [EdiSegmentGroup("BII", "QTY", "RFF", "LIN")]
-public class CONWQD_SG6 : BII
+public class CONWQD_SG6 : BII, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -143,7 +144,7 @@ public class CONWQD_SG6 : BII
 }
 
 [EdiSegmentGroup("RFF", "FTX", "DTM")]
-public class CONWQD_SG7 : RFF
+public class CONWQD_SG7 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -157,7 +158,7 @@ public class CONWQD_SG7 : RFF
 }
 
 [EdiSegmentGroup("LIN", "GIS", "FTX", "QTY")]
-public class CONWQD_SG8 : LIN
+public class CONWQD_SG8 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -177,7 +178,7 @@ public class CONWQD_SG8 : LIN
 }
 
 [EdiSegmentGroup("QTY", "GIS", "RFF", "FTX")]
-public class CONWQD_SG9 : QTY
+public class CONWQD_SG9 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator

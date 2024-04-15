@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To provide specific details related to the delivery sequence.
 /// </summary>
 [EdiSegment, EdiPath("SEQ")]
-public class SEQ
+public class SEQ : ISegment
 {
 	/// <summary>
 	/// Specification of a status or disposition.
@@ -27,7 +28,7 @@ public class SEQ
 /// Identification of a sequence and source for sequencing.
 /// </summary>
 [EdiElement]
-public class SEQ_SequenceInformation
+public class SEQ_SequenceInformation : IElement
 {
 	/// <summary>
 	/// Number indicating the position in a sequence.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// IFTSTQ
 /// </summary>
 [EdiMessage]
-public class IFTSTQ
+public class IFTSTQ : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class IFTSTQ
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Place/location identification
 	/// </summary>
-	public List<LOC>? PlaceLocationIdentification1C { get; set; }
+	public List<LOC>? PlaceLocationIdentificationC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -38,12 +39,12 @@ public class IFTSTQ
 	/// <summary>
 	/// Details of transport
 	/// </summary>
-	public List<TDT>? DetailsOfTransport1C { get; set; }
+	public List<TDT>? DetailsOfTransportC { get; set; }
 
 	/// <summary>
 	/// Equipment details
 	/// </summary>
-	public List<EQD>? EquipmentDetails1C { get; set; }
+	public List<EQD>? EquipmentDetailsC { get; set; }
 
 	/// <summary>
 	/// SG2
@@ -62,7 +63,7 @@ public class IFTSTQ
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTSTQ_SG1 : RFF
+public class IFTSTQ_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -71,7 +72,7 @@ public class IFTSTQ_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class IFTSTQ_SG2 : NAD
+public class IFTSTQ_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -81,7 +82,7 @@ public class IFTSTQ_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFTSTQ_SG3 : CTA
+public class IFTSTQ_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -90,7 +91,7 @@ public class IFTSTQ_SG3 : CTA
 }
 
 [EdiSegmentGroup("CNI", "DTM", "LOC", "RFF", "TDT", "EQD", "NAD")]
-public class IFTSTQ_SG4 : CNI
+public class IFTSTQ_SG4 : CNI, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -125,7 +126,7 @@ public class IFTSTQ_SG4 : CNI
 }
 
 [EdiSegmentGroup("EQD", "TPL")]
-public class IFTSTQ_SG5 : EQD
+public class IFTSTQ_SG5 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Transport placement
@@ -134,7 +135,7 @@ public class IFTSTQ_SG5 : EQD
 }
 
 [EdiSegmentGroup("NAD", "GID", "CTA")]
-public class IFTSTQ_SG6 : NAD
+public class IFTSTQ_SG6 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG7
@@ -149,7 +150,7 @@ public class IFTSTQ_SG6 : NAD
 }
 
 [EdiSegmentGroup("GID", "FTX", "SGP")]
-public class IFTSTQ_SG7 : GID
+public class IFTSTQ_SG7 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -163,7 +164,7 @@ public class IFTSTQ_SG7 : GID
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFTSTQ_SG8 : CTA
+public class IFTSTQ_SG8 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact

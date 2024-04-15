@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To define the sampling parameters associated with summary statistics reported.
 /// </summary>
 [EdiSegment, EdiPath("SPS")]
-public class SPS
+public class SPS : ISegment
 {
 	/// <summary>
 	/// Number of samples collected per specified unit of measure.
@@ -57,7 +58,7 @@ public class SPS
 /// Number of samples collected per specified unit of measure.
 /// </summary>
 [EdiElement]
-public class SPS_FrequencyDetails
+public class SPS_FrequencyDetails : IElement
 {
 	/// <summary>
 	/// Indication of the application of a frequency.
@@ -82,7 +83,7 @@ public class SPS_FrequencyDetails
 /// Information about the number of observations.
 /// </summary>
 [EdiElement]
-public class SPS_SizeDetails
+public class SPS_SizeDetails : IElement
 {
 	/// <summary>
 	/// Indication of the type or application of a size.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To indicate that special conditions due to the origin, customs preference, fiscal or commercial factors are applicable.
 /// </summary>
 [EdiSegment, EdiPath("ALI")]
-public class ALI
+public class ALI : ISegment
 {
 	/// <summary>
 	/// Country in which the goods have been produced or manufactured, according to criteria laid down for the purposes of application of the Customs tariff, of quantitative restrictions, or of any other measure related to trade.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify results of the application of an authentification procedure.
 /// </summary>
 [EdiSegment, EdiPath("AUT")]
-public class AUT
+public class AUT : ISegment
 {
 	/// <summary>
 	/// The result of the application of an algorithm to the content of data element in a message.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// REQDOC
 /// </summary>
 [EdiMessage]
-public class REQDOC
+public class REQDOC : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -28,7 +29,7 @@ public class REQDOC
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Free text
@@ -57,7 +58,7 @@ public class REQDOC
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class REQDOC_SG1 : RFF
+public class REQDOC_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -66,7 +67,7 @@ public class REQDOC_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "CTA")]
-public class REQDOC_SG2 : NAD
+public class REQDOC_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -81,7 +82,7 @@ public class REQDOC_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class REQDOC_SG3 : CTA
+public class REQDOC_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -90,7 +91,7 @@ public class REQDOC_SG3 : CTA
 }
 
 [EdiSegmentGroup("LIN", "GIS", "DTM", "PIA", "IMD", "MEA", "RFF", "NAD")]
-public class REQDOC_SG4 : LIN
+public class REQDOC_SG4 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -130,7 +131,7 @@ public class REQDOC_SG4 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class REQDOC_SG5 : RFF
+public class REQDOC_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -139,7 +140,7 @@ public class REQDOC_SG5 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "CTA")]
-public class REQDOC_SG6 : NAD
+public class REQDOC_SG6 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -154,7 +155,7 @@ public class REQDOC_SG6 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class REQDOC_SG7 : CTA
+public class REQDOC_SG7 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact

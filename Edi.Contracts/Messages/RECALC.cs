@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// RECALC
 /// </summary>
 [EdiMessage]
-public class RECALC
+public class RECALC : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -18,7 +19,7 @@ public class RECALC
 	/// <summary>
 	/// General indicator
 	/// </summary>
-	public List<GIS>? GeneralIndicator1M { get; set; }
+	public List<GIS>? GeneralIndicatorM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -28,12 +29,12 @@ public class RECALC
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG2
@@ -47,7 +48,7 @@ public class RECALC
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM", "RFF")]
-public class RECALC_SG1 : NAD
+public class RECALC_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -66,7 +67,7 @@ public class RECALC_SG1 : NAD
 }
 
 [EdiSegmentGroup("REL", "RFF", "GIS", "CUX", "DTM", "QTY", "LOC", "PCD", "FTX", "ARD")]
-public class RECALC_SG2 : REL
+public class RECALC_SG2 : REL, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -116,7 +117,7 @@ public class RECALC_SG2 : REL
 }
 
 [EdiSegmentGroup("ARD", "MOA")]
-public class RECALC_SG3 : ARD
+public class RECALC_SG3 : ARD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -126,7 +127,7 @@ public class RECALC_SG3 : ARD
 }
 
 [EdiSegmentGroup("MOA", "GIS", "PCD", "FTX", "DTM", "RFF", "CUX")]
-public class RECALC_SG4 : MOA
+public class RECALC_SG4 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -161,7 +162,7 @@ public class RECALC_SG4 : MOA
 }
 
 [EdiSegmentGroup("RFF", "DTM", "COM", "FTX")]
-public class RECALC_SG5 : RFF
+public class RECALC_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -180,7 +181,7 @@ public class RECALC_SG5 : RFF
 }
 
 [EdiSegmentGroup("CUX", "MOA", "AJT")]
-public class RECALC_SG6 : CUX
+public class RECALC_SG6 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount

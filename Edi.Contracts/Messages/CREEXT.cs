@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CREEXT
 /// </summary>
 [EdiMessage]
-public class CREEXT
+public class CREEXT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -28,7 +29,7 @@ public class CREEXT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -82,7 +83,7 @@ public class CREEXT
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CREEXT_SG1 : RFF
+public class CREEXT_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -91,7 +92,7 @@ public class CREEXT_SG1 : RFF
 }
 
 [EdiSegmentGroup("MOA", "CUX", "DTM", "RFF")]
-public class CREEXT_SG2 : MOA
+public class CREEXT_SG2 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -110,7 +111,7 @@ public class CREEXT_SG2 : MOA
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class CREEXT_SG3 : FII
+public class CREEXT_SG3 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -124,7 +125,7 @@ public class CREEXT_SG3 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class CREEXT_SG4 : NAD
+public class CREEXT_SG4 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -138,7 +139,7 @@ public class CREEXT_SG4 : NAD
 }
 
 [EdiSegmentGroup("INP", "FTX", "DTM")]
-public class CREEXT_SG5 : INP
+public class CREEXT_SG5 : INP, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -152,7 +153,7 @@ public class CREEXT_SG5 : INP
 }
 
 [EdiSegmentGroup("GIS", "MOA", "LOC", "NAD", "RCS", "FTX")]
-public class CREEXT_SG6 : GIS
+public class CREEXT_SG6 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -181,7 +182,7 @@ public class CREEXT_SG6 : GIS
 }
 
 [EdiSegmentGroup("FCA", "MOA", "ALC")]
-public class CREEXT_SG7 : FCA
+public class CREEXT_SG7 : FCA, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -196,7 +197,7 @@ public class CREEXT_SG7 : FCA
 }
 
 [EdiSegmentGroup("ALC", "PCD", "MOA", "CUX", "DTM", "TAX")]
-public class CREEXT_SG8 : ALC
+public class CREEXT_SG8 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -226,7 +227,7 @@ public class CREEXT_SG8 : ALC
 }
 
 [EdiSegmentGroup("TAX", "MOA", "CUX", "DTM")]
-public class CREEXT_SG9 : TAX
+public class CREEXT_SG9 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -245,7 +246,7 @@ public class CREEXT_SG9 : TAX
 }
 
 [EdiSegmentGroup("PRC", "FTX", "DOC", "GIS")]
-public class CREEXT_SG10 : PRC
+public class CREEXT_SG10 : PRC, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -265,7 +266,7 @@ public class CREEXT_SG10 : PRC
 }
 
 [EdiSegmentGroup("DOC", "MOA", "DTM", "RFF", "NAD", "CUX", "AJT", "DLI")]
-public class CREEXT_SG11 : DOC
+public class CREEXT_SG11 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -305,7 +306,7 @@ public class CREEXT_SG11 : DOC
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class CREEXT_SG12 : CUX
+public class CREEXT_SG12 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -314,7 +315,7 @@ public class CREEXT_SG12 : CUX
 }
 
 [EdiSegmentGroup("AJT", "MOA", "RFF", "FTX")]
-public class CREEXT_SG13 : AJT
+public class CREEXT_SG13 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -333,7 +334,7 @@ public class CREEXT_SG13 : AJT
 }
 
 [EdiSegmentGroup("DLI", "MOA", "PIA", "DTM", "CUX", "AJT")]
-public class CREEXT_SG14 : DLI
+public class CREEXT_SG14 : DLI, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -363,7 +364,7 @@ public class CREEXT_SG14 : DLI
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class CREEXT_SG15 : CUX
+public class CREEXT_SG15 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -372,7 +373,7 @@ public class CREEXT_SG15 : CUX
 }
 
 [EdiSegmentGroup("AJT", "MOA", "RFF", "FTX")]
-public class CREEXT_SG16 : AJT
+public class CREEXT_SG16 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -391,7 +392,7 @@ public class CREEXT_SG16 : AJT
 }
 
 [EdiSegmentGroup("GIS", "MOA")]
-public class CREEXT_SG17 : GIS
+public class CREEXT_SG17 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -400,7 +401,7 @@ public class CREEXT_SG17 : GIS
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class CREEXT_SG18 : AUT
+public class CREEXT_SG18 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

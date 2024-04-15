@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CUSRES
 /// </summary>
 [EdiMessage]
-public class CUSRES
+public class CUSRES : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,32 +24,32 @@ public class CUSRES
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Details of transport
 	/// </summary>
-	public List<TDT>? DetailsOfTransport1C { get; set; }
+	public List<TDT>? DetailsOfTransportC { get; set; }
 
 	/// <summary>
 	/// Place/location identification
 	/// </summary>
-	public List<LOC>? PlaceLocationIdentification1C { get; set; }
+	public List<LOC>? PlaceLocationIdentificationC { get; set; }
 
 	/// <summary>
 	/// General indicator
 	/// </summary>
-	public List<GIS>? GeneralIndicator1C { get; set; }
+	public List<GIS>? GeneralIndicatorC { get; set; }
 
 	/// <summary>
 	/// Equipment details
 	/// </summary>
-	public List<EQD>? EquipmentDetails1C { get; set; }
+	public List<EQD>? EquipmentDetailsC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -92,7 +93,7 @@ public class CUSRES
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class CUSRES_SG1 : NAD
+public class CUSRES_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -102,7 +103,7 @@ public class CUSRES_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CUSRES_SG2 : CTA
+public class CUSRES_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -111,7 +112,7 @@ public class CUSRES_SG2 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM", "LOC")]
-public class CUSRES_SG3 : RFF
+public class CUSRES_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -125,7 +126,7 @@ public class CUSRES_SG3 : RFF
 }
 
 [EdiSegmentGroup("ERP", "RFF", "ERC", "FTX")]
-public class CUSRES_SG4 : ERP
+public class CUSRES_SG4 : ERP, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -144,7 +145,7 @@ public class CUSRES_SG4 : ERP
 }
 
 [EdiSegmentGroup("TAX", "MOA", "GIS")]
-public class CUSRES_SG5 : TAX
+public class CUSRES_SG5 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -158,7 +159,7 @@ public class CUSRES_SG5 : TAX
 }
 
 [EdiSegmentGroup("DOC", "PAC", "RFF", "PCI", "FTX", "TDT", "LOC", "DTM", "GIS", "MEA", "EQD", "NAD", "MOA", "CST", "ERP")]
-public class CUSRES_SG6 : DOC
+public class CUSRES_SG6 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Package
@@ -233,7 +234,7 @@ public class CUSRES_SG6 : DOC
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class CUSRES_SG7 : NAD
+public class CUSRES_SG7 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG8
@@ -243,7 +244,7 @@ public class CUSRES_SG7 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class CUSRES_SG8 : CTA
+public class CUSRES_SG8 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -252,7 +253,7 @@ public class CUSRES_SG8 : CTA
 }
 
 [EdiSegmentGroup("MOA", "CUX")]
-public class CUSRES_SG9 : MOA
+public class CUSRES_SG9 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -261,7 +262,7 @@ public class CUSRES_SG9 : MOA
 }
 
 [EdiSegmentGroup("CST", "FTX", "TAX")]
-public class CUSRES_SG10 : CST
+public class CUSRES_SG10 : CST, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -276,7 +277,7 @@ public class CUSRES_SG10 : CST
 }
 
 [EdiSegmentGroup("TAX", "MOA", "GIS", "MEA", "RFF")]
-public class CUSRES_SG11 : TAX
+public class CUSRES_SG11 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -300,7 +301,7 @@ public class CUSRES_SG11 : TAX
 }
 
 [EdiSegmentGroup("ERP", "RFF", "ERC", "FTX")]
-public class CUSRES_SG12 : ERP
+public class CUSRES_SG12 : ERP, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -319,7 +320,7 @@ public class CUSRES_SG12 : ERP
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class CUSRES_SG13 : AUT
+public class CUSRES_SG13 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

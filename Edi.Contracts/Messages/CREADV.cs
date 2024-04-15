@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// CREADV
 /// </summary>
 [EdiMessage]
-public class CREADV
+public class CREADV : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -28,7 +29,7 @@ public class CREADV
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -43,7 +44,7 @@ public class CREADV
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG3
@@ -87,7 +88,7 @@ public class CREADV
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class CREADV_SG1 : RFF
+public class CREADV_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -96,7 +97,7 @@ public class CREADV_SG1 : RFF
 }
 
 [EdiSegmentGroup("MOA", "CUX", "DTM", "RFF")]
-public class CREADV_SG2 : MOA
+public class CREADV_SG2 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -115,7 +116,7 @@ public class CREADV_SG2 : MOA
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class CREADV_SG3 : FII
+public class CREADV_SG3 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -129,7 +130,7 @@ public class CREADV_SG3 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class CREADV_SG4 : NAD
+public class CREADV_SG4 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -143,7 +144,7 @@ public class CREADV_SG4 : NAD
 }
 
 [EdiSegmentGroup("INP", "FTX", "DTM")]
-public class CREADV_SG5 : INP
+public class CREADV_SG5 : INP, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -157,7 +158,7 @@ public class CREADV_SG5 : INP
 }
 
 [EdiSegmentGroup("GIS", "MOA", "LOC", "NAD", "RCS", "FTX")]
-public class CREADV_SG6 : GIS
+public class CREADV_SG6 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -186,7 +187,7 @@ public class CREADV_SG6 : GIS
 }
 
 [EdiSegmentGroup("FCA", "MOA", "ALC")]
-public class CREADV_SG7 : FCA
+public class CREADV_SG7 : FCA, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -201,7 +202,7 @@ public class CREADV_SG7 : FCA
 }
 
 [EdiSegmentGroup("ALC", "PCD", "MOA", "CUX", "DTM", "TAX")]
-public class CREADV_SG8 : ALC
+public class CREADV_SG8 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -231,7 +232,7 @@ public class CREADV_SG8 : ALC
 }
 
 [EdiSegmentGroup("TAX", "MOA", "CUX", "DTM")]
-public class CREADV_SG9 : TAX
+public class CREADV_SG9 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -250,7 +251,7 @@ public class CREADV_SG9 : TAX
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class CREADV_SG10 : DOC
+public class CREADV_SG10 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -259,7 +260,7 @@ public class CREADV_SG10 : DOC
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class CREADV_SG11 : AUT
+public class CREADV_SG11 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

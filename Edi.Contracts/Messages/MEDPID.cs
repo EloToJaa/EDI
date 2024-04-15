@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// MEDPID
 /// </summary>
 [EdiMessage]
-public class MEDPID
+public class MEDPID : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,17 +24,17 @@ public class MEDPID
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Reference
 	/// </summary>
-	public List<RFF>? Reference1C { get; set; }
+	public List<RFF>? ReferenceC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -57,7 +58,7 @@ public class MEDPID
 }
 
 [EdiSegmentGroup("PNA", "ADR", "CTA", "COM", "RFF", "LAN")]
-public class MEDPID_SG1 : PNA
+public class MEDPID_SG1 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -86,7 +87,7 @@ public class MEDPID_SG1 : PNA
 }
 
 [EdiSegmentGroup("GIS", "PNA", "ADR", "RFF", "DTM", "IHC", "NAT", "FTX", "LAN", "HAN", "LOC", "FII", "CTA", "PDI", "COM", "REL")]
-public class MEDPID_SG2 : GIS
+public class MEDPID_SG2 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Party name
@@ -166,7 +167,7 @@ public class MEDPID_SG2 : GIS
 }
 
 [EdiSegmentGroup("PDI", "DTM")]
-public class MEDPID_SG3 : PDI
+public class MEDPID_SG3 : PDI, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -175,7 +176,7 @@ public class MEDPID_SG3 : PDI
 }
 
 [EdiSegmentGroup("COM", "CTA")]
-public class MEDPID_SG4 : COM
+public class MEDPID_SG4 : COM, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -184,7 +185,7 @@ public class MEDPID_SG4 : COM
 }
 
 [EdiSegmentGroup("REL", "PNA", "ADR", "RFF", "DTM", "PDI", "IHC", "NAT", "LAN")]
-public class MEDPID_SG5 : REL
+public class MEDPID_SG5 : REL, ISegmentGroup
 {
 	/// <summary>
 	/// Party name
@@ -228,7 +229,7 @@ public class MEDPID_SG5 : REL
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class MEDPID_SG6 : AUT
+public class MEDPID_SG6 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

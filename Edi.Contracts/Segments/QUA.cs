@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the qualification of a person.
 /// </summary>
 [EdiSegment, EdiPath("QUA")]
-public class QUA
+public class QUA : ISegment
 {
 	/// <summary>
 	/// To specify type of qualification.
@@ -27,7 +28,7 @@ public class QUA
 /// Qualification classification description and/or code. This specifies the trade, skill, professional or similar qualification category.
 /// </summary>
 [EdiElement]
-public class QUA_QualificationClassification
+public class QUA_QualificationClassification : IElement
 {
 	/// <summary>
 	/// Identification of a qualification classification.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// IFTIAG
 /// </summary>
 [EdiMessage]
-public class IFTIAG
+public class IFTIAG : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class IFTIAG
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Control total
@@ -33,7 +34,7 @@ public class IFTIAG
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -72,7 +73,7 @@ public class IFTIAG
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class IFTIAG_SG1 : RFF
+public class IFTIAG_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -81,7 +82,7 @@ public class IFTIAG_SG1 : RFF
 }
 
 [EdiSegmentGroup("TDT", "DTM", "CTA")]
-public class IFTIAG_SG2 : TDT
+public class IFTIAG_SG2 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -95,7 +96,7 @@ public class IFTIAG_SG2 : TDT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class IFTIAG_SG3 : NAD
+public class IFTIAG_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG4
@@ -105,7 +106,7 @@ public class IFTIAG_SG3 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class IFTIAG_SG4 : CTA
+public class IFTIAG_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -114,7 +115,7 @@ public class IFTIAG_SG4 : CTA
 }
 
 [EdiSegmentGroup("LOC", "NAD", "RFF", "DTM")]
-public class IFTIAG_SG5 : LOC
+public class IFTIAG_SG5 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Name and address
@@ -133,7 +134,7 @@ public class IFTIAG_SG5 : LOC
 }
 
 [EdiSegmentGroup("EQD", "SEL")]
-public class IFTIAG_SG6 : EQD
+public class IFTIAG_SG6 : EQD, ISegmentGroup
 {
 	/// <summary>
 	/// Seal number
@@ -142,7 +143,7 @@ public class IFTIAG_SG6 : EQD
 }
 
 [EdiSegmentGroup("CNI", "LOC", "RFF", "NAD", "GID")]
-public class IFTIAG_SG7 : CNI
+public class IFTIAG_SG7 : CNI, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -167,7 +168,7 @@ public class IFTIAG_SG7 : CNI
 }
 
 [EdiSegmentGroup("GID", "FTX", "PCI", "DGS")]
-public class IFTIAG_SG8 : GID
+public class IFTIAG_SG8 : GID, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -187,7 +188,7 @@ public class IFTIAG_SG8 : GID
 }
 
 [EdiSegmentGroup("DGS", "FTX", "LOC", "MEA", "SGP")]
-public class IFTIAG_SG9 : DGS
+public class IFTIAG_SG9 : DGS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -212,7 +213,7 @@ public class IFTIAG_SG9 : DGS
 }
 
 [EdiSegmentGroup("SGP", "LOC", "MEA")]
-public class IFTIAG_SG10 : SGP
+public class IFTIAG_SG10 : SGP, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification

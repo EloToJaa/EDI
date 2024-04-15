@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// BANSTA
 /// </summary>
 [EdiMessage]
-public class BANSTA
+public class BANSTA : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class BANSTA
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1M { get; set; }
+	public DTM? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Business function
@@ -67,7 +68,7 @@ public class BANSTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class BANSTA_SG1 : RFF
+public class BANSTA_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class BANSTA_SG1 : RFF
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class BANSTA_SG2 : FII
+public class BANSTA_SG2 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -90,7 +91,7 @@ public class BANSTA_SG2 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class BANSTA_SG3 : NAD
+public class BANSTA_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -104,7 +105,7 @@ public class BANSTA_SG3 : NAD
 }
 
 [EdiSegmentGroup("LIN", "RFF", "SEQ")]
-public class BANSTA_SG4 : LIN
+public class BANSTA_SG4 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// SG5
@@ -119,7 +120,7 @@ public class BANSTA_SG4 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class BANSTA_SG5 : RFF
+public class BANSTA_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -128,7 +129,7 @@ public class BANSTA_SG5 : RFF
 }
 
 [EdiSegmentGroup("SEQ", "GIS", "DTM", "MOA", "CUX", "PCD", "FTX", "DOC", "FII", "NAD")]
-public class BANSTA_SG6 : SEQ
+public class BANSTA_SG6 : SEQ, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -178,7 +179,7 @@ public class BANSTA_SG6 : SEQ
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class BANSTA_SG7 : FII
+public class BANSTA_SG7 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -192,7 +193,7 @@ public class BANSTA_SG7 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class BANSTA_SG8 : NAD
+public class BANSTA_SG8 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -206,7 +207,7 @@ public class BANSTA_SG8 : NAD
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class BANSTA_SG9 : AUT
+public class BANSTA_SG9 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

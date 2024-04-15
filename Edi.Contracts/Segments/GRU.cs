@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the usage of a segment group within a message type structure and its maintenance operation.
 /// </summary>
 [EdiSegment, EdiPath("GRU")]
-public class GRU
+public class GRU : ISegment
 {
 	/// <summary>
 	/// To identify a group within a message type structure.

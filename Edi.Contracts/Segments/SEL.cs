@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify a seal number related to equipment.
 /// </summary>
 [EdiSegment, EdiPath("SEL")]
-public class SEL
+public class SEL : ISegment
 {
 	/// <summary>
 	/// The number of a custom seal or another seal affixed to the containers or other transport unit.
@@ -34,7 +35,7 @@ public class SEL
 /// Identification of the issuer of a seal on equipment either by code or by name.
 /// </summary>
 [EdiElement]
-public class SEL_SealIssuer
+public class SEL_SealIssuer : IElement
 {
 	/// <summary>
 	/// Identification of the issuer of the seal number.

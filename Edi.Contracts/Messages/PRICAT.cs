@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// PRICAT
 /// </summary>
 [EdiMessage]
-public class PRICAT
+public class PRICAT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,17 +24,17 @@ public class PRICAT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Additional information
 	/// </summary>
-	public List<ALI>? AdditionalInformation1C { get; set; }
+	public List<ALI>? AdditionalInformationC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -87,7 +88,7 @@ public class PRICAT
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PRICAT_SG1 : RFF
+public class PRICAT_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -96,7 +97,7 @@ public class PRICAT_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "CTA")]
-public class PRICAT_SG2 : NAD
+public class PRICAT_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -116,7 +117,7 @@ public class PRICAT_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PRICAT_SG3 : RFF
+public class PRICAT_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -125,7 +126,7 @@ public class PRICAT_SG3 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class PRICAT_SG4 : CTA
+public class PRICAT_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -134,7 +135,7 @@ public class PRICAT_SG4 : CTA
 }
 
 [EdiSegmentGroup("TAX", "MOA", "DTM")]
-public class PRICAT_SG5 : TAX
+public class PRICAT_SG5 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -148,7 +149,7 @@ public class PRICAT_SG5 : TAX
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class PRICAT_SG6 : CUX
+public class PRICAT_SG6 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -157,7 +158,7 @@ public class PRICAT_SG6 : CUX
 }
 
 [EdiSegmentGroup("PAT", "DTM", "PCD", "MOA")]
-public class PRICAT_SG7 : PAT
+public class PRICAT_SG7 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -176,7 +177,7 @@ public class PRICAT_SG7 : PAT
 }
 
 [EdiSegmentGroup("TDT", "LOC")]
-public class PRICAT_SG8 : TDT
+public class PRICAT_SG8 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -185,7 +186,7 @@ public class PRICAT_SG8 : TDT
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class PRICAT_SG9 : TOD
+public class PRICAT_SG9 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -194,7 +195,7 @@ public class PRICAT_SG9 : TOD
 }
 
 [EdiSegmentGroup("ALC", "ALI", "DTM", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class PRICAT_SG10 : ALC
+public class PRICAT_SG10 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -234,7 +235,7 @@ public class PRICAT_SG10 : ALC
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class PRICAT_SG11 : QTY
+public class PRICAT_SG11 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -243,7 +244,7 @@ public class PRICAT_SG11 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class PRICAT_SG12 : PCD
+public class PRICAT_SG12 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -252,7 +253,7 @@ public class PRICAT_SG12 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG")]
-public class PRICAT_SG13 : MOA
+public class PRICAT_SG13 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -261,7 +262,7 @@ public class PRICAT_SG13 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class PRICAT_SG14 : RTE
+public class PRICAT_SG14 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -270,7 +271,7 @@ public class PRICAT_SG14 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA", "DTM")]
-public class PRICAT_SG15 : TAX
+public class PRICAT_SG15 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -284,7 +285,7 @@ public class PRICAT_SG15 : TAX
 }
 
 [EdiSegmentGroup("PGI", "DTM", "QTY", "ALI", "FTX", "CUX", "PRI", "TAX", "ALC", "NAD", "PAT", "TDT", "TOD", "PAC", "LIN")]
-public class PRICAT_SG16 : PGI
+public class PRICAT_SG16 : PGI, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -359,7 +360,7 @@ public class PRICAT_SG16 : PGI
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class PRICAT_SG17 : CUX
+public class PRICAT_SG17 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -368,7 +369,7 @@ public class PRICAT_SG17 : CUX
 }
 
 [EdiSegmentGroup("PRI", "CUX", "APR", "RNG", "DTM")]
-public class PRICAT_SG18 : PRI
+public class PRICAT_SG18 : PRI, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -392,7 +393,7 @@ public class PRICAT_SG18 : PRI
 }
 
 [EdiSegmentGroup("TAX", "MOA", "DTM")]
-public class PRICAT_SG19 : TAX
+public class PRICAT_SG19 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -406,7 +407,7 @@ public class PRICAT_SG19 : TAX
 }
 
 [EdiSegmentGroup("ALC", "ALI", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class PRICAT_SG20 : ALC
+public class PRICAT_SG20 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -441,7 +442,7 @@ public class PRICAT_SG20 : ALC
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class PRICAT_SG21 : QTY
+public class PRICAT_SG21 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -450,7 +451,7 @@ public class PRICAT_SG21 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class PRICAT_SG22 : PCD
+public class PRICAT_SG22 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -459,7 +460,7 @@ public class PRICAT_SG22 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG")]
-public class PRICAT_SG23 : MOA
+public class PRICAT_SG23 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -468,7 +469,7 @@ public class PRICAT_SG23 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class PRICAT_SG24 : RTE
+public class PRICAT_SG24 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -477,7 +478,7 @@ public class PRICAT_SG24 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA", "DTM")]
-public class PRICAT_SG25 : TAX
+public class PRICAT_SG25 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -491,7 +492,7 @@ public class PRICAT_SG25 : TAX
 }
 
 [EdiSegmentGroup("NAD", "LOC", "RFF", "CTA")]
-public class PRICAT_SG26 : NAD
+public class PRICAT_SG26 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -511,7 +512,7 @@ public class PRICAT_SG26 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PRICAT_SG27 : RFF
+public class PRICAT_SG27 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -520,7 +521,7 @@ public class PRICAT_SG27 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class PRICAT_SG28 : CTA
+public class PRICAT_SG28 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -529,7 +530,7 @@ public class PRICAT_SG28 : CTA
 }
 
 [EdiSegmentGroup("PAT", "DTM", "PCD", "MOA")]
-public class PRICAT_SG29 : PAT
+public class PRICAT_SG29 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -548,7 +549,7 @@ public class PRICAT_SG29 : PAT
 }
 
 [EdiSegmentGroup("TDT", "LOC")]
-public class PRICAT_SG30 : TDT
+public class PRICAT_SG30 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -557,7 +558,7 @@ public class PRICAT_SG30 : TDT
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class PRICAT_SG31 : TOD
+public class PRICAT_SG31 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -566,7 +567,7 @@ public class PRICAT_SG31 : TOD
 }
 
 [EdiSegmentGroup("PAC", "MEA", "HAN")]
-public class PRICAT_SG32 : PAC
+public class PRICAT_SG32 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -580,7 +581,7 @@ public class PRICAT_SG32 : PAC
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "MEA", "QTY", "HAN", "ALI", "DTM", "NAD", "RFF", "LOC", "DOC", "FTX", "CCI", "TAX", "CUX", "PRI", "ALC", "PAC", "PAT", "TDT", "TOD")]
-public class PRICAT_SG33 : LIN
+public class PRICAT_SG33 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -690,7 +691,7 @@ public class PRICAT_SG33 : LIN
 }
 
 [EdiSegmentGroup("CCI", "CAV", "MEA")]
-public class PRICAT_SG34 : CCI
+public class PRICAT_SG34 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Characteristic value
@@ -704,7 +705,7 @@ public class PRICAT_SG34 : CCI
 }
 
 [EdiSegmentGroup("TAX", "MOA", "DTM")]
-public class PRICAT_SG35 : TAX
+public class PRICAT_SG35 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -718,7 +719,7 @@ public class PRICAT_SG35 : TAX
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class PRICAT_SG36 : CUX
+public class PRICAT_SG36 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -727,7 +728,7 @@ public class PRICAT_SG36 : CUX
 }
 
 [EdiSegmentGroup("PRI", "CUX", "APR", "RNG", "DTM", "PCD")]
-public class PRICAT_SG37 : PRI
+public class PRICAT_SG37 : PRI, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -756,7 +757,7 @@ public class PRICAT_SG37 : PRI
 }
 
 [EdiSegmentGroup("ALC", "ALI", "DTM", "QTY", "PCD", "MOA", "RTE", "TAX")]
-public class PRICAT_SG38 : ALC
+public class PRICAT_SG38 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Additional information
@@ -796,7 +797,7 @@ public class PRICAT_SG38 : ALC
 }
 
 [EdiSegmentGroup("QTY", "RNG")]
-public class PRICAT_SG39 : QTY
+public class PRICAT_SG39 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -805,7 +806,7 @@ public class PRICAT_SG39 : QTY
 }
 
 [EdiSegmentGroup("PCD", "RNG")]
-public class PRICAT_SG40 : PCD
+public class PRICAT_SG40 : PCD, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -814,7 +815,7 @@ public class PRICAT_SG40 : PCD
 }
 
 [EdiSegmentGroup("MOA", "RNG")]
-public class PRICAT_SG41 : MOA
+public class PRICAT_SG41 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -823,7 +824,7 @@ public class PRICAT_SG41 : MOA
 }
 
 [EdiSegmentGroup("RTE", "RNG")]
-public class PRICAT_SG42 : RTE
+public class PRICAT_SG42 : RTE, ISegmentGroup
 {
 	/// <summary>
 	/// Range details
@@ -832,7 +833,7 @@ public class PRICAT_SG42 : RTE
 }
 
 [EdiSegmentGroup("TAX", "MOA", "DTM")]
-public class PRICAT_SG43 : TAX
+public class PRICAT_SG43 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -846,7 +847,7 @@ public class PRICAT_SG43 : TAX
 }
 
 [EdiSegmentGroup("PAC", "MEA", "HAN")]
-public class PRICAT_SG44 : PAC
+public class PRICAT_SG44 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -860,7 +861,7 @@ public class PRICAT_SG44 : PAC
 }
 
 [EdiSegmentGroup("PAT", "DTM", "PCD", "MOA")]
-public class PRICAT_SG45 : PAT
+public class PRICAT_SG45 : PAT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -879,7 +880,7 @@ public class PRICAT_SG45 : PAT
 }
 
 [EdiSegmentGroup("TDT", "LOC")]
-public class PRICAT_SG46 : TDT
+public class PRICAT_SG46 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -888,7 +889,7 @@ public class PRICAT_SG46 : TDT
 }
 
 [EdiSegmentGroup("TOD", "LOC")]
-public class PRICAT_SG47 : TOD
+public class PRICAT_SG47 : TOD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification

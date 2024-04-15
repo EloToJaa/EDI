@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// PROINQ
 /// </summary>
 [EdiMessage]
-public class PROINQ
+public class PROINQ : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class PROINQ
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Currencies
@@ -52,7 +53,7 @@ public class PROINQ
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class PROINQ_SG1 : NAD
+public class PROINQ_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -62,7 +63,7 @@ public class PROINQ_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class PROINQ_SG2 : CTA
+public class PROINQ_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -71,7 +72,7 @@ public class PROINQ_SG2 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class PROINQ_SG3 : RFF
+public class PROINQ_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -80,7 +81,7 @@ public class PROINQ_SG3 : RFF
 }
 
 [EdiSegmentGroup("LIN", "CCI", "IRQ")]
-public class PROINQ_SG4 : LIN
+public class PROINQ_SG4 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// SG5
@@ -95,7 +96,7 @@ public class PROINQ_SG4 : LIN
 }
 
 [EdiSegmentGroup("CCI", "CAV", "MEA")]
-public class PROINQ_SG5 : CCI
+public class PROINQ_SG5 : CCI, ISegmentGroup
 {
 	/// <summary>
 	/// Characteristic value
@@ -109,7 +110,7 @@ public class PROINQ_SG5 : CCI
 }
 
 [EdiSegmentGroup("IRQ", "PIA", "IMD", "MEA", "NAD", "PGI", "DTM", "PRI")]
-public class PROINQ_SG6 : IRQ
+public class PROINQ_SG6 : IRQ, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -149,7 +150,7 @@ public class PROINQ_SG6 : IRQ
 }
 
 [EdiSegmentGroup("PRI", "RNG")]
-public class PROINQ_SG7 : PRI
+public class PROINQ_SG7 : PRI, ISegmentGroup
 {
 	/// <summary>
 	/// Range details

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// RESMSG
 /// </summary>
 [EdiMessage]
-public class RESMSG
+public class RESMSG : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,47 +24,47 @@ public class RESMSG
 	/// <summary>
 	/// Language
 	/// </summary>
-	public LAN? Language1C { get; set; }
+	public LAN? LanguageC { get; set; }
 
 	/// <summary>
 	/// Percentage details
 	/// </summary>
-	public PCD? PercentageDetails1C { get; set; }
+	public PCD? PercentageDetailsC { get; set; }
 
 	/// <summary>
 	/// Payment instructions
 	/// </summary>
-	public PAI? PaymentInstructions1C { get; set; }
+	public PAI? PaymentInstructionsC { get; set; }
 
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// Place/location identification
 	/// </summary>
-	public List<LOC>? PlaceLocationIdentification1C { get; set; }
+	public List<LOC>? PlaceLocationIdentificationC { get; set; }
 
 	/// <summary>
 	/// Monetary amount
 	/// </summary>
-	public List<MOA>? MonetaryAmount1C { get; set; }
+	public List<MOA>? MonetaryAmountC { get; set; }
 
 	/// <summary>
 	/// Payment terms basis
 	/// </summary>
-	public List<PAT>? PaymentTermsBasis1C { get; set; }
+	public List<PAT>? PaymentTermsBasisC { get; set; }
 
 	/// <summary>
 	/// Financial institution information
 	/// </summary>
-	public List<FII>? FinancialInstitutionInformation1C { get; set; }
+	public List<FII>? FinancialInstitutionInformationC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -87,7 +88,7 @@ public class RESMSG
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class RESMSG_SG1 : RFF
+public class RESMSG_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -96,7 +97,7 @@ public class RESMSG_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "RFF", "COM", "LAN", "CTA")]
-public class RESMSG_SG2 : NAD
+public class RESMSG_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Reference
@@ -121,7 +122,7 @@ public class RESMSG_SG2 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM", "LAN")]
-public class RESMSG_SG3 : CTA
+public class RESMSG_SG3 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -135,7 +136,7 @@ public class RESMSG_SG3 : CTA
 }
 
 [EdiSegmentGroup("SEQ", "IMD", "MEM")]
-public class RESMSG_SG4 : SEQ
+public class RESMSG_SG4 : SEQ, ISegmentGroup
 {
 	/// <summary>
 	/// SG5
@@ -150,7 +151,7 @@ public class RESMSG_SG4 : SEQ
 }
 
 [EdiSegmentGroup("IMD", "QTY", "LAN", "DTM", "NAD", "RFF", "PCD", "PAI", "PAT", "FII", "DIM", "FTX", "LOC", "MOA", "RCS")]
-public class RESMSG_SG5 : IMD
+public class RESMSG_SG5 : IMD, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -225,7 +226,7 @@ public class RESMSG_SG5 : IMD
 }
 
 [EdiSegmentGroup("LOC", "NAD", "DTM")]
-public class RESMSG_SG6 : LOC
+public class RESMSG_SG6 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Name and address
@@ -239,7 +240,7 @@ public class RESMSG_SG6 : LOC
 }
 
 [EdiSegmentGroup("MOA", "QTY")]
-public class RESMSG_SG7 : MOA
+public class RESMSG_SG7 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Quantity
@@ -248,7 +249,7 @@ public class RESMSG_SG7 : MOA
 }
 
 [EdiSegmentGroup("RCS", "FII", "MOA", "RFF", "FTX")]
-public class RESMSG_SG8 : RCS
+public class RESMSG_SG8 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Financial institution information
@@ -272,7 +273,7 @@ public class RESMSG_SG8 : RCS
 }
 
 [EdiSegmentGroup("MEM", "NAD")]
-public class RESMSG_SG9 : MEM
+public class RESMSG_SG9 : MEM, ISegmentGroup
 {
 	/// <summary>
 	/// SG10
@@ -282,7 +283,7 @@ public class RESMSG_SG9 : MEM
 }
 
 [EdiSegmentGroup("NAD", "ATT", "RFF", "LAN", "FTX", "COM", "CTA", "DOC", "PAI", "RCS")]
-public class RESMSG_SG10 : NAD
+public class RESMSG_SG10 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Attribute
@@ -332,7 +333,7 @@ public class RESMSG_SG10 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class RESMSG_SG11 : CTA
+public class RESMSG_SG11 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -341,7 +342,7 @@ public class RESMSG_SG11 : CTA
 }
 
 [EdiSegmentGroup("DOC", "LOC", "DTM")]
-public class RESMSG_SG12 : DOC
+public class RESMSG_SG12 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -355,7 +356,7 @@ public class RESMSG_SG12 : DOC
 }
 
 [EdiSegmentGroup("PAI", "PAT", "FII", "MOA", "RFF")]
-public class RESMSG_SG13 : PAI
+public class RESMSG_SG13 : PAI, ISegmentGroup
 {
 	/// <summary>
 	/// Payment terms basis
@@ -379,7 +380,7 @@ public class RESMSG_SG13 : PAI
 }
 
 [EdiSegmentGroup("RCS", "MOA", "RFF", "FTX")]
-public class RESMSG_SG14 : RCS
+public class RESMSG_SG14 : RCS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount

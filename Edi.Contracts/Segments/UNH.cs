@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To head, identify and specify a message.
 /// </summary>
 [EdiSegment, EdiPath("UNH")]
-public class UNH
+public class UNH : ISegment
 {
 	/// <summary>
 	/// Unique message reference assigned by the sender.
@@ -39,7 +40,7 @@ public class UNH
 /// Identification of the type, version etc. of the message being interchanged.
 /// </summary>
 [EdiElement]
-public class UNH_MessageIdentifier
+public class UNH_MessageIdentifier : IElement
 {
 	/// <summary>
 	/// Code identifying a type of message and assigned by its controlling agency.
@@ -76,7 +77,7 @@ public class UNH_MessageIdentifier
 /// Statement that the message is one in a sequence of transfers relating to the same topic.
 /// </summary>
 [EdiElement]
-public class UNH_StatusOfTheTransfer
+public class UNH_StatusOfTheTransfer : IElement
 {
 	/// <summary>
 	/// Number assigned by the sender indicating the numerical sequence of one or more transfers.

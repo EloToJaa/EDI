@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// COMDIS
 /// </summary>
 [EdiMessage]
-public class COMDIS
+public class COMDIS : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -28,7 +29,7 @@ public class COMDIS
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1C { get; set; }
+	public List<DTM>? DateTimePeriodC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -47,7 +48,7 @@ public class COMDIS
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class COMDIS_SG1 : NAD
+public class COMDIS_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -61,7 +62,7 @@ public class COMDIS_SG1 : NAD
 }
 
 [EdiSegmentGroup("DOC", "DTM", "MOA", "AJT", "INP", "DLI")]
-public class COMDIS_SG2 : DOC
+public class COMDIS_SG2 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -91,7 +92,7 @@ public class COMDIS_SG2 : DOC
 }
 
 [EdiSegmentGroup("AJT", "FTX")]
-public class COMDIS_SG3 : AJT
+public class COMDIS_SG3 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -100,7 +101,7 @@ public class COMDIS_SG3 : AJT
 }
 
 [EdiSegmentGroup("INP", "FTX")]
-public class COMDIS_SG4 : INP
+public class COMDIS_SG4 : INP, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -109,7 +110,7 @@ public class COMDIS_SG4 : INP
 }
 
 [EdiSegmentGroup("DLI", "MOA", "AJT")]
-public class COMDIS_SG5 : DLI
+public class COMDIS_SG5 : DLI, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -124,7 +125,7 @@ public class COMDIS_SG5 : DLI
 }
 
 [EdiSegmentGroup("AJT", "FTX")]
-public class COMDIS_SG6 : AJT
+public class COMDIS_SG6 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text

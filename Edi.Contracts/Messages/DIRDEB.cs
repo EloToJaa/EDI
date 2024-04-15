@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// DIRDEB
 /// </summary>
 [EdiMessage]
-public class DIRDEB
+public class DIRDEB : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class DIRDEB
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public DTM? DateTimePeriod1M { get; set; }
+	public DTM? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Business function
 	/// </summary>
-	public BUS? BusinessFunction1C { get; set; }
+	public BUS? BusinessFunctionC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -67,7 +68,7 @@ public class DIRDEB
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DIRDEB_SG1 : RFF
+public class DIRDEB_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -76,7 +77,7 @@ public class DIRDEB_SG1 : RFF
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class DIRDEB_SG2 : FII
+public class DIRDEB_SG2 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -90,7 +91,7 @@ public class DIRDEB_SG2 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class DIRDEB_SG3 : NAD
+public class DIRDEB_SG3 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -104,7 +105,7 @@ public class DIRDEB_SG3 : NAD
 }
 
 [EdiSegmentGroup("LIN", "DTM", "RFF", "BUS", "FCA", "MOA", "FII", "NAD", "INP", "GIS", "PRC", "SEQ")]
-public class DIRDEB_SG4 : LIN
+public class DIRDEB_SG4 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -164,7 +165,7 @@ public class DIRDEB_SG4 : LIN
 }
 
 [EdiSegmentGroup("MOA", "CUX", "DTM", "RFF")]
-public class DIRDEB_SG5 : MOA
+public class DIRDEB_SG5 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -183,7 +184,7 @@ public class DIRDEB_SG5 : MOA
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class DIRDEB_SG6 : FII
+public class DIRDEB_SG6 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -197,7 +198,7 @@ public class DIRDEB_SG6 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class DIRDEB_SG7 : NAD
+public class DIRDEB_SG7 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -211,7 +212,7 @@ public class DIRDEB_SG7 : NAD
 }
 
 [EdiSegmentGroup("INP", "FTX", "DTM")]
-public class DIRDEB_SG8 : INP
+public class DIRDEB_SG8 : INP, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -225,7 +226,7 @@ public class DIRDEB_SG8 : INP
 }
 
 [EdiSegmentGroup("GIS", "MOA", "LOC", "NAD", "RCS", "FTX")]
-public class DIRDEB_SG9 : GIS
+public class DIRDEB_SG9 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -254,7 +255,7 @@ public class DIRDEB_SG9 : GIS
 }
 
 [EdiSegmentGroup("PRC", "FTX")]
-public class DIRDEB_SG10 : PRC
+public class DIRDEB_SG10 : PRC, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -263,7 +264,7 @@ public class DIRDEB_SG10 : PRC
 }
 
 [EdiSegmentGroup("SEQ", "MOA", "DTM", "RFF", "PAI", "FCA", "FII", "NAD", "INP", "GIS", "PRC")]
-public class DIRDEB_SG11 : SEQ
+public class DIRDEB_SG11 : SEQ, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -318,7 +319,7 @@ public class DIRDEB_SG11 : SEQ
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class DIRDEB_SG12 : FII
+public class DIRDEB_SG12 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -332,7 +333,7 @@ public class DIRDEB_SG12 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class DIRDEB_SG13 : NAD
+public class DIRDEB_SG13 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -346,7 +347,7 @@ public class DIRDEB_SG13 : NAD
 }
 
 [EdiSegmentGroup("INP", "FTX", "DTM")]
-public class DIRDEB_SG14 : INP
+public class DIRDEB_SG14 : INP, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -360,7 +361,7 @@ public class DIRDEB_SG14 : INP
 }
 
 [EdiSegmentGroup("GIS", "MOA", "LOC", "NAD", "RCS", "FTX")]
-public class DIRDEB_SG15 : GIS
+public class DIRDEB_SG15 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -389,7 +390,7 @@ public class DIRDEB_SG15 : GIS
 }
 
 [EdiSegmentGroup("PRC", "FTX", "DOC", "GIS")]
-public class DIRDEB_SG16 : PRC
+public class DIRDEB_SG16 : PRC, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -409,7 +410,7 @@ public class DIRDEB_SG16 : PRC
 }
 
 [EdiSegmentGroup("DOC", "MOA", "DTM", "RFF", "NAD", "CUX", "AJT", "DLI")]
-public class DIRDEB_SG17 : DOC
+public class DIRDEB_SG17 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -449,7 +450,7 @@ public class DIRDEB_SG17 : DOC
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class DIRDEB_SG18 : CUX
+public class DIRDEB_SG18 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -458,7 +459,7 @@ public class DIRDEB_SG18 : CUX
 }
 
 [EdiSegmentGroup("AJT", "MOA", "RFF", "FTX")]
-public class DIRDEB_SG19 : AJT
+public class DIRDEB_SG19 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -477,7 +478,7 @@ public class DIRDEB_SG19 : AJT
 }
 
 [EdiSegmentGroup("DLI", "MOA", "PIA", "DTM", "CUX", "AJT")]
-public class DIRDEB_SG20 : DLI
+public class DIRDEB_SG20 : DLI, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -507,7 +508,7 @@ public class DIRDEB_SG20 : DLI
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class DIRDEB_SG21 : CUX
+public class DIRDEB_SG21 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -516,7 +517,7 @@ public class DIRDEB_SG21 : CUX
 }
 
 [EdiSegmentGroup("AJT", "MOA", "RFF", "FTX")]
-public class DIRDEB_SG22 : AJT
+public class DIRDEB_SG22 : AJT, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -535,7 +536,7 @@ public class DIRDEB_SG22 : AJT
 }
 
 [EdiSegmentGroup("GIS", "MOA")]
-public class DIRDEB_SG23 : GIS
+public class DIRDEB_SG23 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -544,7 +545,7 @@ public class DIRDEB_SG23 : GIS
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class DIRDEB_SG24 : AUT
+public class DIRDEB_SG24 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify physical measurements, including dimension tolerances, weights and counts.
 /// </summary>
 [EdiSegment, EdiPath("MEA")]
-public class MEA
+public class MEA : ISegment
 {
 	/// <summary>
 	/// Specification of the purpose of the measurement.
@@ -40,7 +41,7 @@ public class MEA
 /// Identification of measurement type.
 /// </summary>
 [EdiElement]
-public class MEA_MeasurementDetails
+public class MEA_MeasurementDetails : IElement
 {
 	/// <summary>
 	/// Specification of the property measured.
@@ -71,7 +72,7 @@ public class MEA_MeasurementDetails
 /// Measurement value and relevant minimum and maximum tolerances in that order.
 /// </summary>
 [EdiElement]
-public class MEA_ValueRange
+public class MEA_ValueRange : IElement
 {
 	/// <summary>
 	/// Indication of the unit of measurement in which weight (mass), capacity, length, area, volume or other quantity is expressed.

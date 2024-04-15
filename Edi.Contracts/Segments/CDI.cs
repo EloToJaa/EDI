@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To describe a physical or logical state.
 /// </summary>
 [EdiSegment, EdiPath("CDI")]
-public class CDI
+public class CDI : ISegment
 {
 	/// <summary>
 	/// Code giving a specific meaning to a physical or logical state.
@@ -27,7 +28,7 @@ public class CDI
 /// To give information in coded or clear text form on the physical or logical state.
 /// </summary>
 [EdiElement]
-public class CDI_PhysicalOrLogicalStateInformation
+public class CDI_PhysicalOrLogicalStateInformation : IElement
 {
 	/// <summary>
 	/// Code of the physical or logical state.

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace Edi.Contracts.Qualifiers;
@@ -6,7 +7,7 @@ namespace Edi.Contracts.Qualifiers;
 /// <summary>
 /// Terms of delivery or transport function, coded
 /// </summary>
-public class TermsOfDeliveryOrTransportFunctionCoded
+public class TermsOfDeliveryOrTransportFunctionCoded : IQualifier
 {
 	/// <summary>
 	/// String assign converter

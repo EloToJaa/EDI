@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To transmit summary statistics related to a specified collection of test result values.
 /// </summary>
 [EdiSegment, EdiPath("STA")]
-public class STA
+public class STA : ISegment
 {
 	/// <summary>
 	/// Specification of the specific statistic being reported.
@@ -27,7 +28,7 @@ public class STA
 /// Specifications related to statistical measurements.
 /// </summary>
 [EdiElement]
-public class STA_StatisticalDetails
+public class STA_StatisticalDetails : IElement
 {
 	/// <summary>
 	/// Value of the measured unit.

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To request a credit cover, reply to that request and disclose the reason for the reply.
 /// </summary>
 [EdiSegment, EdiPath("CCD")]
-public class CCD
+public class CCD : ISegment
 {
 	/// <summary>
 	/// Request for a credit cover.

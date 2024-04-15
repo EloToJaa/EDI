@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To describe the number and type of packages/physical units.
 /// </summary>
 [EdiSegment, EdiPath("PAC")]
-public class PAC
+public class PAC : ISegment
 {
 	/// <summary>
 	/// Number of individual parts of a shipment either unpacked, or packed in such a way that they cannot be divided without first undoing the packing.
@@ -45,7 +46,7 @@ public class PAC
 /// Packaging level and details, terms and conditions.
 /// </summary>
 [EdiElement]
-public class PAC_PackagingDetails
+public class PAC_PackagingDetails : IElement
 {
 	/// <summary>
 	/// Indication of level of packaging specified.
@@ -70,7 +71,7 @@ public class PAC_PackagingDetails
 /// Type of package by name or by code from a specified source.
 /// </summary>
 [EdiElement]
-public class PAC_PackageType
+public class PAC_PackageType : IElement
 {
 	/// <summary>
 	/// Coded description of the form in which goods are presented.
@@ -101,7 +102,7 @@ public class PAC_PackageType
 /// Identification of the form in which goods are described.
 /// </summary>
 [EdiElement]
-public class PAC_PackageTypeIdentification
+public class PAC_PackageTypeIdentification : IElement
 {
 	/// <summary>
 	/// Code indicating the format of a description.
@@ -138,7 +139,7 @@ public class PAC_PackageTypeIdentification
 /// Indication of responsibility for payment and load contents of returnable packages.
 /// </summary>
 [EdiElement]
-public class PAC_ReturnablePackageDetails
+public class PAC_ReturnablePackageDetails : IElement
 {
 	/// <summary>
 	/// To indicate responsibility for payment of return freight charges for packaging that is returnable.

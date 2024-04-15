@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To indicate totals of a goods item.
 /// </summary>
 [EdiSegment, EdiPath("GID")]
-public class GID
+public class GID : ISegment
 {
 	/// <summary>
 	/// Serial number differentiating each separate goods item entry of a consignment as contained in one document/declaration.
@@ -51,7 +52,7 @@ public class GID
 /// NUMBER AND TYPE OF PACKAGES
 /// </summary>
 [EdiElement]
-public class GID_NumberAndTypeOfPackages
+public class GID_NumberAndTypeOfPackages : IElement
 {
 	/// <summary>
 	/// Number of packages

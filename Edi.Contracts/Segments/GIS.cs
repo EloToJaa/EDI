@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To transmit a processing indicator.
 /// </summary>
 [EdiSegment, EdiPath("GIS")]
-public class GIS
+public class GIS : ISegment
 {
 	/// <summary>
 	/// Type of process indication.
@@ -21,7 +22,7 @@ public class GIS
 /// Type of process indication.
 /// </summary>
 [EdiElement]
-public class GIS_ProcessingIndicator
+public class GIS_ProcessingIndicator : IElement
 {
 	/// <summary>
 	/// Identifies the value to be attributed to indicators required by the processing system.

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace Edi.Contracts.Qualifiers;
@@ -6,7 +7,7 @@ namespace Edi.Contracts.Qualifiers;
 /// <summary>
 /// First/last sequence message transfer indication
 /// </summary>
-public class FirstLastSequenceMessageTransferIndication
+public class FirstLastSequenceMessageTransferIndication : IQualifier
 {
 	/// <summary>
 	/// String assign converter

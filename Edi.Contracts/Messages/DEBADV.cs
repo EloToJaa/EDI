@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// DEBADV
 /// </summary>
 [EdiMessage]
-public class DEBADV
+public class DEBADV : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -28,7 +29,7 @@ public class DEBADV
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -48,7 +49,7 @@ public class DEBADV
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG4
@@ -92,7 +93,7 @@ public class DEBADV
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DEBADV_SG1 : RFF
+public class DEBADV_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -101,7 +102,7 @@ public class DEBADV_SG1 : RFF
 }
 
 [EdiSegmentGroup("PAI", "FTX")]
-public class DEBADV_SG2 : PAI
+public class DEBADV_SG2 : PAI, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -110,7 +111,7 @@ public class DEBADV_SG2 : PAI
 }
 
 [EdiSegmentGroup("MOA", "CUX", "DTM", "RFF")]
-public class DEBADV_SG3 : MOA
+public class DEBADV_SG3 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Currencies
@@ -129,7 +130,7 @@ public class DEBADV_SG3 : MOA
 }
 
 [EdiSegmentGroup("FII", "CTA", "COM")]
-public class DEBADV_SG4 : FII
+public class DEBADV_SG4 : FII, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -143,7 +144,7 @@ public class DEBADV_SG4 : FII
 }
 
 [EdiSegmentGroup("NAD", "CTA", "COM")]
-public class DEBADV_SG5 : NAD
+public class DEBADV_SG5 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Contact information
@@ -157,7 +158,7 @@ public class DEBADV_SG5 : NAD
 }
 
 [EdiSegmentGroup("INP", "FTX", "DTM")]
-public class DEBADV_SG6 : INP
+public class DEBADV_SG6 : INP, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -171,7 +172,7 @@ public class DEBADV_SG6 : INP
 }
 
 [EdiSegmentGroup("GIS", "MOA", "LOC", "NAD", "RCS", "FTX")]
-public class DEBADV_SG7 : GIS
+public class DEBADV_SG7 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -200,7 +201,7 @@ public class DEBADV_SG7 : GIS
 }
 
 [EdiSegmentGroup("FCA", "MOA", "ALC")]
-public class DEBADV_SG8 : FCA
+public class DEBADV_SG8 : FCA, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -215,7 +216,7 @@ public class DEBADV_SG8 : FCA
 }
 
 [EdiSegmentGroup("ALC", "PCD", "MOA", "CUX", "DTM", "TAX")]
-public class DEBADV_SG9 : ALC
+public class DEBADV_SG9 : ALC, ISegmentGroup
 {
 	/// <summary>
 	/// Percentage details
@@ -245,7 +246,7 @@ public class DEBADV_SG9 : ALC
 }
 
 [EdiSegmentGroup("TAX", "MOA", "CUX", "DTM")]
-public class DEBADV_SG10 : TAX
+public class DEBADV_SG10 : TAX, ISegmentGroup
 {
 	/// <summary>
 	/// Monetary amount
@@ -264,7 +265,7 @@ public class DEBADV_SG10 : TAX
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class DEBADV_SG11 : DOC
+public class DEBADV_SG11 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -273,7 +274,7 @@ public class DEBADV_SG11 : DOC
 }
 
 [EdiSegmentGroup("AUT", "DTM")]
-public class DEBADV_SG12 : AUT
+public class DEBADV_SG12 : AUT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

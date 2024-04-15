@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// SLSFCT
 /// </summary>
 [EdiMessage]
-public class SLSFCT
+public class SLSFCT : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class SLSFCT
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -52,7 +53,7 @@ public class SLSFCT
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class SLSFCT_SG1 : NAD
+public class SLSFCT_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -62,7 +63,7 @@ public class SLSFCT_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class SLSFCT_SG2 : CTA
+public class SLSFCT_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -71,7 +72,7 @@ public class SLSFCT_SG2 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class SLSFCT_SG3 : RFF
+public class SLSFCT_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -80,7 +81,7 @@ public class SLSFCT_SG3 : RFF
 }
 
 [EdiSegmentGroup("CUX", "DTM")]
-public class SLSFCT_SG4 : CUX
+public class SLSFCT_SG4 : CUX, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -89,7 +90,7 @@ public class SLSFCT_SG4 : CUX
 }
 
 [EdiSegmentGroup("LOC", "DTM", "LIN")]
-public class SLSFCT_SG5 : LOC
+public class SLSFCT_SG5 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -104,7 +105,7 @@ public class SLSFCT_SG5 : LOC
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "PAC", "RFF", "DOC", "ALI", "MOA", "PRI", "QTY")]
-public class SLSFCT_SG6 : LIN
+public class SLSFCT_SG6 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -154,7 +155,7 @@ public class SLSFCT_SG6 : LIN
 }
 
 [EdiSegmentGroup("QTY", "MKS", "NAD")]
-public class SLSFCT_SG7 : QTY
+public class SLSFCT_SG7 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Market/sales channel information

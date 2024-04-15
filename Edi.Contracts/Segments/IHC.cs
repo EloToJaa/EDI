@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify characteristics of a person such as ethnic origin.
 /// </summary>
 [EdiSegment, EdiPath("IHC")]
-public class IHC
+public class IHC : ISegment
 {
 	/// <summary>
 	/// To specify the type of specific person characteristic.
@@ -27,7 +28,7 @@ public class IHC
 /// To specify an inherited characteristic of a person.
 /// </summary>
 [EdiElement]
-public class IHC_PersonInheritedCharacteristicDetails
+public class IHC_PersonInheritedCharacteristicDetails : IElement
 {
 	/// <summary>
 	/// To specify a person inherited characteristic using a code value.

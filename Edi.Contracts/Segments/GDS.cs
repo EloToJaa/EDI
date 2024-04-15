@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To indicate the type of cargo as a general classification.
 /// </summary>
 [EdiSegment, EdiPath("GDS")]
-public class GDS
+public class GDS : ISegment
 {
 	/// <summary>
 	/// Rough classification of a type of cargo.
@@ -21,7 +22,7 @@ public class GDS
 /// Rough classification of a type of cargo.
 /// </summary>
 [EdiElement]
-public class GDS_NatureOfCargo
+public class GDS_NatureOfCargo : IElement
 {
 	/// <summary>
 	/// Code indicating the type of cargo as a rough classification.

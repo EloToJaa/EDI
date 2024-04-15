@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// OSTENQ
 /// </summary>
 [EdiMessage]
-public class OSTENQ
+public class OSTENQ : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class OSTENQ
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Free text
@@ -47,7 +48,7 @@ public class OSTENQ
 }
 
 [EdiSegmentGroup("NAD", "CTA")]
-public class OSTENQ_SG1 : NAD
+public class OSTENQ_SG1 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG2
@@ -57,7 +58,7 @@ public class OSTENQ_SG1 : NAD
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class OSTENQ_SG2 : CTA
+public class OSTENQ_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -66,7 +67,7 @@ public class OSTENQ_SG2 : CTA
 }
 
 [EdiSegmentGroup("DOC", "DTM", "LIN")]
-public class OSTENQ_SG3 : DOC
+public class OSTENQ_SG3 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -81,7 +82,7 @@ public class OSTENQ_SG3 : DOC
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "MEA", "RFF", "LOC")]
-public class OSTENQ_SG4 : LIN
+public class OSTENQ_SG4 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -111,7 +112,7 @@ public class OSTENQ_SG4 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class OSTENQ_SG5 : RFF
+public class OSTENQ_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -120,7 +121,7 @@ public class OSTENQ_SG5 : RFF
 }
 
 [EdiSegmentGroup("LOC", "DTM", "QTY")]
-public class OSTENQ_SG6 : LOC
+public class OSTENQ_SG6 : LOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

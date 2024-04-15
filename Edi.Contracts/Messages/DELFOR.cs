@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// DELFOR
 /// </summary>
 [EdiMessage]
-public class DELFOR
+public class DELFOR : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,12 +24,12 @@ public class DELFOR
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// Free text
 	/// </summary>
-	public List<FTX>? FreeText1C { get; set; }
+	public List<FTX>? FreeTextC { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -57,7 +58,7 @@ public class DELFOR
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DELFOR_SG1 : RFF
+public class DELFOR_SG1 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -66,7 +67,7 @@ public class DELFOR_SG1 : RFF
 }
 
 [EdiSegmentGroup("NAD", "RFF", "CTA")]
-public class DELFOR_SG2 : NAD
+public class DELFOR_SG2 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// SG3
@@ -81,7 +82,7 @@ public class DELFOR_SG2 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DELFOR_SG3 : RFF
+public class DELFOR_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -90,7 +91,7 @@ public class DELFOR_SG3 : RFF
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class DELFOR_SG4 : CTA
+public class DELFOR_SG4 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -99,7 +100,7 @@ public class DELFOR_SG4 : CTA
 }
 
 [EdiSegmentGroup("TDT", "DTM")]
-public class DELFOR_SG5 : TDT
+public class DELFOR_SG5 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -108,7 +109,7 @@ public class DELFOR_SG5 : TDT
 }
 
 [EdiSegmentGroup("GIS", "NAD", "LIN")]
-public class DELFOR_SG6 : GIS
+public class DELFOR_SG6 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// SG7
@@ -123,7 +124,7 @@ public class DELFOR_SG6 : GIS
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FTX", "RFF", "DOC", "CTA", "TDT")]
-public class DELFOR_SG7 : NAD
+public class DELFOR_SG7 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -158,7 +159,7 @@ public class DELFOR_SG7 : NAD
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DELFOR_SG8 : RFF
+public class DELFOR_SG8 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -167,7 +168,7 @@ public class DELFOR_SG8 : RFF
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class DELFOR_SG9 : DOC
+public class DELFOR_SG9 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -176,7 +177,7 @@ public class DELFOR_SG9 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class DELFOR_SG10 : CTA
+public class DELFOR_SG10 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -185,7 +186,7 @@ public class DELFOR_SG10 : CTA
 }
 
 [EdiSegmentGroup("TDT", "DTM")]
-public class DELFOR_SG11 : TDT
+public class DELFOR_SG11 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -194,7 +195,7 @@ public class DELFOR_SG11 : TDT
 }
 
 [EdiSegmentGroup("LIN", "PIA", "IMD", "MEA", "ALI", "GIN", "GIR", "LOC", "DTM", "FTX", "RFF", "TDT", "QTY", "SCC", "PAC", "NAD")]
-public class DELFOR_SG12 : LIN
+public class DELFOR_SG12 : LIN, ISegmentGroup
 {
 	/// <summary>
 	/// Additional product id
@@ -274,7 +275,7 @@ public class DELFOR_SG12 : LIN
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DELFOR_SG13 : RFF
+public class DELFOR_SG13 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -283,7 +284,7 @@ public class DELFOR_SG13 : RFF
 }
 
 [EdiSegmentGroup("TDT", "DTM")]
-public class DELFOR_SG14 : TDT
+public class DELFOR_SG14 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -292,7 +293,7 @@ public class DELFOR_SG14 : TDT
 }
 
 [EdiSegmentGroup("QTY", "DTM", "RFF")]
-public class DELFOR_SG15 : QTY
+public class DELFOR_SG15 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -307,7 +308,7 @@ public class DELFOR_SG15 : QTY
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DELFOR_SG16 : RFF
+public class DELFOR_SG16 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -316,7 +317,7 @@ public class DELFOR_SG16 : RFF
 }
 
 [EdiSegmentGroup("SCC", "QTY")]
-public class DELFOR_SG17 : SCC
+public class DELFOR_SG17 : SCC, ISegmentGroup
 {
 	/// <summary>
 	/// SG18
@@ -326,7 +327,7 @@ public class DELFOR_SG17 : SCC
 }
 
 [EdiSegmentGroup("QTY", "DTM", "RFF")]
-public class DELFOR_SG18 : QTY
+public class DELFOR_SG18 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -341,7 +342,7 @@ public class DELFOR_SG18 : QTY
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DELFOR_SG19 : RFF
+public class DELFOR_SG19 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -350,7 +351,7 @@ public class DELFOR_SG19 : RFF
 }
 
 [EdiSegmentGroup("PAC", "MEA", "QTY", "DTM", "PCI")]
-public class DELFOR_SG20 : PAC
+public class DELFOR_SG20 : PAC, ISegmentGroup
 {
 	/// <summary>
 	/// Measurements
@@ -375,7 +376,7 @@ public class DELFOR_SG20 : PAC
 }
 
 [EdiSegmentGroup("PCI", "GIN")]
-public class DELFOR_SG21 : PCI
+public class DELFOR_SG21 : PCI, ISegmentGroup
 {
 	/// <summary>
 	/// Goods identity number
@@ -384,7 +385,7 @@ public class DELFOR_SG21 : PCI
 }
 
 [EdiSegmentGroup("NAD", "LOC", "FTX", "DOC", "CTA", "QTY", "SCC", "TDT")]
-public class DELFOR_SG22 : NAD
+public class DELFOR_SG22 : NAD, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -424,7 +425,7 @@ public class DELFOR_SG22 : NAD
 }
 
 [EdiSegmentGroup("DOC", "DTM")]
-public class DELFOR_SG23 : DOC
+public class DELFOR_SG23 : DOC, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -433,7 +434,7 @@ public class DELFOR_SG23 : DOC
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class DELFOR_SG24 : CTA
+public class DELFOR_SG24 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -442,7 +443,7 @@ public class DELFOR_SG24 : CTA
 }
 
 [EdiSegmentGroup("QTY", "DTM", "RFF")]
-public class DELFOR_SG25 : QTY
+public class DELFOR_SG25 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -457,7 +458,7 @@ public class DELFOR_SG25 : QTY
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DELFOR_SG26 : RFF
+public class DELFOR_SG26 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -466,7 +467,7 @@ public class DELFOR_SG26 : RFF
 }
 
 [EdiSegmentGroup("SCC", "QTY")]
-public class DELFOR_SG27 : SCC
+public class DELFOR_SG27 : SCC, ISegmentGroup
 {
 	/// <summary>
 	/// SG28
@@ -476,7 +477,7 @@ public class DELFOR_SG27 : SCC
 }
 
 [EdiSegmentGroup("QTY", "DTM", "RFF")]
-public class DELFOR_SG28 : QTY
+public class DELFOR_SG28 : QTY, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -491,7 +492,7 @@ public class DELFOR_SG28 : QTY
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class DELFOR_SG29 : RFF
+public class DELFOR_SG29 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -500,7 +501,7 @@ public class DELFOR_SG29 : RFF
 }
 
 [EdiSegmentGroup("TDT", "DTM")]
-public class DELFOR_SG30 : TDT
+public class DELFOR_SG30 : TDT, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period

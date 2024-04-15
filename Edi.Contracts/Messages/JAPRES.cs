@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Segments;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Messages;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// JAPRES
 /// </summary>
 [EdiMessage]
-public class JAPRES
+public class JAPRES : IMessage
 {
 	/// <summary>
 	/// Message header
@@ -23,7 +24,7 @@ public class JAPRES
 	/// <summary>
 	/// Date/time/period
 	/// </summary>
-	public List<DTM>? DateTimePeriod1M { get; set; }
+	public List<DTM>? DateTimePeriodM { get; set; }
 
 	/// <summary>
 	/// SG1
@@ -57,7 +58,7 @@ public class JAPRES
 }
 
 [EdiSegmentGroup("PNA", "ADR", "LOC", "DTM", "CTA")]
-public class JAPRES_SG1 : PNA
+public class JAPRES_SG1 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -82,7 +83,7 @@ public class JAPRES_SG1 : PNA
 }
 
 [EdiSegmentGroup("CTA", "COM")]
-public class JAPRES_SG2 : CTA
+public class JAPRES_SG2 : CTA, ISegmentGroup
 {
 	/// <summary>
 	/// Communication contact
@@ -91,7 +92,7 @@ public class JAPRES_SG2 : CTA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class JAPRES_SG3 : RFF
+public class JAPRES_SG3 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -100,7 +101,7 @@ public class JAPRES_SG3 : RFF
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class JAPRES_SG4 : GIS
+public class JAPRES_SG4 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -109,7 +110,7 @@ public class JAPRES_SG4 : GIS
 }
 
 [EdiSegmentGroup("RFF", "DTM", "FTX", "PNA", "RFF", "GIS", "EMP", "SAL")]
-public class JAPRES_SG5 : RFF
+public class JAPRES_SG5 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -149,7 +150,7 @@ public class JAPRES_SG5 : RFF
 }
 
 [EdiSegmentGroup("PNA", "ADR", "DTM", "LOC", "NAT", "PDI", "DOC")]
-public class JAPRES_SG6 : PNA
+public class JAPRES_SG6 : PNA, ISegmentGroup
 {
 	/// <summary>
 	/// Address
@@ -183,7 +184,7 @@ public class JAPRES_SG6 : PNA
 }
 
 [EdiSegmentGroup("RFF", "DTM")]
-public class JAPRES_SG7 : RFF
+public class JAPRES_SG7 : RFF, ISegmentGroup
 {
 	/// <summary>
 	/// Date/time/period
@@ -192,7 +193,7 @@ public class JAPRES_SG7 : RFF
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class JAPRES_SG8 : GIS
+public class JAPRES_SG8 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -201,7 +202,7 @@ public class JAPRES_SG8 : GIS
 }
 
 [EdiSegmentGroup("EMP", "LOC", "GIS", "ATT", "LAN")]
-public class JAPRES_SG9 : EMP
+public class JAPRES_SG9 : EMP, ISegmentGroup
 {
 	/// <summary>
 	/// Place/location identification
@@ -226,7 +227,7 @@ public class JAPRES_SG9 : EMP
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class JAPRES_SG10 : GIS
+public class JAPRES_SG10 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -235,7 +236,7 @@ public class JAPRES_SG10 : GIS
 }
 
 [EdiSegmentGroup("ATT", "FTX", "PTY")]
-public class JAPRES_SG11 : ATT
+public class JAPRES_SG11 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -249,7 +250,7 @@ public class JAPRES_SG11 : ATT
 }
 
 [EdiSegmentGroup("LAN", "GIS")]
-public class JAPRES_SG12 : LAN
+public class JAPRES_SG12 : LAN, ISegmentGroup
 {
 	/// <summary>
 	/// General indicator
@@ -258,7 +259,7 @@ public class JAPRES_SG12 : LAN
 }
 
 [EdiSegmentGroup("SAL", "FTX", "DTM", "ATT", "GIS", "MOA")]
-public class JAPRES_SG13 : SAL
+public class JAPRES_SG13 : SAL, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -288,7 +289,7 @@ public class JAPRES_SG13 : SAL
 }
 
 [EdiSegmentGroup("ATT", "FTX")]
-public class JAPRES_SG14 : ATT
+public class JAPRES_SG14 : ATT, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -297,7 +298,7 @@ public class JAPRES_SG14 : ATT
 }
 
 [EdiSegmentGroup("GIS", "FTX")]
-public class JAPRES_SG15 : GIS
+public class JAPRES_SG15 : GIS, ISegmentGroup
 {
 	/// <summary>
 	/// Free text
@@ -306,7 +307,7 @@ public class JAPRES_SG15 : GIS
 }
 
 [EdiSegmentGroup("MOA", "RNG", "FTX")]
-public class JAPRES_SG16 : MOA
+public class JAPRES_SG16 : MOA, ISegmentGroup
 {
 	/// <summary>
 	/// Range details

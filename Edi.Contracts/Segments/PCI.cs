@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify markings and labels on individual packages or physical units.
 /// </summary>
 [EdiSegment, EdiPath("PCI")]
-public class PCI
+public class PCI : ISegment
 {
 	/// <summary>
 	/// Code indicating instructions on how specified packages or physical units should be marked.
@@ -39,7 +40,7 @@ public class PCI
 /// Shipping marks on packages in free text; one to ten lines.
 /// </summary>
 [EdiElement]
-public class PCI_MarksLabels
+public class PCI_MarksLabels : IElement
 {
 	/// <summary>
 	/// Marks and numbers identifying individual packages.
@@ -106,7 +107,7 @@ public class PCI_MarksLabels
 /// Specification of the type of marking that reflects the method that was used and the conventions adhered to for marking (e.g. of packages).
 /// </summary>
 [EdiElement]
-public class PCI_TypeOfMarking
+public class PCI_TypeOfMarking : IElement
 {
 	/// <summary>
 	/// To specify the type of marking that reflects the method and the conventions adhered to for marking.

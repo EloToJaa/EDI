@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the payment terms basis.
 /// </summary>
 [EdiSegment, EdiPath("PAT")]
-public class PAT
+public class PAT : ISegment
 {
 	/// <summary>
 	/// Identification of the type of payment terms.
@@ -33,7 +34,7 @@ public class PAT
 /// Terms of payment code from a specified source.
 /// </summary>
 [EdiElement]
-public class PAT_PaymentTerms
+public class PAT_PaymentTerms : IElement
 {
 	/// <summary>
 	/// Identification of the terms of payment between the parties to a transaction (generic term).
@@ -70,7 +71,7 @@ public class PAT_PaymentTerms
 /// Time details in payment terms.
 /// </summary>
 [EdiElement]
-public class PAT_TermsTimeInformation
+public class PAT_TermsTimeInformation : IElement
 {
 	/// <summary>
 	/// Code relating payment terms to the date of a specific event.

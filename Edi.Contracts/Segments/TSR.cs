@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify the contract and carriage conditions and service and priority requirements for the transport.
 /// </summary>
 [EdiSegment, EdiPath("TSR")]
-public class TSR
+public class TSR : ISegment
 {
 	/// <summary>
 	/// To identify a contract and carriage condition.
@@ -39,7 +40,7 @@ public class TSR
 /// To identify a contract and carriage condition.
 /// </summary>
 [EdiElement]
-public class TSR_ContractAndCarriageCondition
+public class TSR_ContractAndCarriageCondition : IElement
 {
 	/// <summary>
 	/// Code to identify the conditions of contract and carriage.
@@ -64,7 +65,7 @@ public class TSR_ContractAndCarriageCondition
 /// To identify a service (which may constitute an additional component to a basic contract).
 /// </summary>
 [EdiElement]
-public class TSR_Service
+public class TSR_Service : IElement
 {
 	/// <summary>
 	/// Identification of a service requirement (which may constitute an additional component to a basic contract).
@@ -107,7 +108,7 @@ public class TSR_Service
 /// To indicate the priority of requested transport service.
 /// </summary>
 [EdiElement]
-public class TSR_TransportPriority
+public class TSR_TransportPriority : IElement
 {
 	/// <summary>
 	/// Coded priority of requested transport service.
@@ -132,7 +133,7 @@ public class TSR_TransportPriority
 /// Rough classification of a type of cargo.
 /// </summary>
 [EdiElement]
-public class TSR_NatureOfCargo
+public class TSR_NatureOfCargo : IElement
 {
 	/// <summary>
 	/// Code indicating the type of cargo as a rough classification.

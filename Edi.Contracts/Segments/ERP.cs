@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// A segment to identify the location of an application error within a message.
 /// </summary>
 [EdiSegment, EdiPath("ERP")]
-public class ERP
+public class ERP : ISegment
 {
 	/// <summary>
 	/// Indication of the point of error in a message.
@@ -27,7 +28,7 @@ public class ERP
 /// Indication of the point of error in a message.
 /// </summary>
 [EdiElement]
-public class ERP_ErrorPointDetails
+public class ERP_ErrorPointDetails : IElement
 {
 	/// <summary>
 	/// Recognition of a particular part of a message.
@@ -52,7 +53,7 @@ public class ERP_ErrorPointDetails
 /// To indicate the exact segment location of an application error within a message.
 /// </summary>
 [EdiElement]
-public class ERP_ErrorSegmentPointDetails
+public class ERP_ErrorSegmentPointDetails : IElement
 {
 	/// <summary>
 	/// Tag of a segment.

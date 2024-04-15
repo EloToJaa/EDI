@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace Edi.Contracts.Qualifiers;
@@ -6,7 +7,7 @@ namespace Edi.Contracts.Qualifiers;
 /// <summary>
 /// Equipment size and type identification
 /// </summary>
-public class EquipmentSizeAndTypeIdentification
+public class EquipmentSizeAndTypeIdentification : IQualifier
 {
 	/// <summary>
 	/// String assign converter

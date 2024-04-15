@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To identify a line item and configuration.
 /// </summary>
 [EdiSegment, EdiPath("LIN")]
-public class LIN
+public class LIN : ISegment
 {
 	/// <summary>
 	/// Serial number designating each separate item within a series of articles.
@@ -52,7 +53,7 @@ public class LIN
 /// Goods identification for a specified source.
 /// </summary>
 [EdiElement]
-public class LIN_ItemNumberIdentification
+public class LIN_ItemNumberIdentification : IElement
 {
 	/// <summary>
 	/// A number allocated to a group or item.
@@ -83,7 +84,7 @@ public class LIN_ItemNumberIdentification
 /// To provide an indication that a segment or segment group is used to contain sub-line or sub-line item information and to optionally enable the sub-line to be identified.
 /// </summary>
 [EdiElement]
-public class LIN_SublineInformation
+public class LIN_SublineInformation : IElement
 {
 	/// <summary>
 	/// Indication that the segment and/or segment group is used for sub-line item information.

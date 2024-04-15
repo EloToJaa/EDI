@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Edi.Contracts.Qualifiers;
+using Edi.Contracts.Interfaces;
 using indice.Edi.Serialization;
 
 namespace Edi.Contracts.Segments;
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Segments;
 /// To specify operational transport movement details for a goods item or equipment (which may differ from the contractual conditions).
 /// </summary>
 [EdiSegment, EdiPath("TMD")]
-public class TMD
+public class TMD : ISegment
 {
 	/// <summary>
 	/// Description of type of service for movement of cargo.
@@ -34,7 +35,7 @@ public class TMD
 /// Description of type of service for movement of cargo.
 /// </summary>
 [EdiElement]
-public class TMD_MovementType
+public class TMD_MovementType : IElement
 {
 	/// <summary>
 	/// Code indicating the type of movement.

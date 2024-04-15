@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Edi.Contracts.Interfaces;
 using Edi.Contracts.Segments;
 using indice.Edi.Serialization;
 
@@ -8,7 +9,7 @@ namespace Edi.Contracts.Messages;
 /// INVOIC
 /// </summary>
 [EdiMessage]
-public class INVOIC
+public class INVOIC : IMessage
 {
 	/// <summary>
 	/// Message header

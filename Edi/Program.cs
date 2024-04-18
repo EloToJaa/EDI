@@ -1,7 +1,6 @@
 ﻿using Edi.Download;
 using Edi.Generator;
 using indice.Edi;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
@@ -30,11 +29,15 @@ internal class Program
         string filePath = Path.Combine(dirPath, "ORDERS_2024_281.c2e (1).sent");
         string fileContents = File.ReadAllText(filePath);
 
-        var segments = fileContents.Split("'").Select(s => s.Trim());
+        const char segmentSplit = '\'';
+        const char elementSplit = '+';
+        const char valueSplit = ':';
+
+        var segments = fileContents.Split(segmentSplit).Select(s => s.Trim());
         string unhSegment = segments.Where(s => s.StartsWith("UNH")).First();
-        var elements = unhSegment.Split("+");
+        var elements = unhSegment.Split(elementSplit);
         string versionElement = elements[2];
-        var values = versionElement.Split(":");
+        var values = versionElement.Split(valueSplit);
 
         string messageName = values[0];
         string versionNumber = values[1] + values[2];
@@ -54,7 +57,7 @@ internal class Program
 
         string json = JsonSerializer.Serialize(interchange, new JsonSerializerOptions
         {
-            WriteIndented = true,
+            WriteIndented = false,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         });
 

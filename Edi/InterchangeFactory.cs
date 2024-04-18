@@ -1,16 +1,17 @@
 ﻿using Edi.Contracts.Interchanges;
 using Edi.Contracts.InterchangeSegments;
 using Edi.Contracts.Interfaces;
-using Edi.Contracts.Messages;
 using System.Reflection;
 
 namespace Edi;
 
 public class InterchangeFactory
 {
+    private static readonly string _assemblyName = "Edi.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
+
     public static Interchange<IMessage>? Create(string messageClassName)
     {
-        var asm = Assembly.Load("Edi.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+        var asm = Assembly.Load(_assemblyName);
         var messageType = asm.GetType($"Edi.Contracts.Messages.{messageClassName}");
         if (messageType is null) return null;
 
@@ -31,7 +32,7 @@ public class InterchangeFactory
 
     public static Type? CreateType(string messageClassName)
     {
-        var asm = Assembly.Load("Edi.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+        var asm = Assembly.Load(_assemblyName);
         var messageType = asm.GetType($"Edi.Contracts.Messages.{messageClassName}");
         if (messageType is null) return null;
 

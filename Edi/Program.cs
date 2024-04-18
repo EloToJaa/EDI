@@ -42,9 +42,6 @@ internal class Program
         string messageName = values[0];
         string versionNumber = values[1] + values[2];
 
-        //object? interchange = InterchangeFactory.Create(messageName);
-        //var interchange = default(Interchange<ORDERS>);
-
         var type = InterchangeFactory.CreateType(messageName);
 
         if (type is null) return;
@@ -52,8 +49,7 @@ internal class Program
         var grammar = EdiGrammar.NewEdiFact();
         using var stream = new StreamReader(filePath);
 
-        //interchange = new EdiSerializer().Deserialize<Interchange<ORDERS>>(stream, grammar);
-        object? interchange = new EdiSerializer().Deserialize(stream, grammar, type);
+        object interchange = new EdiSerializer().Deserialize(stream, grammar, type);
 
         string json = JsonSerializer.Serialize(interchange, new JsonSerializerOptions
         {

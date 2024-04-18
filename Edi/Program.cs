@@ -53,7 +53,7 @@ internal class Program
 
         string json = JsonSerializer.Serialize(interchange, new JsonSerializerOptions
         {
-            WriteIndented = false,
+            WriteIndented = true,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         });
 

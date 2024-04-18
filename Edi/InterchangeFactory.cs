@@ -25,7 +25,7 @@ public class InterchangeFactory
         return new Interchange<IMessage>
         {
             InterchangeHeader = new UNB(),
-            Message = message,
+            Messages = [message],
             InterchangeTrailer = new UNZ()
         };
     }

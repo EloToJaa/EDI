@@ -144,7 +144,7 @@ public class INVOIC : IMessage
 	/// <summary>
 	/// SG51
 	/// </summary>
-	public List<INVOIC_SG51>? SG51C { get; set; }
+	//public List<INVOIC_SG51>? SG51C { get; set; }
 
 	/// <summary>
 	/// SG52

@@ -1,8 +1,9 @@
-﻿using Edi.Contracts.Interchanges;
-using Edi.Download;
+﻿using Edi.Download;
 using Edi.Generator;
 using indice.Edi;
 using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace Edi;
 
@@ -11,7 +12,7 @@ internal class Program
     static void Main(string[] args)
     {
         CheckParse();
-        GenerateCode();
+        //GenerateCode();
         //DownloadMessages();
     }
 
@@ -24,20 +25,39 @@ internal class Program
 
     private static void CheckParse()
     {
-        //string dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "edi");
-        //string filePath = Path.Combine(dirPath, "INVOIC_a2i24021713091266429e1.edi.c2e");
+        string dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "edi");
+        string filePath = Path.Combine(dirPath, "INVOIC_a2i24021713091266429e1.edi.c2e");
+        string fileContents = File.ReadAllText(filePath);
 
-        //var grammar = EdiGrammar.NewEdiFact();
-        //var interchange = default(Interchange<Contracts.Messages.INVOIC>);
-        //using var stream = new StreamReader(filePath);
-        //interchange = new EdiSerializer().Deserialize<Interchange<Contracts.Messages.INVOIC>>(stream, grammar);
+        const char segmentSplit = '\'';
+        const char elementSplit = '+';
+        const char valueSplit = ':';
 
-        //string json = JsonSerializer.Serialize(interchange, new JsonSerializerOptions
-        //{
-        //    WriteIndented = true,
-        //});
+        var segments = fileContents.Split(segmentSplit).Select(s => s.Trim());
+        string unhSegment = segments.Where(s => s.StartsWith("UNH")).First();
+        var elements = unhSegment.Split(elementSplit);
+        string versionElement = elements[2];
+        var values = versionElement.Split(valueSplit);
 
-        //File.WriteAllText(Path.Combine(dirPath, "out.json"), json);
+        string messageName = values[0];
+        string versionNumber = values[1] + values[2];
+
+        var type = InterchangeFactory.CreateType(messageName);
+
+        if (type is null) return;
+
+        var grammar = EdiGrammar.NewEdiFact();
+        using var stream = new StreamReader(filePath);
+
+        object interchange = new EdiSerializer().Deserialize(stream, grammar, type);
+
+        string json = JsonSerializer.Serialize(interchange, new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        });
+
+        File.WriteAllText(Path.Combine(dirPath, "out.json"), Regex.Unescape(json));
     }
 
     private static void GenerateCode()

@@ -26,7 +26,7 @@ internal class Program
     private static void CheckParse()
     {
         string dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "edi");
-        string filePath = Path.Combine(dirPath, "INVOIC_a2i24021713091266429e1.edi.c2e");
+        string filePath = Path.Combine(dirPath, "ORDRSP_00000000000163.c2e");
         string fileContents = File.ReadAllText(filePath);
 
         const char segmentSplit = '\'';

@@ -18,10 +18,37 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="edi\DESADV_a2i240217135425491a871.edi.c2e">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="edi\INVOIC_a2i24021713091266429e1.edi.c2e">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="edi\INVRPT_MAG_20240217">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="edi\ORDERS_2024_281.c2e %281%29.sent">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="edi\ORDERS_2024_281.c2e %282%29.sent">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="edi\ORDERS_2024_281.c2e %283%29.sent">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="edi\ORDERS_2024_281.c2e %284%29.sent">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="edi\ORDERS_2024_281.c2e %285%29.sent">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="edi\ORDRSP_00000000000163.c2e">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="edi\PRICAT_a2i240219090759683d41.edi.c2e">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="edi\SLSRPT_2024_6.sent">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="schemas\D97A\RSSBus_D97A.json">

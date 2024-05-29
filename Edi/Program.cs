@@ -1,8 +1,6 @@
-﻿using Edi.Download;
-using Edi.Generator;
+﻿using Edi.Generator;
 using indice.Edi;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
 namespace Edi;
@@ -13,27 +11,15 @@ internal class Program
     {
         CheckParse();
         //GenerateCode();
-        //DownloadMessages();
     }
 
-    private static void DownloadMessages()
+    private static Tuple<string, string> GetInterchangeInfo(
+        string interchangeContents,
+        char segmentSplit = '\'',
+        char elementSplit = '+',
+        char valueSplit = ':')
     {
-        var downloader = new Downloader();
-        downloader.Download();
-        //downloader.DownloadMessageSpecification("D97A", "INVOIC");
-    }
-
-    private static void CheckParse()
-    {
-        string dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "edi");
-        string filePath = Path.Combine(dirPath, "ORDERS_2024_281.c2e (1).sent");
-        string fileContents = File.ReadAllText(filePath);
-
-        const char segmentSplit = '\'';
-        const char elementSplit = '+';
-        const char valueSplit = ':';
-
-        var segments = fileContents.Split(segmentSplit).Select(s => s.Trim());
+        var segments = interchangeContents.Split(segmentSplit).Select(s => s.Trim());
         string unhSegment = segments.Where(s => s.StartsWith("UNH")).First();
         var elements = unhSegment.Split(elementSplit);
         string versionElement = elements[2];
@@ -41,6 +27,17 @@ internal class Program
 
         string messageName = values[0];
         string versionNumber = values[1] + values[2];
+
+        return Tuple.Create(messageName, versionNumber);
+    }
+
+    private static void CheckParse()
+    {
+        string dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "edi");
+        string filePath = Path.Combine(dirPath, "DESADV_a2i240217135425491a871.edi.c2e");
+        string fileContents = File.ReadAllText(filePath);
+
+        var (messageName, _) = GetInterchangeInfo(fileContents);
 
         var type = InterchangeFactory.CreateType(messageName);
 
@@ -54,7 +51,7 @@ internal class Program
         string json = JsonSerializer.Serialize(interchange, new JsonSerializerOptions
         {
             WriteIndented = true,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            //DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         });
 
         File.WriteAllText(Path.Combine(dirPath, "out.json"), Regex.Unescape(json));

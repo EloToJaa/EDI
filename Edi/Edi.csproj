@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Edi.Contracts\Edi.Contracts.csproj" />
-    <ProjectReference Include="..\Edi.Download\Edi.Download.csproj" />
     <ProjectReference Include="..\Edi.Generator\Edi.Generator.csproj" />
   </ItemGroup>
 

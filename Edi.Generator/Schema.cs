@@ -2,7 +2,6 @@
 
 namespace Edi.Generator;
 
-
 public class Schema
 {
     [JsonPropertyName("Release")]

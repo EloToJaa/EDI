@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Edi.Contracts", "Edi.Contra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Edi.Generator", "Edi.Generator\Edi.Generator.csproj", "{52FF5788-66D7-4875-97D5-2583FBE9F92B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edi.Download", "Edi.Download\Edi.Download.csproj", "{8725C63E-9029-4D79-B097-E8A086540E13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Edi.Download", "Edi.Download\Edi.Download.csproj", "{8725C63E-9029-4D79-B097-E8A086540E13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edi.Test", "Edi.Test\Edi.Test.csproj", "{02A377E4-B96C-4160-B8DF-CD3B98245A7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{8725C63E-9029-4D79-B097-E8A086540E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8725C63E-9029-4D79-B097-E8A086540E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8725C63E-9029-4D79-B097-E8A086540E13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02A377E4-B96C-4160-B8DF-CD3B98245A7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02A377E4-B96C-4160-B8DF-CD3B98245A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02A377E4-B96C-4160-B8DF-CD3B98245A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02A377E4-B96C-4160-B8DF-CD3B98245A7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

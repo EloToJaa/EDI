@@ -6,6 +6,10 @@ EDI POCO generator and EDI format parser
 
 Currently supports only EDIFACT
 
+## Depracation notice
+
+This project is no longer maintained.
+
 ## Credits
 
 - [indice-co/EDI.Net](https://github.com/indice-co/EDI.Net)
